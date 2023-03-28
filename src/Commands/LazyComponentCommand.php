@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Lazyadm\LazyComponent\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LazyComponentCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'lazy-component';
 
     public $description = 'My command';
 

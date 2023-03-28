@@ -2,9 +2,9 @@
 
 namespace Lazyadm\LazyComponent;
 
+use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
 
 class LazyComponentServiceProvider extends PackageServiceProvider
 {

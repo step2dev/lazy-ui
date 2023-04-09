@@ -20,6 +20,6 @@ class Label extends Component
 
     public function render(): View
     {
-        return view('components.admin.label');
+        return view('lazy::label');
     }
 }

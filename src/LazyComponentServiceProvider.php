@@ -22,7 +22,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
             ->hasViews('lazy')
             ->hasTranslations()
             ->hasViewComponents('lazy', [
-                Badge::class
+                Badge::class,
             ])
 //            ->hasAssets()
 //            ->publishesServiceProvider($nameOfYourServiceProvider)

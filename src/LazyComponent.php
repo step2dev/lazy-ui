@@ -64,6 +64,43 @@ abstract class LazyComponent extends Component
         return $fullName;
     }
 
+    protected function mergeClasses(ComponentAttributeBag $attributes, array $merge = []): ComponentAttributeBag
+    {
+        return $attributes->class(array_filter([
+            ...$merge,
+            $this->size($attributes),
+            $this->color($attributes),
+        ]));
+    }
+
+    protected function size(ComponentAttributeBag $attributes): string
+    {
+        return $this->modifierClasses($attributes, $this->getSizes());
+    }
+
+    protected function modifierClasses(ComponentAttributeBag $attributes, array $modifiers): string
+    {
+        $modifier = $this->findModifier($attributes, $modifiers);
+
+        return $modifiers[$modifier];
+    }
+
+    public function getSizes(): array
+    {
+        return $this->sizes;
+    }
+
+    protected function color(ComponentAttributeBag $attributes): string
+    {
+        return $this->modifierClasses($attributes, $this->currentColors());
+    }
+
+    protected function currentColors(): array
+    {
+        return $this->colors;
+    }
+
+
     public function componentSlot(mixed $slot): ComponentSlot
     {
         if ($slot instanceof ComponentSlot) {

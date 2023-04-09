@@ -32,7 +32,7 @@ abstract class LazyComponent extends Component
 
     abstract public function render(): \Closure|View;
 
-    protected function findModifier(ComponentAttributeBag $attributes, array $modifiers): string
+    final protected function findModifier(ComponentAttributeBag $attributes, array $modifiers): string
     {
         $keys = collect($modifiers)->keys()->except(self::DEFAULT)->toArray();
 
@@ -73,7 +73,7 @@ abstract class LazyComponent extends Component
         ]));
     }
 
-    protected function size(ComponentAttributeBag $attributes): string
+    final protected function size(ComponentAttributeBag $attributes): string
     {
         return $this->modifierClasses($attributes, $this->getSizes());
     }

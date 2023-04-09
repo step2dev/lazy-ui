@@ -2,8 +2,6 @@
 
 namespace Lazyadm\LazyComponent\Enums;
 
-use JetBrains\PhpStorm\Pure;
-
 enum SizesEnum: string
 {
     use LazyEnumTrait;

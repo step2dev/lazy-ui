@@ -11,6 +11,6 @@ trait LazyEnumTrait
 
     public static function getClasses(string $prefix = ''): array
     {
-        return array_map(static fn($value) => $value->getClass($prefix), self::toArray());
+        return array_map(static fn ($value) => $value->getClass($prefix), self::toArray());
     }
 }

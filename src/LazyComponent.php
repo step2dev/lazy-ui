@@ -6,7 +6,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
-
 use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\ComponentSlot;
 use Lazyadm\LazyComponent\Traits\HasModels;
@@ -77,7 +76,7 @@ abstract class LazyComponent extends Component
     public function classes()
     {
         return Arr::toCssClasses([
-            ''
+            '',
         ]);
 
     }

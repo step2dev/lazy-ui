@@ -22,5 +22,4 @@ trait HasModels
     {
         return $this->hasAlpineModel ??= $this->attributes->hasStartsWith('x-model');
     }
-
 }

@@ -32,6 +32,4 @@ enum BtnEnum: string
     {
         return $prefix.$this->value;
     }
-
-
 }

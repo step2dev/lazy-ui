@@ -10,11 +10,11 @@ class Alert extends LazyComponent
 {
     protected array $colors = [
         'default' => '',
-        'info'    => 'alert-info',
+        'info' => 'alert-info',
         'success' => 'alert-success',
         'warning' => 'alert-warning',
-        'danger'  => 'alert-error',
-        'error'   => 'alert-error',
+        'danger' => 'alert-error',
+        'error' => 'alert-error',
     ];
 
     protected function mergeData(array $data): array

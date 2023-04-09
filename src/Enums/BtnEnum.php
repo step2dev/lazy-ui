@@ -14,8 +14,6 @@ enum BtnEnum: string
 
     case Success = 'success';
 
-    case Danger = 'error';
-
     case Error = 'error';
 
     case Warning = 'warning';

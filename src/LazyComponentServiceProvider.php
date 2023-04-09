@@ -7,6 +7,7 @@ use Lazyadm\LazyComponent\Components\Alert;
 use Lazyadm\LazyComponent\Components\Badge;
 use Lazyadm\LazyComponent\Components\Checkbox;
 use Lazyadm\LazyComponent\Components\Divider;
+use Lazyadm\LazyComponent\Components\Form\FormInput;
 use Lazyadm\LazyComponent\Components\Input;
 use Lazyadm\LazyComponent\Components\Label;
 use Lazyadm\LazyComponent\Components\Native\NativeInput;
@@ -42,6 +43,11 @@ class LazyComponentServiceProvider extends PackageServiceProvider
 
                 // native
                 NativeInput::class,
+
+                // form
+//                Form::class,
+//                FormGroup::class,
+                FormInput::class,
             )
 //            ->hasAssets()
 //            ->publishesServiceProvider($nameOfYourServiceProvider)

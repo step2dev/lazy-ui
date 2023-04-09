@@ -3,10 +3,13 @@
 namespace Lazyadm\LazyComponent;
 
 use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
+use Lazyadm\LazyComponent\Components\Alert;
 use Lazyadm\LazyComponent\Components\Badge;
 use Lazyadm\LazyComponent\Components\Checkbox;
 use Lazyadm\LazyComponent\Components\Divider;
+use Lazyadm\LazyComponent\Components\Input;
 use Lazyadm\LazyComponent\Components\Label;
+use Lazyadm\LazyComponent\Components\Native\NativeInput;
 use Lazyadm\LazyComponent\Components\Toggle;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -26,14 +29,19 @@ class LazyComponentServiceProvider extends PackageServiceProvider
             ->hasViews('lazy')
             ->hasTranslations()
             ->hasViewComponents('lazy',
+                Alert::class,
                 Badge::class,
                 Checkbox::class,
                 Divider::class,
+                Input::class,
 //                Dropdown::class,
                 Label::class,
 //                Radio::class,
 //                Select::class,
                 Toggle::class,
+
+                // native
+                NativeInput::class,
             )
 //            ->hasAssets()
 //            ->publishesServiceProvider($nameOfYourServiceProvider)

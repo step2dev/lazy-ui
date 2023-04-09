@@ -3,6 +3,7 @@
 namespace Lazyadm\LazyComponent;
 
 use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
+use Lazyadm\LazyComponent\Components\Badge;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -20,7 +21,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
             ->hasConfigFile('lazy-component')
             ->hasTranslations()
             ->hasViews()
-//            ->hasViewComponent('spatie', Alert::class)
+            ->hasViewComponent('lazy:badge', Badge::class)
 //            ->hasAssets()
 //            ->publishesServiceProvider($nameOfYourServiceProvider)
 //            ->hasRoutes(['web', 'admin'])

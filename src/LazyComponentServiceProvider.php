@@ -5,6 +5,7 @@ namespace Lazyadm\LazyComponent;
 use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
 use Lazyadm\LazyComponent\Components\Alert;
 use Lazyadm\LazyComponent\Components\Badge;
+use Lazyadm\LazyComponent\Components\Btn;
 use Lazyadm\LazyComponent\Components\Checkbox;
 use Lazyadm\LazyComponent\Components\Divider;
 use Lazyadm\LazyComponent\Components\Form\FormCheckbox;
@@ -33,6 +34,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
             ->hasTranslations()
             ->hasViewComponents('lazy',
                 Alert::class,
+                Btn::class,
                 Badge::class,
                 Checkbox::class,
                 Divider::class,

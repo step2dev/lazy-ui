@@ -21,9 +21,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
             ->hasConfigFile('lazy-component')
             ->hasViews('lazy')
             ->hasTranslations()
-            ->hasViewComponents('lazy', [
-                Badge::class,
-            ])
+            ->hasViewComponent('lazy', Badge::class)
 //            ->hasAssets()
 //            ->publishesServiceProvider($nameOfYourServiceProvider)
 //            ->hasRoutes(['web', 'admin'])

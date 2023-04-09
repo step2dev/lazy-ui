@@ -35,7 +35,7 @@ class LazyFormServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'lazy');
 
-        Blade::componentNamespace('App\View\Components\Admin', 'lazy');
+//        Blade::componentNamespace('App\View\Components\Admin', 'lazy');
 
         collect(config('lazy-admin.components', []))->each(fn ($class, $alias) => Blade::component('lazy::'.$alias,
             $class));

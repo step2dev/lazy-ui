@@ -100,7 +100,6 @@ abstract class LazyComponent extends Component
         return $this->colors;
     }
 
-
     public function componentSlot(mixed $slot): ComponentSlot
     {
         if ($slot instanceof ComponentSlot) {

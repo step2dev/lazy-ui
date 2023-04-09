@@ -7,18 +7,18 @@ use Illuminate\Contracts\View\View;
 class Toggle extends Checkbox
 {
     protected array $colors = [
-        'default'   => '',
-        'primary'   => 'toggle-primary',
+        'default' => '',
+        'primary' => 'toggle-primary',
         'secondary' => 'toggle-secondary',
-        'accent'    => 'toggle-accent',
+        'accent' => 'toggle-accent',
     ];
 
     protected array $sizes = [
         'default' => '',
-        'lg'      => 'toggle-lg',
-        'md'      => 'toggle-md',
-        'sm'      => 'toggle-sm',
-        'xs'      => 'toggle-xs',
+        'lg' => 'toggle-lg',
+        'md' => 'toggle-md',
+        'sm' => 'toggle-sm',
+        'xs' => 'toggle-xs',
     ];
 
     public function render(): \Closure|View

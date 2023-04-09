@@ -13,18 +13,18 @@ class Checkbox extends LazyComponent
     }
 
     protected array $colors = [
-        'default'   => '',
-        'primary'   => 'checkbox-primary',
+        'default' => '',
+        'primary' => 'checkbox-primary',
         'secondary' => 'checkbox-secondary',
-        'accent'    => 'checkbox-accent',
+        'accent' => 'checkbox-accent',
     ];
 
     protected array $sizes = [
         'default' => '',
-        'lg'      => 'checkbox-lg',
-        'md'      => 'checkbox-md',
-        'sm'      => 'checkbox-sm',
-        'xs'      => 'checkbox-xs',
+        'lg' => 'checkbox-lg',
+        'md' => 'checkbox-md',
+        'sm' => 'checkbox-sm',
+        'xs' => 'checkbox-xs',
     ];
 
     public function render(): \Closure|View

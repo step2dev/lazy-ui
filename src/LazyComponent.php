@@ -109,6 +109,16 @@ abstract class LazyComponent extends Component
         return new ComponentSlot;
     }
 
+    protected function mergeData(array $data): array
+    {
+        $attributes = $this->mergeClasses($data['attributes']);
+
+        $attributes['disabled'] = (bool) $attributes->get('disabled');
+        $data['attributes'] = $attributes->except($this->smartAttributes);
+
+        return $data;
+    }
+
     public function classes()
     {
         return Arr::toCssClasses([

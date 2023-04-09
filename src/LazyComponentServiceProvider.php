@@ -17,7 +17,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('lazy')
-            ->hasConfigFile()
+            ->hasConfigFile('lazy-component')
             ->hasTranslations()
             ->hasViews()
 //            ->hasViewComponent('spatie', Alert::class)

@@ -1,6 +1,6 @@
 <?php
 
-// config for Lazyadm/LazyComponent
+// config for Lazyadm/LazyForm
 return [
 
 ];

@@ -16,7 +16,7 @@ class LazyFormServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../../config/lazy-admin.php', 'lazy-admin');
+        $this->mergeConfigFrom(__DIR__.'/../config/lazy-component.php', 'lazy-form');
     }
 
     /**
@@ -30,7 +30,7 @@ class LazyFormServiceProvider extends ServiceProvider
         }
 
         $this->publishes([
-            __DIR__.'/../../config/lazy-admin.php' => config_path('lazy/form.php'),
+            __DIR__.'/../config/lazy-component.php' => config_path('lazy/form.php'),
         ], 'lazy-admin');
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'lazy');

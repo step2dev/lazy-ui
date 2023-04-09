@@ -4,7 +4,8 @@
     "keywords": [
         "lazy-adm",
         "laravel",
-        "lazy-component"
+        "lazy-component",
+        "lazy-form"
     ],
     "homepage": "https://github.com/lazy-adm/lazy-component",
     "license": "MIT",
@@ -18,7 +19,7 @@
     "require": {
         "php": "^8.1",
         "spatie/laravel-package-tools": "^1.14.0",
-        "illuminate/contracts": "^10.0"
+        "illuminate/contracts": "^9.52|^10.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

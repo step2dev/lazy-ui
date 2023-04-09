@@ -16,10 +16,15 @@ class LazyComponentServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('lazy-component')
+            ->name('lazy')
             ->hasConfigFile()
+            ->hasTranslations()
             ->hasViews()
-            ->hasMigration('create_lazy-component_table')
+//            ->hasViewComponent('spatie', Alert::class)
+//            ->hasAssets()
+//            ->publishesServiceProvider($nameOfYourServiceProvider)
+//            ->hasRoutes(['web', 'admin'])
+//            ->hasMigration('create_lazy-component_table')
             ->hasCommand(LazyComponentCommand::class);
     }
 }

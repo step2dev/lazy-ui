@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Admin\Btn;
+namespace Lazyadm\LazyComponent\Components\Btn;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;

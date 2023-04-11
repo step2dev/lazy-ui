@@ -3,7 +3,6 @@
 namespace Lazyadm\LazyComponent;
 
 use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
-
 use Lazyadm\LazyComponent\Components\Alert;
 use Lazyadm\LazyComponent\Components\Badge;
 use Lazyadm\LazyComponent\Components\Btn;

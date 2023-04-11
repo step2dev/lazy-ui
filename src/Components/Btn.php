@@ -9,16 +9,16 @@ use Lazyadm\LazyComponent\LazyComponent;
 class Btn extends LazyComponent
 {
     protected array $colors = [
-        'default'  => '',
-        'primary'  => 'btn-primary',
-        'accent'   => 'btn-accent',
-        'info'     => 'btn-info',
-        'success'  => 'btn-success',
-        'warning'  => 'btn-warning',
-        'danger'   => 'btn-error',
-        'error'    => 'btn-error',
-        'ghost'    => 'btn-ghost',
-        'link'     => 'btn-link',
+        'default' => '',
+        'primary' => 'btn-primary',
+        'accent' => 'btn-accent',
+        'info' => 'btn-info',
+        'success' => 'btn-success',
+        'warning' => 'btn-warning',
+        'danger' => 'btn-error',
+        'error' => 'btn-error',
+        'ghost' => 'btn-ghost',
+        'link' => 'btn-link',
     ];
 
     protected string $outlineClass = 'btn-outline';
@@ -33,14 +33,14 @@ class Btn extends LazyComponent
 
     protected array $sizes = [
         'default' => '',
-        'lg'      => 'btn-lg',
-        'md'      => 'btn-md',
-        'sm'      => 'btn-sm',
-        'xs'      => 'btn-xs',
-        'wide'    => 'btn-wide',
-        'block'   => 'btn-block',
-        'circle'  => 'btn-circle',
-        'square'  => 'btn-square',
+        'lg' => 'btn-lg',
+        'md' => 'btn-md',
+        'sm' => 'btn-sm',
+        'xs' => 'btn-xs',
+        'wide' => 'btn-wide',
+        'block' => 'btn-block',
+        'circle' => 'btn-circle',
+        'square' => 'btn-square',
     ];
 
     public bool $outline = false;

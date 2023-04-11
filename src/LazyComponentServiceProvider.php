@@ -2,13 +2,14 @@
 
 namespace Lazyadm\LazyComponent;
 
-use App\View\Components\Admin\Btn\Back as BtnBack;
-use App\View\Components\Admin\Btn\Delete as BtnDelete;
-use App\View\Components\Admin\Btn\Logout as BtnLogout;
 use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
+
 use Lazyadm\LazyComponent\Components\Alert;
 use Lazyadm\LazyComponent\Components\Badge;
 use Lazyadm\LazyComponent\Components\Btn;
+use Lazyadm\LazyComponent\Components\Btn\BtnBack;
+use Lazyadm\LazyComponent\Components\Btn\BtnDelete;
+use Lazyadm\LazyComponent\Components\Btn\BtnLogout;
 use Lazyadm\LazyComponent\Components\Checkbox;
 use Lazyadm\LazyComponent\Components\Divider;
 use Lazyadm\LazyComponent\Components\Form\FormCheckbox;

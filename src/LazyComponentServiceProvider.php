@@ -2,6 +2,9 @@
 
 namespace Lazyadm\LazyComponent;
 
+use App\View\Components\Admin\Btn\Back as BtnBack;
+use App\View\Components\Admin\Btn\Delete as BtnDelete;
+use App\View\Components\Admin\Btn\Logout as BtnLogout;
 use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
 use Lazyadm\LazyComponent\Components\Alert;
 use Lazyadm\LazyComponent\Components\Badge;
@@ -34,7 +37,12 @@ class LazyComponentServiceProvider extends PackageServiceProvider
             ->hasTranslations()
             ->hasViewComponents('lazy',
                 Alert::class,
+                // button
                 Btn::class,
+                BtnBack::class,
+                BtnDelete::class,
+                BtnLogout::class,
+                // end button
                 Badge::class,
                 Checkbox::class,
                 Divider::class,

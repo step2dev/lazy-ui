@@ -2,6 +2,7 @@
 
 namespace Lazyadm\LazyComponent;
 
+use Illuminate\View\ComponentAttributeBag;
 use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
 use Lazyadm\LazyComponent\Components\Alert;
 use Lazyadm\LazyComponent\Components\Avatar;
@@ -81,5 +82,16 @@ class LazyComponentServiceProvider extends PackageServiceProvider
 //            ->hasRoutes(['web', 'admin'])
 //            ->hasMigration('create_lazy-component_table')
             ->hasCommand(LazyComponentCommand::class);
+    }
+
+    public function boot()
+    {
+        if (! ComponentAttributeBag::hasMacro('hasStartsWith')) {
+            ComponentAttributeBag::macro('hasStartsWith', function ($key) {
+                return (bool) $this->whereStartsWith($key)->first();
+            });
+        }
+
+        return parent::boot();
     }
 }

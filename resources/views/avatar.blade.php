@@ -1,5 +1,5 @@
 @props([
-    'src'         => '',
+    'src'         => 'https://picsum.photos/200/200?random=1',
     'alt'         => 'Avatar',
     'placeholder' => '',
     'onlineEnabled' => false,

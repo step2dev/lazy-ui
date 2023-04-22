@@ -9,6 +9,6 @@ class AvatarGroup extends LazyComponent
 {
     public function render(): \Closure|View
     {
-        return view('lazy::avatar');
+        return view('lazy::avatar-group');
     }
 }

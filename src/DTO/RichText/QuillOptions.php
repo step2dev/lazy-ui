@@ -61,6 +61,7 @@ class QuillOptions
             return $options;
         }
 
+        /** @phpstan-ignore-next-line */
         return new static;
     }
 

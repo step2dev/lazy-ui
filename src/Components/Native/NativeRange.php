@@ -29,6 +29,19 @@ class NativeRange extends LazyComponent
     public function render(): \Closure|View
     {
         return function (array $data) {
+            $attributes = $data['attributes'];
+            $attributes['min'] ??= 0;
+            $attributes['max'] ??= 100;
+            $attributes['value'] ??= $attributes['min'];
+            $attributes['step'] ??= null;
+
+            $attributes['steps'] ??= null;
+
+            if ($attributes['steps']) {
+                $attributes['step'] = ($attributes['max'] - $attributes['min']) / ($attributes['steps'] - 1);
+            }
+            $data['attributes'] = $attributes;
+
             return view('lazy::native.range', $this->mergeData($data))->render();
         };
     }

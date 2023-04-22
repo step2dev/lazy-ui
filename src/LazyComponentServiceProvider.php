@@ -16,7 +16,9 @@ use Lazyadm\LazyComponent\Components\Form\FormInput;
 use Lazyadm\LazyComponent\Components\Form\FormToggle;
 use Lazyadm\LazyComponent\Components\Input;
 use Lazyadm\LazyComponent\Components\Label;
+use Lazyadm\LazyComponent\Components\Link;
 use Lazyadm\LazyComponent\Components\Native\NativeInput;
+use Lazyadm\LazyComponent\Components\Stack;
 use Lazyadm\LazyComponent\Components\Toggle;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -37,22 +39,24 @@ class LazyComponentServiceProvider extends PackageServiceProvider
             ->hasTranslations()
             ->hasViewComponents('lazy',
                 Alert::class,
+                Badge::class,
                 // button
                 Btn::class,
                 BtnBack::class,
+//                BtnGroup::class,
                 BtnDelete::class,
                 BtnLogout::class,
                 // end button
-                Badge::class,
                 Checkbox::class,
                 Divider::class,
-                Input::class,
 //                Dropdown::class,
+                Input::class,
                 Label::class,
+                Link::class,
 //                Radio::class,
 //                Select::class,
+                Stack::class,
                 Toggle::class,
-
                 // native
                 NativeInput::class,
 
@@ -62,7 +66,6 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 FormCheckbox::class,
                 FormInput::class,
                 FormToggle::class,
-
             )
 //            ->hasAssets()
 //            ->publishesServiceProvider($nameOfYourServiceProvider)

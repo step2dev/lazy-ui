@@ -7,11 +7,9 @@ parameters:
         - src
         - config
         - database
-    excludePaths:
-        analyse:
-            - src/DTO
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: true
     checkMissingIterableValueType: false
+    treatPhpDocTypesAsCertain: true
 

@@ -76,7 +76,7 @@ class QuillOptions
             return static::default();
         }
 
-        if (! is_callable($callback) && ! $callback instanceof static) {
+        if (! is_callable($callback) || ! $callback instanceof static) {
             throw new InvalidArgumentException('The callback must be a callable or an instance of '.static::class);
         }
 

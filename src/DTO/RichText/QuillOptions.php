@@ -260,9 +260,7 @@ class QuillOptions
 
     public function withToolbarButton(string $key, $options = null): self
     {
-        $button = is_array($options) ? [$key => $options] : $key;
-
-        $this->customToolbarButtons[] = $button;
+        $this->customToolbarButtons[] = is_array($options) ? [$key => $options] : $key;;
 
         return $this;
     }

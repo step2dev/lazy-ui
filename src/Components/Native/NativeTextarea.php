@@ -8,24 +8,24 @@ use Lazyadm\LazyComponent\LazyComponent;
 class NativeTextarea extends LazyComponent
 {
     protected array $colors = [
-        'default' => '',
-        'bordered' => 'textarea-bordered',
-        'ghost' => 'textarea-ghost',
-        'primary' => 'textarea-primary',
+        'default'   => '',
+        'bordered'  => 'textarea-bordered',
+        'ghost'     => 'textarea-ghost',
+        'primary'   => 'textarea-primary',
         'secondary' => 'textarea-secondary',
-        'accent' => 'textarea-accent',
-        'info' => 'textarea-info',
-        'success' => 'textarea-success',
-        'warning' => 'textarea-warning',
-        'error' => 'textarea-error',
+        'accent'    => 'textarea-accent',
+        'info'      => 'textarea-info',
+        'success'   => 'textarea-success',
+        'warning'   => 'textarea-warning',
+        'error'     => 'textarea-error',
     ];
 
     protected array $sizes = [
         'default' => '',
-        'lg' => 'toggle-lg',
-        'md' => 'toggle-md',
-        'sm' => 'toggle-sm',
-        'xs' => 'toggle-xs',
+        'lg'      => 'textarea-lg',
+        'md'      => 'textarea-md',
+        'sm'      => 'textarea-sm',
+        'xs'      => 'textarea-xs',
     ];
 
     public ?string $placeholder;

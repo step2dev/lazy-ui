@@ -3,6 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/lazy-adm/lazy-component.svg?style=flat-square)](https://packagist.org/packages/lazy-adm/lazy-component)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/lazy-adm/lazy-component/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/lazy-adm/lazy-component/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/lazy-adm/lazy-component/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/lazy-adm/lazy-component/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![PHPStan](https://github.com/lazy-adm/lazy-component/actions/workflows/phpstan.yml/badge.svg)](https://github.com/lazy-adm/lazy-component/actions/workflows/phpstan.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/lazy-adm/lazy-component.svg?style=flat-square)](https://packagist.org/packages/lazy-adm/lazy-component)
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.

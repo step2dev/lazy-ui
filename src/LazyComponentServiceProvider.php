@@ -24,6 +24,7 @@ use Lazyadm\LazyComponent\Components\Native\NativeInput;
 use Lazyadm\LazyComponent\Components\Native\NativeRadio;
 use Lazyadm\LazyComponent\Components\Native\NativeRange;
 use Lazyadm\LazyComponent\Components\Native\NativeTextarea;
+use Lazyadm\LazyComponent\Components\Radial;
 use Lazyadm\LazyComponent\Components\Stack;
 use Lazyadm\LazyComponent\Components\Toggle;
 use Spatie\LaravelPackageTools\Package;
@@ -70,6 +71,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 NativeTextarea::class,
                 NativeRadio::class,
                 NativeRange::class,
+                Radial::class,
                 // form
 //                Form::class,
 //                FormGroup::class,

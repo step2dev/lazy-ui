@@ -35,7 +35,7 @@ class NativeRange extends LazyComponent
             $attributes['value'] ??= $attributes['min'];
             $attributes['step'] ??= null;
 
-            $attributes['steps'] ??= null;
+                $attributes['steps'] ??= null;
 
             if ($attributes['steps']) {
                 $attributes['step'] = ($attributes['max'] - $attributes['min']) / ($attributes['steps'] - 1);

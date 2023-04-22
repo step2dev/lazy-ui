@@ -9,10 +9,10 @@ class Avatar extends LazyComponent
 {
     protected array $sizes = [
         self::DEFAULT => '',
-        'lg'          => 'w-24',
-        'md'          => 'w-20',
-        'sm'          => 'w-16',
-        'xs'          => 'w-12',
+        'lg' => 'w-24',
+        'md' => 'w-20',
+        'sm' => 'w-16',
+        'xs' => 'w-12',
     ];
 
     protected array $smartAttributes = [
@@ -22,7 +22,9 @@ class Avatar extends LazyComponent
     ];
 
     protected string $onlineClass = 'online';
+
     protected string $offlineClass = 'offline';
+
     protected string $placeholderClass = 'placeholder';
 
     public function render(): \Closure|View

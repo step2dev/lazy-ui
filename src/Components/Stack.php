@@ -7,7 +7,6 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Stack extends LazyComponent
 {
-
     public function render(): \Closure|View
     {
         return view('lazy::stack');

@@ -4,6 +4,8 @@ namespace Lazyadm\LazyComponent;
 
 use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
 use Lazyadm\LazyComponent\Components\Alert;
+use Lazyadm\LazyComponent\Components\Avatar;
+use Lazyadm\LazyComponent\Components\AvatarGroup;
 use Lazyadm\LazyComponent\Components\Badge;
 use Lazyadm\LazyComponent\Components\Btn;
 use Lazyadm\LazyComponent\Components\Btn\BtnBack;
@@ -40,6 +42,8 @@ class LazyComponentServiceProvider extends PackageServiceProvider
             ->hasTranslations()
             ->hasViewComponents('lazy',
                 Alert::class,
+                Avatar::class,
+                AvatarGroup::class,
                 Badge::class,
                 // button
                 Btn::class,

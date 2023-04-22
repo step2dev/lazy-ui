@@ -83,15 +83,4 @@ class LazyComponentServiceProvider extends PackageServiceProvider
 //            ->hasMigration('create_lazy-component_table')
             ->hasCommand(LazyComponentCommand::class);
     }
-
-    public function boot()
-    {
-        if (! ComponentAttributeBag::hasMacro('hasStartsWith')) {
-            ComponentAttributeBag::macro('hasStartsWith', function ($key) {
-                return (bool) $this->whereStartsWith($key)->first();
-            });
-        }
-
-        return parent::boot();
-    }
 }

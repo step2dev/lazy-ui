@@ -15,11 +15,11 @@ trait HasModels
 
     final public function hasLivewireModel(): bool
     {
-        return $this->hasLivewireModel ??= $this->attributes->hasStartsWith('wire:model');
+        return $this->hasLivewireModel ??= $this->attributes->whereStartsWith('wire:model')->first();
     }
 
     final public function hasAlpineModel(): bool
     {
-        return $this->hasAlpineModel ??= $this->attributes->hasStartsWith('x-model');
+        return $this->hasAlpineModel ??= $this->attributes->whereStartsWith('x-model')->first();
     }
 }

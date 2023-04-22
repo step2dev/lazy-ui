@@ -2,8 +2,6 @@
 
 namespace Lazyadm\LazyComponent\Components;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 use Lazyadm\LazyComponent\LazyComponent;
 
 class Radial extends LazyComponent
@@ -17,7 +15,7 @@ class Radial extends LazyComponent
             $data['attributes']['style'] .= implode(';', [
                 isset($data['attributes']['size']) ? "--size: {$data['attributes']['size']};" : '',
                 isset($data['attributes']['thickness']) ? "--thickness: {$data['attributes']['thickness']};" : '',
-                "--value: {$data['attributes']['value']};"
+                "--value: {$data['attributes']['value']};",
             ]);
 
             return view('lazy::radial', $this->mergeData($data))->render();

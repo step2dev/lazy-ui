@@ -2,7 +2,6 @@
 
 namespace Lazyadm\LazyComponent;
 
-use Illuminate\View\ComponentAttributeBag;
 use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
 use Lazyadm\LazyComponent\Components\Alert;
 use Lazyadm\LazyComponent\Components\Avatar;

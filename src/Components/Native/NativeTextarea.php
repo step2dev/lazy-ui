@@ -40,7 +40,7 @@ class NativeTextarea extends LazyComponent
         return function (array $data) {
             $data['attributes']['required'] = $this->required;
 
-            return view('lazy::textarea', $this->mergeData($data))->render();
+            return view('lazy::native.textarea', $this->mergeData($data))->render();
         };
     }
 }

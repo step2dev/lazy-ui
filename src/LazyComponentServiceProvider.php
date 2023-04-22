@@ -20,6 +20,7 @@ use Lazyadm\LazyComponent\Components\Input;
 use Lazyadm\LazyComponent\Components\Label;
 use Lazyadm\LazyComponent\Components\Link;
 use Lazyadm\LazyComponent\Components\Native\NativeInput;
+use Lazyadm\LazyComponent\Components\Native\NativeRadio;
 use Lazyadm\LazyComponent\Components\Native\NativeTextarea;
 use Lazyadm\LazyComponent\Components\Stack;
 use Lazyadm\LazyComponent\Components\Toggle;
@@ -65,6 +66,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 // native
                 NativeInput::class,
                 NativeTextarea::class,
+                NativeRadio::class,
                 // form
 //                Form::class,
 //                FormGroup::class,

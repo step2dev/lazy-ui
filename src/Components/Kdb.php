@@ -9,10 +9,10 @@ class Kdb extends LazyComponent
 {
     protected array $sizes = [
         self::DEFAULT => '',
-        'lg'          => 'kbd-lg',
-        'md'          => 'kbd-md',
-        'sm'          => 'kbd-sm',
-        'xs'          => 'kbd-xs',
+        'lg' => 'kbd-lg',
+        'md' => 'kbd-md',
+        'sm' => 'kbd-sm',
+        'xs' => 'kbd-xs',
     ];
 
     public function render(): \Closure|View

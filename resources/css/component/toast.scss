@@ -1,0 +1,33 @@
+.progressbar {
+    width: 100%;
+}
+
+.progressbar .inner {
+    height: 15px;
+    animation: progressbar-countdown;
+    /* Placeholder, this will be updated using javascript */
+    animation-duration: 40s;
+    /* We stop in the end */
+    animation-iteration-count: 1;
+    /* Stay on pause when the animation is finished finished */
+    animation-fill-mode: forwards;
+    /* We start paused, we start the animation using javascript */
+    animation-play-state: paused;
+    /* We want a linear animation, ease-out is standard */
+    animation-timing-function: linear;
+}
+
+#toasts > div:hover .inner {
+    animation-play-state: paused !important;
+}
+
+@keyframes progressbar-countdown {
+    0% {
+        width: 100%;
+        background: #0F0;
+    }
+    100% {
+        width: 0;
+        background: #F00;
+    }
+}

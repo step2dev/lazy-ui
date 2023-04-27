@@ -10,8 +10,8 @@ enum SizesEnum: string
     case sm = 'sm';
     case md = 'md';
     case lg = 'lg';
-//    case xl = 'xl';
-//    case xxl = 'xxl';
+    //    case xl = 'xl';
+    //    case xxl = 'xxl';
 
     public function getClass(string $prefix = ''): string
     {

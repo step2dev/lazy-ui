@@ -51,18 +51,18 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 // button
                 Btn::class,
                 BtnBack::class,
-//                BtnGroup::class,
+                //                BtnGroup::class,
                 BtnDelete::class,
                 BtnLogout::class,
                 // end button
                 Checkbox::class,
                 Divider::class,
-//                Dropdown::class,
+                //                Dropdown::class,
                 Input::class,
                 Label::class,
                 Link::class,
-//                Radio::class,
-//                Select::class,
+                //                Radio::class,
+                //                Select::class,
                 Stack::class,
                 Toggle::class,
                 // native
@@ -72,8 +72,8 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 NativeRange::class,
                 Radial::class,
                 // form
-//                Form::class,
-//                FormGroup::class,
+                //                Form::class,
+                //                FormGroup::class,
                 FormCheckbox::class,
                 FormInput::class,
                 FormToggle::class,

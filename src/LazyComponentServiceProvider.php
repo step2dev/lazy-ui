@@ -70,11 +70,6 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Stack::class,
                 Textarea::class,
                 Toggle::class,
-                // native
-                NativeInput::class,
-                NativeTextarea::class,
-                NativeRadio::class,
-                NativeRange::class,
                 Radial::class,
                 // form
                 //                Form::class,

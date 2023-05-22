@@ -19,7 +19,8 @@
         <x-lazy-label :hr="$hr" :label="$label" :hasError="$hasError" :required="$required"/>
         {{--        <input {{ $attributes->merge(['class' => 'input w-full'.($hasError ? ' text-error' : ''), 'type' => 'text', 'placeholder' => $placeholder ]) }} />--}}
         {{ $slot }}
-        <x-lazy-native-input :placeholder="$placeholder" :attributes="$attributes" :hasError="$hasError"/>
+        <x-lazy-input :placeholder="$placeholder" :attributes="$attributes" :hasError="$hasError"/>
+        <x-lazy-input :placeholder="$placeholder" :attributes="$attributes" :hasError="$hasError"/>
         @if($rightIcon)
             {{ $rightIcon }}
         @endif

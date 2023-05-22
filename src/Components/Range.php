@@ -42,7 +42,7 @@ class Range extends LazyComponent
             }
             $data['attributes'] = $attributes;
 
-            return view('lazy::native.range', $this->mergeData($data))->render();
+            return view('lazy::range', $this->mergeData($data))->render();
         };
     }
 }

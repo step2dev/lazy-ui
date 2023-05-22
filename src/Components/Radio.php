@@ -29,7 +29,7 @@ class Radio extends LazyComponent
     public function render(): \Closure|View
     {
         return function (array $data) {
-            return view('lazy::native.radio', $this->mergeData($data))->render();
+            return view('lazy::radio', $this->mergeData($data))->render();
         };
     }
 }

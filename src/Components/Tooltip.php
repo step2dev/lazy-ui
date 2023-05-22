@@ -8,29 +8,28 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Tooltip extends LazyComponent
 {
-
-    protected array $colors    = [
-        'default'   => '',
-        'primary'   => 'tooltip-primary',
+    protected array $colors = [
+        'default' => '',
+        'primary' => 'tooltip-primary',
         'secondary' => 'tooltip-secondary',
-        'accent'    => 'tooltip-accent',
-        'info'      => 'tooltip-info',
-        'success'   => 'tooltip-success',
-        'warning'   => 'tooltip-warning',
-        'error'     => 'tooltip-error',
+        'accent' => 'tooltip-accent',
+        'info' => 'tooltip-info',
+        'success' => 'tooltip-success',
+        'warning' => 'tooltip-warning',
+        'error' => 'tooltip-error',
     ];
+
     protected array $positions = [
-        'top'    => 'tooltip-top',
-        'right'  => 'tooltip-right',
+        'top' => 'tooltip-top',
+        'right' => 'tooltip-right',
         'bottom' => 'tooltip-bottom',
-        'left'   => 'tooltip-left',
+        'left' => 'tooltip-left',
     ];
-    protected bool  $open      = false;
+
+    protected bool  $open = false;
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return Closure
      */
     public function render(): Closure
     {

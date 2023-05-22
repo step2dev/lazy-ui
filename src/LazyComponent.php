@@ -119,7 +119,7 @@ abstract class LazyComponent extends Component
         return $data;
     }
 
-    public function classes()
+    public function classes(): string
     {
         return Arr::toCssClasses([
             '',

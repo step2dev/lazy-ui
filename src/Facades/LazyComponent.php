@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
  */
 class LazyComponent extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return \Lazyadm\LazyComponent\LazyComponent::class;
     }

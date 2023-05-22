@@ -37,7 +37,7 @@ class Tooltip extends LazyComponent
             $this->open = $data['attributes']['open'] ?? false;
             $data['attributes']['class'] = $this->open ? 'tooltip-open' : '';
 
-            return view('components.admin.tooltip', $this->mergeData($data))->render();
+            return view('lazy::tooltip', $this->mergeData($data))->render();
         };
     }
 

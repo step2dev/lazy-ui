@@ -25,6 +25,7 @@ use Lazyadm\LazyComponent\Components\Range;
 use Lazyadm\LazyComponent\Components\Stack;
 use Lazyadm\LazyComponent\Components\Textarea;
 use Lazyadm\LazyComponent\Components\Toggle;
+use Lazyadm\LazyComponent\Components\Tooltip;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -66,6 +67,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Stack::class,
                 Textarea::class,
                 Toggle::class,
+                Tooltip::class,
                 Radial::class,
                 // form
                 //                Form::class,

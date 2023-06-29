@@ -3,6 +3,7 @@
 namespace Lazyadm\LazyComponent;
 
 use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
+use Lazyadm\LazyComponent\Components\Accordion;
 use Lazyadm\LazyComponent\Components\Alert;
 use Lazyadm\LazyComponent\Components\Avatar;
 use Lazyadm\LazyComponent\Components\AvatarGroup;
@@ -44,6 +45,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
             ->hasViews('lazy')
             ->hasTranslations()
             ->hasViewComponents('lazy',
+                Accordion::class,
                 Alert::class,
                 Avatar::class,
                 AvatarGroup::class,

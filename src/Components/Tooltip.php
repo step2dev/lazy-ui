@@ -20,13 +20,14 @@ class Tooltip extends LazyComponent
     ];
 
     protected array $positions = [
+        'default' => 'tooltip-top',
         'top' => 'tooltip-top',
         'right' => 'tooltip-right',
         'bottom' => 'tooltip-bottom',
         'left' => 'tooltip-left',
     ];
 
-    protected bool  $open = false;
+    protected bool $open = false;
 
     /**
      * Get the view / contents that represent the component.

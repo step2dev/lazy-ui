@@ -4,9 +4,7 @@ namespace Lazyadm\LazyComponent\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 use Lazyadm\LazyComponent\LazyComponent;
-use Illuminate\Support\Str;
 
 class Accordion extends LazyComponent
 {
@@ -21,8 +19,6 @@ class Accordion extends LazyComponent
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return Closure|View
      */
     public function render(): Closure|View
     {

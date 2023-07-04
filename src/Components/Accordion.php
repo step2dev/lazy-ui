@@ -34,7 +34,7 @@ class Accordion extends LazyComponent
         $attributes['active'] ??= false;
         $attributes['name'] ??= 'accordion';
 
-        if (($attributes['type'] ?? '') && array_key_exists($attributes['type'], $this->types)) {
+        if (array_key_exists($attributes['type'] ?? '', $this->types)) {
             $class = explode(' ', $attributes['class']);
 
             if (isset($this->types[$attributes['type']])) {

@@ -18,6 +18,7 @@ use Lazyadm\LazyComponent\Components\Form\FormCheckbox;
 use Lazyadm\LazyComponent\Components\Form\FormInput;
 use Lazyadm\LazyComponent\Components\Form\FormToggle;
 use Lazyadm\LazyComponent\Components\Input;
+use Lazyadm\LazyComponent\Components\Join;
 use Lazyadm\LazyComponent\Components\Label;
 use Lazyadm\LazyComponent\Components\Link;
 use Lazyadm\LazyComponent\Components\Radial;
@@ -61,6 +62,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Divider::class,
                 //                Dropdown::class,
                 Input::class,
+                Join::class,
                 Label::class,
                 Link::class,
                 Radio::class,

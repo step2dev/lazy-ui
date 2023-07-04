@@ -18,7 +18,6 @@ class Join extends LazyComponent
         'horizontal' => 'join-horizontal',
     ];
 
-
     protected function mergeClasses(ComponentAttributeBag $attributes, array $merge = []): ComponentAttributeBag
     {
         return $attributes->class(array_filter([
@@ -33,7 +32,6 @@ class Join extends LazyComponent
     {
         return $this->modifierClasses($attributes, $this->positions);
     }
-
 
     public function mergeData(array $data): array
     {
@@ -64,5 +62,4 @@ class Join extends LazyComponent
             return view('lazy::join', $this->mergeData($data))->render();
         };
     }
-
 }

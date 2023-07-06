@@ -16,5 +16,4 @@ class BtnGroup extends Join
             return view('lazy::join', $this->mergeData($data))->render();
         };
     }
-
 }

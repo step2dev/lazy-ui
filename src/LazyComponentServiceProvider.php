@@ -12,6 +12,7 @@ use Lazyadm\LazyComponent\Components\Btn;
 use Lazyadm\LazyComponent\Components\Btn\BtnBack;
 use Lazyadm\LazyComponent\Components\Btn\BtnDelete;
 use Lazyadm\LazyComponent\Components\Btn\BtnLogout;
+use Lazyadm\LazyComponent\Components\BtnGroup;
 use Lazyadm\LazyComponent\Components\Checkbox;
 use Lazyadm\LazyComponent\Components\Divider;
 use Lazyadm\LazyComponent\Components\Form\FormCheckbox;
@@ -53,6 +54,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Badge::class,
                 // button
                 Btn::class,
+                BtnGroup::class,
                 BtnBack::class,
                 //                BtnGroup::class,
                 BtnDelete::class,

@@ -14,6 +14,7 @@ class Join extends LazyComponent
     protected array $positions = [
         '' => '',
         'none' => '',
+        'default' => '',
         'vertical' => 'join-vertical',
         'horizontal' => 'join-horizontal',
     ];

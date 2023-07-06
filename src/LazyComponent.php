@@ -26,6 +26,10 @@ abstract class LazyComponent extends Component
         self::DEFAULT => '',
     ];
 
+    protected array $positions = [
+        self::DEFAULT => '',
+    ];
+
     protected array $smartAttributes = [
         'outline',
     ];
@@ -66,11 +70,7 @@ abstract class LazyComponent extends Component
 
     protected function mergeClasses(ComponentAttributeBag $attributes, array $merge = []): ComponentAttributeBag
     {
-        return $attributes->class(array_filter([
-            ...$merge,
-            $this->size($attributes),
-            $this->color($attributes),
-        ]));
+        return $attributes->class($this->classes($merge));
     }
 
     final protected function size(ComponentAttributeBag $attributes): string
@@ -119,11 +119,17 @@ abstract class LazyComponent extends Component
         return $data;
     }
 
-    public function classes(): string
+    public function classes(mixed $classes = []): string
     {
-        return Arr::toCssClasses([
-            '',
+        $classes = Arr::wrap($classes);
+
+        $classes = array_filter([
+            ...$classes,
+            $this->size($this->attributes),
+            $this->color($this->attributes),
         ]);
+
+        return Arr::toCssClasses($classes);
 
     }
 }

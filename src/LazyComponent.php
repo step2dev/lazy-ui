@@ -53,19 +53,7 @@ abstract class LazyComponent extends Component
 
     public static function getName(): string
     {
-        $namespace = collect(explode('.', str_replace(['/', '\\'], '.', 'Lazyadm\\LazyComponent\\Components')))
-            ->map([Str::class, 'kebab'])
-            ->implode('.');
-
-        $fullName = collect(explode('.', str_replace(['/', '\\'], '.', static::class)))
-            ->map([Str::class, 'kebab'])
-            ->implode('.');
-
-        if (str($fullName)->startsWith($namespace)) {
-            return (string) str($fullName)->substr(strlen($namespace) + 1);
-        }
-
-        return $fullName;
+        return class_basename(static::class);
     }
 
     protected function mergeClasses(ComponentAttributeBag $attributes, array $merge = []): ComponentAttributeBag
@@ -119,6 +107,13 @@ abstract class LazyComponent extends Component
         return $data;
     }
 
+    public function classAttributes(): array
+    {
+        return [
+
+        ];
+    }
+
     public function classes(mixed $classes = []): string
     {
         $classes = Arr::wrap($classes);
@@ -130,6 +125,10 @@ abstract class LazyComponent extends Component
         ]);
 
         return Arr::toCssClasses($classes);
+    }
 
+    public function getViewName(): string
+    {
+        return str(class_basename(static::class))->kebab();
     }
 }

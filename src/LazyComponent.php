@@ -117,11 +117,13 @@ abstract class LazyComponent extends Component
     {
         $classes = Arr::wrap($classes);
 
-        $classes = array_filter([
+        $classes =[
             ...$classes,
             $this->size($this->attributes),
             $this->color($this->attributes),
-        ]);
+        ];
+
+        $classes = array_filter(array_unique($classes));
 
         return Arr::toCssClasses($classes);
     }

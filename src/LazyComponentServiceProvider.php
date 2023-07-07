@@ -56,7 +56,6 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Btn::class,
                 BtnGroup::class,
                 BtnBack::class,
-                //                BtnGroup::class,
                 BtnDelete::class,
                 BtnLogout::class,
                 // end button

@@ -75,6 +75,7 @@ class Btn extends LazyComponent
 
         $attributes = $this->mergeClasses($attributes, [
             'btn',
+            'join-item' => $data['attributes']['group'] ?? false,
             $this->outline ? $this->outlineClass : '',
             $this->glass ? $this->glassClass : '',
             $this->active ? $this->activeClass : '',
@@ -82,6 +83,7 @@ class Btn extends LazyComponent
         // $data['iconSize']   = $this->iconSize($attributes);
         $data['disabled'] = (bool) $attributes->get('disabled');
         $data['attributes'] = $attributes->except($this->smartAttributes);
+        unset($data['attributes']['group']);
 
         return $data;
     }

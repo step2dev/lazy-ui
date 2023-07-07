@@ -117,7 +117,7 @@ abstract class LazyComponent extends Component
     {
         $classes = Arr::wrap($classes);
 
-        $classes =[
+        $classes = [
             ...$classes,
             $this->size($this->attributes),
             $this->color($this->attributes),

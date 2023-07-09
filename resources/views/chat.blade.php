@@ -1,9 +1,9 @@
 @props([
-    'avatar'=> '/images/stock/photo-1534528741775-53994a69daeb.jpg',
-    'name' => 'Obi-Wan Kenobi',
-    'message' => 'You were the Chosen One!',
-    'send_at' => '12:45',
-    'status' => 'delivered',
+    'avatar'=> null,
+    'name' => null,
+    'message' => null,
+    'send_at' => null,
+    'status' => null,
 ])
 
 <div {{ $attributes }}>
@@ -22,7 +22,7 @@
             @endif
         </div>
     @endif
-    <div class="chat-bubble">{{ $message }}</div>
+    <div class="chat-bubble">{{ $slot->isNotEmpty() ? $slot : $message }}</div>
     @if($status)
         <div class="chat-footer opacity-50">
             {{ $status }}

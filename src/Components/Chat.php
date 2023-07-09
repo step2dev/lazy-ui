@@ -8,30 +8,29 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Chat extends LazyComponent
 {
-    public function __construct(protected string $message, protected string $name = '', protected string $avatar = '', protected string $time = '', protected string $position = 'start')
+    public function __construct(public string $message, public string $name = '', public string $avatar = '', public string $time = '', public string $position = 'start')
     {
     }
 
     public function mergeData(array $data, array $classes = []): array
     {
         $attributes = $data['attributes'];
-        $classes = [...$classes, 'chat'];
-        $position = $attributes['position'] ?? $this->findBySmartAttribute($attributes, [
+
+        $position = $this->position ?? $this->getKeyByAttribute($attributes, [
             'left',
             'right',
             'start',
             'end',
         ], 'start');
 
-        if (in_array($position, ['left', 'start'])) {
-            $classes[] = 'chat-start';
-        }
-
-        if (in_array($position, ['right', 'end'])) {
-            $classes[] = 'chat-end';
-        }
-
-        unset($attributes['left'], $attributes['right'], $attributes['start'], $attributes['end'], $attributes['position']);
+        $classes = [
+            ...$classes,
+            ...[
+                'chat',
+                'chat-start' => in_array($position, ['left', 'start']),
+                'chat-end'   => in_array($position, ['right', 'end']),
+            ]
+        ];
 
         $data['attributes'] = $attributes;
 

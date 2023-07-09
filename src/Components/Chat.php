@@ -28,8 +28,8 @@ class Chat extends LazyComponent
             ...[
                 'chat',
                 'chat-start' => in_array($position, ['left', 'start']),
-                'chat-end'   => in_array($position, ['right', 'end']),
-            ]
+                'chat-end' => in_array($position, ['right', 'end']),
+            ],
         ];
 
         $data['attributes'] = $attributes;

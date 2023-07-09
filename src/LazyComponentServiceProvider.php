@@ -22,6 +22,7 @@ use Lazyadm\LazyComponent\Components\Input;
 use Lazyadm\LazyComponent\Components\Join;
 use Lazyadm\LazyComponent\Components\Label;
 use Lazyadm\LazyComponent\Components\Link;
+use Lazyadm\LazyComponent\Components\Loading;
 use Lazyadm\LazyComponent\Components\Radial;
 use Lazyadm\LazyComponent\Components\Radio;
 use Lazyadm\LazyComponent\Components\Range;
@@ -66,6 +67,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Join::class,
                 Label::class,
                 Link::class,
+                Loading::class,
                 Radio::class,
                 Range::class,
                 //                Select::class,

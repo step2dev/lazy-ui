@@ -43,9 +43,7 @@ abstract class LazyComponent extends Component
 
         $modifier = collect($modifiers)->filter()->keys()->first();
 
-        if (! in_array($modifier, $this->smartAttributes, true)) {
-            $this->smartAttributes[] = $modifier;
-        }
+        $this->addSmartAttribute($modifier);
 
         return $modifier ?? self::DEFAULT;
     }
@@ -96,9 +94,9 @@ abstract class LazyComponent extends Component
         return new ComponentSlot;
     }
 
-    protected function mergeData(array $data): array
+    protected function mergeData(array $data, array $classes = []): array
     {
-        $attributes = $this->mergeClasses($data['attributes']);
+        $attributes = $this->mergeClasses($data['attributes'], $classes);
 
         $attributes['disabled'] = (bool) $attributes->get('disabled');
         $data['attributes'] = $attributes->except($this->smartAttributes);
@@ -111,6 +109,38 @@ abstract class LazyComponent extends Component
         return [
 
         ];
+    }
+
+    public function allowedSizes(): array
+    {
+        return [
+            'xs',
+            'sm',
+            'md',
+            'lg',
+            //            'xl',
+            //            '2xl',
+        ];
+    }
+
+    public function findBySmartAttribute(ComponentAttributeBag $attributes, array $keys, ?string $default = null): ?string
+    {
+        $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
+
+        $this->addSmartAttribute($modifier);
+
+        return $modifier ?? $default;
+    }
+
+    public function getSizeByAttribute(ComponentAttributeBag $attribute, ?string $default = null): string
+    {
+        $size = $this->findBySmartAttribute($attribute, $this->allowedSizes(), $attribute->get('size'));
+
+        if (in_array($size, $this->allowedSizes(), true)) {
+            return $size;
+        }
+
+        return $default;
     }
 
     public function classes(mixed $classes = []): string
@@ -131,5 +161,16 @@ abstract class LazyComponent extends Component
     public function getViewName(): string
     {
         return str(class_basename(static::class))->kebab();
+    }
+
+    public function addSmartAttribute(?string $attribute): void
+    {
+        if (! $attribute) {
+            return;
+        }
+
+        if (! in_array($attribute, $this->smartAttributes, true)) {
+            $this->smartAttributes[] = $attribute;
+        }
     }
 }

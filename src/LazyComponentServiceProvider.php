@@ -13,6 +13,7 @@ use Lazyadm\LazyComponent\Components\Btn\BtnBack;
 use Lazyadm\LazyComponent\Components\Btn\BtnDelete;
 use Lazyadm\LazyComponent\Components\Btn\BtnLogout;
 use Lazyadm\LazyComponent\Components\BtnGroup;
+use Lazyadm\LazyComponent\Components\Chat;
 use Lazyadm\LazyComponent\Components\Checkbox;
 use Lazyadm\LazyComponent\Components\Divider;
 use Lazyadm\LazyComponent\Components\Form\FormCheckbox;
@@ -61,6 +62,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 BtnLogout::class,
                 // end button
                 Checkbox::class,
+                Chat::class,
                 Divider::class,
                 //                Dropdown::class,
                 //                Form::class,

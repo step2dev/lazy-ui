@@ -13,6 +13,7 @@ use Lazyadm\LazyComponent\Components\Btn\BtnBack;
 use Lazyadm\LazyComponent\Components\Btn\BtnDelete;
 use Lazyadm\LazyComponent\Components\Btn\BtnLogout;
 use Lazyadm\LazyComponent\Components\BtnGroup;
+use Lazyadm\LazyComponent\Components\Chat;
 use Lazyadm\LazyComponent\Components\Checkbox;
 use Lazyadm\LazyComponent\Components\Divider;
 use Lazyadm\LazyComponent\Components\Form\FormCheckbox;
@@ -55,19 +56,25 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Badge::class,
                 // button
                 Btn::class,
-                BtnGroup::class,
                 BtnBack::class,
                 BtnDelete::class,
+                BtnGroup::class,
                 BtnLogout::class,
                 // end button
                 Checkbox::class,
                 Divider::class,
                 //                Dropdown::class,
+                //                Form::class,
+                //                FormGroup::class,
+                FormCheckbox::class,
+                FormInput::class,
+                FormToggle::class,
                 Input::class,
                 Join::class,
                 Label::class,
                 Link::class,
                 Loading::class,
+                Radial::class,
                 Radio::class,
                 Range::class,
                 //                Select::class,
@@ -75,18 +82,11 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Textarea::class,
                 Toggle::class,
                 Tooltip::class,
-                Radial::class,
-                // form
-                //                Form::class,
-                //                FormGroup::class,
-                FormCheckbox::class,
-                FormInput::class,
-                FormToggle::class,
             )
-//            ->hasAssets()
-//            ->publishesServiceProvider($nameOfYourServiceProvider)
-//            ->hasRoutes(['web', 'admin'])
-//            ->hasMigration('create_lazy-component_table')
+            //            ->hasAssets()
+            //            ->publishesServiceProvider($nameOfYourServiceProvider)
+            //            ->hasRoutes(['web', 'admin'])
+            //            ->hasMigration('create_lazy-component_table')
             ->hasCommand(LazyComponentCommand::class);
     }
 }

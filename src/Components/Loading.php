@@ -9,38 +9,9 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Loading extends LazyComponent
 {
-    public function checkType(array $attributes): string
-    {
-        $types = [
-            'spinner',
-            'dots',
-            'ring',
-            'ball',
-            'bars',
-            'infinity',
-        ];
-
-        foreach ($types as $type) {
-            if (isset($attributes[$type])) {
-                $this->smartAttributes[] = $type;
-
-                return $type;
-            }
-        }
-
-        return 'spinner';
-    }
-
     public function getTypeByAttribute(ComponentAttributeBag $attribute, ?string $default = null): string
     {
-        $type = $this->findBySmartAttribute($attribute, $this->allowedTypes())
-            ?? $attribute->get('type', $default);
-
-        if (in_array($type, $this->allowedTypes(), true)) {
-            return $type;
-        }
-
-        return $default;
+        return $this->getKeyByAttribute($attribute, $this->allowedTypes(), 'type', $default);
     }
 
     public function mergeData(array $data, array $classes = []): array

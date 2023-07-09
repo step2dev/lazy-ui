@@ -137,7 +137,7 @@ abstract class LazyComponent extends Component
         ];
     }
 
-    public function findBySmartAttribute(ComponentAttributeBag $attributes, array $keys, ?string $default = null): ?string
+    final protected function findBySmartAttribute(ComponentAttributeBag $attributes, array $keys, ?string $default = null): ?string
     {
         $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
 
@@ -148,10 +148,16 @@ abstract class LazyComponent extends Component
 
     public function getSizeByAttribute(ComponentAttributeBag $attribute, ?string $default = null): string
     {
-        $size = $this->findBySmartAttribute($attribute, $this->allowedSizes(), $attribute->get('size'));
+        return $this->getKeyByAttribute($attribute, $this->allowedSizes(), 'size', $default);
+    }
 
-        if (in_array($size, $this->allowedSizes(), true)) {
-            return $size;
+    final protected function getKeyByAttribute(ComponentAttributeBag $attribute, array $keys, ?string $key = null, ?string $default = null): string
+    {
+        $key = $this->findBySmartAttribute($attribute, $keys)
+            ?? $attribute->get($key, $default);
+
+        if (in_array($key, $keys, true)) {
+            return $key;
         }
 
         return $default;
@@ -159,13 +165,7 @@ abstract class LazyComponent extends Component
 
     public function getColorByAttribute(ComponentAttributeBag $attribute, ?string $default = null): string
     {
-        $color = $this->findBySmartAttribute($attribute, $this->allowedColors(), $attribute->get('color'));
-
-        if (in_array($color, $this->allowedSizes(), true)) {
-            return $color;
-        }
-
-        return $default;
+        return $this->getKeyByAttribute($attribute, $this->allowedColors(), 'color', $default);
     }
 
     public function classes(mixed $classes = []): string
@@ -186,7 +186,7 @@ abstract class LazyComponent extends Component
         return str(class_basename(static::class))->kebab();
     }
 
-    public function addSmartAttribute(?string $attribute): void
+    final protected function addSmartAttribute(?string $attribute): void
     {
         if (! $attribute) {
             return;

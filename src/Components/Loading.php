@@ -31,7 +31,6 @@ class Loading extends LazyComponent
         return 'spinner';
     }
 
-
     public function getTypeByAttribute(ComponentAttributeBag $attribute, ?string $default = null): string
     {
         $type = $this->findBySmartAttribute($attribute, $this->allowedTypes())
@@ -55,25 +54,25 @@ class Loading extends LazyComponent
             ...$classes,
             [
                 'loading',
-                'loading-xs'       => $size === 'xs',
-                'loading-sm'       => $size === 'sm',
-                'loading-md'       => $size === 'md',
-                'loading-lg'       => $size === 'lg',
-                'loading-spinner'  => $type === 'spinner',
-                'loading-dots'     => $type === 'dots',
-                'loading-ring'     => $type === 'ring',
-                'loading-ball'     => $type === 'ball',
-                'loading-bars'     => $type === 'bars',
+                'loading-xs' => $size === 'xs',
+                'loading-sm' => $size === 'sm',
+                'loading-md' => $size === 'md',
+                'loading-lg' => $size === 'lg',
+                'loading-spinner' => $type === 'spinner',
+                'loading-dots' => $type === 'dots',
+                'loading-ring' => $type === 'ring',
+                'loading-ball' => $type === 'ball',
+                'loading-bars' => $type === 'bars',
                 'loading-infinity' => $type === 'infinity',
-                'text-primary'     => $attributes->get('primary', false),
-                'text-secondary'   => $attributes->get('secondary', false),
-                'text-accent'      => $attributes->get('accent', false),
-                'text-neutral'     => $attributes->get('neutral', false),
-                'text-info'        => $attributes->get('info', false),
-                'text-success'     => $attributes->get('success', false),
-                'text-warning'     => $attributes->get('warning', false),
-                'text-error'       => $attributes->get('error', false),
-            ]
+                'text-primary' => $attributes->get('primary', false),
+                'text-secondary' => $attributes->get('secondary', false),
+                'text-accent' => $attributes->get('accent', false),
+                'text-neutral' => $attributes->get('neutral', false),
+                'text-info' => $attributes->get('info', false),
+                'text-success' => $attributes->get('success', false),
+                'text-warning' => $attributes->get('warning', false),
+                'text-error' => $attributes->get('error', false),
+            ],
         ];
 
         return $this->mergeData($data, $classes);

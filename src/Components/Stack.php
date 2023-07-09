@@ -8,7 +8,6 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Stack extends LazyComponent
 {
-
     /**
      * Get the view / contents that represent the component.
      */

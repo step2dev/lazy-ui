@@ -52,7 +52,7 @@ class Loading extends LazyComponent
 
         $classes = [
             ...$classes,
-            [
+            ...[
                 'loading',
                 'loading-xs' => $size === 'xs',
                 'loading-sm' => $size === 'sm',

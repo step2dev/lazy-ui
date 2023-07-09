@@ -8,7 +8,7 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Chat extends LazyComponent
 {
-    public function __construct(protected string $avatar, protected string $name, protected string $time, protected string $message, protected string $position = 'start')
+    public function __construct(protected string $message, protected string $name = '', protected string $avatar = '',  protected string $time = '', protected string $position = 'start')
     {
     }
 

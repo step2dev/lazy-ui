@@ -123,6 +123,20 @@ abstract class LazyComponent extends Component
         ];
     }
 
+    public function allowedColors(): array
+    {
+        return [
+            'primary',
+            'secondary',
+            'accent',
+            'neutral',
+            'info',
+            'success',
+            'warning',
+            'error',
+        ];
+    }
+
     public function findBySmartAttribute(ComponentAttributeBag $attributes, array $keys, ?string $default = null): ?string
     {
         $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
@@ -138,6 +152,17 @@ abstract class LazyComponent extends Component
 
         if (in_array($size, $this->allowedSizes(), true)) {
             return $size;
+        }
+
+        return $default;
+    }
+
+    public function getColorByAttribute(ComponentAttributeBag $attribute, ?string $default = null): string
+    {
+        $color = $this->findBySmartAttribute($attribute, $this->allowedColors(), $attribute->get('color'));
+
+        if (in_array($color, $this->allowedSizes(), true)) {
+            return $color;
         }
 
         return $default;

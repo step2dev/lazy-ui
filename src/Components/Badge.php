@@ -38,7 +38,7 @@ class Badge extends LazyComponent
         'xs' => 'badge-xs',
     ];
 
-    protected function mergeData(array $data): array
+    protected function mergeData(array $data, array $classes = []): array
     {
         /** @var ComponentAttributeBag $attributes */
         $attributes = $data['attributes'];

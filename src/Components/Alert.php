@@ -17,7 +17,7 @@ class Alert extends LazyComponent
         'error' => 'alert-error',
     ];
 
-    protected function mergeData(array $data): array
+    protected function mergeData(array $data, array $classes = []): array
     {
         /** @var ComponentAttributeBag $attributes */
         $attributes = $data['attributes'];

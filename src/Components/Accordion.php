@@ -27,7 +27,7 @@ class Accordion extends LazyComponent
         };
     }
 
-    public function mergeData(array $data): array
+    public function mergeData(array $data, array $classes = []): array
     {
         $attributes = $data['attributes'];
         $attributes['title'] ??= $attributes['label'] ?? null;

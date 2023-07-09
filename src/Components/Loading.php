@@ -75,7 +75,7 @@ class Loading extends LazyComponent
             ],
         ];
 
-        return $this->mergeData($data, $classes);
+        return parent::mergeData($data, $classes);
     }
 
     /**

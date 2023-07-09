@@ -16,7 +16,7 @@ class Chat extends LazyComponent
     {
         $attributes = $data['attributes'];
         $classes = [...$classes, 'chat'];
-        $position = $attributes['position'] ?? $this->findBySmartAttribute($attributes,[
+        $position = $attributes['position'] ?? $this->findBySmartAttribute($attributes, [
             'left',
             'right',
             'start',

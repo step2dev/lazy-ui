@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class AccordionTest extends TestCase
 {
-
     public function testAccordion(): void
     {
         $accordion = new Accordion();

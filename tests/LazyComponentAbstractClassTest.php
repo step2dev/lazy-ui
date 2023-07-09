@@ -11,7 +11,8 @@ class LazyComponentAbstractClassTest extends TestCase
 {
     public function testLazyComponentAbstractClass(): void
     {
-        $component = new class extends LazyComponent {
+        $component = new class extends LazyComponent
+        {
             public function render(): \Closure|View
             {
                 return function (array $data) {
@@ -27,6 +28,4 @@ class LazyComponentAbstractClassTest extends TestCase
         $this->assertIsArray($component->allowedColors(), 'LazyComponent should have an array of allowed colors');
 
     }
-
-
 }

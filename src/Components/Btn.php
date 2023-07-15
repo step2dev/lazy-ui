@@ -76,6 +76,7 @@ class Btn extends LazyComponent
         $attributes = $this->mergeClasses($attributes, [
             'btn',
             'join-item' => $attributes->get('group', false),
+            'mr-2' => ! $attributes->get('group', false),
             $this->outline ? $this->outlineClass : '',
             $this->glass ? $this->glassClass : '',
             $this->active ? $this->activeClass : '',

@@ -69,7 +69,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 BtnGroup::class,
                 BtnLogout::class,
                 // end button
-            //Carousel::class,
+                //Carousel::class,
                 Checkbox::class,
                 Chat::class,
                 Countdown::class,

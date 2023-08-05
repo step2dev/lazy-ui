@@ -7,7 +7,6 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Countdown extends LazyComponent
 {
-
     public function render(): \Closure|View
     {
         return function (array $data) {

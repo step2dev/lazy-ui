@@ -8,6 +8,7 @@ use Lazyadm\LazyComponent\LazyComponent;
 class Image extends LazyComponent
 {
     protected ?string $src;
+
     protected ?string $alt;
 
     public function __construct(?string $src = '', ?string $alt = '')

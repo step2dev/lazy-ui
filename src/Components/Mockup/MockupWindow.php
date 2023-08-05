@@ -5,7 +5,7 @@ namespace Lazyadm\LazyComponent\Components\Mockup;
 use Illuminate\Contracts\View\View;
 use Lazyadm\LazyComponent\LazyComponent;
 
-class MockupWindow  extends LazyComponent
+class MockupWindow extends LazyComponent
 {
     public function render(): \Closure|View
     {

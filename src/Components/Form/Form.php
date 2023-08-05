@@ -4,12 +4,10 @@ namespace Lazyadm\LazyComponent\Components\Form;
 
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 use Lazyadm\LazyComponent\LazyComponent;
 
 class Form extends LazyComponent
 {
-
     public function render(): View|Closure
     {
         return function (array $data) {

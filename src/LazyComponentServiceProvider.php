@@ -36,6 +36,7 @@ use Lazyadm\LazyComponent\Components\Radio;
 use Lazyadm\LazyComponent\Components\Range;
 use Lazyadm\LazyComponent\Components\Rating;
 use Lazyadm\LazyComponent\Components\Stack;
+use Lazyadm\LazyComponent\Components\Tabs;
 use Lazyadm\LazyComponent\Components\Textarea;
 use Lazyadm\LazyComponent\Components\Toggle;
 use Lazyadm\LazyComponent\Components\Tooltip;
@@ -96,6 +97,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Rating::class,
                 //                Select::class,
                 Stack::class,
+                Tabs::class,
                 Textarea::class,
                 Toggle::class,
                 Tooltip::class,

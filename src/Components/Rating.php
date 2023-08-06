@@ -1,4 +1,3 @@
-
 <?php
 
 namespace Lazyadm\LazyComponent\Components;

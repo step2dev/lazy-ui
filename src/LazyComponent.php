@@ -137,8 +137,11 @@ abstract class LazyComponent extends Component
         ];
     }
 
-    final protected function findBySmartAttribute(ComponentAttributeBag $attributes, array $keys, string $default = null): ?string
-    {
+    final protected function findBySmartAttribute(
+        ComponentAttributeBag $attributes,
+        array $keys,
+        string $default = null
+    ): ?string {
         $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
 
         $this->addSmartAttribute($modifier);
@@ -151,8 +154,12 @@ abstract class LazyComponent extends Component
         return $this->getKeyByAttribute($attribute, $this->allowedSizes(), 'size', $default);
     }
 
-    final protected function getKeyByAttribute(ComponentAttributeBag $attribute, array $keys, string $key = null, string $default = null): string
-    {
+    final protected function getKeyByAttribute(
+        ComponentAttributeBag $attribute,
+        array $keys,
+        string $key = null,
+        string $default = null
+    ): string {
         $key = $this->findBySmartAttribute($attribute, $keys)
             ?? $attribute->get($key, $default);
 
@@ -188,12 +195,13 @@ abstract class LazyComponent extends Component
 
     final protected function addSmartAttribute(?string $attribute): void
     {
-        if (! $attribute) {
-            return;
-        }
-
-        if (! in_array($attribute, $this->smartAttributes, true)) {
+        if ($attribute && ! in_array($attribute, $this->smartAttributes, true)) {
             $this->smartAttributes[] = $attribute;
         }
+    }
+
+    final protected function getAttributesFromData(array $data): ComponentAttributeBag
+    {
+        return $data['attributes'] ?? new ComponentAttributeBag;
     }
 }

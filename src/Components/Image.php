@@ -24,7 +24,7 @@ class Image extends LazyComponent
 
             $mask = $attributes['mask'] ?? null;
 
-            $attributes = $this->mergeClasses($attributes, );
+            $attributes = $this->mergeClasses($attributes);
             $data['attributes'] = $attributes;
 
             return view('lazy::image', $this->mergeData($data, [

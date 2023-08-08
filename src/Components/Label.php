@@ -12,7 +12,7 @@ class Label extends Component
     public function __construct(
         public bool $hasError = false,
         public ?bool $hr = false,
-        string|null $label = null,
+        string $label = null,
         public bool $required = false
     ) {
         $this->label = str($label)->trim()->ucfirst().($required ? ' <i style="color: red">*</i>' : '');

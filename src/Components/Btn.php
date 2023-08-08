@@ -20,6 +20,7 @@ class Btn extends LazyComponent
         'ghost' => 'btn-ghost',
         'link' => 'btn-link',
     ];
+
     protected string $outlineClass = 'btn-outline';
 
     protected string $activeClass = 'btn-active';

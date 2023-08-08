@@ -14,8 +14,7 @@ class Chat extends LazyComponent
         public string $avatar = '',
         public string $time = '',
         public string $position = 'start'
-    )
-    {
+    ) {
     }
 
     public function render(): Closure|View

@@ -2,7 +2,7 @@
     'method' => 'POST',
     'spoofMethod' => false,
 ])
-<form method="{{ $spoofMethod ? 'POST' : $method }}" {{ $attributes }}>
+<form {{ $attributes }} method="{{ $spoofMethod ? 'POST' : $method }}">
     @if ($spoofMethod)
         @method($method)
     @endif

@@ -24,7 +24,10 @@ class Image extends LazyComponent
 
             $mask = $attributes['mask'] ?? null;
 
-            $attributes = $this->mergeClasses($attributes, [
+            $attributes = $this->mergeClasses($attributes, );
+            $data['attributes'] = $attributes;
+
+            return view('lazy::image', $this->mergeData($data, [
                 'mask' => $mask,
                 'mask-squircle' => $mask === 'squircle',
                 'mask-heart' => $mask === 'heart',
@@ -47,10 +50,7 @@ class Image extends LazyComponent
                 'mask-triangle-4' => $mask === 'triangle-4',
                 'mask-half-1' => false,
                 'mask-half-2' => false,
-            ]);
-            $data['attributes'] = $attributes;
-
-            return view('lazy::image', $this->mergeData($data))->render();
+            ]))->render();
         };
     }
 }

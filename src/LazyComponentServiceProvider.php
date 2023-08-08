@@ -17,7 +17,7 @@ use Lazyadm\LazyComponent\Components\Chat;
 use Lazyadm\LazyComponent\Components\Checkbox;
 use Lazyadm\LazyComponent\Components\Countdown;
 use Lazyadm\LazyComponent\Components\Divider;
-use Lazyadm\LazyComponent\Components\Form\Form;
+use Lazyadm\LazyComponent\Components\Form;
 use Lazyadm\LazyComponent\Components\Form\FormCheckbox;
 use Lazyadm\LazyComponent\Components\Form\FormInput;
 use Lazyadm\LazyComponent\Components\Form\FormToggle;

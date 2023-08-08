@@ -1,6 +1,6 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Components\Form;
+namespace Lazyadm\LazyComponent\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;

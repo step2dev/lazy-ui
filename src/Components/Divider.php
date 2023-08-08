@@ -2,13 +2,24 @@
 
 namespace Lazyadm\LazyComponent\Components;
 
+use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
+use Lazyadm\LazyComponent\LazyComponent;
 
-class Divider extends Component
+class Divider extends LazyComponent
 {
-    public function render(): View
+    public function render(): Closure|View
     {
-        return view('lazy::divider');
+        return function (array $data) {
+            $attributes = $this->getAttributesFromData($data);
+
+            $orientation = $attributes['orientation'] ?? $attributes['hr'] ?? 'vertical';
+            unset($attributes['orientation'], $attributes['hr']);
+
+            return view('lazy::divider', $this->mergeData($data, [
+                'divider',
+                'divider-horizontal' => in_array($orientation, ['horizontal', 'hr']),
+            ]))->render();
+        };
     }
 }

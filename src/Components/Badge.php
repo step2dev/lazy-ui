@@ -38,24 +38,14 @@ class Badge extends LazyComponent
         'xs' => 'badge-xs',
     ];
 
-    protected function mergeData(array $data, array $classes = []): array
-    {
-        /** @var ComponentAttributeBag $attributes */
-        $attributes = $data['attributes'];
-
-        $attributes = $this->mergeClasses($attributes, [
-            $attributes->get('outline') ? $this->outlineClass : '',
-        ]);
-
-        $data['attributes'] = $attributes->except($this->smartAttributes);
-
-        return $data;
-    }
-
     public function render(): \Closure|View
     {
         return function (array $data) {
-            return view('lazy::badge', $this->mergeData($data))->render();
+            $attributes = $this->getAttributesFromData($data);
+
+            return view('lazy::badge', $this->mergeData($data, [
+                'badge-outline' => $attributes->get('outline'),
+            ]))->render();
         };
     }
 }

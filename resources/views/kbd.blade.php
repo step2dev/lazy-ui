@@ -1,1 +1,1 @@
-<kbd {{ $attributes->merge(['class' => 'kbd']) }}>{{ $value ?: $slot }}</kbd>
+<kbd {{ $attributes }}>{{ $value ?: $slot }}</kbd>

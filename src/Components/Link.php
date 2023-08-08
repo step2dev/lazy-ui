@@ -7,23 +7,24 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Link extends LazyComponent
 {
-    protected array $colors = [
-        'default' => '',
-        'neutral' => 'link-neutral',
-        'primary' => 'link-primary',
-        'secondary' => 'link-secondary',
-        'accent' => 'link-accent',
-        'success' => 'link-success',
-        'info' => 'link-info',
-        'warning' => 'link-warning',
-        'error' => 'link-error',
-        'hover' => 'link-hover',
-    ];
-
     public function render(): Closure
     {
         return function (array $data) {
-            return view('lazy::link', $this->mergeData($data))->render();
+            $attributes = $this->getAttributesFromData($data);
+            $color = $this->getColorByAttribute($attributes, '');
+
+            return view('lazy::link', $this->mergeData($data, [
+                'link',
+                'link-neutral' => $color === 'neutral',
+                'link-primary' => $color === 'primary',
+                'link-secondary' => $color === 'secondary',
+                'link-accent' => $color === 'accent',
+                'link-success' => $color === 'success',
+                'link-info' => $color === 'info',
+                'link-warning' => $color === 'warning',
+                'link-error' => $color === 'error',
+                'link-hover' => $color === 'hover',
+            ]))->render();
         };
     }
 }

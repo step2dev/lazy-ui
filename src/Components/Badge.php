@@ -3,7 +3,6 @@
 namespace Lazyadm\LazyComponent\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\ComponentAttributeBag;
 use Lazyadm\LazyComponent\LazyComponent;
 
 class Badge extends LazyComponent

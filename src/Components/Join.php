@@ -34,7 +34,7 @@ class Join extends LazyComponent
         return $this->modifierClasses($attributes, $this->positions);
     }
 
-    public function mergeData(array $data, array $classes = []): array
+    public function mergeData(array $data, array $classes = [], array $exceptAttributes = []): array
     {
         $attributes = $data['attributes'];
 

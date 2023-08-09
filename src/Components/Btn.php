@@ -54,7 +54,7 @@ class Btn extends LazyComponent
         $this->tag = $this->href === null ? 'button' : 'a';
     }
 
-    protected function mergeData(array $data, array $classes = []): array
+    protected function mergeData(array $data, array $classes = [], array $exceptAttributes = []): array
     {
         $attributes = $this->getAttributesFromData($data);
 

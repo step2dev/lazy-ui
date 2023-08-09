@@ -4,7 +4,7 @@
     'name' => ''
 ])
 
-<div {{ $attributes->merge(['class' => "collapse bg-base-200 mb-2"]) }}>
+<div {{ $attributes }}>
     <input type="radio" name="{{ $name }}" {{ $active ? 'checked=checked' : '' }} />
     <div class="collapse-title text-xl font-medium">
         {{ $title }}

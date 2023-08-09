@@ -8,47 +8,28 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Accordion extends LazyComponent
 {
-    protected string $type = '';
-
-    protected array $types = [
-        '' => '',
-        'none' => '',
-        'arrow' => 'collapse-arrow',
-        'plus' => 'collapse-plus',
-    ];
-
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): Closure|View
     {
         return function (array $data) {
-            return view('lazy::accordion', $this->mergeData($data))->render();
+            $attributes = $this->getAttributesFromData($data);
+
+            $attributes['title'] ??= $attributes['label'] ?? null;
+            $attributes['active'] ??= false;
+            $attributes['name'] ??= 'accordion';
+
+            $data['attributes'] = $attributes;
+
+            return view('lazy::accordion', $this->mergeData($data, [
+                'collapse',
+                'bg-base-200 mb-2',
+                'collapse-arrow' => $attributes->get('type') === 'arrow',
+                'collapse-plus'  => $attributes->get('type') === 'plus' || $attributes->get('type') === null,
+            ], [
+                'type',
+            ]))->render();
         };
-    }
-
-    public function mergeData(array $data, array $classes = []): array
-    {
-        $attributes = $data['attributes'];
-        $attributes['title'] ??= $attributes['label'] ?? null;
-        $attributes['active'] ??= false;
-        $attributes['name'] ??= 'accordion';
-
-        if (array_key_exists($attributes['type'] ?? '', $this->types)) {
-            $class = explode(' ', $attributes['class']);
-
-            if (isset($this->types[$attributes['type']])) {
-                $class[] = $this->types[$attributes['type']];
-                unset($attributes['type']);
-            }
-
-            $attributes['class'] = implode(' ', array_filter(array_unique($class)));
-        } else {
-            $attributes['class'] = $this->types['plus'];
-        }
-
-        $data['attributes'] = $attributes;
-
-        return parent::mergeData($data);
     }
 }

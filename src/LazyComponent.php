@@ -94,12 +94,15 @@ abstract class LazyComponent extends Component
         return new ComponentSlot;
     }
 
-    protected function mergeData(array $data, array $classes = []): array
+    protected function mergeData(array $data, array $classes = [], array $exceptAttributes = []): array
     {
         $attributes = $this->mergeClasses($data['attributes'], $classes);
 
         $attributes['disabled'] = (bool) $attributes->get('disabled');
-        $data['attributes'] = $attributes->except($this->smartAttributes);
+        $data['attributes'] = $attributes->except([
+            ...$this->smartAttributes,
+            ...$exceptAttributes,
+        ]);
 
         return $data;
     }
@@ -140,7 +143,7 @@ abstract class LazyComponent extends Component
     final protected function findBySmartAttribute(
         ComponentAttributeBag $attributes,
         array $keys,
-        string $default = null
+        string|null $default = null
     ): ?string {
         $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
 
@@ -149,7 +152,7 @@ abstract class LazyComponent extends Component
         return $modifier ?? $default;
     }
 
-    public function getSizeByAttribute(ComponentAttributeBag $attribute, string $default = null): string
+    public function getSizeByAttribute(ComponentAttributeBag $attribute, string|null $default = null): ?string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedSizes(), 'size', $default);
     }
@@ -157,9 +160,9 @@ abstract class LazyComponent extends Component
     final protected function getKeyByAttribute(
         ComponentAttributeBag $attribute,
         array $keys,
-        string $key = null,
-        string $default = null
-    ): string {
+        string|null $key = null,
+        string|null $default = null
+    ): ?string {
         $key = $this->findBySmartAttribute($attribute, $keys)
             ?? $attribute->get($key, $default);
 
@@ -170,7 +173,7 @@ abstract class LazyComponent extends Component
         return $default;
     }
 
-    public function getColorByAttribute(ComponentAttributeBag $attribute, string $default = null): string
+    public function getColorByAttribute(ComponentAttributeBag $attribute, string|null $default = null): ?string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedColors(), 'color', $default);
     }

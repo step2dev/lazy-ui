@@ -10,33 +10,35 @@ class Alert extends LazyComponent
 {
     protected array $colors = [
         'default' => '',
-        'info' => 'alert-info',
+        'info'    => 'alert-info',
         'success' => 'alert-success',
         'warning' => 'alert-warning',
-        'danger' => 'alert-error',
-        'error' => 'alert-error',
+        'danger'  => 'alert-error',
+        'error'   => 'alert-error',
     ];
 
-    protected function mergeData(array $data, array $classes = []): array
+    public function getTypeByAttribute(ComponentAttributeBag $attribute, string|null $default = null): ?string
     {
-        /** @var ComponentAttributeBag $attributes */
-        $attributes = $data['attributes'];
-
-        $attributes = $this->mergeClasses($attributes, []);
-
-        $attributes['disabled'] = (bool) $attributes->get('disabled');
-        $keys = array_keys($this->colors);
-
-        $attributes['type'] = $this->findModifier($attributes, array_combine($keys, $keys));
-        $data['attributes'] = $attributes->except($this->smartAttributes);
-
-        return $data;
+        return $this->getKeyByAttribute($attribute, $this->allowedColors(), 'type', $default);
     }
 
     public function render(): Closure
     {
         return function (array $data) {
-            return view('lazy::alert', $this->mergeData($data))->render();
+            $attributes = $this->getAttributesFromData($data);
+            $attributes['disabled'] = (bool) $attributes->get('disabled');
+            $type = $this->getTypeByAttribute($attributes) ?? $this->getColorByAttribute($attributes, 'default');
+
+            $data['attributes'] = $attributes;
+
+            return view('lazy::alert', $this->mergeData($data, [
+                'alert',
+                'shadow-lg mt-1 mb-2',
+                'alert-info'    => $type === 'info',
+                'alert-success' => $type === 'success',
+                'alert-warning' => $type === 'warning',
+                'alert-error'   => $type === 'error',
+            ]))->render();
         };
     }
 }

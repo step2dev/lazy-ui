@@ -5,9 +5,7 @@
     'type' => 'default'
 ])
 
-<div {{ $attributes->merge([
-    'class' => 'alert shadow-lg mt-1 mb-2'
-]) }}>
+<div {{ $attributes }}>
     <div>
         @if($icon)
             {!! $icon !!}

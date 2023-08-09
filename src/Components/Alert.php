@@ -8,16 +8,7 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Alert extends LazyComponent
 {
-    protected array $colors = [
-        'default' => '',
-        'info' => 'alert-info',
-        'success' => 'alert-success',
-        'warning' => 'alert-warning',
-        'danger' => 'alert-error',
-        'error' => 'alert-error',
-    ];
-
-    public function getTypeByAttribute(ComponentAttributeBag $attribute, string $default = null): ?string
+    public function getTypeByAttribute(ComponentAttributeBag $attribute, string|null $default = null): ?string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedColors(), 'type', $default);
     }

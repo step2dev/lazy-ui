@@ -11,36 +11,30 @@ class Btn extends LazyComponent
     protected array $colors = [
         'default' => '',
         'primary' => 'btn-primary',
-        'accent' => 'btn-accent',
-        'info' => 'btn-info',
+        'accent'  => 'btn-accent',
+        'info'    => 'btn-info',
         'success' => 'btn-success',
         'warning' => 'btn-warning',
-        'danger' => 'btn-error',
-        'error' => 'btn-error',
-        'ghost' => 'btn-ghost',
-        'link' => 'btn-link',
+        'danger'  => 'btn-error',
+        'error'   => 'btn-error',
+        'ghost'   => 'btn-ghost',
+        'link'    => 'btn-link',
     ];
 
-    protected string $outlineClass = 'btn-outline';
-
-    protected string $activeClass = 'btn-active';
-
     protected string $disableClass = 'btn-disabled';
-
-    protected string $glassClass = 'glass';
 
     protected string $loadingClass = 'loading';
 
     protected array $sizes = [
         'default' => '',
-        'lg' => 'btn-lg',
-        'md' => 'btn-md',
-        'sm' => 'btn-sm',
-        'xs' => 'btn-xs',
-        'wide' => 'btn-wide',
-        'block' => 'btn-block',
-        'circle' => 'btn-circle',
-        'square' => 'btn-square',
+        'lg'      => 'btn-lg',
+        'md'      => 'btn-md',
+        'sm'      => 'btn-sm',
+        'xs'      => 'btn-xs',
+        'wide'    => 'btn-wide',
+        'block'   => 'btn-block',
+        'circle'  => 'btn-circle',
+        'square'  => 'btn-square',
     ];
 
     public bool $outline = false;
@@ -63,8 +57,8 @@ class Btn extends LazyComponent
 
     protected function mergeData(array $data, array $classes = []): array
     {
-        /** @var ComponentAttributeBag $attributes */
-        $attributes = $data['attributes'];
+        $attributes = $this->getAttributesFromData($data);
+
         if ($this->tag === 'a') {
             $attributes['href'] = $this->href;
         } else {
@@ -75,16 +69,22 @@ class Btn extends LazyComponent
 
         $attributes = $this->mergeClasses($attributes, [
             'btn',
-            'join-item' => $attributes->get('group', false),
-            'mr-2' => ! $attributes->get('group', false),
-            $this->outline ? $this->outlineClass : '',
-            $this->glass ? $this->glassClass : '',
-            $this->active ? $this->activeClass : '',
+            'join-item'    => $attributes->get('group', false),
+            'mr-2'         => ! $attributes->get('group', false),
+            'glass'        => $this->glass,
+            'btn-active'   => $this->active,
+            'btn-outline'  => $attributes->get('outline', false),
+            'btn-disabled' => $attributes->get('disabled', false),
+        ])->except([
+            'group',
+            'outline',
+            'glass',
+            'active',
         ]);
+
         // $data['iconSize']   = $this->iconSize($attributes);
         $data['disabled'] = (bool) $attributes->get('disabled');
         $data['attributes'] = $attributes->except($this->smartAttributes);
-        unset($data['attributes']['group']);
 
         return $data;
     }

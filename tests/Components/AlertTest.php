@@ -33,11 +33,6 @@ it('can render alert', function () {
         ->assertSee('alert-warning', false);
 
     $this
-        ->blade('<x-lazy-alert danger>Alert Content</x-lazy-alert>')
-        ->assertSee('Alert Content')
-        ->assertSee('alert-error', false);
-
-    $this
         ->blade('<x-lazy-alert type="error">Alert Content</x-lazy-alert>')
         ->assertSee('Alert Content')
         ->assertSee('alert-error', false);

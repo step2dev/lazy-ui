@@ -4,8 +4,6 @@ namespace Lazyadm\LazyComponent\Tests\Components;
 
 use Illuminate\Support\Facades\Blade;
 use Lazyadm\LazyComponent\Components\Badge;
-use Pest\Expectations;
-use Pest\TestSuite;
 
 it('should have an array of allowed sizes', function () {
     $component = new Badge();
@@ -35,6 +33,5 @@ it('can render button', function () {
             'wire:loading.class="btn-disabled loading"',
             'wire:loading.attr="disabled"',
             'Go'
-        )
-    ;
+        );
 });

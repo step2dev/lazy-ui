@@ -17,72 +17,140 @@ it('should have an array of allowed colors', function () {
     expect($component->allowedColors())->toBeArray();
 });
 
-it('can render button', function () {
-    expect(Blade::render('<x-lazy-btn>Go</x-lazy-btn>'))
-        ->toContain(
-            'type="submit"',
-            'class="btn',
-            'wire:loading.class="btn-disabled loading"',
-            'wire:loading.attr="disabled"',
-            'Go'
-        )
-        ->and(Blade::render('<x-lazy-btn label="Go"/>'))
-        ->toContain(
-            'type="submit"',
-            'class="btn',
-            'wire:loading.class="btn-disabled loading"',
-            'wire:loading.attr="disabled"',
-            'Go'
-        )
-        ->and(Blade::render('<x-lazy-btn primary label="Go"/>'))
-        ->toContain('btn-primary')
-        ->and(Blade::render('<x-lazy-btn accent label="Go"/>'))
-        ->toContain('btn-accent')
-        ->and(Blade::render('<x-lazy-btn info label="Go"/>'))
-        ->toContain('btn-info')
-        ->and(Blade::render('<x-lazy-btn success label="Go"/>'))
-        ->toContain('btn-success')
-        ->and(Blade::render('<x-lazy-btn warning label="Go"/>'))
-        ->toContain('btn-warning')
-        ->and(Blade::render('<x-lazy-btn error label="Go"/>'))
-        ->toContain('btn-error')
-        ->and(Blade::render('<x-lazy-btn ghost label="Go"/>'))
-        ->toContain('btn-ghost')
-        ->and(Blade::render('<x-lazy-btn link label="Go"/>'))
-        ->toContain('btn-link')
+it('can render button with attribute label', function () {
+    $this
+        ->blade('<x-lazy-btn label="Go"/>')
+        ->assertSee('type="submit"', false)
+        ->assertSee('class="btn', false)
+        ->assertSee('wire:loading.class="btn-disabled loading"', false)
+        ->assertSee('wire:loading.attr="disabled"', false)
+        ->assertSee('Go');
+});
 
-        // check sizes
-        ->and(Blade::render('<x-lazy-btn lg label="Go"/>'))
-        ->toContain('btn-lg')
-        ->and(Blade::render('<x-lazy-btn md label="Go"/>'))
-        ->toContain('btn-md')
-        ->and(Blade::render('<x-lazy-btn sm label="Go"/>'))
-        ->toContain('btn-sm')
-        ->and(Blade::render('<x-lazy-btn xs label="Go"/>'))
-        ->toContain('btn-xs')
+it('can render button without attribute label', function () {
+    $this
+        ->blade('<x-lazy-btn>Go</x-lazy-btn>')
+        ->assertSee('type="submit"', false)
+        ->assertSee('class="btn', false)
+        ->assertSee('wire:loading.class="btn-disabled loading"', false)
+        ->assertSee('wire:loading.attr="disabled"', false)
+        ->assertSee('Go');
+});
 
-        // check other classes
-        ->and(Blade::render('<x-lazy-btn wide label="Go"/>'))
-        ->toContain('btn-wide')
-        ->and(Blade::render('<x-lazy-btn block label="Go"/>'))
-        ->toContain('btn-block')
-        ->and(Blade::render('<x-lazy-btn circle label="Go"/>'))
-        ->toContain('btn-circle')
-        ->and(Blade::render('<x-lazy-btn square label="Go"/>'))
-        ->toContain('btn-square')
+it('can render with colors attribute', function () {
+    $this
+        ->blade('<x-lazy-btn primary />')
+        ->assertSee('btn-primary');
 
-        ->and(Blade::render('<x-lazy-btn outline label="Go"/>'))
-        ->toContain('btn-outline')
-        ->and(Blade::render('<x-lazy-btn disabled label="Go"/>'))
-        ->toContain('btn-disabled')
-        ->and(Blade::render('<x-lazy-btn glass label="Go"/>'))
-        ->toContain('glass')
-        ->and(Blade::render('<x-lazy-btn active label="Go"/>'))
-        ->toContain('btn-active')
+    $this
+        ->blade('<x-lazy-btn accent />')
+        ->assertSee('btn-accent');
 
-        ->and(Blade::render('<x-lazy-btn primary lg label="Go"/>'))
-        ->toContain(
-            'btn-primary',
-            'btn-lg'
-        );
+    $this
+        ->blade('<x-lazy-btn info />')
+        ->assertSee('btn-info');
+
+    $this
+        ->blade('<x-lazy-btn success />')
+        ->assertSee('btn-success');
+
+    $this
+        ->blade('<x-lazy-btn warning/>')
+        ->assertSee('btn-warning');
+
+    $this
+        ->blade('<x-lazy-btn error/>')
+        ->assertSee('btn-error');
+
+    $this
+        ->blade('<x-lazy-btn ghost/>')
+        ->assertSee('btn-ghost');
+
+    $this
+        ->blade('<x-lazy-btn link/>')
+        ->assertSee('btn-link');
+});
+
+it('can render with sizes attribute', function () {
+    $this
+        ->blade('<x-lazy-btn lg/>')
+        ->assertSee('btn-lg');
+
+    $this
+        ->blade('<x-lazy-btn md/>')
+        ->assertSee('btn-md');
+
+    $this
+        ->blade('<x-lazy-btn sm/>')
+        ->assertSee('btn-sm');
+
+    $this
+        ->blade('<x-lazy-btn xs/>')
+        ->assertSee('btn-xs');
+});
+
+it('can render with outline attribute', function () {
+    $this
+        ->blade('<x-lazy-btn outline/>')
+        ->assertSee('btn-outline');
+});
+
+it('can render with disabled attribute', function () {
+    $this
+        ->blade('<x-lazy-btn disabled/>')
+        ->assertSee('btn-disabled')
+        ->assertSee('disabled');
+});
+
+it('can render with glass attribute', function () {
+    $this
+        ->blade('<x-lazy-btn glass/>')
+        ->assertSee('glass');
+});
+
+it('can render with active attribute', function () {
+    $this
+        ->blade('<x-lazy-btn active/>')
+        ->assertSee('btn-active');
+});
+
+it('can render with wide attribute', function () {
+    $this
+        ->blade('<x-lazy-btn wide/>')
+        ->assertSee('btn-wide');
+});
+
+it('can render with block attribute', function () {
+    $this
+        ->blade('<x-lazy-btn block/>')
+        ->assertSee('btn-block');
+});
+
+it('can render with circle attribute', function () {
+    $this
+        ->blade('<x-lazy-btn circle/>')
+        ->assertSee('btn-circle');
+});
+
+it('can render with square attribute', function () {
+    $this
+        ->blade('<x-lazy-btn square/>')
+        ->assertSee('btn-square');
+});
+
+it('can render with size outline color attribute', function () {
+    $this
+        ->blade('<x-lazy-btn lg outline primary/>')
+        ->assertSee('btn-lg')
+        ->assertSee('btn-outline')
+        ->assertSee('btn-primary');
+});
+
+it('can render with link attribute', function () {
+    $this
+        ->blade('<x-lazy-btn href="https://google.com" label="Go"/>')
+        ->assertSee('href="https://google.com"', false)
+        ->assertSee('btn', false)
+        ->assertSee('Go')
+        ->assertSee('<a', false);
 });

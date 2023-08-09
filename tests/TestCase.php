@@ -5,9 +5,12 @@ namespace Lazyadm\LazyComponent\Tests;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Lazyadm\LazyComponent\LazyComponentServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 
 class TestCase extends Orchestra
 {
+    use InteractsWithViews;
+
     protected function setUp(): void
     {
         parent::setUp();

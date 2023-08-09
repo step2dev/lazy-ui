@@ -22,6 +22,3 @@ it('should have render callable', function () {
     expect($component->render())
         ->toBeCallable();
 });
-
-// it('should have render component', function () {
-// });

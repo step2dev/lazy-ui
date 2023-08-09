@@ -3,7 +3,6 @@
 namespace Lazyadm\LazyComponent\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\ComponentAttributeBag;
 use Lazyadm\LazyComponent\LazyComponent;
 
 class Btn extends LazyComponent
@@ -11,14 +10,14 @@ class Btn extends LazyComponent
     protected array $colors = [
         'default' => '',
         'primary' => 'btn-primary',
-        'accent'  => 'btn-accent',
-        'info'    => 'btn-info',
+        'accent' => 'btn-accent',
+        'info' => 'btn-info',
         'success' => 'btn-success',
         'warning' => 'btn-warning',
-        'danger'  => 'btn-error',
-        'error'   => 'btn-error',
-        'ghost'   => 'btn-ghost',
-        'link'    => 'btn-link',
+        'danger' => 'btn-error',
+        'error' => 'btn-error',
+        'ghost' => 'btn-ghost',
+        'link' => 'btn-link',
     ];
 
     protected string $disableClass = 'btn-disabled';
@@ -27,14 +26,14 @@ class Btn extends LazyComponent
 
     protected array $sizes = [
         'default' => '',
-        'lg'      => 'btn-lg',
-        'md'      => 'btn-md',
-        'sm'      => 'btn-sm',
-        'xs'      => 'btn-xs',
-        'wide'    => 'btn-wide',
-        'block'   => 'btn-block',
-        'circle'  => 'btn-circle',
-        'square'  => 'btn-square',
+        'lg' => 'btn-lg',
+        'md' => 'btn-md',
+        'sm' => 'btn-sm',
+        'xs' => 'btn-xs',
+        'wide' => 'btn-wide',
+        'block' => 'btn-block',
+        'circle' => 'btn-circle',
+        'square' => 'btn-square',
     ];
 
     public bool $outline = false;
@@ -69,11 +68,11 @@ class Btn extends LazyComponent
 
         $attributes = $this->mergeClasses($attributes, [
             'btn',
-            'join-item'    => $attributes->get('group', false),
-            'mr-2'         => ! $attributes->get('group', false),
-            'glass'        => $this->glass,
-            'btn-active'   => $this->active,
-            'btn-outline'  => $attributes->get('outline', false),
+            'join-item' => $attributes->get('group', false),
+            'mr-2' => ! $attributes->get('group', false),
+            'glass' => $this->glass,
+            'btn-active' => $this->active,
+            'btn-outline' => $attributes->get('outline', false),
             'btn-disabled' => $attributes->get('disabled', false),
         ])->except([
             'group',

@@ -13,14 +13,23 @@ abstract class LazyComponent extends Component
 {
     use HasModels;
 
+    /**
+     * @deprecated
+     */
     protected const DEFAULT = 'default';
 
     public string $label = '';
 
+    /**
+     * @deprecated
+     */
     protected array $colors = [
         self::DEFAULT => '',
     ];
 
+    /**
+     * @deprecated
+     */
     protected array $sizes = [
         self::DEFAULT => '',
     ];
@@ -58,6 +67,9 @@ abstract class LazyComponent extends Component
         return $attributes->class($this->classes($merge));
     }
 
+    /**
+     * @deprecated
+     */
     final protected function size(ComponentAttributeBag $attributes): string
     {
         return $this->modifierClasses($attributes, $this->getSizes());
@@ -70,16 +82,25 @@ abstract class LazyComponent extends Component
         return $modifiers[$modifier];
     }
 
+    /**
+     * @deprecated
+     */
     public function getSizes(): array
     {
         return $this->sizes;
     }
 
+    /**
+     * @deprecated
+     */
     protected function color(ComponentAttributeBag $attributes): string
     {
         return $this->modifierClasses($attributes, $this->currentColors());
     }
 
+    /**
+     * @deprecated
+     */
     protected function currentColors(): array
     {
         return $this->colors;
@@ -105,13 +126,6 @@ abstract class LazyComponent extends Component
         ]);
 
         return $data;
-    }
-
-    public function classAttributes(): array
-    {
-        return [
-
-        ];
     }
 
     public function allowedSizes(): array
@@ -143,7 +157,7 @@ abstract class LazyComponent extends Component
     final protected function findBySmartAttribute(
         ComponentAttributeBag $attributes,
         array $keys,
-        string $default = null
+        string|null $default = null
     ): ?string {
         $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
 
@@ -160,8 +174,8 @@ abstract class LazyComponent extends Component
     final protected function getKeyByAttribute(
         ComponentAttributeBag $attribute,
         array $keys,
-        string $key = null,
-        string $default = null
+        string|null $key = null,
+        string|null $default = null
     ): ?string {
         $key = $this->findBySmartAttribute($attribute, $keys)
             ?? $attribute->get($key, $default);

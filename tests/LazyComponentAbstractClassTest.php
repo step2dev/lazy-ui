@@ -4,13 +4,13 @@ namespace Lazyadm\LazyComponent\Tests;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Lazyadm\LazyComponent\Components\Alert;
 use Lazyadm\LazyComponent\LazyComponent;
 
 it('should be an instance of Component', function () {
     expect(LazyComponent::class)->toBeAbstract();
 
-    $component = new class extends LazyComponent
-    {
+    $component = new class extends LazyComponent {
         public function render(): \Closure|View
         {
             return function (array $data) {
@@ -23,5 +23,8 @@ it('should be an instance of Component', function () {
         ->toBeInstanceOf(Component::class)
         ->and($component)->toBeInstanceOf(LazyComponent::class)
         ->and($component->allowedSizes())->toBeArray()
-        ->and($component->allowedColors())->toBeArray();
+        ->and($component->allowedColors())->toBeArray()
+        ->and($component->getViewName())->toBeString()
+        ->and($component->render())->toBeInstanceOf(\Closure::class)
+        ->and(Alert::getName())->toBeString()->toEqual('Alert');
 });

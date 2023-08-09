@@ -9,7 +9,7 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Loading extends LazyComponent
 {
-    public function getTypeByAttribute(ComponentAttributeBag $attribute, string $default = null): string
+    public function getTypeByAttribute(ComponentAttributeBag $attribute, string|null $default = null): string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedTypes(), 'type', $default);
     }

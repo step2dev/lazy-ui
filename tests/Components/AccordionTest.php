@@ -3,15 +3,27 @@
 namespace Lazyadm\LazyComponent\Tests\Components;
 
 use Lazyadm\LazyComponent\Components\Accordion;
-use PHPUnit\Framework\TestCase;
+use Illuminate\Contracts\Support\Arrayable;
 
-class AccordionTest extends TestCase
-{
-    public function testAccordion(): void
-    {
-        $accordion = new Accordion();
+it('should have an array of allowed sizes', function () {
+    $component = new Accordion();
 
-        $this->assertIsArray($accordion->allowedSizes(), 'Accordion should have an array of allowed sizes');
-        $this->assertIsArray($accordion->allowedColors(), 'Accordion should have an array of allowed colors');
-    }
-}
+    expect($component->allowedSizes())->toBeArray();
+});
+
+it('should have an array of allowed colors', function () {
+    $component = new Accordion();
+
+    expect($component->allowedColors())->toBeArray();
+});
+
+it('should have render callable', function () {
+    $component = new Accordion();
+
+    expect($component->render())
+        ->toBeCallable();
+});
+
+// it('should have render component', function () {
+// });
+

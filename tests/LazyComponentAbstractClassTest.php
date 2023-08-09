@@ -5,8 +5,6 @@ namespace Lazyadm\LazyComponent\Tests;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Lazyadm\LazyComponent\LazyComponent;
-use Pest\Expectations;
-use Pest\TestSuite;
 
 it('should be an instance of Component', function () {
     $component = new class extends LazyComponent

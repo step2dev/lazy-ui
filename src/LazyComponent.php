@@ -157,8 +157,8 @@ abstract class LazyComponent extends Component
     final protected function getKeyByAttribute(
         ComponentAttributeBag $attribute,
         array $keys,
-        string|null $key = null,
-        string|null $default = null
+        string $key = null,
+        string $default = null
     ): string {
         $key = $this->findBySmartAttribute($attribute, $keys)
             ?? $attribute->get($key, $default);

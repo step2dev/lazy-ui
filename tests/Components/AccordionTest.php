@@ -3,7 +3,6 @@
 namespace Lazyadm\LazyComponent\Tests\Components;
 
 use Lazyadm\LazyComponent\Components\Accordion;
-use Illuminate\Contracts\Support\Arrayable;
 
 it('should have an array of allowed sizes', function () {
     $component = new Accordion();
@@ -26,4 +25,3 @@ it('should have render callable', function () {
 
 // it('should have render component', function () {
 // });
-

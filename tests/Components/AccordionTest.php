@@ -3,7 +3,6 @@
 namespace Lazyadm\LazyComponent\Tests\Components;
 
 use Lazyadm\LazyComponent\Components\Accordion;
-use Lazyadm\LazyComponent\Components\Badge;
 
 it('should have an array of allowed sizes', function () {
     $component = new Accordion();

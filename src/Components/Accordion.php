@@ -26,7 +26,7 @@ class Accordion extends LazyComponent
                 'collapse',
                 'bg-base-200 mb-2',
                 'collapse-arrow' => $attributes->get('type') === 'arrow',
-                'collapse-plus'  => $attributes->get('type') === 'plus' || $attributes->get('type') === null,
+                'collapse-plus' => $attributes->get('type') === 'plus' || $attributes->get('type') === null,
             ], [
                 'type',
             ]))->render();

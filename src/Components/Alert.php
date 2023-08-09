@@ -10,14 +10,14 @@ class Alert extends LazyComponent
 {
     protected array $colors = [
         'default' => '',
-        'info'    => 'alert-info',
+        'info' => 'alert-info',
         'success' => 'alert-success',
         'warning' => 'alert-warning',
-        'danger'  => 'alert-error',
-        'error'   => 'alert-error',
+        'danger' => 'alert-error',
+        'error' => 'alert-error',
     ];
 
-    public function getTypeByAttribute(ComponentAttributeBag $attribute, string|null $default = null): ?string
+    public function getTypeByAttribute(ComponentAttributeBag $attribute, string $default = null): ?string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedColors(), 'type', $default);
     }
@@ -34,10 +34,10 @@ class Alert extends LazyComponent
             return view('lazy::alert', $this->mergeData($data, [
                 'alert',
                 'shadow-lg mt-1 mb-2',
-                'alert-info'    => $type === 'info',
+                'alert-info' => $type === 'info',
                 'alert-success' => $type === 'success',
                 'alert-warning' => $type === 'warning',
-                'alert-error'   => $type === 'error',
+                'alert-error' => $type === 'error',
             ]))->render();
         };
     }

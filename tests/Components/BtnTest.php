@@ -2,7 +2,6 @@
 
 namespace Lazyadm\LazyComponent\Tests\Components;
 
-use Illuminate\Support\Facades\Blade;
 use Lazyadm\LazyComponent\Components\Badge;
 
 it('should have an array of allowed sizes', function () {

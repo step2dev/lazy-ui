@@ -10,7 +10,8 @@ use Lazyadm\LazyComponent\LazyComponent;
 it('should be an instance of Component', function () {
     expect(LazyComponent::class)->toBeAbstract();
 
-    $component = new class extends LazyComponent {
+    $component = new class extends LazyComponent
+    {
         public function render(): \Closure|View
         {
             return function (array $data) {

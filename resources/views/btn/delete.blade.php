@@ -6,7 +6,7 @@
     <x-lazy-btn
         @click.prevent="showModal = true"
         x-bind:href="$props.href"
-        outline danger sm :label="__('lazy.btn.delete')" sm class="mr-2">
+        outline error sm :label="__('lazy.btn.delete')" sm class="mr-2">
     </x-lazy-btn>
 
 
@@ -53,7 +53,7 @@
                     <x-lazy-btn
                         @click.prevent="deleteItem"
                         x-bind:href="$props.href"
-                        outline danger sm :label="__('lazy.btn.delete')" sm class="mr-2">
+                        outline error sm :label="__('lazy.btn.delete')" sm class="mr-2">
                     </x-lazy-btn>
                     {{--                    <button @click="deleteItem">Delete</button>--}}
                     {{--                    <form x-ref="form" method="POST" @submit.prevent="showModal = false; $refs.form.submit()">--}}

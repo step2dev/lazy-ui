@@ -45,24 +45,6 @@ class Btn extends LazyComponent
         ];
     }
 
-    protected function mergeData(array $data, array $classes = [], array $exceptAttributes = []): array
-    {
-        $attributes = $this->getAttributesFromData($data);
-
-        if ($this->tag === 'a') {
-            $attributes['href'] = $this->href;
-        } else {
-            $attributes['type'] = 'submit';
-            $attributes['wire:loading.attr'] = 'disabled';
-            $attributes['wire:loading.class'] = $this->disableClass.' '.$this->loadingClass;
-        }
-
-        // $data['iconSize']   = $this->iconSize($attributes);
-        $data['disabled'] = (bool) $attributes->get('disabled');
-
-        return parent::mergeData($data, $classes, $exceptAttributes);
-    }
-
     /**
      * Get the view / contents that represent the component.
      */
@@ -70,6 +52,20 @@ class Btn extends LazyComponent
     {
         return function (array $data) {
             $attributes = $this->getAttributesFromData($data);
+            if ($this->tag === 'a') {
+                $attributes['href'] = $this->href;
+            } else {
+                $attributes['type'] = 'submit';
+                $attributes['wire:loading.attr'] = 'disabled';
+                $attributes['wire:loading.class'] = $this->disableClass.' '.$this->loadingClass;
+            }
+
+            // $data['iconSize']   = $this->iconSize($attributes);
+            $data['disabled'] = (bool) $attributes->get('disabled');
+
+            $data['attributes'] = $attributes;
+
+
             $this->outline = $attributes->get('outline', false);
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);

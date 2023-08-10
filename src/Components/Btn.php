@@ -7,34 +7,10 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Btn extends LazyComponent
 {
-    protected array $colors = [
-        'default' => '',
-        'primary' => 'btn-primary',
-        'accent' => 'btn-accent',
-        'info' => 'btn-info',
-        'success' => 'btn-success',
-        'warning' => 'btn-warning',
-        'danger' => 'btn-error',
-        'error' => 'btn-error',
-        'ghost' => 'btn-ghost',
-        'link' => 'btn-link',
-    ];
 
     protected string $disableClass = 'btn-disabled';
 
     protected string $loadingClass = 'loading';
-
-    protected array $sizes = [
-        'default' => '',
-        'lg' => 'btn-lg',
-        'md' => 'btn-md',
-        'sm' => 'btn-sm',
-        'xs' => 'btn-xs',
-        'wide' => 'btn-wide',
-        'block' => 'btn-block',
-        'circle' => 'btn-circle',
-        'square' => 'btn-square',
-    ];
 
     public bool $outline = false;
 
@@ -54,6 +30,22 @@ class Btn extends LazyComponent
         $this->tag = $this->href === null ? 'button' : 'a';
     }
 
+    public function allowedColors(): array
+    {
+        return [
+            'primary',
+            'secondary',
+            'accent',
+            'ghost',
+            'info',
+            'success',
+            'warning',
+            'error',
+            'danger',
+            'link',
+        ];
+    }
+
     protected function mergeData(array $data, array $classes = [], array $exceptAttributes = []): array
     {
         $attributes = $this->getAttributesFromData($data);
@@ -66,26 +58,10 @@ class Btn extends LazyComponent
             $attributes['wire:loading.class'] = $this->disableClass.' '.$this->loadingClass;
         }
 
-        $attributes = $this->mergeClasses($attributes, [
-            'btn',
-            'join-item' => $attributes->get('group', false),
-            'mr-2' => ! $attributes->get('group', false),
-            'glass' => $this->glass,
-            'btn-active' => $this->active,
-            'btn-outline' => $attributes->get('outline', false),
-            'btn-disabled' => $attributes->get('disabled', false),
-        ])->except([
-            'group',
-            'outline',
-            'glass',
-            'active',
-        ]);
-
         // $data['iconSize']   = $this->iconSize($attributes);
         $data['disabled'] = (bool) $attributes->get('disabled');
-        $data['attributes'] = $attributes->except($this->smartAttributes);
 
-        return $data;
+        return parent::mergeData($data, $classes, $exceptAttributes);
     }
 
     /**
@@ -94,10 +70,49 @@ class Btn extends LazyComponent
     public function render(): \Closure|View
     {
         return function (array $data) {
-            $attributes = $data['attributes'];
+            $attributes = $this->getAttributesFromData($data);
             $this->outline = $attributes->get('outline', false);
+            $color = $this->getColorByAttribute($attributes);
+            $size = $this->getSizeByAttribute($attributes);
 
-            return view('lazy::btn', $this->mergeData($data))->render();
+            return view('lazy::btn', $this->mergeData($data, [
+                'btn',
+                'join-item'     => $attributes->get('group', false),
+                'mr-2'          => ! $attributes->get('group', false),
+                'glass'         => $this->glass,
+                'btn-active'    => $this->active,
+                'btn-outline'   => $attributes->get('outline', false),
+                'btn-disabled'  => $attributes->get('disabled', false),
+                // colors
+                'btn-primary'   => $color === 'primary',
+                'btn-secondary' => $color === 'secondary',
+                'btn-accent'    => $color === 'accent',
+                'btn-info'      => $color === 'info',
+                'btn-success'   => $color === 'success',
+                'btn-warning'   => $color === 'warning',
+                'btn-error'     => $color === 'error',
+                'btn-ghost'     => $color === 'ghost',
+                'btn-link'      => $color === 'link',
+                // sizes
+                'btn-lg'        => $size === 'lg',
+                'btn-md'        => $size === 'md',
+                'btn-sm'        => $size === 'sm',
+                'btn-xs'        => $size === 'xs',
+                // other
+                'btn-wide'      => $attributes->get('wide', false),
+                'btn-block'     => $attributes->get('block', false),
+                'btn-circle'    => $attributes->get('circle', false),
+                'btn-square'    => $attributes->get('square', false),
+            ], [
+                'wide',
+                'block',
+                'circle',
+                'square',
+                'group',
+                'active',
+                'outline',
+                'glass',
+            ]))->render();
         };
     }
 }

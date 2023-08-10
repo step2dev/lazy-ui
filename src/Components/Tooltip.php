@@ -8,51 +8,33 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Tooltip extends LazyComponent
 {
-    protected array $colors = [
-        'default' => '',
-        'primary' => 'tooltip-primary',
-        'secondary' => 'tooltip-secondary',
-        'accent' => 'tooltip-accent',
-        'info' => 'tooltip-info',
-        'success' => 'tooltip-success',
-        'warning' => 'tooltip-warning',
-        'error' => 'tooltip-error',
-    ];
-
-    protected array $positions = [
-        'default' => 'tooltip-top',
-        'top' => 'tooltip-top',
-        'right' => 'tooltip-right',
-        'bottom' => 'tooltip-bottom',
-        'left' => 'tooltip-left',
-    ];
-
-    protected bool $open = false;
-
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): Closure
     {
         return function (array $data) {
-            $this->open = $data['attributes']['open'] ?? false;
-            $data['attributes']['class'] = $this->open ? 'tooltip-open' : '';
+            $attributes = $this->getAttributesFromData($data);
+            $position = $this->getPositionByAttribute($attributes, 'top');
+            $color = $this->getColorByAttribute($attributes);
 
-            return view('lazy::tooltip', $this->mergeData($data))->render();
+            return view('lazy::tooltip', $this->mergeData($data, [
+                'tooltip',
+                'tooltip-open'      => $attributes->get('open', false),
+                'tooltip-top'       => $position === 'top',
+                'tooltip-right'     => $position === 'right',
+                'tooltip-bottom'    => $position === 'bottom',
+                'tooltip-left'      => $position === 'left',
+                //colors
+                'tooltip-primary'   => $color === 'primary',
+                'tooltip-secondary' => $color === 'secondary',
+                'tooltip-accent'    => $color === 'accent',
+                'tooltip-info'      => $color === 'info',
+                'tooltip-success'   => $color === 'success',
+                'tooltip-warning'   => $color === 'warning',
+                'tooltip-error'     => $color === 'error',
+            ]))->render();
         };
     }
 
-    protected function mergeClasses(ComponentAttributeBag $attributes, array $merge = []): ComponentAttributeBag
-    {
-        return $attributes->class(array_filter([
-            ...$merge,
-            $this->position($attributes),
-            $this->color($attributes),
-        ]));
-    }
-
-    final protected function position(ComponentAttributeBag $attributes): string
-    {
-        return $this->modifierClasses($attributes, $this->positions);
-    }
 }

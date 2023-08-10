@@ -22,7 +22,7 @@ class Avatar extends LazyComponent
                 'online' => $attributes->get('online', false),
                 'offline' => $attributes->get('offline', false),
                 'placeholder' => $attributes->get('placeholder', false),
-            ],[
+            ], [
                 'online',
                 'offline',
                 'placeholder',

@@ -157,7 +157,7 @@ abstract class LazyComponent extends Component
     final protected function findBySmartAttribute(
         ComponentAttributeBag $attributes,
         array $keys,
-        string|null $default = null
+        string $default = null
     ): ?string {
         $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
 
@@ -174,8 +174,8 @@ abstract class LazyComponent extends Component
     final protected function getKeyByAttribute(
         ComponentAttributeBag $attribute,
         array $keys,
-        string|null $key = null,
-        string|null $default = null
+        string $key = null,
+        string $default = null
     ): ?string {
         $key = $this->findBySmartAttribute($attribute, $keys)
             ?? $attribute->get($key, $default);
@@ -222,7 +222,7 @@ abstract class LazyComponent extends Component
         return $data['attributes'] ?? new ComponentAttributeBag;
     }
 
-    public function getPositionByAttribute(ComponentAttributeBag $attribute, string|null $default = null): ?string
+    public function getPositionByAttribute(ComponentAttributeBag $attribute, string $default = null): ?string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedPosition(), 'position', $default);
     }

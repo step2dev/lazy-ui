@@ -3,7 +3,6 @@
 namespace Lazyadm\LazyComponent\Components;
 
 use Closure;
-use Illuminate\View\ComponentAttributeBag;
 use Lazyadm\LazyComponent\LazyComponent;
 
 class Tooltip extends LazyComponent
@@ -20,21 +19,20 @@ class Tooltip extends LazyComponent
 
             return view('lazy::tooltip', $this->mergeData($data, [
                 'tooltip',
-                'tooltip-open'      => $attributes->get('open', false),
-                'tooltip-top'       => $position === 'top',
-                'tooltip-right'     => $position === 'right',
-                'tooltip-bottom'    => $position === 'bottom',
-                'tooltip-left'      => $position === 'left',
+                'tooltip-open' => $attributes->get('open', false),
+                'tooltip-top' => $position === 'top',
+                'tooltip-right' => $position === 'right',
+                'tooltip-bottom' => $position === 'bottom',
+                'tooltip-left' => $position === 'left',
                 //colors
-                'tooltip-primary'   => $color === 'primary',
+                'tooltip-primary' => $color === 'primary',
                 'tooltip-secondary' => $color === 'secondary',
-                'tooltip-accent'    => $color === 'accent',
-                'tooltip-info'      => $color === 'info',
-                'tooltip-success'   => $color === 'success',
-                'tooltip-warning'   => $color === 'warning',
-                'tooltip-error'     => $color === 'error',
+                'tooltip-accent' => $color === 'accent',
+                'tooltip-info' => $color === 'info',
+                'tooltip-success' => $color === 'success',
+                'tooltip-warning' => $color === 'warning',
+                'tooltip-error' => $color === 'error',
             ]))->render();
         };
     }
-
 }

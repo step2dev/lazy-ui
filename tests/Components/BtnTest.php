@@ -70,23 +70,22 @@ it('can render with colors attribute', function () {
         ->assertSee('btn-link');
 });
 
-it('can render with sizes attribute', function () {
+it('can render with sizes attribute', function ($size, $class) {
     $this
-        ->blade('<x-lazy-btn lg/>')
-        ->assertSee('btn-lg');
+        ->blade("<x-lazy-btn {$size} />")
+        ->assertSee($class);
 
-    $this
-        ->blade('<x-lazy-btn md/>')
-        ->assertSee('btn-md');
-
-    $this
-        ->blade('<x-lazy-btn sm/>')
-        ->assertSee('btn-sm');
-
-    $this
-        ->blade('<x-lazy-btn xs/>')
-        ->assertSee('btn-xs');
-});
+    // $this->blade("<x-lazy-btn size='{$size}'>Go</x-lazy-btn>")
+    //     ->assertSee($class);
+})->with([
+    'lg' => ['lg', 'btn-lg'],
+    'md' => ['md', 'btn-md'],
+    'sm' => ['sm', 'btn-sm'],
+    'xs' => ['xs', 'btn-xs'],
+    ''   => ['', ''],
+    // 'xl' => ['xl', 'btn-xl'],
+    // '2xl' => ['2xl', 'btn-2xl'],
+]);
 
 it('can render with outline attribute', function () {
     $this

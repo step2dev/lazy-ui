@@ -16,29 +16,45 @@ it('should have an array of allowed colors', function () {
     expect($component->allowedColors())->toBeArray();
 });
 
-it('can render alert', function () {
+it('can render alert with parameter', function ($parameter, $class) {
     $this
-        ->blade('<x-lazy-alert info>Alert Content</x-lazy-alert>')
+        ->blade("<x-lazy-alert {$parameter} label='Alert Content'/>")
+        ->assertSee('alert')
         ->assertSee('Alert Content')
-        ->assertSee('alert-info', false);
+        ->assertSee($class);
 
     $this
-        ->blade('<x-lazy-alert success>Alert Content</x-lazy-alert>')
+        ->blade("<x-lazy-alert type='{$parameter}' label='Alert Content' />")
+        ->assertSee('alert')
         ->assertSee('Alert Content')
-        ->assertSee('alert-success', false);
+        ->assertSee($class);
+})->with([
+    'info'    => ['info', 'alert-info'],
+    'success' => ['success', 'alert-success'],
+    'warning' => ['warning', 'alert-warning'],
+    'error'   => ['error', 'alert-error'],
+    'default' => ['default', 'alert'],
+    ''        => ['', 'alert'],
+]);
+
+it('can render alert with color and slot', function ($parameter, $class) {
+    $this
+        ->blade("<x-lazy-alert {$parameter}>Alert Content</x-lazy-alert>")
+        ->assertSee('alert')
+        ->assertSee('Alert Content')
+        ->assertSee($class);
 
     $this
-        ->blade('<x-lazy-alert warning>Alert Content</x-lazy-alert>')
+        ->blade("<x-lazy-alert type='{$parameter}'>Alert Content</x-lazy-alert>")
+        ->assertSee('alert')
         ->assertSee('Alert Content')
-        ->assertSee('alert-warning', false);
+        ->assertSee($class);
+})->with([
+    'info'    => ['info', 'alert-info'],
+    'success' => ['success', 'alert-success'],
+    'warning' => ['warning', 'alert-warning'],
+    'error'   => ['error', 'alert-error'],
+    'default' => ['default', 'alert'],
+    ''        => ['', 'alert'],
+]);
 
-    $this
-        ->blade('<x-lazy-alert type="error">Alert Content</x-lazy-alert>')
-        ->assertSee('Alert Content')
-        ->assertSee('alert-error', false);
-
-    $this
-        ->blade('<x-lazy-alert type="default">Alert Content</x-lazy-alert>')
-        ->assertSee('Alert Content')
-        ->assertSee('alert', false);
-});

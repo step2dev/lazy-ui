@@ -7,13 +7,13 @@ use Lazyadm\LazyComponent\Components\Badge;
 it('should have an array of allowed sizes', function () {
     $component = new Badge();
 
-    expect($component->allowedSizes())->toBeArray();
+    expect($component->allowedSizes())->toBeArray()->not()->toBeEmpty();
 });
 
 it('should have an array of allowed colors', function () {
     $component = new Badge();
 
-    expect($component->allowedColors())->toBeArray();
+    expect($component->allowedColors())->toBeArray()->not()->toBeEmpty();
 });
 
 it('can render badge', function () {
@@ -44,36 +44,24 @@ it('can render badge', function () {
         ->assertSee('<i class="fas fa-home"></i>', false);
 });
 
-it('can render with colors attribute', function () {
+it('can render with colors attribute', function ($parameter, $class) {
     $this
-        ->blade('<x-lazy-badge primary />')
-        ->assertSee('badge-primary');
+        ->blade("<x-lazy-badge {$parameter} label='Badge label'/>")
+        ->assertSee($class)
+        ->assertSee('Badge label');
 
     $this
-        ->blade('<x-lazy-badge secondary />')
-        ->assertSee('badge-secondary');
+        ->blade("<x-lazy-badge {$parameter}>Badge label</x-lazy-badge>")
+        ->assertSee('badge')
+        ->assertSee('Badge label');
 
-    $this
-        ->blade('<x-lazy-badge accent />')
-        ->assertSee('badge-accent');
-
-    $this
-        ->blade('<x-lazy-badge info />')
-        ->assertSee('badge-info');
-
-    $this
-        ->blade('<x-lazy-badge success />')
-        ->assertSee('badge-success');
-
-    $this
-        ->blade('<x-lazy-badge warning/>')
-        ->assertSee('badge-warning');
-
-    $this
-        ->blade('<x-lazy-badge error/>')
-        ->assertSee('badge-error');
-
-    $this
-        ->blade('<x-lazy-badge ghost/>')
-        ->assertSee('badge-ghost');
-});
+})->with([
+    'primary'   => ['primary', 'badge-primary'],
+    'secondary' => ['secondary', 'badge-secondary'],
+    'accent'    => ['accent', 'badge-accent'],
+    'info'      => ['info', 'badge-info'],
+    'success'   => ['success', 'badge-success'],
+    'warning'   => ['warning', 'badge-warning'],
+    'error'     => ['error', 'badge-error'],
+    // 'ghost'     => ['ghost', 'badge-ghost'],
+]);

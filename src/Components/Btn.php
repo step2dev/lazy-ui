@@ -65,7 +65,6 @@ class Btn extends LazyComponent
 
             $data['attributes'] = $attributes;
 
-
             $this->outline = $attributes->get('outline', false);
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);

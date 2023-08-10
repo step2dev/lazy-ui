@@ -1,1 +1,1 @@
-<input id="{{ $parameter }}" {{ $attributes }}/>
+<input {{ $attributes }}/>

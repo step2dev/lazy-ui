@@ -3,7 +3,6 @@
 namespace Lazyadm\LazyComponent\Components\Form;
 
 use Illuminate\Contracts\View\View;
-use Lazyadm\LazyComponent\Components\Checkbox;
 use Lazyadm\LazyComponent\LazyComponent;
 
 class FormCheckbox extends LazyComponent
@@ -12,6 +11,7 @@ class FormCheckbox extends LazyComponent
     {
         $this->label = $label;
     }
+
     public function render(): \Closure|View
     {
         return function (array $data) {

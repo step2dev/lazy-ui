@@ -27,7 +27,7 @@ class Range extends LazyComponent
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);
 
-            return view('lazy::range', $this->mergeData($data,[
+            return view('lazy::range', $this->mergeData($data, [
                 'range',
                 //colors
                 'range-primary' => $color === 'primary',

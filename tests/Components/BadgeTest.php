@@ -16,7 +16,6 @@ it('should have an array of allowed colors', function () {
     expect($component->allowedColors())->toBeArray();
 });
 
-
 it('can render badge', function () {
     $this
         ->blade('<x-lazy-badge>Badge</x-lazy-badge>')
@@ -35,11 +34,11 @@ it('can render badge', function () {
         ->assertSee('<i class="fas fa-home"></i>');
 
     $this
-        ->blade("<x-lazy-badge label=\"Badge\">
+        ->blade('<x-lazy-badge label="Badge">
 <x-slot:icon>
-<i class=\"fas fa-home\"></i>
+<i class="fas fa-home"></i>
 </x-slot:icon>
-</x-lazy-badge>")
+</x-lazy-badge>')
         ->assertSee('badge')
         ->assertSee('Badge')
         ->assertSee('<i class="fas fa-home"></i>', false);

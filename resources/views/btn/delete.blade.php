@@ -4,6 +4,7 @@
 
 <div x-data="{ showModal: false }">
     <x-lazy-btn
+        href="#"
         @click.prevent="showModal = true"
         x-bind:href="$props.href"
         outline error sm :label="__('lazy:buttons.delete')" sm class="mr-2">

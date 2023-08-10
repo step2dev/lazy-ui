@@ -18,14 +18,13 @@ class Btn extends LazyComponent
     public function __construct(
         public bool $rounded = false,
         public bool $squared = false,
-        ?string $label = '',
+        public string $label = '',
         public ?string $icon = null,
         public ?string $rightIcon = null,
         public ?string $href = null,
         private ?string $glass = null,
         private ?string $active = null
     ) {
-        $this->label = $label;
         $this->tag = $this->href === null ? 'button' : 'a';
     }
 

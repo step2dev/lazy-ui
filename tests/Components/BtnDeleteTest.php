@@ -2,8 +2,6 @@
 
 namespace Lazyadm\LazyComponent\Tests\Components;
 
-use Lazyadm\LazyComponent\Components\Btn\BtnBack;
-
 it('can render button with attribute label', function () {
     $this
         ->blade('<x-lazy-btn-delete/>')

@@ -6,7 +6,7 @@
     <x-lazy-btn
         @click.prevent="showModal = true"
         x-bind:href="$props.href"
-        outline error sm :label="__('lazy.btn.delete')" sm class="mr-2">
+        outline error sm :label="__('lazy:buttons.delete')" sm class="mr-2">
     </x-lazy-btn>
 
 

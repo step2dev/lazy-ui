@@ -7,42 +7,44 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Badge extends LazyComponent
 {
-    protected string $outlineClass = 'badge-outline';
-
-    public bool $outline = false;
-
     public function __construct(?string $label = '')
     {
         $this->label = $label;
     }
 
-    protected array $colors = [
-        'default' => '',
-        'primary' => 'badge-primary',
-        'secondary' => 'badge-secondary',
-        'accent' => 'badge-accent',
-        'ghost' => 'badge-ghost',
-        'info' => 'badge-info',
-        'success' => 'badge-success',
-        'warning' => 'badge-warning',
-        'error' => 'badge-error',
-        'danger' => 'badge-error',
-    ];
-
-    protected array $sizes = [
-        'default' => '',
-        'lg' => 'badge-lg',
-        'md' => 'badge-md',
-        'sm' => 'badge-sm',
-        'xs' => 'badge-xs',
-    ];
+    public function allowedPosition(): array
+    {
+        return [
+            'vertical',
+            'horizontal',
+        ];
+    }
 
     public function render(): \Closure|View
     {
         return function (array $data) {
             $attributes = $this->getAttributesFromData($data);
 
+            $color = $this->getColorByAttribute($attributes);
+            $size = $this->getSizeByAttribute($attributes);
+
             return view('lazy::badge', $this->mergeData($data, [
+                'badge',
+                'badge-primary' => $color === 'primary',
+                'badge-secondary' => $color === 'secondary',
+                'badge-accent' => $color === 'accent',
+                'badge-ghost' => $color === 'ghost',
+                'badge-info' => $color === 'info',
+                'badge-success' => $color === 'success',
+                'badge-warning' => $color === 'warning',
+                'badge-error' => $color === 'error',
+                'badge-danger' => $color === 'danger',
+                // sizes
+                'badge-lg' => $size === 'lg',
+                'badge-md' => $size === 'md',
+                'badge-sm' => $size === 'sm',
+                'badge-xs' => $size === 'xs',
+                // other
                 'badge-outline' => $attributes->get('outline'),
             ]))->render();
         };

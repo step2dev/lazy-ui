@@ -16,6 +16,12 @@ it('should have an array of allowed colors', function () {
     expect($component->allowedColors())->toBeArray()->not()->toBeEmpty();
 });
 
+it('should have an array of allowed position', function () {
+    $component = new Badge();
+
+    expect($component->allowedPosition())->toBeArray()->not()->toBeEmpty();
+});
+
 it('can render badge', function () {
     $this
         ->blade('<x-lazy-badge>Badge</x-lazy-badge>')

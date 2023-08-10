@@ -7,7 +7,6 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Btn extends LazyComponent
 {
-
     protected string $disableClass = 'btn-disabled';
 
     protected string $loadingClass = 'loading';
@@ -77,32 +76,32 @@ class Btn extends LazyComponent
 
             return view('lazy::btn', $this->mergeData($data, [
                 'btn',
-                'join-item'     => $attributes->get('group', false),
-                'mr-2'          => ! $attributes->get('group', false),
-                'glass'         => $this->glass,
-                'btn-active'    => $this->active,
-                'btn-outline'   => $attributes->get('outline', false),
-                'btn-disabled'  => $attributes->get('disabled', false),
+                'join-item' => $attributes->get('group', false),
+                'mr-2' => ! $attributes->get('group', false),
+                'glass' => $this->glass,
+                'btn-active' => $this->active,
+                'btn-outline' => $attributes->get('outline', false),
+                'btn-disabled' => $attributes->get('disabled', false),
                 // colors
-                'btn-primary'   => $color === 'primary',
+                'btn-primary' => $color === 'primary',
                 'btn-secondary' => $color === 'secondary',
-                'btn-accent'    => $color === 'accent',
-                'btn-info'      => $color === 'info',
-                'btn-success'   => $color === 'success',
-                'btn-warning'   => $color === 'warning',
-                'btn-error'     => $color === 'error',
-                'btn-ghost'     => $color === 'ghost',
-                'btn-link'      => $color === 'link',
+                'btn-accent' => $color === 'accent',
+                'btn-info' => $color === 'info',
+                'btn-success' => $color === 'success',
+                'btn-warning' => $color === 'warning',
+                'btn-error' => $color === 'error',
+                'btn-ghost' => $color === 'ghost',
+                'btn-link' => $color === 'link',
                 // sizes
-                'btn-lg'        => $size === 'lg',
-                'btn-md'        => $size === 'md',
-                'btn-sm'        => $size === 'sm',
-                'btn-xs'        => $size === 'xs',
+                'btn-lg' => $size === 'lg',
+                'btn-md' => $size === 'md',
+                'btn-sm' => $size === 'sm',
+                'btn-xs' => $size === 'xs',
                 // other
-                'btn-wide'      => $attributes->get('wide', false),
-                'btn-block'     => $attributes->get('block', false),
-                'btn-circle'    => $attributes->get('circle', false),
-                'btn-square'    => $attributes->get('square', false),
+                'btn-wide' => $attributes->get('wide', false),
+                'btn-block' => $attributes->get('block', false),
+                'btn-circle' => $attributes->get('circle', false),
+                'btn-square' => $attributes->get('square', false),
             ], [
                 'wide',
                 'block',

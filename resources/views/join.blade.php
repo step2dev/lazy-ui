@@ -1,3 +1,7 @@
-<div {{ $attributes->merge(['class' => 'join']) }}>
+@props([
+    'join' => true,
+])
+
+<div {{ $attributes }}>
     {{ $slot }}
 </div>

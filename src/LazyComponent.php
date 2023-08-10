@@ -23,19 +23,6 @@ abstract class LazyComponent extends Component
 
     abstract public function render(): \Closure|View;
 
-    final protected function findModifier(ComponentAttributeBag $attributes, array $modifiers): string
-    {
-        $keys = collect($modifiers)->keys()->except(self::DEFAULT)->toArray();
-
-        $modifiers = $attributes->only($keys)->getAttributes();
-
-        $modifier = collect($modifiers)->filter()->keys()->first();
-
-        $this->addSmartAttribute($modifier);
-
-        return $modifier ?? self::DEFAULT;
-    }
-
     public static function getName(): string
     {
         return class_basename(static::class);
@@ -44,13 +31,6 @@ abstract class LazyComponent extends Component
     protected function mergeClasses(ComponentAttributeBag $attributes, array $merge = []): ComponentAttributeBag
     {
         return $attributes->class($this->classes($merge));
-    }
-
-    protected function modifierClasses(ComponentAttributeBag $attributes, array $modifiers): string
-    {
-        $modifier = $this->findModifier($attributes, $modifiers);
-
-        return $modifiers[$modifier];
     }
 
     public function componentSlot(mixed $slot): ComponentSlot
@@ -104,7 +84,7 @@ abstract class LazyComponent extends Component
     final protected function findBySmartAttribute(
         ComponentAttributeBag $attributes,
         array $keys,
-        string $default = null
+        string|null $default = null
     ): ?string {
         $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
 
@@ -113,7 +93,7 @@ abstract class LazyComponent extends Component
         return $modifier ?? $default;
     }
 
-    public function getSizeByAttribute(ComponentAttributeBag $attribute, string $default = null): ?string
+    public function getSizeByAttribute(ComponentAttributeBag $attribute, ?string $default = null): ?string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedSizes(), 'size', $default);
     }
@@ -121,8 +101,8 @@ abstract class LazyComponent extends Component
     final protected function getKeyByAttribute(
         ComponentAttributeBag $attribute,
         array $keys,
-        string $key = null,
-        string $default = null
+        ?string $key = null,
+        ?string $default = null
     ): ?string {
         $key = $this->findBySmartAttribute($attribute, $keys)
             ?? $attribute->get($key, $default);
@@ -134,7 +114,7 @@ abstract class LazyComponent extends Component
         return $default;
     }
 
-    public function getColorByAttribute(ComponentAttributeBag $attribute, string $default = null): ?string
+    public function getColorByAttribute(ComponentAttributeBag $attribute, ?string $default = null): ?string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedColors(), 'color', $default);
     }
@@ -163,7 +143,7 @@ abstract class LazyComponent extends Component
         return $data['attributes'] ?? new ComponentAttributeBag;
     }
 
-    public function getPositionByAttribute(ComponentAttributeBag $attribute, string $default = null): ?string
+    public function getPositionByAttribute(ComponentAttributeBag $attribute, ?string $default = null): ?string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedPosition(), 'position', $default);
     }

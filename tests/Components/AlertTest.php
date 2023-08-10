@@ -29,12 +29,12 @@ it('can render alert with parameter', function ($parameter, $class) {
         ->assertSee('Alert Content')
         ->assertSee($class);
 })->with([
-    'info'    => ['info', 'alert-info'],
+    'info' => ['info', 'alert-info'],
     'success' => ['success', 'alert-success'],
     'warning' => ['warning', 'alert-warning'],
-    'error'   => ['error', 'alert-error'],
+    'error' => ['error', 'alert-error'],
     'default' => ['default', 'alert'],
-    ''        => ['', 'alert'],
+    '' => ['', 'alert'],
 ]);
 
 it('can render alert with color and slot', function ($parameter, $class) {
@@ -50,11 +50,10 @@ it('can render alert with color and slot', function ($parameter, $class) {
         ->assertSee('Alert Content')
         ->assertSee($class);
 })->with([
-    'info'    => ['info', 'alert-info'],
+    'info' => ['info', 'alert-info'],
     'success' => ['success', 'alert-success'],
     'warning' => ['warning', 'alert-warning'],
-    'error'   => ['error', 'alert-error'],
+    'error' => ['error', 'alert-error'],
     'default' => ['default', 'alert'],
-    ''        => ['', 'alert'],
+    '' => ['', 'alert'],
 ]);
-

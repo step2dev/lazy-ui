@@ -82,7 +82,7 @@ it('can render with sizes attribute', function ($size, $class) {
     'md' => ['md', 'btn-md'],
     'sm' => ['sm', 'btn-sm'],
     'xs' => ['xs', 'btn-xs'],
-    ''   => ['', ''],
+    '' => ['', ''],
     // 'xl' => ['xl', 'btn-xl'],
     // '2xl' => ['2xl', 'btn-2xl'],
 ]);

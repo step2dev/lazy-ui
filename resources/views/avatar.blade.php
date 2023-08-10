@@ -8,7 +8,7 @@
 ])
 
 <div class="avatar">
-    <div {{ $attributes->merge(['class' => '']) }}>
+    <div {{ $attributes }}>
         <img src="{{ $src }}" alt="{{ $alt }}" />
     </div>
 </div>

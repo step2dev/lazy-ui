@@ -2,16 +2,16 @@
 
 namespace Lazyadm\LazyComponent\Tests\Components;
 
-use Lazyadm\LazyComponent\Components\Badge;
+use Lazyadm\LazyComponent\Components\Btn;
 
 it('should have an array of allowed sizes', function () {
-    $component = new Badge();
+    $component = new Btn();
 
     expect($component->allowedSizes())->toBeArray();
 });
 
 it('should have an array of allowed colors', function () {
-    $component = new Badge();
+    $component = new Btn();
 
     expect($component->allowedColors())->toBeArray();
 });

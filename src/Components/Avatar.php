@@ -7,30 +7,26 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Avatar extends LazyComponent
 {
-    protected array $sizes = [
-        self::DEFAULT => '',
-        'lg' => 'w-24',
-        'md' => 'w-20',
-        'sm' => 'w-16',
-        'xs' => 'w-12',
-    ];
-
-    protected array $smartAttributes = [
-        'online',
-        'offline',
-        'placeholder',
-    ];
-
-    protected string $onlineClass = 'online';
-
-    protected string $offlineClass = 'offline';
-
-    protected string $placeholderClass = 'placeholder';
-
     public function render(): \Closure|View
     {
         return function (array $data) {
-            return view('lazy::avatar', $this->mergeData($data))->render();
+            $attributes = $this->getAttributesFromData($data);
+
+            $size = $this->getSizeByAttribute($attributes);
+
+            return view('lazy::avatar', $this->mergeData($data, [
+                'w-24' => $size === 'lg',
+                'w-20' => $size === 'md',
+                'w-16' => $size === 'sm',
+                'w-12' => $size === 'xs',
+                'online' => $attributes->get('online', false),
+                'offline' => $attributes->get('offline', false),
+                'placeholder' => $attributes->get('placeholder', false),
+            ],[
+                'online',
+                'offline',
+                'placeholder',
+            ]))->render();
         };
     }
 }

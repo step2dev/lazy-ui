@@ -7,29 +7,11 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Range extends LazyComponent
 {
-    protected array $colors = [
-        'default' => '',
-        'primary' => 'range-primary',
-        'secondary' => 'range-secondary',
-        'accent' => 'range-accent',
-        'info' => 'range-info',
-        'success' => 'range-success',
-        'warning' => 'range-warning',
-        'error' => 'range-error',
-    ];
-
-    protected array $sizes = [
-        'default' => '',
-        'lg' => 'range-lg',
-        'md' => 'range-md',
-        'sm' => 'range-sm',
-        'xs' => 'range-xs',
-    ];
-
     public function render(): \Closure|View
     {
         return function (array $data) {
-            $attributes = $data['attributes'];
+            $attributes = $this->getAttributesFromData($data);
+            $attributes['type'] = 'range';
             $attributes['min'] ??= 0;
             $attributes['max'] ??= 100;
             $attributes['value'] ??= $attributes['min'];
@@ -42,7 +24,25 @@ class Range extends LazyComponent
             }
             $data['attributes'] = $attributes;
 
-            return view('lazy::range', $this->mergeData($data))->render();
+            $color = $this->getColorByAttribute($attributes);
+            $size = $this->getSizeByAttribute($attributes);
+
+            return view('lazy::range', $this->mergeData($data,[
+                'range',
+                //colors
+                'range-primary' => $color === 'primary',
+                'range-secondary' => $color === 'secondary',
+                'range-accent' => $color === 'accent',
+                'range-info' => $color === 'info',
+                'range-success' => $color === 'success',
+                'range-warning' => $color === 'warning',
+                'range-error' => $color === 'error',
+                //sizes
+                'range-lg' => $size === 'lg',
+                'range-md' => $size === 'md',
+                'range-sm' => $size === 'sm',
+                'range-xs' => $size === 'xs',
+            ]))->render();
         };
     }
 }

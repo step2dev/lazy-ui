@@ -3,8 +3,9 @@
 namespace Lazyadm\LazyComponent\Components;
 
 use Illuminate\Contracts\View\View;
+use Lazyadm\LazyComponent\LazyComponent;
 
-class Toast extends Checkbox
+class Toast extends LazyComponent
 {
     public function render(): \Closure|View
     {

@@ -7,27 +7,6 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Textarea extends LazyComponent
 {
-    protected array $colors = [
-        'default' => '',
-        'bordered' => 'textarea-bordered',
-        'ghost' => 'textarea-ghost',
-        'primary' => 'textarea-primary',
-        'secondary' => 'textarea-secondary',
-        'accent' => 'textarea-accent',
-        'info' => 'textarea-info',
-        'success' => 'textarea-success',
-        'warning' => 'textarea-warning',
-        'error' => 'textarea-error',
-    ];
-
-    protected array $sizes = [
-        'default' => '',
-        'lg' => 'textarea-lg',
-        'md' => 'textarea-md',
-        'sm' => 'textarea-sm',
-        'xs' => 'textarea-xs',
-    ];
-
     public ?string $placeholder;
 
     public function __construct(string $placeholder = '', public bool $required = false)
@@ -38,9 +17,31 @@ class Textarea extends LazyComponent
     public function render(): \Closure|View
     {
         return function (array $data) {
-            $data['attributes']['required'] = $this->required;
+            $attributes = $this->getAttributesFromData($data);
+            $attributes['required'] = $this->required;
+            $data['attributes'] = $attributes;
 
-            return view('lazy::textarea', $this->mergeData($data))->render();
+            $color = $this->getColorByAttribute($attributes);
+            $size = $this->getSizeByAttribute($attributes);
+
+            return view('lazy::textarea', $this->mergeData($data, [
+                'textarea',
+                //colors
+                'textarea-bordered' => $color === 'bordered',
+                'textarea-ghost' => $color === 'ghost',
+                'textarea-primary' => $color === 'primary',
+                'textarea-secondary' => $color === 'secondary',
+                'textarea-accent' => $color === 'accent',
+                'textarea-info' => $color === 'info',
+                'textarea-success' => $color === 'success',
+                'textarea-warning' => $color === 'warning',
+                'textarea-error' => $color === 'error',
+                //sizes
+                'textarea-lg' => $size === 'lg',
+                'textarea-md' => $size === 'md',
+                'textarea-sm' => $size === 'sm',
+                'textarea-xs' => $size === 'xs',
+            ]))->render();
         };
     }
 }

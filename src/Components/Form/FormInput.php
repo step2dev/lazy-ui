@@ -7,27 +7,6 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class FormInput extends LazyComponent
 {
-    protected array $colors = [
-        'default' => 'input-bordered',
-        'primary' => 'input-primary',
-        'secondary' => 'input-secondary',
-        'accent' => 'input-accent',
-        'ghost' => 'input-ghost',
-        'info' => 'input-info',
-        'success' => 'input-success',
-        'warning' => 'input-warning',
-        'error' => 'input-error',
-        'danger' => 'input-error',
-    ];
-
-    protected array $sizes = [
-        'default' => '',
-        'lg' => 'input-lg',
-        'md' => 'input-md',
-        'sm' => 'input-sm',
-        'xs' => 'input-xs',
-    ];
-
     public ?string $placeholder;
 
     public function __construct(public string $label = '', string $placeholder = '', public bool $required = false)

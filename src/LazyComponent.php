@@ -34,10 +34,6 @@ abstract class LazyComponent extends Component
         self::DEFAULT => '',
     ];
 
-    protected array $positions = [
-        self::DEFAULT => '',
-    ];
-
     protected array $smartAttributes = [
         'outline',
     ];
@@ -72,7 +68,7 @@ abstract class LazyComponent extends Component
      */
     final protected function size(ComponentAttributeBag $attributes): string
     {
-        return $this->modifierClasses($attributes, $this->getSizes());
+        return $this->modifierClasses($attributes, $this->sizes);
     }
 
     protected function modifierClasses(ComponentAttributeBag $attributes, array $modifiers): string
@@ -82,28 +78,13 @@ abstract class LazyComponent extends Component
         return $modifiers[$modifier];
     }
 
-    /**
-     * @deprecated
-     */
-    public function getSizes(): array
-    {
-        return $this->sizes;
-    }
 
     /**
      * @deprecated
      */
     protected function color(ComponentAttributeBag $attributes): string
     {
-        return $this->modifierClasses($attributes, $this->currentColors());
-    }
-
-    /**
-     * @deprecated
-     */
-    protected function currentColors(): array
-    {
-        return $this->colors;
+        return $this->modifierClasses($attributes, $this->colors);
     }
 
     public function componentSlot(mixed $slot): ComponentSlot
@@ -157,7 +138,7 @@ abstract class LazyComponent extends Component
     final protected function findBySmartAttribute(
         ComponentAttributeBag $attributes,
         array $keys,
-        string $default = null
+        string|null $default = null
     ): ?string {
         $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
 
@@ -174,8 +155,8 @@ abstract class LazyComponent extends Component
     final protected function getKeyByAttribute(
         ComponentAttributeBag $attribute,
         array $keys,
-        string $key = null,
-        string $default = null
+        string|null $key = null,
+        string|null $default = null
     ): ?string {
         $key = $this->findBySmartAttribute($attribute, $keys)
             ?? $attribute->get($key, $default);
@@ -222,7 +203,7 @@ abstract class LazyComponent extends Component
         return $data['attributes'] ?? new ComponentAttributeBag;
     }
 
-    public function getPositionByAttribute(ComponentAttributeBag $attribute, string $default = null): ?string
+    public function getPositionByAttribute(ComponentAttributeBag $attribute, string|null $default = null): ?string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedPosition(), 'position', $default);
     }

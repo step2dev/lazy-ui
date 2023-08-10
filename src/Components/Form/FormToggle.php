@@ -4,28 +4,17 @@ namespace Lazyadm\LazyComponent\Components\Form;
 
 use Illuminate\Contracts\View\View;
 use Lazyadm\LazyComponent\Components\Checkbox;
+use Lazyadm\LazyComponent\LazyComponent;
 
-class FormToggle extends Checkbox
+class FormToggle extends LazyComponent
 {
-    protected array $colors = [
-        'default' => '',
-        'primary' => 'toggle-primary',
-        'secondary' => 'toggle-secondary',
-        'accent' => 'toggle-accent',
-    ];
-
-    protected array $sizes = [
-        'default' => '',
-        'lg' => 'toggle-lg',
-        'md' => 'toggle-md',
-        'sm' => 'toggle-sm',
-        'xs' => 'toggle-xs',
-    ];
+    public function __construct(public string $label = '') {
+    }
 
     public function render(): \Closure|View
     {
         return function (array $data) {
-            return view('lazy::toggle', $this->mergeData($data))->render();
+            return view('lazy::form.toggle', $this->mergeData($data))->render();
         };
     }
 }

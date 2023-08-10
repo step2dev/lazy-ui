@@ -6,25 +6,28 @@ use Illuminate\Contracts\View\View;
 
 class Toggle extends Checkbox
 {
-    protected array $colors = [
-        'default' => '',
-        'primary' => 'toggle-primary',
-        'secondary' => 'toggle-secondary',
-        'accent' => 'toggle-accent',
-    ];
-
-    protected array $sizes = [
-        'default' => '',
-        'lg' => 'toggle-lg',
-        'md' => 'toggle-md',
-        'sm' => 'toggle-sm',
-        'xs' => 'toggle-xs',
-    ];
-
     public function render(): \Closure|View
     {
         return function (array $data) {
-            return view('lazy::toggle', $this->mergeData($data))->render();
+            $attributes = $this->getAttributesFromData($data);
+            $attributes['type'] = 'checkbox';
+            $data['attributes'] = $attributes;
+
+            $color = $this->getColorByAttribute($attributes);
+            $size = $this->getSizeByAttribute($attributes);
+
+            return view('lazy::toggle', $this->mergeData($data, [
+                'toggle',
+                //colors
+                'toggle-primary' => $color === 'primary',
+                'toggle-secondary' => $color === 'secondary',
+                'toggle-accent' => $color === 'accent',
+                //sizes
+                'toggle-lg' => $size === 'lg',
+                'toggle-md' => $size === 'md',
+                'toggle-sm' => $size === 'sm',
+                'toggle-xs' => $size === 'xs',
+            ]))->render();
         };
     }
 }

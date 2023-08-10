@@ -16,7 +16,7 @@
 <div class="{{ $label ? 'form-control' : 'inline-block' }}">
     <label class="label cursor-pointer{{ $hr ? ' flex flex-col items-start' : '' }}">
         <span class="label-text{{ $hr ? ' mb-1' : '' }}">{!! $label !!}</span>
-        <input id="{{ $parameter }}" {{ $attributes->merge(['type' => 'checkbox', 'class'=> 'toggle']) }}/>
+        <input id="{{ $parameter }}" {{ $attributes }}/>
     </label>
     @if ($help)
         <div class="tooltip w-6" data-tip="{{ $help }}">

@@ -1,9 +1,12 @@
-@props([
+{{--@props([
     'label' => '',
     'help' => '',
     'hr' => ''
-])
-@php
+])--}}
+
+<x-lazy-toggle :attributes="$attributes" />
+
+{{--@php
     $required = $attributes['required'] ?? null;
     if ($label) {
         $label .= ($required ? '<i class="text-error">*</i>' : '');
@@ -12,6 +15,7 @@
     $parameter = $model->value();
     $class = [];
 @endphp
+
 
 <div class="{{ $label ? 'form-control' : 'inline-block' }}">
     <label class="label cursor-pointer{{ $hr ? ' flex flex-col items-start' : '' }}">
@@ -41,4 +45,4 @@
         </div>
         @enderror
     @endif
-</div>
+</div>--}}

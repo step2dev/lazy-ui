@@ -12,25 +12,27 @@ class Checkbox extends LazyComponent
         $this->label = $label;
     }
 
-    protected array $colors = [
-        'default' => '',
-        'primary' => 'checkbox-primary',
-        'secondary' => 'checkbox-secondary',
-        'accent' => 'checkbox-accent',
-    ];
-
-    protected array $sizes = [
-        'default' => '',
-        'lg' => 'checkbox-lg',
-        'md' => 'checkbox-md',
-        'sm' => 'checkbox-sm',
-        'xs' => 'checkbox-xs',
-    ];
-
     public function render(): \Closure|View
     {
         return function (array $data) {
-            return view('lazy::checkbox', $this->mergeData($data))->render();
+            $attributes = $this->getAttributesFromData($data);
+            $attributes['type'] = 'checkbox';
+            $data['attributes'] = $attributes;
+            $color = $this->getColorByAttribute($attributes);
+            $size = $this->getSizeByAttribute($attributes);
+
+            return view('lazy::checkbox', $this->mergeData($data, [
+                'checkbox',
+                //colors
+                'checkbox-primary' => $color === 'primary',
+                'checkbox-secondary' => $color === 'secondary',
+                'checkbox-accent' => $color === 'accent',
+                //sizes
+                'checkbox-lg' => $size === 'lg',
+                'checkbox-md' => $size === 'md',
+                'checkbox-sm' => $size === 'sm',
+                'checkbox-xs' => $size === 'xs',
+            ]))->render();
         };
     }
 }

@@ -1,3 +1,6 @@
+<x-lazy-checkbox :attributes="$attributes" />
+
+{{--
 @props([
     'label' => '',
     'help' => '',
@@ -12,6 +15,7 @@
     $parameter = $model->value();
     $class = [];
 @endphp
+
 
 <div class="{{ $label ? 'form-control' : 'inline-block' }}">
     <label
@@ -43,3 +47,4 @@
         @enderror
     @endif
 </div>
+--}}

@@ -7,27 +7,6 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Input extends LazyComponent
 {
-    protected array $colors = [
-        'default' => 'input-bordered',
-        'primary' => 'input-primary',
-        'secondary' => 'input-secondary',
-        'accent' => 'input-accent',
-        'ghost' => 'input-ghost',
-        'info' => 'input-info',
-        'success' => 'input-success',
-        'warning' => 'input-warning',
-        'error' => 'input-error',
-        'danger' => 'input-error',
-    ];
-
-    protected array $sizes = [
-        'default' => '',
-        'lg' => 'input-lg',
-        'md' => 'input-md',
-        'sm' => 'input-sm',
-        'xs' => 'input-xs',
-    ];
-
     public ?string $placeholder;
 
     public function __construct(public string $label = '', string $placeholder = '', public bool $required = false)
@@ -38,9 +17,31 @@ class Input extends LazyComponent
     public function render(): \Closure|View
     {
         return function (array $data) {
-            $data['attributes']['required'] = $this->required;
+            $attributes = $this->getAttributesFromData($data);
+            $attributes['required'] = $this->required;
+            $data['attributes'] = $attributes;
 
-            return view('lazy::input', $this->mergeData($data))->render();
+            $color = $this->getColorByAttribute($attributes);
+            $size = $this->getSizeByAttribute($attributes);
+
+            return view('lazy::input', $this->mergeData($data, [
+                'input',
+                //colors
+                'input-bordered' => $color === 'bordered',
+                'input-ghost' => $color === 'ghost',
+                'input-primary' => $color === 'primary',
+                'input-secondary' => $color === 'secondary',
+                'input-accent' => $color === 'accent',
+                'input-info' => $color === 'info',
+                'input-success' => $color === 'success',
+                'input-warning' => $color === 'warning',
+                'input-error' => $color === 'error',
+                //sizes
+                'input-lg' => $size === 'lg',
+                'input-md' => $size === 'md',
+                'input-sm' => $size === 'sm',
+                'input-xs' => $size === 'xs',
+            ]))->render();
         };
     }
 }

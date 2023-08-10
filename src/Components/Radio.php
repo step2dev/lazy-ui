@@ -7,29 +7,32 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Radio extends LazyComponent
 {
-    protected array $colors = [
-        'default' => '',
-        'primary' => 'radio-primary',
-        'secondary' => 'radio-secondary',
-        'accent' => 'radio-accent',
-        'info' => 'radio-info',
-        'success' => 'radio-success',
-        'warning' => 'radio-warning',
-        'error' => 'radio-error',
-    ];
-
-    protected array $sizes = [
-        'default' => '',
-        'lg' => 'radio-lg',
-        'md' => 'radio-md',
-        'sm' => 'radio-sm',
-        'xs' => 'radio-xs',
-    ];
-
     public function render(): \Closure|View
     {
         return function (array $data) {
-            return view('lazy::radio', $this->mergeData($data))->render();
+            $attributes = $this->getAttributesFromData($data);
+            $attributes['type'] = 'radio';
+            $data['attributes'] = $attributes;
+
+            $color = $this->getColorByAttribute($attributes);
+            $size = $this->getSizeByAttribute($attributes);
+
+            return view('lazy::radio', $this->mergeData($data, [
+                'radio',
+                //colors
+                'radio-primary' => $color === 'primary',
+                'radio-secondary' => $color === 'secondary',
+                'radio-accent' => $color === 'accent',
+                'radio-info' => $color === 'info',
+                'radio-success' => $color === 'success',
+                'radio-warning' => $color === 'warning',
+                'radio-error' => $color === 'error',
+                //sizes
+                'radio-lg' => $size === 'lg',
+                'radio-md' => $size === 'md',
+                'radio-sm' => $size === 'sm',
+                'radio-xs' => $size === 'xs',
+            ]))->render();
         };
     }
 }

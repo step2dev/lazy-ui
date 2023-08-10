@@ -1,6 +1,3 @@
-<x-lazy-checkbox :attributes="$attributes" />
-
-{{--
 @props([
     'label' => '',
     'help' => '',
@@ -20,7 +17,7 @@
 <div class="{{ $label ? 'form-control' : 'inline-block' }}">
     <label
         class="label cursor-pointer{{ $hr ? ' flex flex-col items-start' : 'flex flex-row items-center justify-start' }}">
-        <input id="{{ $parameter }}" {{ $attributes->merge(['type' => 'checkbox', 'class'=> 'checkbox']) }}/>
+        <x-lazy-checkbox :attributes="$attributes" />
         <span class="label-text{{ $hr ? ' mb-1' : ' ml-2' }}">{!! $label !!}</span>
     </label>
     @if ($help)
@@ -47,4 +44,3 @@
         @enderror
     @endif
 </div>
---}}

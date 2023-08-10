@@ -4,7 +4,6 @@ namespace Lazyadm\LazyComponent\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\ComponentAttributeBag;
 use Lazyadm\LazyComponent\LazyComponent;
 
 class Join extends LazyComponent
@@ -25,6 +24,4 @@ class Join extends LazyComponent
             ]))->render();
         };
     }
-
-
 }

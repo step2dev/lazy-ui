@@ -67,12 +67,12 @@ it('can render with colors attribute', function ($parameter, $class) {
         ->assertSee('Badge label')
         ->assertSee('badge-outline');
 })->with([
-    'primary'   => ['primary', 'badge-primary'],
+    'primary' => ['primary', 'badge-primary'],
     'secondary' => ['secondary', 'badge-secondary'],
-    'accent'    => ['accent', 'badge-accent'],
-    'info'      => ['info', 'badge-info'],
-    'success'   => ['success', 'badge-success'],
-    'warning'   => ['warning', 'badge-warning'],
-    'error'     => ['error', 'badge-error'],
+    'accent' => ['accent', 'badge-accent'],
+    'info' => ['info', 'badge-info'],
+    'success' => ['success', 'badge-success'],
+    'warning' => ['warning', 'badge-warning'],
+    'error' => ['error', 'badge-error'],
     // 'ghost'     => ['ghost', 'badge-ghost'],
 ]);

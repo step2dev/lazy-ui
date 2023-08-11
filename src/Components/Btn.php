@@ -9,8 +9,6 @@ class Btn extends LazyComponent
 {
     protected string $disableClass = 'btn-disabled';
 
-    protected string $loadingClass = 'loading';
-
     public bool $outline = false;
 
     public string $tag;
@@ -56,7 +54,7 @@ class Btn extends LazyComponent
             } else {
                 $attributes['type'] = 'submit';
                 $attributes['wire:loading.attr'] = 'disabled';
-                $attributes['wire:loading.class'] = $this->disableClass.' '.$this->loadingClass;
+                $attributes['wire:loading.class'] = $this->disableClass.' loading loading-spinner';
             }
 
             // $data['iconSize']   = $this->iconSize($attributes);

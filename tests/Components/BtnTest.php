@@ -21,7 +21,7 @@ it('can render button with attribute label', function () {
         ->blade('<x-lazy-btn label="Go"/>')
         ->assertSee('type="submit"', false)
         ->assertSee('class="btn', false)
-        ->assertSee('wire:loading.class="btn-disabled loading"', false)
+        ->assertSee('wire:loading.class="btn-disabled loading loading-spinner"', false)
         ->assertSee('wire:loading.attr="disabled"', false)
         ->assertSee('Go');
 });
@@ -31,52 +31,44 @@ it('can render button without attribute label', function () {
         ->blade('<x-lazy-btn>Go</x-lazy-btn>')
         ->assertSee('type="submit"', false)
         ->assertSee('class="btn', false)
-        ->assertSee('wire:loading.class="btn-disabled loading"', false)
+        ->assertSee('wire:loading.class="btn-disabled loading loading-spinner"', false)
         ->assertSee('wire:loading.attr="disabled"', false)
         ->assertSee('Go');
 });
 
-it('can render with colors attribute', function () {
+it('can render with colors attribute', function ($color, $class) {
     $this
-        ->blade('<x-lazy-btn primary />')
-        ->assertSee('btn-primary');
+        ->blade("<x-lazy-btn {$color} />")
+        ->assertSee('class="btn', false)
+        ->assertSee('wire:loading.class="btn-disabled loading loading-spinner"', false)
+        ->assertSee('wire:loading.attr="disabled"', false)
+        ->assertSee($class);
 
     $this
-        ->blade('<x-lazy-btn accent />')
-        ->assertSee('btn-accent');
-
-    $this
-        ->blade('<x-lazy-btn info />')
-        ->assertSee('btn-info');
-
-    $this
-        ->blade('<x-lazy-btn success />')
-        ->assertSee('btn-success');
-
-    $this
-        ->blade('<x-lazy-btn warning/>')
-        ->assertSee('btn-warning');
-
-    $this
-        ->blade('<x-lazy-btn error/>')
-        ->assertSee('btn-error');
-
-    $this
-        ->blade('<x-lazy-btn ghost/>')
-        ->assertSee('btn-ghost');
-
-    $this
-        ->blade('<x-lazy-btn link/>')
-        ->assertSee('btn-link');
-});
+        ->blade("<x-lazy-btn color='{$color}'>Go</x-lazy-btn>")
+        ->assertSee('class="btn', false)
+        ->assertSee('wire:loading.class="btn-disabled loading loading-spinner"', false)
+        ->assertSee('wire:loading.attr="disabled"', false)
+        ->assertSee($class);
+})->with([
+    'primary' => ['primary', 'btn-primary'],
+    'secondary' => ['secondary', 'btn-secondary'],
+    'accent' => ['accent', 'btn-accent'],
+    'info' => ['info', 'btn-info'],
+    'success' => ['success', 'btn-success'],
+    'warning' => ['warning', 'btn-warning'],
+    'error' => ['error', 'btn-error'],
+    'ghost' => ['ghost', 'btn-ghost'],
+    'link' => ['link', 'btn-link'],
+]);
 
 it('can render with sizes attribute', function ($size, $class) {
     $this
         ->blade("<x-lazy-btn {$size} />")
         ->assertSee($class);
 
-    // $this->blade("<x-lazy-btn size='{$size}'>Go</x-lazy-btn>")
-    //     ->assertSee($class);
+    $this->blade("<x-lazy-btn size='{$size}'>Go</x-lazy-btn>")
+        ->assertSee($class);
 })->with([
     'lg' => ['lg', 'btn-lg'],
     'md' => ['md', 'btn-md'],
@@ -136,13 +128,23 @@ it('can render with square attribute', function () {
         ->assertSee('btn-square');
 });
 
-it('can render with size outline color attribute', function () {
+it('can render with size outline color attribute', function ($color, $class) {
     $this
-        ->blade('<x-lazy-btn lg outline primary/>')
+        ->blade("<x-lazy-btn lg outline {$color}/>")
         ->assertSee('btn-lg')
         ->assertSee('btn-outline')
-        ->assertSee('btn-primary');
-});
+        ->assertSee($class);
+})->with([
+    'primary' => ['primary', 'btn-primary'],
+    'secondary' => ['secondary', 'btn-secondary'],
+    'accent' => ['accent', 'btn-accent'],
+    'info' => ['info', 'btn-info'],
+    'success' => ['success', 'btn-success'],
+    'warning' => ['warning', 'btn-warning'],
+    'error' => ['error', 'btn-error'],
+    'ghost' => ['ghost', 'btn-ghost'],
+    'link' => ['link', 'btn-link'],
+]);
 
 it('can render with link attribute', function () {
     $this

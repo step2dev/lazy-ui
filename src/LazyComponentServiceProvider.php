@@ -24,6 +24,7 @@ use Lazyadm\LazyComponent\Components\Form\FormToggle;
 use Lazyadm\LazyComponent\Components\Image;
 use Lazyadm\LazyComponent\Components\Input;
 use Lazyadm\LazyComponent\Components\Join;
+use Lazyadm\LazyComponent\Components\Kbd;
 use Lazyadm\LazyComponent\Components\Label;
 use Lazyadm\LazyComponent\Components\Link;
 use Lazyadm\LazyComponent\Components\Loading;
@@ -38,6 +39,7 @@ use Lazyadm\LazyComponent\Components\Rating;
 use Lazyadm\LazyComponent\Components\Stack;
 use Lazyadm\LazyComponent\Components\Tabs;
 use Lazyadm\LazyComponent\Components\Textarea;
+use Lazyadm\LazyComponent\Components\Toast;
 use Lazyadm\LazyComponent\Components\Toggle;
 use Lazyadm\LazyComponent\Components\Tooltip;
 use Spatie\LaravelPackageTools\Package;
@@ -71,8 +73,8 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 BtnLogout::class,
                 // end button
                 //Carousel::class,
-                Checkbox::class,
                 Chat::class,
+                Checkbox::class,
                 Countdown::class,
                 Divider::class,
                 //                Dropdown::class,
@@ -81,9 +83,10 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 FormCheckbox::class,
                 FormInput::class,
                 FormToggle::class,
-                Input::class,
                 Image::class,
+                Input::class,
                 Join::class,
+                Kbd::class,
                 Label::class,
                 Link::class,
                 Loading::class,
@@ -99,6 +102,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Stack::class,
                 Tabs::class,
                 Textarea::class,
+                Toast::class,
                 Toggle::class,
                 Tooltip::class,
             )

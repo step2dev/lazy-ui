@@ -1,13 +1,18 @@
 @props([
-'href' => '',
+    'href' => '',
+])
+
+@aware([
+    'join' => false,
 ])
 
 <div x-data="{ showModal: false }">
     <x-lazy-btn
+        :join="$join"
         href="#"
         @click.prevent="showModal = true"
         x-bind:href="$props.href"
-        outline error sm :label="__('lazy:buttons.delete')" sm class="mr-2">
+        outline error sm :label="__('lazy::buttons.delete')" sm class="mr-2">
     </x-lazy-btn>
 
 
@@ -75,15 +80,15 @@
         </div>
     </div>
     <script>
-        function deleteItem() {
+        function deleteItem () {
             axios.delete('{{ $href }}')
                 .then((response) => {
-                    console.log(response);
+                    console.log(response)
                     // Действия после успешного удаления
                 })
                 .catch(() => {
                     // Действия в случае ошибки
-                });
+                })
         }
 
     </script>

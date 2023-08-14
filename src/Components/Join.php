@@ -9,6 +9,7 @@ use Lazyadm\LazyComponent\LazyComponent;
 class Join extends LazyComponent
 {
     public bool $join = true;
+
     /**
      * Get the view / contents that represent the component.
      */

@@ -8,6 +8,7 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Join extends LazyComponent
 {
+    public bool $join = true;
     /**
      * Get the view / contents that represent the component.
      */
@@ -15,6 +16,7 @@ class Join extends LazyComponent
     {
         return function (array $data) {
             $attributes = $this->getAttributesFromData($data);
+
             $position = $this->getPositionByAttribute($attributes);
 
             return view('lazy::join', $this->mergeData($data, [

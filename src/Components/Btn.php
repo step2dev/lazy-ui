@@ -21,7 +21,7 @@ class Btn extends LazyComponent
         public ?string $rightIcon = null,
         public ?string $href = null,
         private ?string $glass = null,
-        private ?string $active = null
+        private ?string $active = null,
     ) {
         $this->tag = $this->href === null ? 'button' : 'a';
     }
@@ -68,8 +68,7 @@ class Btn extends LazyComponent
 
             return view('lazy::btn', $this->mergeData($data, [
                 'btn',
-                'join-item' => $attributes->get('group', false),
-                'mr-2' => ! $attributes->get('group', false),
+                'join' => $attributes->get('group', false),
                 'glass' => $this->glass,
                 'btn-active' => $this->active,
                 'btn-outline' => $attributes->get('outline', false),

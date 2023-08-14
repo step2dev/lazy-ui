@@ -3,7 +3,15 @@
     'rightIcon' => null,
     'label' => ''
 ])
-<{{ $tag }} {{ $attributes->merge(['class' => $icon || $rightIcon ? ' gap-2' : '']) }}>
+
+@aware([
+    'join' => false,
+])
+
+<{{ $tag }} {{ $attributes->merge(['class' => $icon || $rightIcon ? ' gap-2' : ''])->class([
+    'join-item' => $join,
+    'mr-2' => ! $join,
+    ]) }}>
 @if($icon)
     {{ $icon }}
 @endisset

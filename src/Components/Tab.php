@@ -27,7 +27,6 @@ class Tab extends LazyComponent
 
             $data['label'] = $data['label'] ?: $attributes['title'] ?? '';
 
-
             $type = $this->getKeyByAttribute($attributes, $this->allowedTabType(), 'type');
             $size = $this->getSizeByAttribute($attributes);
 

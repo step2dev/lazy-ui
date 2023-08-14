@@ -7,7 +7,6 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Tabs extends LazyComponent
 {
-
     public function __construct(public string $type = '', public string $size = '')
     {
     }

@@ -107,6 +107,8 @@ abstract class LazyComponent extends Component
         $key = $this->findBySmartAttribute($attribute, $keys)
             ?? $attribute->get($key, $default);
 
+        $key = strtolower($key);
+
         if (in_array($key, $keys, true)) {
             return $key;
         }

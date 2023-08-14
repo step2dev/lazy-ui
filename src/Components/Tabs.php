@@ -25,15 +25,11 @@ class Tabs extends LazyComponent
         return function (array $data) {
             $attributes = $this->getAttributesFromData($data);
 
-            $this->type = $tabType = $this->getKeyByAttribute($attributes, $this->allowedTabType(), 'type', '');
-
-            if ($this->type === 'boxed') {
-                $this->type = '';
-            }
+            $this->type = $this->getKeyByAttribute($attributes, $this->allowedTabType(), 'type', '');
 
             return view('lazy::tabs', $this->mergeData($data, [
                 'tabs',
-                'tabs-boxed' => $tabType === 'boxed',
+                'tabs-boxed' => $this->type === 'boxed',
             ]))->render();
         };
     }

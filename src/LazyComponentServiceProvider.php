@@ -8,6 +8,7 @@ use Lazyadm\LazyComponent\Components\Alert;
 use Lazyadm\LazyComponent\Components\Avatar;
 use Lazyadm\LazyComponent\Components\AvatarGroup;
 use Lazyadm\LazyComponent\Components\Badge;
+use Lazyadm\LazyComponent\Components\Breadcrumbs;
 use Lazyadm\LazyComponent\Components\Btn;
 use Lazyadm\LazyComponent\Components\Btn\BtnBack;
 use Lazyadm\LazyComponent\Components\Btn\BtnDelete;
@@ -65,6 +66,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Avatar::class,
                 AvatarGroup::class,
                 Badge::class,
+                Breadcrumbs::class,
                 // button
                 Btn::class,
                 BtnBack::class,

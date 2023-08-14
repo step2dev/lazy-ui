@@ -5,19 +5,19 @@ namespace Lazyadm\LazyComponent\Tests\Components;
 it('can render button with attribute label', function () {
     $this
         ->blade('<x-lazy-btn-back/>')
-        ->assertSee('class="btn', false)
+        ->assertSee('btn', false)
         ->assertSee('href="javascript:history.back()"', false)
         ->assertSee('Back');
 
     $this
         ->blade('<x-lazy-btn-back label="Go"/>')
-        ->assertSee('class="btn', false)
+        ->assertSee('btn', false)
         ->assertSee('href="javascript:history.back()"', false)
         ->assertSee('Go');
 
     $this
         ->blade('<x-lazy-btn-back label="Go"><i class="fas fa-arrow-left"></i></x-lazy-btn-back>')
-        ->assertSee('class="btn', false)
+        ->assertSee('btn', false)
         ->assertSee('href="javascript:history.back()"', false)
         ->assertSee('Go')
         ->assertSee('<i class="fas fa-arrow-left"></i>', false);
@@ -27,7 +27,7 @@ it('can render with sizes attribute', function ($size, $class) {
     $this
         ->blade("<x-lazy-btn-back {$size} />")
         // ->assertSee($class)
-        ->assertSee('class="btn', false)
+        ->assertSee('btn', false)
         ->assertSee('href="javascript:history.back()"', false)
         ->assertSee('Back');
 

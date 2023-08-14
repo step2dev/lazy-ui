@@ -7,6 +7,11 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Tabs extends LazyComponent
 {
+    /**
+     * @var true
+     */
+    public bool $tabsEnable = true;
+
     public function render(): \Closure|View
     {
         return function (array $data) {

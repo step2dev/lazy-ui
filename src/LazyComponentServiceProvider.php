@@ -38,6 +38,7 @@ use Lazyadm\LazyComponent\Components\Radio;
 use Lazyadm\LazyComponent\Components\Range;
 use Lazyadm\LazyComponent\Components\Rating;
 use Lazyadm\LazyComponent\Components\Stack;
+use Lazyadm\LazyComponent\Components\Tab;
 use Lazyadm\LazyComponent\Components\Tabs;
 use Lazyadm\LazyComponent\Components\Textarea;
 use Lazyadm\LazyComponent\Components\Toast;

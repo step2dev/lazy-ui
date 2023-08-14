@@ -10,8 +10,6 @@ class LazyTab extends LazyComponent
 {
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Closure|\Illuminate\Contracts\View\View
      */
     public function render(): View|Closure
     {
@@ -21,12 +19,11 @@ class LazyTab extends LazyComponent
             $type = $this->getAttributesFromData($data);
             $size = $this->getAttributesFromData($data, 'size');
 
-
             return view('lazy::tab', $this->mergeData($data, [
                 'tab',
-                'tab-active'   => $attributes['active'] ?? false,
+                'tab-active' => $attributes['active'] ?? false,
                 'tab-bordered' => $type == 'bordered',
-                'tab-lifted'   => $type == 'lifted',
+                'tab-lifted' => $type == 'lifted',
 
                 'tab-sm' => $size == 'sm',
                 'tab-md' => $size == 'md',

@@ -9,7 +9,7 @@ class Tabs extends LazyComponent
 {
     public ?string $tabsType = null;
 
-    public function __construct(?string $tabsType = null)
+    public function __construct(string $tabsType = null)
     {
     }
 

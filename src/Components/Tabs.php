@@ -21,7 +21,7 @@ class Tabs extends LazyComponent
 
             $this->tabsType = $this->getKeyByAttribute($attributes, (array) 'type', '');
 
-            if ( $this->tabsType  = 'boxed') {
+            if ($this->tabsType = 'boxed') {
                 $this->tabsType = null;
             }
 

@@ -3,7 +3,7 @@
 ])
 
 @aware([
-    'tabsEnable' => false
+    'tabsType' => ''
 ])
 
 <a {{ $attributes }}>{{ $label ?: $slot }}</a>

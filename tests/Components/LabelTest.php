@@ -2,8 +2,6 @@
 
 namespace Lazyadm\LazyComponent\Tests\Components;
 
-use Lazyadm\LazyComponent\Components\Label;
-
 it('can render Label', function () {
     $this
         ->blade('<x-lazy-label></x-lazy-label>')

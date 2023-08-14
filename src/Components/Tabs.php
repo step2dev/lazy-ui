@@ -9,7 +9,11 @@ class Tabs extends LazyComponent
 {
     public ?string $tabsType = null;
 
-    public function AllowedTabType(): array
+    public function __construct(?string $tabsType = null)
+    {
+    }
+
+    public function allowedTabType(): array
     {
         return [
             'boxed',
@@ -23,7 +27,7 @@ class Tabs extends LazyComponent
         return function (array $data) {
             $attributes = $this->getAttributesFromData($data);
 
-            $this->tabsType = $tabType = $this->getKeyByAttribute($attributes, (array) 'type');
+            $this->tabsType = $tabType = $this->getKeyByAttribute($attributes, $this->allowedTabType(), 'type');
 
             if ($this->tabsType === 'boxed') {
                 $this->tabsType = null;

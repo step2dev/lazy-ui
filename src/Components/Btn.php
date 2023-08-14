@@ -69,6 +69,7 @@ class Btn extends LazyComponent
             return view('lazy::btn', $this->mergeData($data, [
                 'btn',
                 'join' => $attributes->get('group', false),
+                'join-item' => $attributes->get('join', false),
                 'glass' => $this->glass,
                 'btn-active' => $this->active,
                 'btn-outline' => $attributes->get('outline', false),

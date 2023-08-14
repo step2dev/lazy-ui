@@ -103,6 +103,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 //                Select::class,
                 Stack::class,
                 Tabs::class,
+                Tab::class,
                 Textarea::class,
                 Toast::class,
                 Toggle::class,

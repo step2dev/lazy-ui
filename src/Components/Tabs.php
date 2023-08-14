@@ -7,15 +7,28 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Tabs extends LazyComponent
 {
-    /**
-     * @var true
-     */
-    public bool $tabsEnable = true;
+    private ?string $tabsType = null;
+
+    public function getTabsTypeAllowed(): ?string
+    {
+        return $this->tabsType;
+    }
 
     public function render(): \Closure|View
     {
         return function (array $data) {
-            return view('lazy::tabs', $this->mergeData($data))->render();
+            $attributes = $this->getAttributesFromData($data);
+
+            $this->tabsType = $this->getKeyByAttribute($attributes, (array) 'type', '');
+
+            if ( $this->tabsType  = 'boxed') {
+                $this->tabsType = null;
+            }
+
+            return view('lazy::tabs', $this->mergeData($data, [
+                'tabs',
+                'tabs-tabs-boxed' => $this->tabsType === 'bordered',
+            ]))->render();
         };
     }
 }

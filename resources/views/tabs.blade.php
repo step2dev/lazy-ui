@@ -1,9 +1,9 @@
 @props([
-    'tabsEnable' => true
+    'tabsType' => null
 ])
 
 # Tabs
-<div class="tabs">
+<div {{ $attributes }}>
     {{ $slot }}
     <a class="tab">Tab 1</a>
     <a class="tab tab-active">Tab 2</a>

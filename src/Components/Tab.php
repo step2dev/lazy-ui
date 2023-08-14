@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Lazyadm\LazyComponent\LazyComponent;
 
-class LazyTab extends LazyComponent
+class Tab extends LazyComponent
 {
     /**
      * Get the view / contents that represent the component.

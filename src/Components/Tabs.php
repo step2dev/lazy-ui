@@ -14,7 +14,7 @@ class Tabs extends LazyComponent
         return [
             'boxed',
             'lifted',
-            'bordered'
+            'bordered',
         ];
     }
 

@@ -1,6 +1,9 @@
 @props([
-    'tabsType' => null
+    'type' => '',
+    'size' => ''
 ])
+
+@dump($type)
 
 # Tabs
 <div {{ $attributes }}>

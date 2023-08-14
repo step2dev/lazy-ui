@@ -7,9 +7,8 @@ use Lazyadm\LazyComponent\LazyComponent;
 
 class Tabs extends LazyComponent
 {
-    public ?string $tabsType = null;
 
-    public function __construct(string $tabsType = null)
+    public function __construct(public string $type = '', public string $size = '')
     {
     }
 
@@ -27,10 +26,10 @@ class Tabs extends LazyComponent
         return function (array $data) {
             $attributes = $this->getAttributesFromData($data);
 
-            $this->tabsType = $tabType = $this->getKeyByAttribute($attributes, $this->allowedTabType(), 'type');
+            $this->type = $tabType = $this->getKeyByAttribute($attributes, $this->allowedTabType(), 'type', '');
 
-            if ($this->tabsType === 'boxed') {
-                $this->tabsType = null;
+            if ($this->type === 'boxed') {
+                $this->type = '';
             }
 
             return view('lazy::tabs', $this->mergeData($data, [

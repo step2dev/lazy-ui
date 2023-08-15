@@ -2,8 +2,6 @@
 
 namespace Lazyadm\LazyComponent\Tests\Components;
 
-use Lazyadm\LazyComponent\Components\Avatar;
-
 it('can render avatar', function () {
     $this
         ->blade('<x-lazy-avatar src="https://picsum.photos/200/200?random=1"/>')

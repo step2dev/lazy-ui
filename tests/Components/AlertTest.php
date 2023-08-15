@@ -2,8 +2,6 @@
 
 namespace Lazyadm\LazyComponent\Tests\Components;
 
-use Lazyadm\LazyComponent\Components\Alert;
-
 it('can render alert with parameter', function ($parameter, $class) {
     $this
         ->blade("<x-lazy-alert {$parameter} label='Alert Content'/>")

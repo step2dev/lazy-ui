@@ -2,8 +2,6 @@
 
 namespace Lazyadm\LazyComponent\Tests\Components;
 
-use Lazyadm\LazyComponent\Components\Kbd;
-
 it('can render Kdb', function () {
     $this
         ->blade('<x-lazy-kbd></x-lazy-kbd>')

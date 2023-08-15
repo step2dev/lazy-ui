@@ -2,8 +2,6 @@
 
 namespace Lazyadm\LazyComponent\Tests\Components;
 
-use Lazyadm\LazyComponent\Components\Accordion;
-
 it('can render accordion', function () {
     $this
         ->blade('<x-lazy-accordion title="Accordion Title" name="name" :active="true">Accordion Content</x-lazy-accordion>')

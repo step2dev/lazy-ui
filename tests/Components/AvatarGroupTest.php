@@ -2,9 +2,6 @@
 
 namespace Lazyadm\LazyComponent\Tests\Components;
 
-use Lazyadm\LazyComponent\Components\AvatarGroup;
-
-
 it('can render avatar group', function () {
     $this
         ->blade('<x-lazy-avatar-group></x-lazy-avatar-group>')

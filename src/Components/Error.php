@@ -3,7 +3,6 @@
 namespace Lazyadm\LazyComponent\Components;
 
 use Closure;
-use Illuminate\View\ComponentAttributeBag;
 use Lazyadm\LazyComponent\LazyComponent;
 
 class Error extends LazyComponent

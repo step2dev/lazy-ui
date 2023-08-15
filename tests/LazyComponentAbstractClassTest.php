@@ -23,8 +23,6 @@ it('should be an instance of Component', function () {
     expect($component)
         ->toBeInstanceOf(Component::class)
         ->and($component)->toBeInstanceOf(LazyComponent::class)
-        ->and($component->allowedSizes())->toBeArray()
-        ->and($component->allowedColors())->toBeArray()
         ->and($component->getViewName())->toBeString()
         ->and($component->render())->toBeInstanceOf(\Closure::class)
         ->and(Alert::getName())->toBeString()->toEqual('Alert');

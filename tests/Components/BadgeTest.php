@@ -4,18 +4,6 @@ namespace Lazyadm\LazyComponent\Tests\Components;
 
 use Lazyadm\LazyComponent\Components\Badge;
 
-it('should have an array of allowed sizes', function () {
-    $component = new Badge();
-
-    expect($component->allowedSizes())->toBeArray()->not()->toBeEmpty();
-});
-
-it('should have an array of allowed colors', function () {
-    $component = new Badge();
-
-    expect($component->allowedColors())->toBeArray()->not()->toBeEmpty();
-});
-
 it('should have an array of allowed position', function () {
     $component = new Badge();
 

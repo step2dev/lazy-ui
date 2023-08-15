@@ -4,18 +4,6 @@ namespace Lazyadm\LazyComponent\Tests\Components;
 
 use Lazyadm\LazyComponent\Components\Accordion;
 
-it('should have an array of allowed sizes', function () {
-    $component = new Accordion();
-
-    expect($component->allowedSizes())->toBeArray();
-});
-
-it('should have an array of allowed colors', function () {
-    $component = new Accordion();
-
-    expect($component->allowedColors())->toBeArray();
-});
-
 it('can render accordion', function () {
     $this
         ->blade('<x-lazy-accordion title="Accordion Title" name="name" :active="true">Accordion Content</x-lazy-accordion>')

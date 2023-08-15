@@ -18,6 +18,7 @@ use Lazyadm\LazyComponent\Components\Chat;
 use Lazyadm\LazyComponent\Components\Checkbox;
 use Lazyadm\LazyComponent\Components\Countdown;
 use Lazyadm\LazyComponent\Components\Divider;
+use Lazyadm\LazyComponent\Components\Error;
 use Lazyadm\LazyComponent\Components\Form;
 use Lazyadm\LazyComponent\Components\Form\FormCheckbox;
 use Lazyadm\LazyComponent\Components\Form\FormInput;
@@ -80,6 +81,7 @@ class LazyComponentServiceProvider extends PackageServiceProvider
                 Checkbox::class,
                 Countdown::class,
                 Divider::class,
+                Error::class,
                 //                Dropdown::class,
                 Form::class,
                 //                FormGroup::class,

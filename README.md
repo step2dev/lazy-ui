@@ -63,6 +63,89 @@ echo $lazyComponent->echoPhrase('Hello, Lazyadm!');
 composer test
 ```
 
+## 📁 List of components
+
+<details>
+<summary>
+  show / hide
+</summary>
+
+- Actions
+
+    - [x] Button
+    - [ ] Dropdown
+    - [ ] Modal
+    - [x] Swap
+
+- Data display
+
+    - [x] Alert
+    - [x] Avatar
+    - [x] Badge
+    - [ ] Banner
+    - [ ] Calendar
+    - [ ] Card
+    - [ ] Carousel
+    - [x] Chat bubble
+    - [ ] Collapse
+    - [ ] Countdown
+    - [ ] Empty placeholder
+    - [x] Kbd
+    - [x] Loading
+    - [x] Progress
+    - [x] Radial progress
+    - [ ] Stat
+    - [ ] Table
+    - [ ] Tag
+    - [ ] Timeline
+    - [ ] Toast
+    - [x] Tooltip
+    - [ ] Treeview
+
+- Data input
+    - [x] Checkbox
+    - [ ] File input
+    - [x] Text input
+    - [ ] Radio
+    - [x] Range
+    - [ ] Rating
+    - [ ] Select
+    - [ ] Multi select
+    - [x] Textarea
+    - [ ] Toggle
+- Layout
+
+    - [ ] Artboard
+    - [x] Button group
+    - [x] Divider
+    - [ ] Drawer
+    - [ ] Footer
+    - [x] Join
+    - [ ] Hero
+    - [ ] Indicator
+    - [x] Input group
+    - [x] Mask
+    - [x] Stack
+
+- Navigation
+
+    - [ ] Bottom Navigation
+    - [x] Breadcrumbs
+    - [x] Link
+    - [ ] Menu
+    - [ ] Navbar
+    - [ ] Pagination
+    - [ ] Steps
+    - [x] Tab
+
+- Mockup
+    - [ ] Browser
+    - [ ] Code
+    - [x] Phone
+    - [ ] Window
+
+</details>
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

@@ -55,7 +55,7 @@ abstract class LazyComponent extends Component
         return $data;
     }
 
-    public function allowedSizes(): array
+    protected function allowedSizes(): array
     {
         return [
             'xs',
@@ -67,7 +67,7 @@ abstract class LazyComponent extends Component
         ];
     }
 
-    public function allowedColors(): array
+    protected function allowedColors(): array
     {
         return [
             'primary',

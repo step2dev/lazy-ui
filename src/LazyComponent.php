@@ -30,7 +30,7 @@ abstract class LazyComponent extends Component
 
     protected function mergeClasses(ComponentAttributeBag $attributes, array $merge = []): ComponentAttributeBag
     {
-        return $attributes->class($this->classes($merge));
+        return $attributes->class($merge);
     }
 
     public function componentSlot(mixed $slot): ComponentSlot

@@ -160,7 +160,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [CrazyBoy49z](https://github.com/lazy-adm)
+- [CrazyBoy49z](https://github.com/CrazyBoy49z)
 - [All Contributors](../../contributors)
 
 ## License

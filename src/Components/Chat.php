@@ -20,6 +20,7 @@ class Chat extends LazyComponent
     public function render(): Closure|View
     {
         return function (array $data) {
+            $attributes = $this->getAttributesFromData($data);
             $position = $this->position ?? $this->getKeyByAttribute($data['attributes'], [
                 'left',
                 'right',
@@ -27,10 +28,20 @@ class Chat extends LazyComponent
                 'end',
             ], 'start');
 
+            $color = $this->getColorByAttribute($attributes);
+
             return view('lazy::chat', $this->mergeData($data, [
                 'chat',
-                'chat-start' => in_array($position, ['left', 'start']),
-                'chat-end' => in_array($position, ['right', 'end']),
+                'chat-start'            => in_array($position, ['left', 'start']),
+                'chat-end'              => in_array($position, ['right', 'end']),
+                'chat-bubble-primary'   => $color === 'primary',
+                'chat-bubble-secondary' => $color === 'secondary',
+                'chat-bubble-accent'    => $color === 'accent',
+                'chat-bubble-info'      => $color === 'info',
+                'chat-bubble-success'   => $color === 'success',
+                'chat-bubble-warning'   => $color === 'warning',
+                'chat-bubble-error'     => $color === 'error',
+
             ]))->render();
         };
     }

@@ -2,10 +2,11 @@
     "name": "lazy-adm/lazy-component",
     "description": "This is my package lazy-component",
     "keywords": [
-        "lazy-adm",
+        "lazy ui",
         "laravel",
-        "lazy-component",
-        "lazy-form"
+        "lazy component ui",
+        "lazy form",
+        "daisy ui"
     ],
     "homepage": "https://github.com/lazy-adm/lazy-component",
     "license": "MIT",
@@ -68,6 +69,15 @@
                 "LazyComponent": "Lazyadm\\LazyComponent\\Facades\\LazyComponent"
             }
         }
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/Step2dev"
+        }
+    ],
+    "suggest": {
+        "livewire/livewire": "Required to use with livewire component"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

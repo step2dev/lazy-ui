@@ -1,4 +1,5 @@
-# This is my package lazy-component
+# LazyUI [![License: MIT](https://img.shields.io/github/license/step2dev/lazy-component-ui?style=flat-square)](LICENSE.md) [![Contributors](https://img.shields.io/github/contributors/step2dev/lazy-component-ui.svg?style=flat-square)](https://github.com/step2dev/lazy-component-ui/graphs/contributors) ![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/step2dev/lazy-component-ui/php) ![Packagist Laravel Version](https://img.shields.io/packagist/dependency-v/step2dev/lazy-component-ui/laravel%2Fframework)
+
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/lazy-adm/lazy-component.svg?style=flat-square)](https://packagist.org/packages/lazy-adm/lazy-component)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/lazy-adm/lazy-component/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/lazy-adm/lazy-component/actions?query=workflow%3Arun-tests+branch%3Amain)

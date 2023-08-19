@@ -2,9 +2,8 @@
 
 namespace Lazyadm\Tests\LazyComponent;
 
-use Lazyadm\LazyComponent\LazyComponent;
-use Pest;
 use Illuminate\Support\Str;
+use Lazyadm\LazyComponent\LazyComponent;
 use Mockery;
 
 it('test lazy component getName and getViewName methods', function () {

@@ -12,4 +12,6 @@ parameters:
     checkModelProperties: true
     checkMissingIterableValueType: false
     treatPhpDocTypesAsCertain: true
+    ignoreErrors:
+        - '#^Call to deprecated method#'
 

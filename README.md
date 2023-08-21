@@ -1,11 +1,11 @@
-# LazyUI [![License: MIT](https://img.shields.io/github/license/step2dev/lazy-component-ui?style=flat-square)](LICENSE.md) [![Contributors](https://img.shields.io/github/contributors/step2dev/lazy-component-ui.svg?style=flat-square)](https://github.com/step2dev/lazy-component-ui/graphs/contributors) ![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/step2dev/lazy-component-ui/php) ![Packagist Laravel Version](https://img.shields.io/packagist/dependency-v/step2dev/lazy-component-ui/laravel%2Fframework)
+# LazyUI [![License: MIT](https://img.shields.io/github/license/step2dev/lazy-ui?style=flat-square)](LICENSE.md) [![Contributors](https://img.shields.io/github/contributors/step2dev/lazy-ui.svg?style=flat-square)](https://github.com/step2dev/lazy-ui/graphs/contributors) ![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/step2dev/lazy-ui/php) ![Packagist Laravel Version](https://img.shields.io/packagist/dependency-v/step2dev/lazy-ui/laravel%2Fframework)
 
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/lazy-adm/lazy-component.svg?style=flat-square)](https://packagist.org/packages/lazy-adm/lazy-component)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/lazy-adm/lazy-component/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/lazy-adm/lazy-component/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/lazy-adm/lazy-component/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/lazy-adm/lazy-component/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/step2dev/lazy-ui.svg?style=flat-square)](https://packagist.org/packages/step2dev/lazy-ui)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/step2dev/lazy-ui/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/step2dev/lazy-ui/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/step2dev/lazy-ui/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/step2dev/lazy-ui/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![PHPStan](https://github.com/lazy-adm/lazy-component/actions/workflows/phpstan.yml/badge.svg)](https://github.com/lazy-adm/lazy-component/actions/workflows/phpstan.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/lazy-adm/lazy-component.svg?style=flat-square)](https://packagist.org/packages/lazy-adm/lazy-component)
+[![Total Downloads](https://img.shields.io/packagist/dt/step2dev/lazy-ui.svg?style=flat-square)](https://packagist.org/packages/step2dev/lazy-ui)
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 

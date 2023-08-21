@@ -1,6 +1,6 @@
 {
-    "name": "lazy-adm/lazy-component",
-    "description": "This is my package lazy-component",
+    "name": "step2dev/lazy-ui",
+    "description": "Lazy UI is a Laravel package that provides a set of Blade components to rapidly build forms with Tailwind CSS and Daisy UI.",
     "keywords": [
         "lazy ui",
         "laravel",
@@ -8,7 +8,7 @@
         "lazy form",
         "daisy ui"
     ],
-    "homepage": "https://github.com/lazy-adm/lazy-component",
+    "homepage": "https://github.com/step2dev/lazy-ui",
     "license": "MIT",
     "authors": [
         {

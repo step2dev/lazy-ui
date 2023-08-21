@@ -16,6 +16,7 @@ class Link extends LazyComponent
         return function (array $data) {
             $attributes = $this->getAttributesFromData($data);
             $color = $this->getColorByAttribute($attributes, '');
+            $hover = $attributes->get('hover', '');
 
             return view('lazy::link', $this->mergeData($data, [
                 'link',
@@ -27,7 +28,7 @@ class Link extends LazyComponent
                 'link-info' => $color === 'info',
                 'link-warning' => $color === 'warning',
                 'link-error' => $color === 'error',
-                'link-hover' => $color === 'hover',
+                'link-hover' => $hover,
             ]))->render();
         };
     }

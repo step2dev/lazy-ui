@@ -45,6 +45,7 @@ it('can render link with colors', function ($parameter, $class) {
     'success' => ['success', 'link-success'],
     'warning' => ['warning', 'link-warning'],
     'error' => ['error', 'link-error'],
+    'hover' => ['hover', 'link-hover'],
 ]);
 
 it('can render link with colors param', function ($parameter, $class) {

@@ -19,13 +19,13 @@ it('can render checkbox with colors', function ($parameter, $class) {
         ->assertSee($class)
         ->assertDontSee('color="primary"', false);
 })->with([
-    'primary'   => ['primary', 'text-primary'],
+    'primary' => ['primary', 'text-primary'],
     'secondary' => ['secondary', 'text-secondary'],
-    'accent'    => ['accent', 'text-accent'],
-    'info'      => ['info', 'text-info'],
-    'success'   => ['success', 'text-success'],
-    'warning'   => ['warning', 'text-warning'],
-    'error'     => ['error', 'text-error'],
+    'accent' => ['accent', 'text-accent'],
+    'info' => ['info', 'text-info'],
+    'success' => ['success', 'text-success'],
+    'warning' => ['warning', 'text-warning'],
+    'error' => ['error', 'text-error'],
 ]);
 
 it('can render checkbox with colors param', function ($parameter, $class) {
@@ -37,13 +37,13 @@ it('can render checkbox with colors param', function ($parameter, $class) {
         ->assertSee($class)
         ->assertDontSee("color=\"{$parameter}\"", false);
 })->with([
-    'primary'   => ['primary', 'text-primary'],
+    'primary' => ['primary', 'text-primary'],
     'secondary' => ['secondary', 'text-secondary'],
-    'accent'    => ['accent', 'text-accent'],
-    'info'      => ['info', 'text-info'],
-    'success'   => ['success', 'text-success'],
-    'warning'   => ['warning', 'text-warning'],
-    'error'     => ['error', 'text-error'],
+    'accent' => ['accent', 'text-accent'],
+    'info' => ['info', 'text-info'],
+    'success' => ['success', 'text-success'],
+    'warning' => ['warning', 'text-warning'],
+    'error' => ['error', 'text-error'],
 ]);
 
 it('can render with type', function ($parameter, $class) {
@@ -53,11 +53,11 @@ it('can render with type', function ($parameter, $class) {
         ->assertSee($class)
         ->assertDontSee("type=\"{$parameter}\"", false);
 })->with([
-    'spinner'  => ['spinner', 'loading-spinner'],
-    'dots'     => ['dots', 'loading-dots'],
-    'ring'     => ['ring', 'loading-ring'],
-    'ball'     => ['ball', 'loading-ball'],
-    'bars'     => ['bars', 'loading-bars'],
+    'spinner' => ['spinner', 'loading-spinner'],
+    'dots' => ['dots', 'loading-dots'],
+    'ring' => ['ring', 'loading-ring'],
+    'ball' => ['ball', 'loading-ball'],
+    'bars' => ['bars', 'loading-bars'],
     'infinity' => ['infinity', 'loading-infinity'],
 ]);
 

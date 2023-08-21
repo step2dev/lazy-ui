@@ -54,7 +54,7 @@ it('can render checkbox with colors param', function ($parameter, $class) {
         ->assertSee('type="checkbox"', false)
         ->assertSee('name="name"', false)
         ->assertSee($class)
-        ->assertDontSee('color="primary"', false);
+        ->assertDontSee("color=\"{$parameter}\"", false);
 })->with([
     'primary' => ['primary', 'checkbox-primary'],
     'secondary' => ['secondary', 'checkbox-secondary'],

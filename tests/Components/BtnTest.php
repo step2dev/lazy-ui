@@ -54,7 +54,6 @@ it('can render with colors attribute', function ($color, $class) {
     'link' => ['link', 'btn-link'],
 ]);
 
-
 it('can render with sizes attribute', function ($size, $class) {
     $this
         ->blade("<x-lazy-btn {$size} />")

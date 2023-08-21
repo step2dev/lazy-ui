@@ -1,4 +1,4 @@
-# LazyUI [![License: MIT](https://img.shields.io/github/license/step2dev/lazy-ui?style=flat-square)](LICENSE.md) [![Contributors](https://img.shields.io/github/contributors/step2dev/lazy-ui.svg?style=flat-square)](https://github.com/step2dev/lazy-ui/graphs/contributors) ![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/step2dev/lazy-ui/php) ![Packagist Laravel Version](https://img.shields.io/packagist/dependency-v/step2dev/lazy-ui/laravel%2Fframework)
+# LazyUI [![License: MIT](https://img.shields.io/github/license/step2dev/lazy-ui?style=flat-square)](LICENSE.md) [![Contributors](https://img.shields.io/github/contributors/step2dev/lazy-ui.svg?style=flat-square)](https://github.com/step2dev/lazy-ui/graphs/contributors) ![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/step2dev/lazy-ui/php) ![Packagist Laravel Version](https://img.shields.io/packagist/dependency-v/step2dev/lazy-ui/illuminate/contracts)
 
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/step2dev/lazy-ui.svg?style=flat-square)](https://packagist.org/packages/step2dev/lazy-ui)

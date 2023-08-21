@@ -32,8 +32,8 @@ class Radio extends LazyComponent
                 'radio-md' => $size === 'md',
                 'radio-sm' => $size === 'sm',
                 'radio-xs' => $size === 'xs',
-            ],[
-                'color'
+            ], [
+                'color',
             ]))->render();
         };
     }

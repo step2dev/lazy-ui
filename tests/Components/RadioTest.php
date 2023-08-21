@@ -64,5 +64,3 @@ it('can render radio with colors param', function ($parameter, $class) {
     'warning' => ['warning', 'radio-warning'],
     'error' => ['error', 'radio-error'],
 ]);
-
-

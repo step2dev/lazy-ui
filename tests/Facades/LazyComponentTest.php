@@ -1,4 +1,5 @@
 <?php
+
 use Lazyadm\LazyComponent\Facades\LazyComponent;
 use Lazyadm\LazyComponent\LazyComponent as ActualLazyComponent;
 

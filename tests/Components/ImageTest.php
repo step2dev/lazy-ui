@@ -11,7 +11,7 @@ it('can render image', function () {
         ->assertSee('alt="Image"', false);
 });
 
-it('can render image mask', function ($parameter, $class){
+it('can render image mask', function ($parameter, $class) {
     $this
         ->blade("<x-lazy-image src=\"https://picsum.photos/200/200?random=1\" alt=\"Image\" mask='{$parameter}'/>")
         ->assertSee('<img', false)
@@ -19,7 +19,7 @@ it('can render image mask', function ($parameter, $class){
         ->assertSee('alt="Image"', false)
         ->assertSee('mask', false)
         ->assertSee($class);
-    ;
+
 })->with([
     'mask-squircle' => ['squircle', 'mask-squircle'],
     'mask-heart' => ['heart', 'mask-heart'],
@@ -34,7 +34,7 @@ it('can render image mask', function ($parameter, $class){
     'mask-parallelogram-2' => ['parallelogram-2', 'mask-parallelogram-2'],
     'mask-parallelogram-3' => ['parallelogram-3', 'mask-parallelogram-3'],
     'mask-parallelogram-4' => ['parallelogram-4',   'mask-parallelogram-4'],
-    'mask-star' => ['star','mask-star'],
+    'mask-star' => ['star', 'mask-star'],
     'mask-star-2' => ['star-2', 'mask-star-2'],
     'mask-triangle' => ['triangle', 'mask-triangle'],
     'mask-triangle-2' => ['triangle-2', 'mask-triangle-2'],

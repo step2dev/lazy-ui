@@ -39,7 +39,7 @@ class Checkbox extends LazyComponent
                 'checkbox-xs' => $size === 'xs',
             ], [
                 'color',
-                'size'
+                'size',
             ]))->render();
         };
     }

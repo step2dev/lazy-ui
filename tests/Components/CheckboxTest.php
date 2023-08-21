@@ -64,5 +64,3 @@ it('can render checkbox with colors param', function ($parameter, $class) {
     'warning' => ['warning', 'checkbox-warning'],
     'error' => ['error', 'checkbox-error'],
 ]);
-
-

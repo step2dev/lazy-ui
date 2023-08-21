@@ -1,9 +1,9 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Components\Form;
+namespace Step2dev\LazyUI\Components\Form;
 
 use Illuminate\Contracts\View\View;
-use Lazyadm\LazyComponent\LazyComponent;
+use Step2dev\LazyUI\LazyComponent;
 
 class FormToggle extends LazyComponent
 {

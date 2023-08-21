@@ -37,13 +37,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Lazyadm\\LazyComponent\\": "src/",
-            "Lazyadm\\LazyComponent\\Database\\Factories\\": "database/factories/"
+            "Step2dev\\LazyUI\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Lazyadm\\LazyComponent\\Tests\\": "tests/"
+            "Step2dev\\LazyUI\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -63,10 +62,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Lazyadm\\LazyComponent\\LazyComponentServiceProvider"
+                "Step2dev\\LazyUI\\LazyComponentCommand"
             ],
             "aliases": {
-                "LazyComponent": "Lazyadm\\LazyComponent\\Facades\\LazyComponent"
+                "LazyComponent": "Step2dev\\LazyUI\\Facades\\LazyComponent"
             }
         }
     },

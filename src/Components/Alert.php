@@ -1,10 +1,10 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Components;
+namespace Step2dev\LazyUI\Components;
 
 use Closure;
 use Illuminate\View\ComponentAttributeBag;
-use Lazyadm\LazyComponent\LazyComponent;
+use Step2dev\LazyUI\LazyComponent;
 
 class Alert extends LazyComponent
 {

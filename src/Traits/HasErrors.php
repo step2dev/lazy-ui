@@ -1,6 +1,6 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Traits;
+namespace LStep2dev\LazyUI\Traits;
 
 trait HasErrors
 {

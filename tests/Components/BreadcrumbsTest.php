@@ -1,5 +1,7 @@
 <?php
 
+namespace Step2dev\LazyUI\Tests\Components;
+
 it('can render breadcrumbs', function () {
     $this
         ->blade('<x-lazy-breadcrumbs>

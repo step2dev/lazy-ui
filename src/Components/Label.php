@@ -1,6 +1,6 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Components;
+namespace Step2dev\LazyUI\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;

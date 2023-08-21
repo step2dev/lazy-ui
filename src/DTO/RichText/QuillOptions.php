@@ -1,6 +1,6 @@
 <?php
 
-namespace Lazyadm\LazyComponent\DTO\RichText;
+namespace Step2dev\LazyUI\DTO\RichText;
 
 use InvalidArgumentException;
 

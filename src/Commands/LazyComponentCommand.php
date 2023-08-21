@@ -1,6 +1,6 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Commands;
+namespace Step2dev\LazyUI\Commands;
 
 use Illuminate\Console\Command;
 

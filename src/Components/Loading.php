@@ -1,11 +1,11 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Components;
+namespace Step2dev\LazyUI\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
-use Lazyadm\LazyComponent\LazyComponent;
+use Step2dev\LazyUI\LazyComponent;
 
 class Loading extends LazyComponent
 {

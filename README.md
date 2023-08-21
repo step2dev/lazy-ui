@@ -25,26 +25,6 @@ You can install the package via composer:
 composer require lazy-adm/lazy-component
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="lazy-component-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="lazy-component-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
 Optionally, you can publish the views using
 
 ```bash
@@ -54,7 +34,7 @@ php artisan vendor:publish --tag="lazy-component-views"
 ## Usage
 
 ```php
-$lazyComponent = new Lazyadm\LazyComponent();
+$lazyComponent = new Step2dev\LazyUI();
 echo $lazyComponent->echoPhrase('Hello, Lazyadm!');
 ```
 

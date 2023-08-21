@@ -1,13 +1,13 @@
 <?php
 
-namespace Lazyadm\LazyComponent;
+namespace Step2dev\LazyUI;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\ComponentSlot;
-use Lazyadm\LazyComponent\Traits\HasModels;
+use Step2dev\LazyUI\Traits\HasModels;
 
 abstract class LazyComponent extends Component
 {

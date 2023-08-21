@@ -1,11 +1,11 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Tests;
+namespace Step2dev\LazyUI\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
-use Lazyadm\LazyComponent\LazyComponentServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Step2dev\LazyUI\LazyUiServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -16,20 +16,20 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Lazyadm\\LazyComponent\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Step2dev\\LazyUI\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            LazyComponentServiceProvider::class,
+            LazyUiServiceProvider::class,
         ];
     }
 
     public function getEnvironmentSetUp($app)
     {
-        config()->set('database.default', 'testing');
+        // config()->set('database.default', 'testing');
 
         /*
         $migration = include __DIR__.'/../database/migrations/create_lazy-component_table.php.stub';

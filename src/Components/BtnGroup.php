@@ -1,6 +1,6 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Components;
+namespace Step2dev\LazyUI\Components;
 
 class BtnGroup extends Join
 {

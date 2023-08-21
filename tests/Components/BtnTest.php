@@ -1,8 +1,6 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Tests\Components;
-
-use Lazyadm\LazyComponent\Components\Btn;
+namespace Step2dev\LazyUI\Tests\Components;
 
 it('should have an array of allowed colors', function () {
     $component = new Btn();
@@ -55,6 +53,7 @@ it('can render with colors attribute', function ($color, $class) {
     'ghost' => ['ghost', 'btn-ghost'],
     'link' => ['link', 'btn-link'],
 ]);
+
 
 it('can render with sizes attribute', function ($size, $class) {
     $this

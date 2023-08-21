@@ -1,8 +1,8 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Components;
+namespace Step2dev\LazyUI\Components;
 
-use Lazyadm\LazyComponent\LazyComponent;
+use Step2dev\LazyUI\LazyComponent;
 
 class Radial extends LazyComponent
 {

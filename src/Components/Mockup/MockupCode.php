@@ -1,9 +1,9 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Components\Mockup;
+namespace Step2dev\LazyUI\Components\Mockup;
 
 use Illuminate\Contracts\View\View;
-use Lazyadm\LazyComponent\LazyComponent;
+use Step2dev\LazyUI\LazyComponent;
 
 class MockupCode extends LazyComponent
 {

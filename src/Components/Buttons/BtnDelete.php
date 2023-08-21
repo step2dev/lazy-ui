@@ -1,11 +1,10 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Components\Btn;
+namespace Step2dev\LazyUI\Components\Buttons;
 
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
-use Lazyadm\LazyComponent\LazyComponent;
+use Step2dev\LazyUI\LazyComponent;
 
 class BtnDelete extends LazyComponent
 {

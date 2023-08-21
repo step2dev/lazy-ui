@@ -16,7 +16,7 @@
     backupStaticProperties="false"
 >
     <testsuites>
-        <testsuite name="Lazyadm Test Suite">
+        <testsuite name="LazyUi Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

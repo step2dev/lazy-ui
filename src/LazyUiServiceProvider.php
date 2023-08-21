@@ -1,54 +1,54 @@
 <?php
 
-namespace Lazyadm\LazyComponent;
+namespace Step2dev\LazyUI;
 
-use Lazyadm\LazyComponent\Commands\LazyComponentCommand;
-use Lazyadm\LazyComponent\Components\Accordion;
-use Lazyadm\LazyComponent\Components\Alert;
-use Lazyadm\LazyComponent\Components\Avatar;
-use Lazyadm\LazyComponent\Components\AvatarGroup;
-use Lazyadm\LazyComponent\Components\Badge;
-use Lazyadm\LazyComponent\Components\Breadcrumbs;
-use Lazyadm\LazyComponent\Components\Btn;
-use Lazyadm\LazyComponent\Components\Btn\BtnBack;
-use Lazyadm\LazyComponent\Components\Btn\BtnDelete;
-use Lazyadm\LazyComponent\Components\Btn\BtnLogout;
-use Lazyadm\LazyComponent\Components\BtnGroup;
-use Lazyadm\LazyComponent\Components\Chat;
-use Lazyadm\LazyComponent\Components\Checkbox;
-use Lazyadm\LazyComponent\Components\Countdown;
-use Lazyadm\LazyComponent\Components\Divider;
-use Lazyadm\LazyComponent\Components\Error;
-use Lazyadm\LazyComponent\Components\Form;
-use Lazyadm\LazyComponent\Components\Form\FormCheckbox;
-use Lazyadm\LazyComponent\Components\Form\FormInput;
-use Lazyadm\LazyComponent\Components\Form\FormToggle;
-use Lazyadm\LazyComponent\Components\Image;
-use Lazyadm\LazyComponent\Components\Input;
-use Lazyadm\LazyComponent\Components\Join;
-use Lazyadm\LazyComponent\Components\Kbd;
-use Lazyadm\LazyComponent\Components\Label;
-use Lazyadm\LazyComponent\Components\Link;
-use Lazyadm\LazyComponent\Components\Loading;
-use Lazyadm\LazyComponent\Components\Mockup\MockupBrowser;
-use Lazyadm\LazyComponent\Components\Mockup\MockupCode;
-use Lazyadm\LazyComponent\Components\Mockup\MockupPhone;
-use Lazyadm\LazyComponent\Components\Mockup\MockupWindow;
-use Lazyadm\LazyComponent\Components\Radial;
-use Lazyadm\LazyComponent\Components\Radio;
-use Lazyadm\LazyComponent\Components\Range;
-use Lazyadm\LazyComponent\Components\Rating;
-use Lazyadm\LazyComponent\Components\Stack;
-use Lazyadm\LazyComponent\Components\Tab;
-use Lazyadm\LazyComponent\Components\Tabs;
-use Lazyadm\LazyComponent\Components\Textarea;
-use Lazyadm\LazyComponent\Components\Toast;
-use Lazyadm\LazyComponent\Components\Toggle;
-use Lazyadm\LazyComponent\Components\Tooltip;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Step2dev\LazyUI\Commands\LazyComponentCommand;
+use Step2dev\LazyUI\Components\Accordion;
+use Step2dev\LazyUI\Components\Alert;
+use Step2dev\LazyUI\Components\Avatar;
+use Step2dev\LazyUI\Components\AvatarGroup;
+use Step2dev\LazyUI\Components\Badge;
+use Step2dev\LazyUI\Components\Breadcrumbs;
+use Step2dev\LazyUI\Components\Btn;
+use Step2dev\LazyUI\Components\BtnGroup;
+use Step2dev\LazyUI\Components\Buttons\BtnBack;
+use Step2dev\LazyUI\Components\Buttons\BtnDelete;
+use Step2dev\LazyUI\Components\Buttons\BtnLogout;
+use Step2dev\LazyUI\Components\Chat;
+use Step2dev\LazyUI\Components\Checkbox;
+use Step2dev\LazyUI\Components\Countdown;
+use Step2dev\LazyUI\Components\Divider;
+use Step2dev\LazyUI\Components\Error;
+use Step2dev\LazyUI\Components\Form;
+use Step2dev\LazyUI\Components\Form\FormCheckbox;
+use Step2dev\LazyUI\Components\Form\FormInput;
+use Step2dev\LazyUI\Components\Form\FormToggle;
+use Step2dev\LazyUI\Components\Image;
+use Step2dev\LazyUI\Components\Input;
+use Step2dev\LazyUI\Components\Join;
+use Step2dev\LazyUI\Components\Kbd;
+use Step2dev\LazyUI\Components\Label;
+use Step2dev\LazyUI\Components\Link;
+use Step2dev\LazyUI\Components\Loading;
+use Step2dev\LazyUI\Components\Mockup\MockupBrowser;
+use Step2dev\LazyUI\Components\Mockup\MockupCode;
+use Step2dev\LazyUI\Components\Mockup\MockupPhone;
+use Step2dev\LazyUI\Components\Mockup\MockupWindow;
+use Step2dev\LazyUI\Components\Radial;
+use Step2dev\LazyUI\Components\Radio;
+use Step2dev\LazyUI\Components\Range;
+use Step2dev\LazyUI\Components\Rating;
+use Step2dev\LazyUI\Components\Stack;
+use Step2dev\LazyUI\Components\Tab;
+use Step2dev\LazyUI\Components\Tabs;
+use Step2dev\LazyUI\Components\Textarea;
+use Step2dev\LazyUI\Components\Toast;
+use Step2dev\LazyUI\Components\Toggle;
+use Step2dev\LazyUI\Components\Tooltip;
 
-class LazyComponentServiceProvider extends PackageServiceProvider
+class LazyUiServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -59,7 +59,6 @@ class LazyComponentServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('lazy')
-            ->hasConfigFile('lazy-component')
             ->hasViews('lazy')
             ->hasTranslations()
             ->hasViewComponents('lazy',

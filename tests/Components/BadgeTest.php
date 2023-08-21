@@ -1,8 +1,8 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Tests\Components;
+namespace Step2dev\LazyUI\Tests\Components;
 
-use Lazyadm\LazyComponent\Components\Badge;
+use Step2dev\LazyUI\Components\Badge;
 
 it('should have an array of allowed position', function () {
     $component = new Badge();

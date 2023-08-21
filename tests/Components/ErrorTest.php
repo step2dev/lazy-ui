@@ -1,6 +1,6 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Tests\Components;
+namespace Step2dev\LazyUI\Tests\Components;
 
 it('displays lazy alert when key is empty and message is provided', function () {
     $this

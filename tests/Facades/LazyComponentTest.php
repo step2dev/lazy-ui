@@ -1,7 +1,7 @@
 <?php
 
-use Lazyadm\LazyComponent\Facades\LazyComponent;
-use Lazyadm\LazyComponent\LazyComponent as ActualLazyComponent;
+use Step2dev\LazyUI\Facades\LazyComponent;
+use Step2dev\LazyUI\LazyComponent as ActualLazyComponent;
 
 use function Pest\Laravel\mock;
 

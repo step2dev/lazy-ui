@@ -1,11 +1,11 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Tests;
+namespace Step2dev\LazyUI\Tests;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use Lazyadm\LazyComponent\Components\Alert;
-use Lazyadm\LazyComponent\LazyComponent;
+use Step2dev\LazyUI\Components\Alert;
+use Step2dev\LazyUI\LazyComponent;
 
 it('should be an instance of Component', function () {
     // expect(LazyComponent::class)->toBeAbstract();

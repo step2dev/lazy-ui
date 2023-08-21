@@ -1,6 +1,6 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Components\Btn;
+namespace Step2dev\LazyUI\Components\Buttons;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;

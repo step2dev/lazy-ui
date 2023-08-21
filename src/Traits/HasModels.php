@@ -1,6 +1,6 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Traits;
+namespace Step2dev\LazyUI\Traits;
 
 trait HasModels
 {

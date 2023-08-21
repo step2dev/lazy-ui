@@ -1,10 +1,10 @@
 <?php
 
-namespace Lazyadm\Tests\LazyComponent;
+namespace Step2dev\LazyUI\LazyComponent;
 
 use Illuminate\Support\Str;
-use Lazyadm\LazyComponent\LazyComponent;
 use Mockery;
+use Step2dev\LazyUI\LazyComponent;
 
 it('test lazy component getName and getViewName methods', function () {
     // Mocking the LazyComponent abstract class as we cannot instantiate it directly

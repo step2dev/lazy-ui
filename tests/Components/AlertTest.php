@@ -1,6 +1,6 @@
 <?php
 
-namespace Lazyadm\LazyComponent\Tests\Components;
+namespace Step2dev\LazyUI\Tests\Components;
 
 it('can render alert with parameter for both label and slot', function ($parameter, $class) {
     // For Label

@@ -1,7 +1,7 @@
 <?php
 
-//
-// namespace Lazyadm\LazyComponent\Tests\Components;
+namespace Step2dev\LazyUI\Tests\Components;
+
 //
 // it('can render checkbox', function () {
 //     $this

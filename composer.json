@@ -62,7 +62,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Step2dev\\LazyUI\\LazyComponentCommand"
+                "Step2dev\\LazyUI\\LazyUiServiceProvider"
             ],
             "aliases": {
                 "LazyComponent": "Step2dev\\LazyUI\\Facades\\LazyComponent"

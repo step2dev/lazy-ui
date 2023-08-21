@@ -64,5 +64,3 @@ it('can render link with colors param', function ($parameter, $class) {
     'warning' => ['warning', 'link-warning'],
     'error' => ['error', 'link-error'],
 ]);
-
-

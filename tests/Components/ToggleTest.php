@@ -1,4 +1,5 @@
 <?php
+
 //
 // namespace Lazyadm\LazyComponent\Tests\Components;
 //

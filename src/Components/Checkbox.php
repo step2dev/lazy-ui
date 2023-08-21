@@ -18,6 +18,7 @@ class Checkbox extends LazyComponent
             $attributes = $this->getAttributesFromData($data);
             $attributes['type'] = 'checkbox';
             $data['attributes'] = $attributes;
+
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);
 
@@ -27,11 +28,18 @@ class Checkbox extends LazyComponent
                 'checkbox-primary' => $color === 'primary',
                 'checkbox-secondary' => $color === 'secondary',
                 'checkbox-accent' => $color === 'accent',
+                'checkbox-success' => $color === 'success',
+                'checkbox-warning' => $color === 'warning',
+                'checkbox-info' => $color === 'info',
+                'checkbox-error' => $color === 'error',
                 //sizes
                 'checkbox-lg' => $size === 'lg',
                 'checkbox-md' => $size === 'md',
                 'checkbox-sm' => $size === 'sm',
                 'checkbox-xs' => $size === 'xs',
+            ], [
+                'color',
+                'size'
             ]))->render();
         };
     }

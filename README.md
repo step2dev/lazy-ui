@@ -11,31 +11,20 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 
 ## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/lazy-component.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/lazy-component)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+[Support us](https://github.com/sponsors/Step2dev) with a monthly donation and help us continue our activities.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require lazy-adm/lazy-component
+composer require step2dev/lazy-ui
 ```
 
 Optionally, you can publish the views using
 
 ```bash
-php artisan vendor:publish --tag="lazy-component-views"
-```
-
-## Usage
-
-```php
-$lazyComponent = new Step2dev\LazyUI();
-echo $lazyComponent->echoPhrase('Hello, Lazyadm!');
+php artisan vendor:publish --tag="lazy-ui-views"
 ```
 
 ## Testing

@@ -14,48 +14,42 @@ class Loading extends LazyComponent
         return $this->getKeyByAttribute($attribute, $this->allowedTypes(), 'type', $default);
     }
 
-    public function mergeData(array $data, array $classes = [], array $exceptAttributes = []): array
-    {
-        $attributes = $data['attributes'];
-
-        $size = $this->getSizeByAttribute($attributes, 'md');
-        $type = $this->getTypeByAttribute($attributes, 'spinner');
-
-        $classes = [
-            ...$classes,
-            ...[
-                'loading',
-                'loading-xs' => $size === 'xs',
-                'loading-sm' => $size === 'sm',
-                'loading-md' => $size === 'md',
-                'loading-lg' => $size === 'lg',
-                'loading-spinner' => $type === 'spinner',
-                'loading-dots' => $type === 'dots',
-                'loading-ring' => $type === 'ring',
-                'loading-ball' => $type === 'ball',
-                'loading-bars' => $type === 'bars',
-                'loading-infinity' => $type === 'infinity',
-                'text-primary' => $attributes->get('primary', false),
-                'text-secondary' => $attributes->get('secondary', false),
-                'text-accent' => $attributes->get('accent', false),
-                'text-neutral' => $attributes->get('neutral', false),
-                'text-info' => $attributes->get('info', false),
-                'text-success' => $attributes->get('success', false),
-                'text-warning' => $attributes->get('warning', false),
-                'text-error' => $attributes->get('error', false),
-            ],
-        ];
-
-        return parent::mergeData($data, $classes);
-    }
-
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): Closure|View
     {
         return function (array $data) {
-            return view('lazy::loading', $this->mergeData($data))->render();
+            $attributes = $this->getAttributesFromData($data);
+            $size = $this->getSizeByAttribute($attributes, 'md');
+            $type = $this->getTypeByAttribute($attributes, 'spinner');
+            $color = $this->getColorByAttribute($attributes, '');
+
+            return view('lazy::loading', $this->mergeData($data,[
+                    'loading',
+                    'loading-xs' => $size === 'xs',
+                    'loading-sm' => $size === 'sm',
+                    'loading-md' => $size === 'md',
+                    'loading-lg' => $size === 'lg',
+                    'loading-spinner' => $type === 'spinner',
+                    'loading-dots' => $type === 'dots',
+                    'loading-ring' => $type === 'ring',
+                    'loading-ball' => $type === 'ball',
+                    'loading-bars' => $type === 'bars',
+                    'loading-infinity' => $type === 'infinity',
+                    'text-primary' => $color === 'primary',
+                    'text-secondary' => $color === 'secondary',
+                    'text-accent' => $color === 'accent',
+                    'text-neutral' => $color === 'neutral',
+                    'text-info' => $color === 'info',
+                    'text-success' => $color === 'success',
+                    'text-warning' => $color === 'warning',
+                    'text-error' => $color === 'error',
+            ], [
+                'type',
+                'size',
+                'color',
+            ]))->render();
         };
     }
 

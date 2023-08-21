@@ -1,1 +1,1 @@
-<input type="radio" {{ $attributes->merge(['class' => 'radio'  ]) }} />
+<input {{ $attributes->merge(['class' => 'radio'  ]) }} />

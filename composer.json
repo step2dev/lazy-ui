@@ -19,8 +19,9 @@
     ],
     "require": {
         "php": "^8.1",
-        "spatie/laravel-package-tools": "^1.14.0",
-        "illuminate/contracts": "^v10.17.1"
+        "illuminate/contracts": "^v10.17.1",
+        "livewire/livewire": "^3.0",
+        "spatie/laravel-package-tools": "^1.14.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
@@ -75,9 +76,6 @@
             "url": "https://github.com/sponsors/Step2dev"
         }
     ],
-    "suggest": {
-        "livewire/livewire": "Required to use with livewire component"
-    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }

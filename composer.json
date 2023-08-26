@@ -2,11 +2,18 @@
     "name": "step2dev/lazy-ui",
     "description": "Lazy UI is a Laravel package that provides a set of Blade components to rapidly build forms with Tailwind CSS and Daisy UI.",
     "keywords": [
-        "lazy ui",
+        "component",
+        "components",
+        "daisy ui",
+        "design-system",
+        "framework",
         "laravel",
         "lazy component ui",
         "lazy form",
-        "daisy ui"
+        "lazy ui",
+        "tailwind",
+        "tailwindcss",
+        "ui-library"
     ],
     "homepage": "https://github.com/step2dev/lazy-ui",
     "license": "MIT",

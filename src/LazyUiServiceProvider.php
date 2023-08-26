@@ -2,6 +2,7 @@
 
 namespace Step2dev\LazyUI;
 
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Step2dev\LazyUI\Commands\LazyComponentCommand;
@@ -61,6 +62,7 @@ class LazyUiServiceProvider extends PackageServiceProvider
             ->name('lazy')
             ->hasViews('lazy')
             ->hasTranslations()
+            ->hasConfigFile(['lazy/theme'])
             ->hasViewComponents('lazy',
                 Accordion::class,
                 Alert::class,
@@ -111,10 +113,17 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 Toggle::class,
                 Tooltip::class,
             )
-            //            ->hasAssets()
-            //            ->publishesServiceProvider($nameOfYourServiceProvider)
-            //            ->hasRoutes(['web', 'admin'])
-            //            ->hasMigration('create_lazy-component_table')
-            ->hasCommand(LazyComponentCommand::class);
+            ->hasCommand(LazyComponentCommand::class)
+            ->hasInstallCommand(static function (InstallCommand $command) {
+                $command
+                    ->startWith(static function (InstallCommand $installCommand) {
+                        $installCommand->info('Installing Lazy Ui...');
+                    })
+                    ->publishConfigFile()
+                    ->askToStarRepoOnGitHub('step2dev/lazy-ui')
+                    ->endWith(static function (InstallCommand $installCommand) {
+                        $installCommand->info('Lazy Ui installed successfully. Enjoy!');
+                    });
+            });
     }
 }

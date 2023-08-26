@@ -45,6 +45,7 @@ use Step2dev\LazyUI\Components\Stack;
 use Step2dev\LazyUI\Components\Tab;
 use Step2dev\LazyUI\Components\Tabs;
 use Step2dev\LazyUI\Components\Textarea;
+use Step2dev\LazyUI\Components\ThemeSwitcher;
 use Step2dev\LazyUI\Components\Toast;
 use Step2dev\LazyUI\Components\Toggle;
 use Step2dev\LazyUI\Components\Tooltip;
@@ -109,6 +110,7 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 Tabs::class,
                 Tab::class,
                 Textarea::class,
+                ThemeSwitcher::class,
                 Toast::class,
                 Toggle::class,
                 Tooltip::class,

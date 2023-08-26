@@ -62,7 +62,7 @@ class LazyUiServiceProvider extends PackageServiceProvider
             ->name('lazy')
             ->hasViews('lazy')
             ->hasTranslations()
-            ->hasConfigFile(['lazy/theme'])
+            ->hasConfigFile(['lazy/themes'])
             ->hasViewComponents('lazy',
                 Accordion::class,
                 Alert::class,

@@ -4,7 +4,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/step2dev/lazy-ui.svg?style=flat-square)](https://packagist.org/packages/step2dev/lazy-ui)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/step2dev/lazy-ui/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/step2dev/lazy-ui/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/step2dev/lazy-ui/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/step2dev/lazy-ui/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![PHPStan](https://github.com/lazy-adm/lazy-component/actions/workflows/phpstan.yml/badge.svg)](https://github.com/lazy-adm/lazy-component/actions/workflows/phpstan.yml)
+[![PHPStan](https://github.com/step2dev/lazy-ui/actions/workflows/phpstan.yml/badge.svg)](https://github.com/step2dev/lazy-ui/actions/workflows/phpstan.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/step2dev/lazy-ui.svg?style=flat-square)](https://packagist.org/packages/step2dev/lazy-ui)
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.

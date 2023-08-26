@@ -60,7 +60,7 @@ class LazyUiServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('lazy')
+            ->name('lazy-ui')
             ->hasViews('lazy')
             ->hasTranslations()
             ->hasConfigFile(['lazy/themes'])

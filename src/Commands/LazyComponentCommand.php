@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class LazyComponentCommand extends Command
 {
-    public $signature = 'lazy-component';
+    public $signature = 'lazy-ui';
 
     public $description = 'My command';
 

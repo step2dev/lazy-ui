@@ -3,5 +3,5 @@
 ])
 
 <x-lazy-btn xs light :href="$href" {{ $attributes }}>
-    {{ $slot ?: __('lazy::buttons.create') }}
+    {{ $slot ?: __('lazy-ui::buttons.create') }}
 </x-lazy-btn>

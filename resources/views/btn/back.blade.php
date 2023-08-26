@@ -15,6 +15,6 @@
     @if($slot->isNotEmpty())
         {{ $slot }}
     @else
-        {{ __('lazy::buttons.back') }}
+        {{ __('lazy-ui::buttons.back') }}
     @endif
 </x-lazy-btn>

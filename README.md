@@ -21,6 +21,12 @@ You can install the package via composer:
 composer require step2dev/lazy-ui
 ```
 
+You can publish the config file with:
+
+```bash
+php artisan vendor:publish --tag="lazy-ui-config"
+```
+
 Optionally, you can publish the views using
 
 ```bash

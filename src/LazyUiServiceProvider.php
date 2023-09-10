@@ -2,6 +2,7 @@
 
 namespace Step2dev\LazyUI;
 
+use Livewire\Component;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -49,6 +50,7 @@ use Step2dev\LazyUI\Components\ThemeSwitcher;
 use Step2dev\LazyUI\Components\Toast;
 use Step2dev\LazyUI\Components\Toggle;
 use Step2dev\LazyUI\Components\Tooltip;
+use Livewire\Livewire;
 
 class LazyUiServiceProvider extends PackageServiceProvider
 {
@@ -127,5 +129,16 @@ class LazyUiServiceProvider extends PackageServiceProvider
                         $installCommand->info('Lazy Ui installed successfully. Enjoy!');
                     });
             });
+    }
+
+    public function packageRegistered(): void
+    {
+        Component::macro('notify', function (string $type = 'success', string $message = '', string $title = '') {
+            $this->dispatch('notify', compact('message', 'title', 'type'));
+        });
+
+        Component::macro('notifyFlash', function (string $type = 'success', string $message = '', string $title = '') {
+            session()->flash('notify-flash', compact('message', 'title', 'type'));
+        });
     }
 }

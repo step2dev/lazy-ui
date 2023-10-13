@@ -1,12 +1,12 @@
-{{--@props([
+@props([
     'label' => '',
     'help' => '',
     'hr' => ''
-])--}}
+])
 
-<x-lazy-toggle :attributes="$attributes" />
 
-{{--@php
+
+@php
     $required = $attributes['required'] ?? null;
     if ($label) {
         $label .= ($required ? '<i class="text-error">*</i>' : '');
@@ -20,7 +20,7 @@
 <div class="{{ $label ? 'form-control' : 'inline-block' }}">
     <label class="label cursor-pointer{{ $hr ? ' flex flex-col items-start' : '' }}">
         <span class="label-text{{ $hr ? ' mb-1' : '' }}">{!! $label !!}</span>
-        <input id="{{ $parameter }}" {{ $attributes->merge(['type' => 'checkbox', 'class'=> 'toggle']) }}/>
+        <x-lazy-toggle :attributes="$attributes" />
     </label>
     @if ($help)
         <div class="tooltip w-6" data-tip="{{ $help }}">
@@ -45,4 +45,4 @@
         </div>
         @enderror
     @endif
-</div>--}}
+</div>

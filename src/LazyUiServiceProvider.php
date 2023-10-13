@@ -25,7 +25,9 @@ use Step2dev\LazyUI\Components\Divider;
 use Step2dev\LazyUI\Components\Error;
 use Step2dev\LazyUI\Components\Form;
 use Step2dev\LazyUI\Components\Form\FormCheckbox;
+use Step2dev\LazyUI\Components\Form\FormImage;
 use Step2dev\LazyUI\Components\Form\FormInput;
+use Step2dev\LazyUI\Components\Form\FormTextarea;
 use Step2dev\LazyUI\Components\Form\FormToggle;
 use Step2dev\LazyUI\Components\Image;
 use Step2dev\LazyUI\Components\Input;
@@ -91,7 +93,9 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 //                FormGroup::class,
                 FormCheckbox::class,
                 FormInput::class,
+                FormImage::class,
                 FormToggle::class,
+                FormTextarea::class,
                 Image::class,
                 Input::class,
                 Join::class,

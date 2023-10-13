@@ -5,7 +5,9 @@
     'hr' => '',
     'outerClass' => '',
     'icon' => '',
-    'rightIcon' => ''
+    'rightIcon' => '',
+    'src' => '',
+    'type' => 'file',
 ])
 
 @php
@@ -19,9 +21,9 @@
         <x-lazy-label :hr="$hr" :label="$label" :hasError="$hasError" :required="$required"/>
         {{--        <input {{ $attributes->merge(['class' => 'input w-full'.($hasError ? ' text-error' : ''), 'type' => 'text', 'placeholder' => $placeholder ]) }} />--}}
         {{ $slot }}
-        <x-lazy-input :placeholder="$placeholder" :attributes="$attributes" :hasError="$hasError"/>
-        @if($rightIcon)
-            {{ $rightIcon }}
+        <x-lazy-input type="file" :placeholder="$placeholder" :attributes="$attributes" :hasError="$hasError"/>
+        @if($src)
+            <img {{ $attributes->merge(compact('src')) }} alt=""/>
         @endif
     </div>
     @if ($help)

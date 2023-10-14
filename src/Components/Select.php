@@ -14,7 +14,7 @@ class Select extends LazyComponent
         return [
             ...parent::allowedColors(),
             'no-border',
-            'ghost'
+            'ghost',
         ];
     }
 

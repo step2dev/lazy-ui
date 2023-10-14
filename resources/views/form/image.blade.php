@@ -25,7 +25,7 @@
 
     </div>
     @if($src)
-        <x-lazy-image {{ $attributes->merge(compact('src')) }} alt="" class="w-6/12"/>
+        <x-lazy-image {{ $attributes->merge(compact('src')) }} alt="" class="w-6/12 mb-3"/>
     @endif
     @if ($help)
         <div class="tooltip w-6" data-tip="{{ $help }}">

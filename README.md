@@ -88,7 +88,7 @@ composer test
     - [ ] Select
     - [ ] Multi select
     - [x] Textarea
-    - [ ] Toggle
+    - [x] Toggle
 - Layout
 
     - [ ] Artboard

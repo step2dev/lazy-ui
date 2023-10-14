@@ -45,6 +45,7 @@ use Step2dev\LazyUI\Components\Radial;
 use Step2dev\LazyUI\Components\Radio;
 use Step2dev\LazyUI\Components\Range;
 use Step2dev\LazyUI\Components\Rating;
+use Step2dev\LazyUI\Components\Richtext;
 use Step2dev\LazyUI\Components\Stack;
 use Step2dev\LazyUI\Components\Tab;
 use Step2dev\LazyUI\Components\Tabs;
@@ -109,6 +110,7 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 MockupCode::class,
                 MockupPhone::class,
                 MockupWindow::class,
+                RichText::class,
                 Radial::class,
                 Radio::class,
                 Range::class,

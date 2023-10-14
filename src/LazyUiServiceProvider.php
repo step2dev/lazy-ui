@@ -54,7 +54,6 @@ use Step2dev\LazyUI\Components\ThemeSwitcher;
 use Step2dev\LazyUI\Components\Toast;
 use Step2dev\LazyUI\Components\Toggle;
 use Step2dev\LazyUI\Components\Tooltip;
-use Livewire\Livewire;
 
 class LazyUiServiceProvider extends PackageServiceProvider
 {

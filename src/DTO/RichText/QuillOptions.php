@@ -70,7 +70,7 @@ class QuillOptions
         return new self;
     }
 
-    public static function defaults(callable|null $callback = null): ?self
+    public static function defaults(callable $callback = null): ?self
     {
         if ($callback === null) {
             return static::default();

@@ -10,6 +10,7 @@ use Step2dev\LazyUI\LazyComponent;
 class Richtext extends LazyComponent
 {
     public bool $autoFocus = false;
+
     public bool $readonly = false;
 
     public function __construct(public string $placeholder = '', public bool $required = false, public ?QuillOptions $quillOptions = null)
@@ -34,20 +35,20 @@ class Richtext extends LazyComponent
             return view('lazy::richtext', $this->mergeData($data, [
                 'textarea',
                 //colors
-                'textarea-bordered'  => ! $color || $color === 'bordered' || $color !== 'no-border',
-                'textarea-ghost'     => $color === 'ghost',
-                'textarea-primary'   => $color === 'primary',
+                'textarea-bordered' => ! $color || $color === 'bordered' || $color !== 'no-border',
+                'textarea-ghost' => $color === 'ghost',
+                'textarea-primary' => $color === 'primary',
                 'textarea-secondary' => $color === 'secondary',
-                'textarea-accent'    => $color === 'accent',
-                'textarea-info'      => $color === 'info',
-                'textarea-success'   => $color === 'success',
-                'textarea-warning'   => $color === 'warning',
-                'textarea-error'     => $color === 'error',
+                'textarea-accent' => $color === 'accent',
+                'textarea-info' => $color === 'info',
+                'textarea-success' => $color === 'success',
+                'textarea-warning' => $color === 'warning',
+                'textarea-error' => $color === 'error',
                 //sizes
-                'textarea-lg'        => $size === 'lg',
-                'textarea-md'        => $size === 'md',
-                'textarea-sm'        => $size === 'sm',
-                'textarea-xs'        => $size === 'xs',
+                'textarea-lg' => $size === 'lg',
+                'textarea-md' => $size === 'md',
+                'textarea-sm' => $size === 'sm',
+                'textarea-xs' => $size === 'xs',
             ]))->render();
         };
     }
@@ -55,11 +56,11 @@ class Richtext extends LazyComponent
     public function options(): Js
     {
         return Js::from([
-            'autofocus'   => $this->autoFocus,
-            'theme'       => $this->quillOptions->theme,
-            'readOnly'    => $this->readonly,
+            'autofocus' => $this->autoFocus,
+            'theme' => $this->quillOptions->theme,
+            'readOnly' => $this->readonly,
             'placeholder' => $this->placeholder,
-            'toolbar'     => $this->quillOptions->getToolbar(),
+            'toolbar' => $this->quillOptions->getToolbar(),
         ]);
     }
 }

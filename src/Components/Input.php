@@ -14,7 +14,7 @@ class Input extends LazyComponent
         return [
             ...parent::allowedColors(),
             'no-border',
-            'ghost'
+            'ghost',
         ];
     }
 

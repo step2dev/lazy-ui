@@ -9,6 +9,15 @@ class Input extends LazyComponent
 {
     public ?string $placeholder;
 
+    protected function allowedColors(): array
+    {
+        return [
+            ...parent::allowedColors(),
+            'no-border',
+            'ghost'
+        ];
+    }
+
     public function __construct(public string $label = '', string $placeholder = '', public bool $required = false)
     {
         $this->placeholder = (string) str($placeholder ?: $this->label)->trim()->ucfirst();

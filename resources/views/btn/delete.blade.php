@@ -85,7 +85,7 @@
                     location.href = response.data.href || location.reload();
                 })
                 .catch(() => {
-                    // Действия в случае ошибки
+                    console.error('Error response data')
                 })
         }
     </script>

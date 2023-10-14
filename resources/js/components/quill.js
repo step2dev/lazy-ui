@@ -1,4 +1,6 @@
+import {Quill} from "quill";
 
+window.Quill = Quill;
 document.addEventListener('alpine:init', () => {
     Alpine.data('quill', ({__value, options, __config, onTextChange, onInit}) => {
         return {
@@ -8,7 +10,7 @@ document.addEventListener('alpine:init', () => {
 
             init() {
                 if (typeof window.Quill !== 'function') {
-                    throw new Error(`quill requires Quill to be loaded. See https://quilljs.com/docs/installation/`);
+                    throw new Error(`quill requires Quill to be loaded. See https://quilljs.com/docs/`);
                 }
 
                 queueMicrotask(() => {

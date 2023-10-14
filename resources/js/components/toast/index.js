@@ -1,8 +1,7 @@
 import {Timer} from "./timer";
 import sanitizeHtml from 'sanitize-html';
-
 document.addEventListener('alpine:init', () => {
-    Alpine.store('toasts', {
+    window.Alpine.store('toasts', {
         counter: 0, list: [], createToast(message, type = 'success', options = {}) {
             options = options || {}
 

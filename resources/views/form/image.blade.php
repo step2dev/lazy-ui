@@ -22,10 +22,11 @@
         {{--        <input {{ $attributes->merge(['class' => 'input w-full'.($hasError ? ' text-error' : ''), 'type' => 'text', 'placeholder' => $placeholder ]) }} />--}}
         {{ $slot }}
         <x-lazy-input type="file" :placeholder="$placeholder" :attributes="$attributes" :hasError="$hasError"/>
-        @if($src)
-            <img {{ $attributes->merge(compact('src')) }} alt=""/>
-        @endif
+
     </div>
+    @if($src)
+        <x-lazy-image {{ $attributes->merge(compact('src')) }} alt="" class="w-6/12"/>
+    @endif
     @if ($help)
         <div class="tooltip w-6" data-tip="{{ $help }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

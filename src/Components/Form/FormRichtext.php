@@ -19,7 +19,7 @@ class FormRichtext extends LazyComponent
         return function (array $data) {
             $data['attributes']['required'] = $this->required;
 
-            return view('lazy::form.textarea', $this->mergeData($data))->render();
+            return view('lazy::form.richtext', $this->mergeData($data))->render();
         };
     }
 }

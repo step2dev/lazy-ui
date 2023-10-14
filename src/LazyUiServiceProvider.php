@@ -30,6 +30,7 @@ use Step2dev\LazyUI\Components\Form\FormInput;
 use Step2dev\LazyUI\Components\Form\FormRichtext;
 use Step2dev\LazyUI\Components\Form\FormTextarea;
 use Step2dev\LazyUI\Components\Form\FormToggle;
+use Step2dev\LazyUI\Components\FormGroup;
 use Step2dev\LazyUI\Components\Image;
 use Step2dev\LazyUI\Components\Input;
 use Step2dev\LazyUI\Components\Join;
@@ -46,6 +47,7 @@ use Step2dev\LazyUI\Components\Radio;
 use Step2dev\LazyUI\Components\Range;
 use Step2dev\LazyUI\Components\Rating;
 use Step2dev\LazyUI\Components\Richtext;
+use Step2dev\LazyUI\Components\Select;
 use Step2dev\LazyUI\Components\Stack;
 use Step2dev\LazyUI\Components\Tab;
 use Step2dev\LazyUI\Components\Tabs;
@@ -91,7 +93,7 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 Error::class,
                 //                Dropdown::class,
                 Form::class,
-                //                FormGroup::class,
+                FormGroup::class,
                 FormCheckbox::class,
                 FormInput::class,
                 FormImage::class,
@@ -114,7 +116,7 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 Radio::class,
                 Range::class,
                 Rating::class,
-                //                Select::class,
+                Select::class,
                 Stack::class,
                 Tabs::class,
                 Tab::class,

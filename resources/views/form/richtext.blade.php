@@ -19,7 +19,7 @@
         <x-lazy-label :hr="$hr" :label="$label" :hasError="$hasError" :required="$required"/>
         {{--        <input {{ $attributes->merge(['class' => 'input w-full'.($hasError ? ' text-error' : ''), 'type' => 'text', 'placeholder' => $placeholder ]) }} />--}}
         {{ $slot }}
-        <x-lazy-richtext :placeholder="$placeholder" :attributes="$attributes" :hasError="$hasError"/>
+        <x-lazy-richtext class="w-" :placeholder="$placeholder" :attributes="$attributes" :hasError="$hasError"/>
         @if($rightIcon)
             {{ $rightIcon }}
         @endif

@@ -3,6 +3,7 @@
 namespace Step2dev\LazyUI\Commands;
 
 use Illuminate\Console\Command;
+
 use function Laravel\Prompts\confirm;
 
 class LazyInstallCommand extends Command

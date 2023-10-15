@@ -6,7 +6,6 @@ use Livewire\Component;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Step2dev\LazyUI\Commands\LazyComponentCommand;
 use Step2dev\LazyUI\Commands\LazyInstallCommand;
 use Step2dev\LazyUI\Components\Accordion;
 use Step2dev\LazyUI\Components\Alert;

@@ -4,6 +4,7 @@ namespace Step2dev\LazyUI\Commands;
 
 use Illuminate\Console\Command;
 
+use RuntimeException;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\select;
@@ -54,12 +55,12 @@ class LazyInstallCommand extends Command
 
         if (! file_exists(base_path('resources/scss/lazy.scss'))) {
             info('Copy lazy.scss');
-            copy(__DIR__.'/../../stubs/scss/lazy.scss', base_path('resources/scss/lazy.scss'));
+            $this->copy(__DIR__.'/../../stubs/scss/lazy.scss', base_path('resources/scss/lazy.scss'));
         }
 
         if (! file_exists(base_path('resources/js/lazy.js'))) {
             info('Copy lazy.js');
-            copy(__DIR__.'/../../stubs/js/lazy.js', base_path('resources/js/lazy.js'));
+            $this->copy(__DIR__.'/../../stubs/js/lazy.js', base_path('resources/js/lazy.js'));
         }
 
         $select = select(
@@ -90,5 +91,14 @@ class LazyInstallCommand extends Command
         }
 
         return self::SUCCESS;
+    }
+
+    public function copy(string $from, string $to): void
+    {
+        if (! mkdir($concurrentDirectory = dirname($to), 0755, true) && ! is_dir($concurrentDirectory)) {
+            throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        }
+
+        copy($from, $to);
     }
 }

@@ -60,16 +60,6 @@
                         href="{{ $href }}"
                         outline error sm :label="__('lazy.btn.delete')" sm class="mr-2">
                     </x-lazy-btn>
-                    {{--                    <button @click="deleteItem">Delete</button>--}}
-                    {{--                    <form x-ref="form" method="POST" @submit.prevent="showModal = false; $refs.form.submit()">--}}
-                    {{--                        @csrf--}}
-                    {{--                        @method('DELETE')--}}
-                    {{--                        <button type="submit"--}}
-                    {{--                                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-red-600 bg-white border border-transparent rounded-md hover:bg-red-50 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-800 transition duration-150 ease-in-out">--}}
-                    {{--                            Delete--}}
-                    {{--                        </button>--}}
-                    {{--                    </form>--}}
-
                     <button @click="showModal = false" type="button"
                             class="mt-3 w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 border border-transparent rounded-md hover:bg-gray-300 focus:outline-none focus:border-gray-500 focus:shadow-outline-gray sm:mt-0 sm:w-auto sm:text-sm transition duration-150 ease-in-out">
                         Cancel
@@ -79,13 +69,15 @@
         </div>
     </div>
     <script>
-        function deleteItem () {
+        function deleteItem() {
             axios.delete('{{ $href }}')
                 .then((response) => {
+                    window.toast.success(response.data.message, {title: 'Success'})
+
                     location.href = response.data.href || location.reload();
                 })
-                .catch(() => {
-                    console.error('Error response data')
+                .catch((error) => {
+                    window.toast.error(error.response.data.message, {title: 'Error'})
                 })
         }
     </script>

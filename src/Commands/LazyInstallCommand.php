@@ -3,8 +3,8 @@
 namespace Step2dev\LazyUI\Commands;
 
 use Illuminate\Console\Command;
-
 use RuntimeException;
+
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\select;

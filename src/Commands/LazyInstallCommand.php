@@ -52,14 +52,14 @@ class LazyInstallCommand extends Command
             copy(__DIR__.'/../../stubs/postcss.config.js', base_path('postcss.config.js'));
         }
 
-        if (! file_exists('resources/scss/lazy.scss')) {
+        if (! file_exists(base_path('resources/scss/lazy.scss'))) {
             info('Copy lazy.scss');
-            copy(__DIR__.'/../../stubs/scss/lazy.scss', 'resources/scss/lazy.scss');
+            copy(__DIR__.'/../../stubs/scss/lazy.scss', base_path('resources/scss/lazy.scss'));
         }
 
-        if (! file_exists('resources/js/lazy.js')) {
+        if (! file_exists(base_path('resources/js/lazy.js'))) {
             info('Copy lazy.js');
-            copy(__DIR__.'/../../stubs/js/lazy.js', 'resources/js/lazy.js');
+            copy(__DIR__.'/../../stubs/js/lazy.js', base_path('resources/js/lazy.js'));
         }
 
         $select = select(

@@ -5,6 +5,7 @@ namespace Step2dev\LazyUI\Commands;
 use Illuminate\Console\Command;
 
 use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\info;
 
 class LazyInstallCommand extends Command
 {
@@ -22,6 +23,7 @@ class LazyInstallCommand extends Command
             $packages = [
                 '-D tailwindcss postcss autoprefixer sass',
                 '-D daisyui@latest',
+                '-D @tailwindcss/forms',
                 'axios',
                 'quill',
                 'sanitize-html',
@@ -40,8 +42,18 @@ class LazyInstallCommand extends Command
             default: true,
             hint: 'This will initialize tailwindcss'
         )) {
-            $this->info('Run command "npm i npx tailwindcss init"');
+            info('Run command "npm i npx tailwindcss init"');
             shell_exec('npx tailwindcss init');
+        }
+
+        if (! file_exists(base_path('postcss.config.js'))) {
+            info('Copy postcss.config.js');
+            copy(__DIR__.'/../../stubs/postcss.config.js', base_path('postcss.config.js'));
+        }
+
+        if (! file_exists(base_path('tailwind.config.js'))) {
+            info('Copy tailwind.config.js');
+            copy(__DIR__.'/../../stubs/tailwind.lazy.config.js', base_path('tailwind.config.js'));
         }
 
         return self::SUCCESS;

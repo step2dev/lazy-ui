@@ -7,6 +7,7 @@ use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Step2dev\LazyUI\Commands\LazyComponentCommand;
+use Step2dev\LazyUI\Commands\LazyInstallCommand;
 use Step2dev\LazyUI\Components\Accordion;
 use Step2dev\LazyUI\Components\Alert;
 use Step2dev\LazyUI\Components\Avatar;
@@ -126,11 +127,12 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 Toggle::class,
                 Tooltip::class,
             )
-            ->hasCommand(LazyComponentCommand::class)
+            ->hasCommand(LazyInstallCommand::class)
             ->hasInstallCommand(static function (InstallCommand $command) {
                 $command
                     ->startWith(static function (InstallCommand $installCommand) {
                         $installCommand->info('Installing Lazy Ui...');
+                        $installCommand->call('lazy-ui:install-package');
                     })
                     ->publishConfigFile()
                     ->askToStarRepoOnGitHub('step2dev/lazy-ui')

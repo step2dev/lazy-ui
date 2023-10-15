@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\info;
+use function Laravel\Prompts\select;
 
 class LazyInstallCommand extends Command
 {
@@ -51,10 +52,38 @@ class LazyInstallCommand extends Command
             copy(__DIR__.'/../../stubs/postcss.config.js', base_path('postcss.config.js'));
         }
 
-        if (! file_exists(base_path('tailwind.config.js'))) {
-            info('Copy tailwind.config.js');
-            copy(__DIR__.'/../../stubs/tailwind.lazy.config.js', base_path('tailwind.config.js'));
+        $select = select(
+            label: 'What type config do you want to use?',
+            options: [
+                'tailwind.config.js'      => 'tailwind.config.js',
+                'tailwind.lazy.config.js' => 'tailwind.lazy.config.js If you use tailwindcss on site, you can use this config',
+                'ignore'                  => 'Ignore',
+            ],
+            default: 'tailwind.lazy.config.js',
+        );
+
+        if ($select === 'ignore') {
+            return self::SUCCESS;
         }
+
+        if ($select === 'tailwind.config.js') {
+            info('Copy tailwind.config.js');
+            copy(__DIR__.'/../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
+
+            return self::SUCCESS;
+        }
+
+        if ($select === 'tailwind.lazy.config.js') {
+            info('Copy tailwind.lazy.config.js');
+
+            copy(__DIR__.'/../../stubs/tailwind.lazy.config.js', base_path('tailwind.lazy.config.js'));
+
+            info('use @config "path to file/tailwind.admin.config.js" in your css file');
+
+            return self::SUCCESS;
+        }
+
+        info('success');
 
         return self::SUCCESS;
     }

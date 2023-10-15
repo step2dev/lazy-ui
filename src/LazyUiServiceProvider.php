@@ -38,6 +38,7 @@ use Step2dev\LazyUI\Components\Kbd;
 use Step2dev\LazyUI\Components\Label;
 use Step2dev\LazyUI\Components\Link;
 use Step2dev\LazyUI\Components\Loading;
+use Step2dev\LazyUI\Components\Menu;
 use Step2dev\LazyUI\Components\Mockup\MockupBrowser;
 use Step2dev\LazyUI\Components\Mockup\MockupCode;
 use Step2dev\LazyUI\Components\Mockup\MockupPhone;
@@ -72,34 +73,32 @@ class LazyUiServiceProvider extends PackageServiceProvider
             ->hasTranslations()
             ->hasConfigFile(['lazy/themes'])
             ->hasViewComponents('lazy',
+                //                Dropdown::class,
+                //Carousel::class,
                 Accordion::class,
                 Alert::class,
                 Avatar::class,
                 AvatarGroup::class,
                 Badge::class,
                 Breadcrumbs::class,
-                // button
                 Btn::class,
                 BtnBack::class,
                 BtnDelete::class,
                 BtnGroup::class,
                 BtnLogout::class,
-                // end button
-                //Carousel::class,
                 Chat::class,
                 Checkbox::class,
                 Countdown::class,
                 Divider::class,
                 Error::class,
-                //                Dropdown::class,
                 Form::class,
-                FormGroup::class,
                 FormCheckbox::class,
-                FormInput::class,
+                FormGroup::class,
                 FormImage::class,
-                FormToggle::class,
-                FormTextarea::class,
+                FormInput::class,
                 FormRichtext::class,
+                FormTextarea::class,
+                FormToggle::class,
                 Image::class,
                 Input::class,
                 Join::class,
@@ -107,19 +106,20 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 Label::class,
                 Link::class,
                 Loading::class,
+                Menu::class,
                 MockupBrowser::class,
                 MockupCode::class,
                 MockupPhone::class,
                 MockupWindow::class,
-                RichText::class,
                 Radial::class,
                 Radio::class,
                 Range::class,
                 Rating::class,
+                RichText::class,
                 Select::class,
                 Stack::class,
-                Tabs::class,
                 Tab::class,
+                Tabs::class,
                 Textarea::class,
                 ThemeSwitcher::class,
                 Toast::class,

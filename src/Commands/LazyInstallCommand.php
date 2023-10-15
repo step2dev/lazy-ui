@@ -52,6 +52,16 @@ class LazyInstallCommand extends Command
             copy(__DIR__.'/../../stubs/postcss.config.js', base_path('postcss.config.js'));
         }
 
+        if (! file_exists('resources/scss/lazy.scss')) {
+            info('Copy lazy.scss');
+            copy(__DIR__.'/../../stubs/scss/lazy.scss', 'resources/scss/lazy.scss');
+        }
+
+        if (! file_exists('resources/js/lazy.js')) {
+            info('Copy lazy.js');
+            copy(__DIR__.'/../../stubs/js/lazy.js', 'resources/js/lazy.js');
+        }
+
         $select = select(
             label: 'What type config do you want to use?',
             options: [
@@ -69,8 +79,6 @@ class LazyInstallCommand extends Command
         if ($select === 'tailwind.config.js') {
             info('Copy tailwind.config.js');
             copy(__DIR__.'/../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
-
-            return self::SUCCESS;
         }
 
         if ($select === 'tailwind.lazy.config.js') {
@@ -79,11 +87,7 @@ class LazyInstallCommand extends Command
             copy(__DIR__.'/../../stubs/tailwind.lazy.config.js', base_path('tailwind.lazy.config.js'));
 
             info('use @config "path to file/tailwind.admin.config.js" in your css file');
-
-            return self::SUCCESS;
         }
-
-        info('success');
 
         return self::SUCCESS;
     }

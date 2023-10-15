@@ -28,6 +28,7 @@ use Step2dev\LazyUI\Components\Form\FormCheckbox;
 use Step2dev\LazyUI\Components\Form\FormImage;
 use Step2dev\LazyUI\Components\Form\FormInput;
 use Step2dev\LazyUI\Components\Form\FormRichtext;
+use Step2dev\LazyUI\Components\Form\FormSelect;
 use Step2dev\LazyUI\Components\Form\FormTextarea;
 use Step2dev\LazyUI\Components\Form\FormToggle;
 use Step2dev\LazyUI\Components\FormGroup;
@@ -97,6 +98,7 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 FormImage::class,
                 FormInput::class,
                 FormRichtext::class,
+                FormSelect::class,
                 FormTextarea::class,
                 FormToggle::class,
                 Image::class,

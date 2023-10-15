@@ -95,7 +95,10 @@ class LazyInstallCommand extends Command
 
     public function copy(string $from, string $to): void
     {
-        if (! mkdir($concurrentDirectory = dirname($to), 0755, true) && ! is_dir($concurrentDirectory)) {
+        $concurrentDirectory = dirname($to);
+
+        // The directory doesn't exist, so create it.
+        if (! is_dir($concurrentDirectory) && ! mkdir($concurrentDirectory, 0755, true) && ! is_dir($concurrentDirectory)) {
             throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
         }
 

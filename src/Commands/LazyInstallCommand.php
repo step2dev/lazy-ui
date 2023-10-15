@@ -55,9 +55,9 @@ class LazyInstallCommand extends Command
         $select = select(
             label: 'What type config do you want to use?',
             options: [
-                'tailwind.config.js'      => 'tailwind.config.js',
+                'tailwind.config.js' => 'tailwind.config.js',
                 'tailwind.lazy.config.js' => 'tailwind.lazy.config.js If you use tailwindcss on site, you can use this config',
-                'ignore'                  => 'Ignore',
+                'ignore' => 'Ignore',
             ],
             default: 'tailwind.lazy.config.js',
         );

@@ -1,27 +1,26 @@
 @props([
     'label' => '',
+    'placeholder' => '',
     'help' => '',
-    'hr' => ''
+    'hr' => '',
+    'outerClass' => '',
+    'icon' => '',
+    'rightIcon' => ''
 ])
 
 @php
-    $required = $attributes['required'] ?? null;
-    if ($label) {
-        $label .= ($required ? '<i class="text-error">*</i>' : '');
-    }
-    $model = $attributes->wire('model');
-    $parameter = $model->value();
-    $class = [];
+    $required = $attributes['required'] ?? false;
+    $placeholder = $placeholder ?: $label;
+    $parameter = $attributes->wire('model')->value();
+    $hasError = $errors->has($parameter);
 @endphp
-
-
-<div class="{{ $label ? 'form-control' : 'inline-block' }}">
-    <label class="label cursor-pointer{{ $hr ? ' flex flex-col items-start' : '' }}">
-        <span class="label-text{{ $hr ? ' mb-1' : '' }}">{!! $label !!}</span>
+<div class="form-control {{ $outerClass }}">
+    <div class="mb-3 flex{{ $hr ? ' flex-col items-start' : ' flex-row' }}">
+        <x-lazy-label :hr="$hr" :label="$label" :hasError="$hasError" :required="$required"/>
         <x-lazy-select :attributes="$attributes">
             {{ $slot }}
         </x-lazy-select>
-    </label>
+    </div>
     @if ($help)
         <div class="tooltip w-6" data-tip="{{ $help }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

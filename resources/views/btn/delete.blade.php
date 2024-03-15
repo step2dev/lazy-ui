@@ -71,10 +71,10 @@
                     {{--                        </button>--}}
                     {{--                    </form>--}}
 
-                    <button @click="showModal = false" type="button"
+                    <x-lazy-btn @click="showModal = false" type="button"
                             class="mt-3 w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 border border-transparent rounded-md hover:bg-gray-300 focus:outline-none focus:border-gray-500 focus:shadow-outline-gray sm:mt-0 sm:w-auto sm:text-sm transition duration-150 ease-in-out">
                         Cancel
-                    </button>
+                    </x-lazy-btn>
                 </div>
             </div>
         </div>

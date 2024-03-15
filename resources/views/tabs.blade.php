@@ -1,10 +1,7 @@
 @props([
     'type' => '',
-    'size' => ''
 ])
 
-<div {{ $attributes->class([
-    'tabs-boxed' => $type === 'boxed',
-]) }}>
+<div {{ $attributes }}>
     {{ $slot }}
 </div>

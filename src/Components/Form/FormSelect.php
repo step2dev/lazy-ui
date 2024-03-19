@@ -5,7 +5,7 @@ namespace Step2dev\LazyUI\Components\Form;
 use Illuminate\Contracts\View\View;
 use Step2dev\LazyUI\LazyComponent;
 
-class FormRichtext extends LazyComponent
+class FormSelect extends LazyComponent
 {
     public ?string $placeholder;
 
@@ -19,7 +19,7 @@ class FormRichtext extends LazyComponent
         return function (array $data) {
             $data['attributes']['required'] = $this->required;
 
-            return view('lazy::form.richtext', $this->mergeData($data))->render();
+            return view('lazy::form.select', $this->mergeData($data))->render();
         };
     }
 }

@@ -2,17 +2,10 @@
     'hasError' => false,
     'value' => '',
     'options' => [],
-])
-<textarea {{ $attributes->merge(['class' => 'textarea'.($hasError ? ' textarea-error' : '')]) }}>{{ $value ?: $slot }}</textarea>
-
-@props([
-    'hasError' => false,
-    'value' => '',
-    'options' => [],
     'quillUniq' => 'quill'
 ])
 <div
-     {{ $attributes->merge(['class' => ($hasError ? ' textarea-error' : '' }}
+     {{ $attributes->merge(['class' => $hasError ? ' textarea-error' : '' ]) }}
      x-data="quill({
 __value: @entangle($attributes->wire('model')),
 options: {{ $options }},

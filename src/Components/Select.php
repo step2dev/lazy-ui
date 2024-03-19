@@ -5,7 +5,7 @@ namespace Step2dev\LazyUI\Components;
 use Illuminate\Contracts\View\View;
 use Step2dev\LazyUI\LazyComponent;
 
-class Input extends LazyComponent
+class Select extends LazyComponent
 {
     public ?string $placeholder;
 
@@ -33,23 +33,23 @@ class Input extends LazyComponent
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);
 
-            return view('lazy::input', $this->mergeData($data, [
-                'input',
+            return view('lazy::select', $this->mergeData($data, [
+                'select',
                 //colors
-                'input-bordered' => ! $color || $color === 'bordered' || $color !== 'no-border',
-                'input-ghost' => $color === 'ghost',
-                'input-primary' => $color === 'primary',
-                'input-secondary' => $color === 'secondary',
-                'input-accent' => $color === 'accent',
-                'input-info' => $color === 'info',
-                'input-success' => $color === 'success',
-                'input-warning' => $color === 'warning',
-                'input-error' => $color === 'error',
+                'select-bordered' => ! $color || $color === 'bordered' || $color !== 'no-border',
+                'select-ghost' => $color === 'ghost',
+                'select-primary' => $color === 'primary',
+                'select-secondary' => $color === 'secondary',
+                'select-accent' => $color === 'accent',
+                'select-info' => $color === 'info',
+                'select-success' => $color === 'success',
+                'select-warning' => $color === 'warning',
+                'select-error' => $color === 'error',
                 //sizes
-                'input-lg' => $size === 'lg',
-                'input-md' => $size === 'md',
-                'input-sm' => $size === 'sm',
-                'input-xs' => $size === 'xs',
+                'select-lg' => $size === 'lg',
+                'select-md' => $size === 'md',
+                'select-sm' => $size === 'sm',
+                'select-xs' => $size === 'xs',
             ]))->render();
         };
     }

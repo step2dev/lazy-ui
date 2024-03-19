@@ -20,6 +20,7 @@ use Step2dev\LazyUI\Components\Buttons\BtnDelete;
 use Step2dev\LazyUI\Components\Buttons\BtnLogout;
 use Step2dev\LazyUI\Components\Chat;
 use Step2dev\LazyUI\Components\Checkbox;
+use Step2dev\LazyUI\Components\Choices;
 use Step2dev\LazyUI\Components\Countdown;
 use Step2dev\LazyUI\Components\Divider;
 use Step2dev\LazyUI\Components\Error;
@@ -54,6 +55,7 @@ use Step2dev\LazyUI\Components\ThemeSwitcher;
 use Step2dev\LazyUI\Components\Toast;
 use Step2dev\LazyUI\Components\Toggle;
 use Step2dev\LazyUI\Components\Tooltip;
+use Step2dev\LazyUI\Components\Widgets\CountryTimeWidget;
 
 class LazyUiServiceProvider extends PackageServiceProvider
 {
@@ -87,6 +89,7 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 Chat::class,
                 Checkbox::class,
                 Countdown::class,
+                Choices::class,
                 Divider::class,
                 Error::class,
                 //                Dropdown::class,
@@ -123,6 +126,8 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 Toast::class,
                 Toggle::class,
                 Tooltip::class,
+                // widgets
+                CountryTimeWidget::class,
             )
             ->hasCommand(LazyComponentCommand::class)
             ->hasInstallCommand(static function (InstallCommand $command) {

@@ -33,9 +33,9 @@ class CountryTimeWidget extends Component
     public function render(): Factory|View
     {
         return view('lazy::widget.country-time-widget', [
-            'timezone'  => $this->timezone,
-            'uniqid'    => $this->uniqid,
-            'title'     => $this->title,
+            'timezone' => $this->timezone,
+            'uniqid' => $this->uniqid,
+            'title' => $this->title,
             'timestamp' => $this->timestamp,
         ]);
     }

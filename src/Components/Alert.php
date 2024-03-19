@@ -8,7 +8,7 @@ use Step2dev\LazyUI\LazyComponent;
 
 class Alert extends LazyComponent
 {
-    public function getTypeByAttribute(ComponentAttributeBag $attribute, string $default = null): ?string
+    public function getTypeByAttribute(ComponentAttributeBag $attribute, ?string $default = null): ?string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedColors(), 'type', $default);
     }

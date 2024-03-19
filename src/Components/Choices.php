@@ -12,8 +12,6 @@ class Choices extends LazyComponent
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Closure
      */
     public function render(): \Closure
     {

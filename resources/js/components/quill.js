@@ -1,4 +1,4 @@
-import {Quill} from "quill";
+import Quill from "quill";
 
 window.Quill = Quill;
 document.addEventListener('alpine:init', () => {

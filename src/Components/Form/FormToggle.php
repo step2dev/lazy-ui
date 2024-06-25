@@ -7,9 +7,7 @@ use Step2dev\LazyUI\LazyComponent;
 
 class FormToggle extends LazyComponent
 {
-    public function __construct(public string $label = '')
-    {
-    }
+    public function __construct(public string $label = '') {}
 
     public function render(): \Closure|View
     {

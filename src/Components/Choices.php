@@ -6,9 +6,7 @@ use Step2dev\LazyUI\LazyComponent;
 
 class Choices extends LazyComponent
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
      * Get the view / contents that represent the component.

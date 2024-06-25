@@ -7,9 +7,7 @@ use Step2dev\LazyUI\LazyComponent;
 
 class Tabs extends LazyComponent
 {
-    public function __construct(public string $type = '', public string $size = '')
-    {
-    }
+    public function __construct(public string $type = '', public string $size = '') {}
 
     public function allowedTabType(): array
     {

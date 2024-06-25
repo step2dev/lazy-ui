@@ -8,9 +8,7 @@ use Step2dev\LazyUI\LazyComponent;
 
 class Menu extends LazyComponent
 {
-    public function __construct(public bool $join = true)
-    {
-    }
+    public function __construct(public bool $join = true) {}
 
     /**
      * Get the view / contents that represent the component.

@@ -32,7 +32,7 @@ class Tabs extends LazyComponent
             return view('lazy::tabs', $this->mergeData($data, [
                 'tabs',
                 'tabs-boxed' => $this->type === 'boxed',
-                //sizes
+                // sizes
                 'tabs-lg' => $size === 'lg',
                 'tabs-md' => $size === 'md',
                 'tabs-sm' => $size === 'sm',

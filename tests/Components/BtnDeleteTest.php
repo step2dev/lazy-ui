@@ -40,9 +40,9 @@ it('can render with outline attribute', function () {
         ->assertSee('btn-outline');
 });
 
-//it('can render with disabled attribute', function () {
+// it('can render with disabled attribute', function () {
 //    $this
 //        ->blade('<x-lazy-btn-delete disabled/>')
 //        ->assertSee('btn-disabled')
 //        ->assertSee('disabled');
-//});
+// });

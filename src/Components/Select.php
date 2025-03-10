@@ -35,7 +35,7 @@ class Select extends LazyComponent
 
             return view('lazy::select', $this->mergeData($data, [
                 'select',
-                //colors
+                // colors
                 'select-bordered' => ! $color || $color === 'bordered' || $color !== 'no-border',
                 'select-ghost' => $color === 'ghost',
                 'select-primary' => $color === 'primary',
@@ -45,7 +45,7 @@ class Select extends LazyComponent
                 'select-success' => $color === 'success',
                 'select-warning' => $color === 'warning',
                 'select-error' => $color === 'error',
-                //sizes
+                // sizes
                 'select-lg' => $size === 'lg',
                 'select-md' => $size === 'md',
                 'select-sm' => $size === 'sm',

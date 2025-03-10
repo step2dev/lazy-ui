@@ -26,7 +26,7 @@ class Textarea extends LazyComponent
 
             return view('lazy::textarea', $this->mergeData($data, [
                 'textarea',
-                //colors
+                // colors
                 'textarea-bordered' => ! $color || $color === 'bordered' || $color !== 'no-border',
                 'textarea-ghost' => $color === 'ghost',
                 'textarea-primary' => $color === 'primary',
@@ -36,7 +36,7 @@ class Textarea extends LazyComponent
                 'textarea-success' => $color === 'success',
                 'textarea-warning' => $color === 'warning',
                 'textarea-error' => $color === 'error',
-                //sizes
+                // sizes
                 'textarea-lg' => $size === 'lg',
                 'textarea-md' => $size === 'md',
                 'textarea-sm' => $size === 'sm',

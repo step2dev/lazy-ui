@@ -83,6 +83,6 @@
             "url": "https://github.com/sponsors/Step2dev"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

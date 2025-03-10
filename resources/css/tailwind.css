@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+    themes: light --default, dark;
+    logs: false;
+}
+
+@theme {
+    --color-primary: #6366f1;
+    --color-secondary: #9333ea;
+    --font-base: 'Inter', sans-serif;
+}

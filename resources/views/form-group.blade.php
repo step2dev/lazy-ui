@@ -13,7 +13,7 @@
     $class = [];
 @endphp
 
-<div class="{{ $label ? 'form-control' : 'inline-block' }}">
+<div class="{{ $label ? 'fieldset' : 'inline-block' }}">
     <label
         class="label cursor-pointer{{ $hr ? ' flex flex-col items-start' : 'flex flex-row items-center justify-start' }}">
         {{ $slot }}

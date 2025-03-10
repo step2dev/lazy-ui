@@ -17,7 +17,7 @@
 @endphp
 
 
-<div class="{{ $label ? 'form-control' : 'inline-block' }}">
+<div class="{{ $label ? 'fieldset' : 'inline-block' }}">
     <label class="label cursor-pointer{{ $hr ? ' flex flex-col items-start' : '' }}">
         <span class="label-text{{ $hr ? ' mb-1' : '' }}">{!! $label !!}</span>
         <x-lazy-toggle :attributes="$attributes" />

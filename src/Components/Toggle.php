@@ -18,11 +18,11 @@ class Toggle extends Checkbox
 
             return view('lazy::toggle', $this->mergeData($data, [
                 'toggle',
-                // colors
+                //colors
                 'toggle-primary' => $color === 'primary',
                 'toggle-secondary' => $color === 'secondary',
                 'toggle-accent' => $color === 'accent',
-                // sizes
+                //sizes
                 'toggle-lg' => $size === 'lg',
                 'toggle-md' => $size === 'md',
                 'toggle-sm' => $size === 'sm',

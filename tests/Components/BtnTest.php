@@ -5,7 +5,7 @@ namespace Step2dev\LazyUI\Tests\Components;
 use Step2dev\LazyUI\Components\Btn;
 
 it('should have an array of allowed colors', function () {
-    $component = new Btn();
+    $component = new Btn;
 
     expect($component->allowedColors())->toBeArray();
 });

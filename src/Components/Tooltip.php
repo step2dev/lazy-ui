@@ -24,7 +24,7 @@ class Tooltip extends LazyComponent
                 'tooltip-right' => $position === 'right',
                 'tooltip-bottom' => $position === 'bottom',
                 'tooltip-left' => $position === 'left',
-                //colors
+                // colors
                 'tooltip-primary' => $color === 'primary',
                 'tooltip-secondary' => $color === 'secondary',
                 'tooltip-accent' => $color === 'accent',

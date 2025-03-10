@@ -5,7 +5,7 @@ namespace Step2dev\LazyUI\Tests\Components;
 use Step2dev\LazyUI\Components\Badge;
 
 it('should have an array of allowed position', function () {
-    $component = new Badge();
+    $component = new Badge;
 
     expect($component->allowedPosition())->toBeArray()->not()->toBeEmpty();
 });

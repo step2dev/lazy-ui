@@ -77,7 +77,7 @@ class LazyUiServiceProvider extends PackageServiceProvider
             ->hasConfigFile(['lazy/themes'])
             ->hasViewComponents('lazy',
                 //                Dropdown::class,
-                // Carousel::class,
+                //Carousel::class,
                 Accordion::class,
                 Alert::class,
                 Avatar::class,

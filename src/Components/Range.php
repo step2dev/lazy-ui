@@ -29,7 +29,7 @@ class Range extends LazyComponent
 
             return view('lazy::range', $this->mergeData($data, [
                 'range',
-                // colors
+                //colors
                 'range-primary' => $color === 'primary',
                 'range-secondary' => $color === 'secondary',
                 'range-accent' => $color === 'accent',
@@ -37,7 +37,7 @@ class Range extends LazyComponent
                 'range-success' => $color === 'success',
                 'range-warning' => $color === 'warning',
                 'range-error' => $color === 'error',
-                // sizes
+                //sizes
                 'range-lg' => $size === 'lg',
                 'range-md' => $size === 'md',
                 'range-sm' => $size === 'sm',

@@ -14,7 +14,7 @@
     $parameter = $attributes->wire('model')->value();
     $hasError = $errors->has($parameter);
 @endphp
-<div class="form-control {{ $outerClass }}">
+<div class="fieldset {{ $outerClass }}">
     <div class="mb-3 flex{{ $hr ? ' flex-col items-start' : ' flex-row' }}">
         <x-lazy-label :hr="$hr" :label="$label" :hasError="$hasError" :required="$required"/>
         {{ $slot }}

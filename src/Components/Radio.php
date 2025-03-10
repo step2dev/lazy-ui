@@ -19,7 +19,7 @@ class Radio extends LazyComponent
 
             return view('lazy::radio', $this->mergeData($data, [
                 'radio',
-                // colors
+                //colors
                 'radio-primary' => $color === 'primary',
                 'radio-secondary' => $color === 'secondary',
                 'radio-accent' => $color === 'accent',
@@ -27,7 +27,7 @@ class Radio extends LazyComponent
                 'radio-success' => $color === 'success',
                 'radio-warning' => $color === 'warning',
                 'radio-error' => $color === 'error',
-                // sizes
+                //sizes
                 'radio-lg' => $size === 'lg',
                 'radio-md' => $size === 'md',
                 'radio-sm' => $size === 'sm',

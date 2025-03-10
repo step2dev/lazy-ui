@@ -22,7 +22,7 @@
                    @click="$refs.button.focus();">{{ $label }}</label>
             <div class="mt-1 relative">
                 <button x-bind="button" type="button"
-                        class="relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        class="relative w-full border border-gray-300 rounded-md shadow-xs pl-3 pr-10 py-2 text-left cursor-default focus:outline-hidden focus:ring-3-1 focus:ring-3-indigo-500 focus:border-indigo-500 sm:text-sm"
                         @listbox-focus.window="$event.detail === '' && $refs.button.click();">
                     <span class="block truncate" x-bind="selectedItemLabel"></span>
                     <span
@@ -31,7 +31,7 @@
                     </span>
                 </button>
                 <ul x-bind="listbox"
-                    class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+                    class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-3-1 ring-3-black ring-3-opacity-5 overflow-auto focus:outline-hidden sm:text-sm"
                     role="listbox" tabindex="-1">
                     <template x-bind="list" hidden aria-hidden="true">
                         <li x-bind="listItem"

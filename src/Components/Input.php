@@ -9,6 +9,15 @@ class Input extends LazyComponent
 {
     public ?string $placeholder;
 
+    protected function allowedColors(): array
+    {
+        return [
+            ...parent::allowedColors(),
+            'no-border',
+            'ghost',
+        ];
+    }
+
     public function __construct(public string $label = '', string $placeholder = '', public bool $required = false)
     {
         $this->placeholder = (string) str($placeholder ?: $this->label)->trim()->ucfirst();
@@ -27,7 +36,7 @@ class Input extends LazyComponent
             return view('lazy::input', $this->mergeData($data, [
                 'input',
                 //colors
-                'input-bordered' => $color === 'bordered',
+                'input-bordered' => ! $color || $color === 'bordered' || $color !== 'no-border',
                 'input-ghost' => $color === 'ghost',
                 'input-primary' => $color === 'primary',
                 'input-secondary' => $color === 'secondary',

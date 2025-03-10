@@ -6,7 +6,7 @@
     ],
     'themes' => []
 ])
-
+@persist('theme-switcher')
 @switch($themeToggle)
     @case ('multiple')
         <div title="Change Theme" class="dropdown dropdown-end z-[9999]">
@@ -70,3 +70,4 @@
         @break
     @default
 @endswitch
+@endpersist

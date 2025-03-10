@@ -10,8 +10,7 @@ class Image extends LazyComponent
     public function __construct(
         protected ?string $src = '',
         protected ?string $alt = ''
-    ) {
-    }
+    ) {}
 
     public function render(): \Closure|View
     {

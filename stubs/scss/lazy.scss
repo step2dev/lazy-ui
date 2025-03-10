@@ -1,0 +1,12 @@
+//@config("./../../tailwind.admin.config.js")
+@import "../../vendor/step2dev/lazy-ui/resources/scss/lazy";
+
+@supports (-webkit-touch-callout: none) {
+    .h-screen {
+        height: -webkit-fill-available;
+    }
+}
+
+.content {
+    min-height: calc(100vh - 8rem)
+}

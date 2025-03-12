@@ -81,10 +81,9 @@ abstract class LazyComponent extends Component
 
     final protected function findBySmartAttribute(
         ComponentAttributeBag $attributes,
-        array                 $keys,
-        ?string               $default = null
-    ): ?string
-    {
+        array $keys,
+        ?string $default = null
+    ): ?string {
         $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
 
         $this->addSmartAttribute($modifier);
@@ -99,11 +98,10 @@ abstract class LazyComponent extends Component
 
     final protected function getKeyByAttribute(
         ComponentAttributeBag $attribute,
-        array                 $keys,
-        ?string               $key = null,
-        ?string               $default = null
-    ): ?string
-    {
+        array $keys,
+        ?string $key = null,
+        ?string $default = null
+    ): ?string {
         $key = $this->findBySmartAttribute($attribute, $keys)
             ?? $attribute->get($key, $default);
 
@@ -135,7 +133,7 @@ abstract class LazyComponent extends Component
 
     final protected function addSmartAttribute(?string $attribute): void
     {
-        if ($attribute && !in_array($attribute, $this->smartAttributes, true)) {
+        if ($attribute && ! in_array($attribute, $this->smartAttributes, true)) {
             $this->smartAttributes[] = $attribute;
         }
     }
@@ -147,17 +145,18 @@ abstract class LazyComponent extends Component
 
     final protected function getValueByKeyOrSmartAttribute(
         ComponentAttributeBag $attributes,
-        array                 $allowedValues,
-        ?string               $key = null,
-        ?string               $default = null
+        array $allowedValues,
+        ?string $key = null,
+        ?string $default = null
     ): ?string {
         $value = collect($attributes->only($allowedValues)->getAttributes())->filter()->keys()->first()
             ?? $attributes->get($key, $default);
 
-        $value = strtolower((string)$value);
+        $value = strtolower((string) $value);
 
         if (in_array($value, $allowedValues, true)) {
             $this->addSmartAttribute($value);
+
             return $value;
         }
 
@@ -168,7 +167,6 @@ abstract class LazyComponent extends Component
     {
         return $this->getKeyByAttribute($attribute, $this->allowedPosition(), 'position', $default);
     }
-
 
     protected function allowedPosition(): array
     {
@@ -183,5 +181,4 @@ abstract class LazyComponent extends Component
             'end',
         ];
     }
-
 }

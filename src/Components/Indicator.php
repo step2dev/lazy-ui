@@ -9,6 +9,7 @@ use Step2dev\LazyUI\LazyComponent;
 class Indicator extends LazyComponent
 {
     public $indicator;
+
     public $indicatorClass;
 
     public function __construct($indicator = null, $indicatorClass = 'badge badge-secondary')

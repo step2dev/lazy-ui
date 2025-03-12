@@ -9,6 +9,7 @@ use Step2dev\LazyUI\LazyComponent;
 class Hero extends LazyComponent
 {
     public $title;
+
     public $description;
 
     public function __construct($title, $description)

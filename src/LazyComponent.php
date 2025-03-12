@@ -19,6 +19,8 @@ abstract class LazyComponent extends Component
 
     protected array $smartAttributes = [
         'outline',
+        'shadow',
+        'rounded',
     ];
 
     abstract public function render(): \Closure|View;
@@ -35,11 +37,7 @@ abstract class LazyComponent extends Component
 
     public function componentSlot(mixed $slot): ComponentSlot
     {
-        if ($slot instanceof ComponentSlot) {
-            return $slot;
-        }
-
-        return new ComponentSlot;
+        return $slot instanceof ComponentSlot ? $slot : new ComponentSlot;
     }
 
     protected function mergeData(array $data, array $classes = [], array $exceptAttributes = []): array
@@ -62,7 +60,7 @@ abstract class LazyComponent extends Component
             'sm',
             'md',
             'lg',
-            //            'xl',
+            'xl',
             //            '2xl',
         ];
     }
@@ -83,9 +81,10 @@ abstract class LazyComponent extends Component
 
     final protected function findBySmartAttribute(
         ComponentAttributeBag $attributes,
-        array $keys,
-        ?string $default = null
-    ): ?string {
+        array                 $keys,
+        ?string               $default = null
+    ): ?string
+    {
         $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
 
         $this->addSmartAttribute($modifier);
@@ -95,15 +94,16 @@ abstract class LazyComponent extends Component
 
     public function getSizeByAttribute(ComponentAttributeBag $attribute, ?string $default = null): ?string
     {
-        return $this->getKeyByAttribute($attribute, $this->allowedSizes(), 'size', $default);
+        return $this->getValueByKeyOrSmartAttribute($attribute, $this->allowedSizes(), 'size', $default);
     }
 
     final protected function getKeyByAttribute(
         ComponentAttributeBag $attribute,
-        array $keys,
-        ?string $key = null,
-        ?string $default = null
-    ): ?string {
+        array                 $keys,
+        ?string               $key = null,
+        ?string               $default = null
+    ): ?string
+    {
         $key = $this->findBySmartAttribute($attribute, $keys)
             ?? $attribute->get($key, $default);
 
@@ -125,9 +125,7 @@ abstract class LazyComponent extends Component
 
     public function classes(mixed $classes = []): string
     {
-        $classes = Arr::wrap($classes);
-
-        return Arr::toCssClasses($classes);
+        return Arr::toCssClasses(Arr::wrap($classes));
     }
 
     public function getViewName(): string
@@ -137,7 +135,7 @@ abstract class LazyComponent extends Component
 
     final protected function addSmartAttribute(?string $attribute): void
     {
-        if ($attribute && ! in_array($attribute, $this->smartAttributes, true)) {
+        if ($attribute && !in_array($attribute, $this->smartAttributes, true)) {
             $this->smartAttributes[] = $attribute;
         }
     }
@@ -147,10 +145,30 @@ abstract class LazyComponent extends Component
         return $data['attributes'] ?? new ComponentAttributeBag;
     }
 
+    final protected function getValueByKeyOrSmartAttribute(
+        ComponentAttributeBag $attributes,
+        array                 $allowedValues,
+        ?string               $key = null,
+        ?string               $default = null
+    ): ?string {
+        $value = collect($attributes->only($allowedValues)->getAttributes())->filter()->keys()->first()
+            ?? $attributes->get($key, $default);
+
+        $value = strtolower((string)$value);
+
+        if (in_array($value, $allowedValues, true)) {
+            $this->addSmartAttribute($value);
+            return $value;
+        }
+
+        return $default;
+    }
+
     public function getPositionByAttribute(ComponentAttributeBag $attribute, ?string $default = null): ?string
     {
         return $this->getKeyByAttribute($attribute, $this->allowedPosition(), 'position', $default);
     }
+
 
     protected function allowedPosition(): array
     {
@@ -165,4 +183,5 @@ abstract class LazyComponent extends Component
             'end',
         ];
     }
+
 }

@@ -19,12 +19,12 @@ jobs:
         php: [ 8.4, 8.3, 8.2]
         laravel: [ 12.*, 11.*, 10.* ]
         stability: [ prefer-lowest, prefer-stable ]
-        canvas: [ ^10.0.0, ^9.2.2, ^8.0 ]
+        canvas: [ ^9.2.2, ^8.0 ]
         include:
           - laravel: 12.*
             testbench: 10.*
             carbon: ^3.8.4
-            canvas: ^10.0.0
+            canvas: ^9.2.2
           - laravel: 11.*
             testbench: 9.*
             carbon: ^3.8.4

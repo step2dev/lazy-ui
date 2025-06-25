@@ -23,7 +23,7 @@ jobs:
           - laravel: 12.*
             testbench: 10.*
             carbon: ^3.8.4
-            canvas: ^10.0.0
+            canvas: ^9.2.2
           - laravel: 11.*
             testbench: 9.*
             carbon: ^3.8.4
@@ -31,6 +31,22 @@ jobs:
           - laravel: 10.*
             testbench: 8.*
             carbon: ^2.67
+            canvas: ^8.0
+        exclude:
+          # Canvas 10 is not compatible with Laravel 10/11
+          - laravel: 10.*
+            canvas: ^10.0.0
+          - laravel: 11.*
+            canvas: ^10.0.0
+          # Canvas 9 is not compatible with Laravel 10/12
+          - laravel: 10.*
+            canvas: ^9.2.2
+          - laravel: 12.*
+            canvas: ^9.2.2
+          # Canvas 8 is not compatible with Laravel 11/12
+          - laravel: 11.*
+            canvas: ^8.0
+          - laravel: 12.*
             canvas: ^8.0
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}

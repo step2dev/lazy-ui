@@ -19,6 +19,8 @@ abstract class LazyComponent extends Component
 
     protected array $smartAttributes = [
         'outline',
+        'shadow',
+        'rounded',
     ];
 
     abstract public function render(): \Closure|View;
@@ -35,11 +37,7 @@ abstract class LazyComponent extends Component
 
     public function componentSlot(mixed $slot): ComponentSlot
     {
-        if ($slot instanceof ComponentSlot) {
-            return $slot;
-        }
-
-        return new ComponentSlot;
+        return $slot instanceof ComponentSlot ? $slot : new ComponentSlot;
     }
 
     protected function mergeData(array $data, array $classes = [], array $exceptAttributes = []): array
@@ -62,7 +60,7 @@ abstract class LazyComponent extends Component
             'sm',
             'md',
             'lg',
-            //            'xl',
+            'xl',
             //            '2xl',
         ];
     }
@@ -95,7 +93,7 @@ abstract class LazyComponent extends Component
 
     public function getSizeByAttribute(ComponentAttributeBag $attribute, ?string $default = null): ?string
     {
-        return $this->getKeyByAttribute($attribute, $this->allowedSizes(), 'size', $default);
+        return $this->getValueByKeyOrSmartAttribute($attribute, $this->allowedSizes(), 'size', $default);
     }
 
     final protected function getKeyByAttribute(
@@ -125,9 +123,7 @@ abstract class LazyComponent extends Component
 
     public function classes(mixed $classes = []): string
     {
-        $classes = Arr::wrap($classes);
-
-        return Arr::toCssClasses($classes);
+        return Arr::toCssClasses(Arr::wrap($classes));
     }
 
     public function getViewName(): string
@@ -145,6 +141,26 @@ abstract class LazyComponent extends Component
     final protected function getAttributesFromData(array $data): ComponentAttributeBag
     {
         return $data['attributes'] ?? new ComponentAttributeBag;
+    }
+
+    final protected function getValueByKeyOrSmartAttribute(
+        ComponentAttributeBag $attributes,
+        array $allowedValues,
+        ?string $key = null,
+        ?string $default = null
+    ): ?string {
+        $value = collect($attributes->only($allowedValues)->getAttributes())->filter()->keys()->first()
+            ?? $attributes->get($key, $default);
+
+        $value = strtolower((string) $value);
+
+        if (in_array($value, $allowedValues, true)) {
+            $this->addSmartAttribute($value);
+
+            return $value;
+        }
+
+        return $default;
     }
 
     public function getPositionByAttribute(ComponentAttributeBag $attribute, ?string $default = null): ?string

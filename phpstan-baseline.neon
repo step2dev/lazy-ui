@@ -1,6 +1,3 @@
 parameters:
 	ignoreErrors:
-		-
-			message: "#^Call to an undefined method Step2dev\\\\LazyUI\\\\LazyUiServiceProvider\\:\\:dispatch\\(\\)\\.$#"
-			count: 1
-			path: src/LazyUiServiceProvider.php
+

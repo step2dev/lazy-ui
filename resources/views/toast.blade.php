@@ -11,7 +11,7 @@
             x-transition:leave="transition ease-out duration-500"
             x-transition:leave-start="transform translate-x-0 opacity-100"
             x-transition:leave-end="transform translate-x-full opacity-0"
-            class="relative mb-3 flex flex-col overflow-hidden rounded bg-gray-900 bg-gradient-to-r p-3 pr-10 text-white shadow-lg"
+            class="relative mb-3 flex flex-col overflow-hidden rounded bg-gray-900 bg-linear-to-r p-3 pr-10 text-white shadow-lg"
             @mouseover="toast.timer.pause()"
             @mouseout="toast.timer.resume()"
             :class="{

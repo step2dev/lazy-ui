@@ -28,7 +28,7 @@
                  role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                 <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                     <button type="button" @click="showModal = false"
-                            class="text-gray-400 hover:text-gray-500 focus:outline-none">
+                            class="text-gray-400 hover:text-gray-500 focus:outline-hidden">
                         <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M6 18L18 6M6 6l12 12"></path>
@@ -61,7 +61,7 @@
                         outline error sm :label="__('lazy-ui::buttons.delete')" sm class="mr-2">
                     </x-lazy-btn>
                     <button @click="showModal = false" type="button"
-                            class="mt-3 w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 border border-transparent rounded-md hover:bg-gray-300 focus:outline-none focus:border-gray-500 focus:shadow-outline-gray sm:mt-0 sm:w-auto sm:text-sm transition duration-150 ease-in-out">
+                            class="mt-3 w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 border border-transparent rounded-md hover:bg-gray-300 focus:outline-hidden focus:border-gray-500 focus:shadow-outline-gray sm:mt-0 sm:w-auto sm:text-sm transition duration-150 ease-in-out">
                         Cancel
                     </button>
                 </div>

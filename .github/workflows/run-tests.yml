@@ -16,30 +16,41 @@ jobs:
       fail-fast: true
       matrix:
         os: [ubuntu-latest, windows-latest]
-        php: [ 8.4, 8.3, 8.2, 8.1]
-        laravel: [ 12.*, 11.*, 10.* ]
-        stability: [ prefer-stable ] #prefer-lowest, 
+        php: [8.5, 8.4, 8.3, 8.2]
+        laravel: [13.*, 12.*, 11.*, 10.*]
+        stability: [prefer-stable]
+        exclude:
+          - php: 8.2
+            laravel: 13.*
+          - php: 8.3
+            laravel: 13.*
+          - php: 8.5
+            laravel: 11.*
+          - php: 8.4
+            laravel: 11.*
+          - php: 8.5
+            laravel: 10.*
+          - php: 8.4
+            laravel: 10.*
         include:
+          - laravel: 13.*
+            testbench: 11.*
+            carbon: '>=3.8.4 <4.0'
           - laravel: 12.*
             testbench: 10.*
-            carbon: ^3.8.4
+            carbon: '>=3.8.4 <4.0'
           - laravel: 11.*
             testbench: 9.*
-            carbon: ^3.8.4
+            carbon: '>=2.72.6 <4.0'
           - laravel: 10.*
             testbench: 8.*
-            carbon: ^2.67
-        exclude:
-          - php: 8.1
-            laravel: 11.*
-          - php: 8.1
-            laravel: 12.*
+            carbon: '>=2.72.6 <3.0'
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -55,11 +66,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "nesbot/carbon:${{ matrix.carbon }}" --no-interaction --no-update
+          composer require --dev "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "nesbot/carbon:${{ matrix.carbon }}" --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
         run: composer show -D
 
       - name: Execute tests
-        run: vendor/bin/pest
+        run: vendor/bin/pest --ci

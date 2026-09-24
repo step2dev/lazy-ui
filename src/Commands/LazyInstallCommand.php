@@ -30,7 +30,6 @@ class LazyInstallCommand extends Command
                 'quill',
                 'sanitize-html',
                 'theme-change',
-                'alpinejs',
             ];
 
             foreach ($packages as $package) {

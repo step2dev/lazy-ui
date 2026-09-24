@@ -120,7 +120,7 @@ class LazyUiServiceProvider extends PackageServiceProvider
                 Radio::class,
                 Range::class,
                 Rating::class,
-                RichText::class,
+                Richtext::class,
                 Select::class,
                 Stack::class,
                 Tab::class,

@@ -12,6 +12,15 @@ class Badge extends LazyComponent
         $this->label = $label;
     }
 
+    protected function allowedColors(): array
+    {
+        return [
+            ...parent::allowedColors(),
+            'ghost',
+            'danger',
+        ];
+    }
+
     public function allowedPosition(): array
     {
         return [
@@ -24,12 +33,12 @@ class Badge extends LazyComponent
     {
         return function (array $data) {
             $attributes = $this->getAttributesFromData($data);
-
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);
 
             return view('lazy::badge', $this->mergeData($data, [
                 'badge',
+                'badge-neutral' => $color === 'neutral',
                 'badge-primary' => $color === 'primary',
                 'badge-secondary' => $color === 'secondary',
                 'badge-accent' => $color === 'accent',
@@ -37,15 +46,19 @@ class Badge extends LazyComponent
                 'badge-info' => $color === 'info',
                 'badge-success' => $color === 'success',
                 'badge-warning' => $color === 'warning',
-                'badge-error' => $color === 'error',
-                'badge-danger' => $color === 'danger',
-                // sizes
+                'badge-error' => in_array($color, ['error', 'danger'], true),
+                'badge-xl' => $size === 'xl',
                 'badge-lg' => $size === 'lg',
                 'badge-md' => $size === 'md',
                 'badge-sm' => $size === 'sm',
                 'badge-xs' => $size === 'xs',
-                // other
-                'badge-outline' => $attributes->get('outline'),
+                'badge-outline' => $attributes->get('outline', false),
+                'badge-dash' => $attributes->get('dash', false),
+                'badge-soft' => $attributes->get('soft', false),
+            ], [
+                'outline',
+                'dash',
+                'soft',
             ]))->render();
         };
     }

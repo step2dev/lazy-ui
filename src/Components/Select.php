@@ -18,8 +18,13 @@ class Select extends LazyComponent
         ];
     }
 
-    public function __construct(public string $label = '', string $placeholder = '', public bool $required = false)
-    {
+    public function __construct(
+        public string $label = '',
+        string $placeholder = '',
+        public bool $required = false,
+        public bool $validator = false,
+        public string $hint = '',
+    ) {
         $this->placeholder = (string) str($placeholder ?: $this->label)->trim()->ucfirst();
     }
 
@@ -35,7 +40,9 @@ class Select extends LazyComponent
 
             return view('lazy::select', $this->mergeData($data, [
                 'select',
+                'validator' => $this->validator,
                 'select-ghost' => $color === 'ghost' || $color === 'no-border',
+                'select-neutral' => $color === 'neutral',
                 'select-primary' => $color === 'primary',
                 'select-secondary' => $color === 'secondary',
                 'select-accent' => $color === 'accent',
@@ -43,10 +50,14 @@ class Select extends LazyComponent
                 'select-success' => $color === 'success',
                 'select-warning' => $color === 'warning',
                 'select-error' => $color === 'error',
+                'select-xl' => $size === 'xl',
                 'select-lg' => $size === 'lg',
                 'select-md' => $size === 'md',
                 'select-sm' => $size === 'sm',
                 'select-xs' => $size === 'xs',
+            ], [
+                'color',
+                'size',
             ]))->render();
         };
     }

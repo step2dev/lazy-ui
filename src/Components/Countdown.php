@@ -2,15 +2,12 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
-
-class Countdown extends LazyComponent
+class Countdown extends DaisyComponent
 {
-    public function render(): \Closure|View
-    {
-        return function (array $data) {
-            return view('lazy::countdown', $this->mergeData($data))->render();
-        };
-    }
+    protected const VIEW = 'lazy::countdown';
+
+    public function __construct(
+        public int|float|string $value = 0,
+        public string $label = '',
+    ) {}
 }

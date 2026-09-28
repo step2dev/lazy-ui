@@ -1,2 +1,8 @@
-@props(['value' => 0])
-<div {{ $attributes->merge(['class' => 'radial-progress']) }}class="" style="--value:{{ $value }};">{{ $value }}%</div>
+@props([
+    'value' => 0,
+    'unstyled' => false,
+])
+
+<div {{ $attributes->merge([
+    'class' => $unstyled ? '' : 'radial-progress',
+]) }} style="--value:{{ $value }};">{{ $value }}%</div>

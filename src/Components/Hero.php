@@ -2,24 +2,12 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Closure;
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
-
-class Hero extends LazyComponent
+class Hero extends DaisyComponent
 {
-    public $title;
+    protected const VIEW = 'lazy::hero';
 
-    public $description;
-
-    public function __construct($title, $description)
-    {
-        $this->title = $title;
-        $this->description = $description;
-    }
-
-    public function render(): View|Closure
-    {
-        return view('components.hero');
-    }
+    public function __construct(
+        public string $title = '',
+        public string $description = '',
+    ) {}
 }

@@ -1,14 +1,14 @@
-browser mockup with border
-<div class="mockup-browser border border-base-300">
-    <div class="mockup-browser-toolbar">
-        <div class="input border border-base-300">https://daisyui.com</div>
-    </div>
-    <div class="flex justify-center px-4 py-16 border-t border-base-300">Hello!</div>
-</div>
-# browser mockup with background color
-<div class="mockup-browser border bg-base-300">
-    <div class="mockup-browser-toolbar">
-        <div class="input">https://daisyui.com</div>
-    </div>
-    <div class="flex justify-center px-4 py-16 bg-base-200">Hello!</div>
+@props([
+    'url' => '',
+    'unstyled' => false,
+])
+
+<div {{ $attributes->class(['mockup-browser border border-base-300' => ! $unstyled]) }}>
+    @if ($url)
+        <div @class(['mockup-browser-toolbar' => ! $unstyled])>
+            <div @class(['input border border-base-300' => ! $unstyled])>{{ $url }}</div>
+        </div>
+    @endif
+
+    <div @class(['border-t border-base-300' => ! $unstyled])>{{ $slot }}</div>
 </div>

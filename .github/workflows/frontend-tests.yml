@@ -1,0 +1,30 @@
+name: frontend-tests
+
+on:
+  push:
+    branches: [2.x-dev]
+  pull_request:
+    branches: [2.x-dev]
+
+permissions:
+  contents: read
+
+jobs:
+  tailwind:
+    name: Tailwind CSS 4 compile
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install frontend dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Compile Tailwind and verify Lazy UI classes
+        run: npm run test:css

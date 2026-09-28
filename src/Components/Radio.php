@@ -19,7 +19,7 @@ class Radio extends LazyComponent
 
             return view('lazy::radio', $this->mergeData($data, [
                 'radio',
-                // colors
+                'radio-neutral' => $color === 'neutral',
                 'radio-primary' => $color === 'primary',
                 'radio-secondary' => $color === 'secondary',
                 'radio-accent' => $color === 'accent',
@@ -27,13 +27,14 @@ class Radio extends LazyComponent
                 'radio-success' => $color === 'success',
                 'radio-warning' => $color === 'warning',
                 'radio-error' => $color === 'error',
-                // sizes
+                'radio-xl' => $size === 'xl',
                 'radio-lg' => $size === 'lg',
                 'radio-md' => $size === 'md',
                 'radio-sm' => $size === 'sm',
                 'radio-xs' => $size === 'xs',
             ], [
                 'color',
+                'size',
             ]))->render();
         };
     }

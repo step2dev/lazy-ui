@@ -18,8 +18,13 @@ class Input extends LazyComponent
         ];
     }
 
-    public function __construct(public string $label = '', string $placeholder = '', public bool $required = false)
-    {
+    public function __construct(
+        public string $label = '',
+        string $placeholder = '',
+        public bool $required = false,
+        public bool $validator = false,
+        public string $hint = '',
+    ) {
         $this->placeholder = (string) str($placeholder ?: $this->label)->trim()->ucfirst();
     }
 
@@ -35,7 +40,9 @@ class Input extends LazyComponent
 
             return view('lazy::input', $this->mergeData($data, [
                 'input',
+                'validator' => $this->validator,
                 'input-ghost' => $color === 'ghost' || $color === 'no-border',
+                'input-neutral' => $color === 'neutral',
                 'input-primary' => $color === 'primary',
                 'input-secondary' => $color === 'secondary',
                 'input-accent' => $color === 'accent',
@@ -43,10 +50,14 @@ class Input extends LazyComponent
                 'input-success' => $color === 'success',
                 'input-warning' => $color === 'warning',
                 'input-error' => $color === 'error',
+                'input-xl' => $size === 'xl',
                 'input-lg' => $size === 'lg',
                 'input-md' => $size === 'md',
                 'input-sm' => $size === 'sm',
                 'input-xs' => $size === 'xs',
+            ], [
+                'color',
+                'size',
             ]))->render();
         };
     }

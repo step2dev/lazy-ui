@@ -1,12 +1,24 @@
 @props([
-    'icon' => ''
+    'icon' => '',
+    'action' => null,
+    'route' => 'logout',
 ])
-<div>
-    <a href="#" onclick="javascript:" {{ $attributes->merge(['class'=>"logout"]) }}>
+
+@php
+    $target = $action;
+
+    if ($target === null) {
+        $target = app('router')->has($route)
+            ? route($route)
+            : '#';
+    }
+@endphp
+
+<form action="{{ $target }}" method="POST" class="inline">
+    @csrf
+
+    <x-lazy-btn {{ $attributes->except(['action', 'route', 'href']) }}>
         {!! $icon !!}
         <span>{{ __('Logout') }}</span>
-    </a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-        @csrf
-    </form>
-</div>
+    </x-lazy-btn>
+</form>

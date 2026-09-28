@@ -33,6 +33,7 @@ class Tabs extends LazyComponent
                 'tabs-box' => $this->type === 'boxed',
                 'tabs-lift' => $this->type === 'lifted',
                 'tabs-border' => $this->type === 'bordered',
+                'tabs-xl' => $size === 'xl',
                 'tabs-lg' => $size === 'lg',
                 'tabs-md' => $size === 'md',
                 'tabs-sm' => $size === 'sm',

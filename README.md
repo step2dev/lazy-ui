@@ -62,84 +62,101 @@ composer test
 
 ## 📁 List of components
 
+Lazy UI 2.x provides wrappers for all current daisyUI 5 component families while keeping daisyUI class names internal to the package.
+
 <details>
 <summary>
   show / hide
 </summary>
 
 - Actions
-
     - [x] Button
-    - [ ] Dropdown
-    - [ ] Modal
+    - [x] Dropdown
+    - [x] FAB / Speed Dial
+    - [x] Modal
     - [x] Swap
+    - [x] Theme Controller
 
 - Data display
-
-    - [x] Alert
+    - [x] Accordion
     - [x] Avatar
+    - [x] Aura
     - [x] Badge
-    - [ ] Banner
-    - [ ] Calendar
-    - [ ] Card
-    - [ ] Carousel
+    - [x] Card
+    - [x] Carousel
     - [x] Chat bubble
-    - [ ] Collapse
-    - [ ] Countdown
-    - [ ] Empty placeholder
+    - [x] Collapse
+    - [x] Countdown
+    - [x] Diff
+    - [x] Hover 3D
+    - [x] Hover Gallery
     - [x] Kbd
+    - [x] List
+    - [x] Stat
+    - [x] Status
+    - [x] Table
+    - [x] Text Rotate
+    - [x] Timeline
+
+- Navigation
+    - [x] Breadcrumbs
+    - [x] Dock
+    - [x] Link
+    - [x] Megamenu
+    - [x] Menu
+    - [x] Navbar
+    - [x] Pagination
+    - [x] Steps
+    - [x] Tabs
+
+- Feedback
+    - [x] Alert
     - [x] Loading
     - [x] Progress
     - [x] Radial progress
-    - [ ] Stat
-    - [ ] Table
-    - [ ] Tag
-    - [ ] Timeline
-    - [ ] Toast
+    - [x] Skeleton
+    - [x] Toast
     - [x] Tooltip
-    - [ ] Treeview
 
 - Data input
+    - [x] Calendar
     - [x] Checkbox
-    - [ ] File input
-    - [x] Text input
-    - [ ] Radio
+    - [x] Fieldset
+    - [x] File Input
+    - [x] Filter
+    - [x] Label
+    - [x] Radio
     - [x] Range
-    - [ ] Rating
-    - [ ] Select
-    - [ ] Multi select
+    - [x] Rating
+    - [x] Select
+    - [x] Text Input
     - [x] Textarea
     - [x] Toggle
-- Layout
+    - [x] Validator
+    - [x] OTP
 
-    - [ ] Artboard
-    - [x] Button group
+- Layout
     - [x] Divider
-    - [ ] Drawer
-    - [ ] Footer
+    - [x] Drawer
+    - [x] Footer
+    - [x] Hero
+    - [x] Indicator
     - [x] Join
-    - [ ] Hero
-    - [ ] Indicator
-    - [x] Input group
     - [x] Mask
     - [x] Stack
 
-- Navigation
-
-    - [ ] Bottom Navigation
-    - [x] Breadcrumbs
-    - [x] Link
-    - [ ] Menu
-    - [ ] Navbar
-    - [ ] Pagination
-    - [ ] Steps
-    - [x] Tab
-
 - Mockup
-    - [ ] Browser
-    - [ ] Code
+    - [x] Browser
+    - [x] Code
     - [x] Phone
-    - [ ] Window
+    - [x] Window
+
+### Legacy compatibility
+
+- [x] Button Group → Join
+- [x] `danger` → daisyUI `error`
+- [x] `boxed` / `lifted` / `bordered` tab API → daisyUI 5 tab classes
+- [x] Legacy square/parallelogram masks retained by Lazy UI compatibility CSS
 
 </details>
 

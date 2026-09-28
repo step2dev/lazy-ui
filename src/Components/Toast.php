@@ -7,10 +7,8 @@ use Step2dev\LazyUI\LazyComponent;
 
 class Toast extends LazyComponent
 {
-    public function render(): \Closure|View
+    public function render(): View
     {
-        return function (array $data) {
-            return view('lazy::toast', $this->mergeData($data))->render();
-        };
+        return view('lazy::toast');
     }
 }

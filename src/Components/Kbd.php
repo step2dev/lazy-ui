@@ -15,10 +15,13 @@ class Kbd extends LazyComponent
 
             return view('lazy::kbd', $this->mergeData($data, [
                 'kbd',
+                'kbd-xl' => $size === 'xl',
                 'kbd-lg' => $size === 'lg',
                 'kbd-md' => $size === 'md',
                 'kbd-sm' => $size === 'sm',
                 'kbd-xs' => $size === 'xs',
+            ], [
+                'size',
             ]))->render();
         };
     }

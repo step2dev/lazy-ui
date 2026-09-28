@@ -24,7 +24,7 @@ class Checkbox extends LazyComponent
 
             return view('lazy::checkbox', $this->mergeData($data, [
                 'checkbox',
-                // colors
+                'checkbox-neutral' => $color === 'neutral',
                 'checkbox-primary' => $color === 'primary',
                 'checkbox-secondary' => $color === 'secondary',
                 'checkbox-accent' => $color === 'accent',
@@ -32,7 +32,7 @@ class Checkbox extends LazyComponent
                 'checkbox-warning' => $color === 'warning',
                 'checkbox-info' => $color === 'info',
                 'checkbox-error' => $color === 'error',
-                // sizes
+                'checkbox-xl' => $size === 'xl',
                 'checkbox-lg' => $size === 'lg',
                 'checkbox-md' => $size === 'md',
                 'checkbox-sm' => $size === 'sm',

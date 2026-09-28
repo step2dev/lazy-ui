@@ -18,8 +18,12 @@ class Textarea extends LazyComponent
         ];
     }
 
-    public function __construct(string $placeholder = '', public bool $required = false)
-    {
+    public function __construct(
+        string $placeholder = '',
+        public bool $required = false,
+        public bool $validator = false,
+        public string $hint = '',
+    ) {
         $this->placeholder = (string) str($placeholder)->trim()->ucfirst();
     }
 
@@ -35,7 +39,9 @@ class Textarea extends LazyComponent
 
             return view('lazy::textarea', $this->mergeData($data, [
                 'textarea',
+                'validator' => $this->validator,
                 'textarea-ghost' => $color === 'ghost' || $color === 'no-border',
+                'textarea-neutral' => $color === 'neutral',
                 'textarea-primary' => $color === 'primary',
                 'textarea-secondary' => $color === 'secondary',
                 'textarea-accent' => $color === 'accent',
@@ -43,10 +49,14 @@ class Textarea extends LazyComponent
                 'textarea-success' => $color === 'success',
                 'textarea-warning' => $color === 'warning',
                 'textarea-error' => $color === 'error',
+                'textarea-xl' => $size === 'xl',
                 'textarea-lg' => $size === 'lg',
                 'textarea-md' => $size === 'md',
                 'textarea-sm' => $size === 'sm',
                 'textarea-xs' => $size === 'xs',
+            ], [
+                'color',
+                'size',
             ]))->render();
         };
     }

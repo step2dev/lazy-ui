@@ -2,15 +2,9 @@
 
 namespace Step2dev\LazyUI\Components\Mockup;
 
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Step2dev\LazyUI\Components\DaisyComponent;
 
-class MockupWindow extends LazyComponent
+class MockupWindow extends DaisyComponent
 {
-    public function render(): \Closure|View
-    {
-        return function (array $data) {
-            return view('lazy::mockup.window', $this->mergeData($data))->render();
-        };
-    }
+    protected const VIEW = 'lazy::mockup.window';
 }

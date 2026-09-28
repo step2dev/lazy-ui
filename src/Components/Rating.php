@@ -2,15 +2,17 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
-
-class Rating extends LazyComponent
+class Rating extends DaisyComponent
 {
-    public function render(): \Closure|View
-    {
-        return function (array $data) {
-            return view('lazy::rating', $this->mergeData($data))->render();
-        };
-    }
+    protected const VIEW = 'lazy::rating';
+
+    public function __construct(
+        public string $name = 'rating',
+        public int $items = 5,
+        public int|float|null $value = null,
+        public string $mask = 'star-2',
+        public string $color = '',
+        public string $size = '',
+        public bool $half = false,
+    ) {}
 }

@@ -2,21 +2,9 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Closure;
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
-
-class Drawer extends LazyComponent
+class Drawer extends DaisyComponent
 {
-    public $drawerContent;
+    protected const VIEW = 'lazy::drawer';
 
-    public function __construct($drawerContent)
-    {
-        $this->drawerContent = $drawerContent;
-    }
-
-    public function render(): View|Closure
-    {
-        return view('components.drawer');
-    }
+    public function __construct(public mixed $drawerContent = null) {}
 }

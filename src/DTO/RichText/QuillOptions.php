@@ -2,7 +2,7 @@
 
 namespace Step2dev\LazyUI\DTO\RichText;
 
-use InvalidArgumentException;
+use Closure;
 
 class QuillOptions
 {
@@ -10,7 +10,6 @@ class QuillOptions
 
     public ?array $toolbar = null;
 
-    // Toolbar options
     public bool|array $font = true;
 
     public bool $size = true;
@@ -49,19 +48,19 @@ class QuillOptions
 
     public array $customToolbarButtons = [];
 
-    public static $defaultCallback;
+    public static ?Closure $defaultCallback = null;
 
     public static function default(): self
     {
-        $options = is_callable(static::$defaultCallback)
-            ? call_user_func(static::$defaultCallback)
-            : static::$defaultCallback;
+        if (static::$defaultCallback !== null) {
+            $options = (static::$defaultCallback)();
 
-        if ($options instanceof static) {
-            return $options;
+            if ($options instanceof static) {
+                return $options;
+            }
         }
 
-        /** @phpstan-ignore-next-line */
+        /** @phpstan-ignore-next-line Keep late-static construction for custom QuillOptions subclasses. */
         return new static;
     }
 
@@ -76,11 +75,7 @@ class QuillOptions
             return static::default();
         }
 
-        if (! is_callable($callback) || ! $callback instanceof static) {
-            throw new InvalidArgumentException('The callback must be a callable or an instance of '.static::class);
-        }
-
-        static::$defaultCallback = $callback;
+        static::$defaultCallback = Closure::fromCallable($callback);
 
         return null;
     }

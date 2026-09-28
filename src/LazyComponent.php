@@ -15,6 +15,36 @@ abstract class LazyComponent extends Component
 
     protected const DEFAULT = 'default';
 
+    protected const DEFAULT_SIZES = [
+        'xs',
+        'sm',
+        'md',
+        'lg',
+        'xl',
+    ];
+
+    protected const DEFAULT_COLORS = [
+        'primary',
+        'secondary',
+        'accent',
+        'neutral',
+        'info',
+        'success',
+        'warning',
+        'error',
+    ];
+
+    protected const DEFAULT_POSITIONS = [
+        'vertical',
+        'horizontal',
+        'top',
+        'bottom',
+        'left',
+        'right',
+        'start',
+        'end',
+    ];
+
     public string $label = '';
 
     protected array $smartAttributes = [
@@ -42,12 +72,21 @@ abstract class LazyComponent extends Component
 
     protected function mergeData(array $data, array $classes = [], array $exceptAttributes = []): array
     {
-        $attributes = $this->mergeClasses($data['attributes'], $classes);
+        $attributes = $this->getAttributesFromData($data);
+        $unstyled = $this->isTruthyAttribute($attributes, 'unstyled');
+
+        $data['unstyled'] = $unstyled;
+
+        if (! $unstyled) {
+            $attributes = $this->mergeClasses($attributes, $classes);
+        }
 
         $attributes['disabled'] = (bool) $attributes->get('disabled');
+
         $data['attributes'] = $attributes->except([
             ...$this->smartAttributes,
             ...$exceptAttributes,
+            'unstyled',
         ]);
 
         return $data;
@@ -55,28 +94,12 @@ abstract class LazyComponent extends Component
 
     protected function allowedSizes(): array
     {
-        return [
-            'xs',
-            'sm',
-            'md',
-            'lg',
-            'xl',
-            //            '2xl',
-        ];
+        return static::DEFAULT_SIZES;
     }
 
     protected function allowedColors(): array
     {
-        return [
-            'primary',
-            'secondary',
-            'accent',
-            'neutral',
-            'info',
-            'success',
-            'warning',
-            'error',
-        ];
+        return static::DEFAULT_COLORS;
     }
 
     final protected function findBySmartAttribute(
@@ -84,11 +107,15 @@ abstract class LazyComponent extends Component
         array $keys,
         ?string $default = null
     ): ?string {
-        $modifier = collect($attributes->only($keys)->getAttributes())->filter()->keys()->first();
+        foreach ($keys as $candidate) {
+            if ($this->isTruthyAttribute($attributes, $candidate)) {
+                $this->addSmartAttribute($candidate);
 
-        $this->addSmartAttribute($modifier);
+                return $candidate;
+            }
+        }
 
-        return $modifier ?? $default;
+        return $default;
     }
 
     public function getSizeByAttribute(ComponentAttributeBag $attribute, ?string $default = null): ?string
@@ -102,18 +129,19 @@ abstract class LazyComponent extends Component
         ?string $key = null,
         ?string $default = null
     ): ?string {
-        $key = $this->findBySmartAttribute($attribute, $keys)
-            ?? $attribute->get($key, $default);
+        $value = $this->findBySmartAttribute($attribute, $keys);
 
-        $this->addSmartAttribute($key);
+        if ($value === null) {
+            $value = $attribute->get($key, $default);
 
-        $key = strtolower((string) $key);
-
-        if (in_array($key, $keys, true)) {
-            return $key;
+            if ($key !== null && $attribute->has($key)) {
+                $this->addSmartAttribute($key);
+            }
         }
 
-        return $default;
+        $value = strtolower((string) $value);
+
+        return in_array($value, $keys, true) ? $value : $default;
     }
 
     public function getColorByAttribute(ComponentAttributeBag $attribute, ?string $default = null): ?string
@@ -149,14 +177,19 @@ abstract class LazyComponent extends Component
         ?string $key = null,
         ?string $default = null
     ): ?string {
-        $value = collect($attributes->only($allowedValues)->getAttributes())->filter()->keys()->first()
-            ?? $attributes->get($key, $default);
+        $value = $this->findBySmartAttribute($attributes, $allowedValues);
+
+        if ($value === null) {
+            $value = $attributes->get($key, $default);
+
+            if ($key !== null && $attributes->has($key)) {
+                $this->addSmartAttribute($key);
+            }
+        }
 
         $value = strtolower((string) $value);
 
         if (in_array($value, $allowedValues, true)) {
-            $this->addSmartAttribute($value);
-
             return $value;
         }
 
@@ -170,15 +203,17 @@ abstract class LazyComponent extends Component
 
     protected function allowedPosition(): array
     {
-        return [
-            'vertical',
-            'horizontal',
-            'top',
-            'bottom',
-            'left',
-            'right',
-            'start',
-            'end',
-        ];
+        return static::DEFAULT_POSITIONS;
+    }
+
+    private function isTruthyAttribute(ComponentAttributeBag $attributes, string $key): bool
+    {
+        if (! $attributes->has($key)) {
+            return false;
+        }
+
+        $value = $attributes->get($key);
+
+        return $value !== false && $value !== null && $value !== 'false' && $value !== '0' && $value !== 0;
     }
 }

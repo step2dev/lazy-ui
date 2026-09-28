@@ -29,6 +29,7 @@ class Btn extends LazyComponent
     public function allowedColors(): array
     {
         return [
+            'neutral',
             'primary',
             'secondary',
             'accent',
@@ -42,24 +43,20 @@ class Btn extends LazyComponent
         ];
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): \Closure|View
     {
         return function (array $data) {
             $attributes = $this->getAttributesFromData($data);
+
             if ($this->tag === 'a') {
                 $attributes['href'] = $this->href;
             } else {
-                $attributes['type'] = 'submit';
+                $attributes['type'] = $attributes->get('type', 'submit');
                 $attributes['wire:loading.attr'] = 'disabled';
                 $attributes['wire:loading.class'] = $this->disableClass.' loading loading-spinner';
             }
 
-            // $data['iconSize']   = $this->iconSize($attributes);
             $data['disabled'] = (bool) $attributes->get('disabled');
-
             $data['attributes'] = $attributes;
 
             $this->outline = $attributes->get('outline', false);
@@ -73,23 +70,24 @@ class Btn extends LazyComponent
                 'glass' => $this->glass,
                 'btn-active' => $this->active,
                 'btn-outline' => $attributes->get('outline', false),
+                'btn-dash' => $attributes->get('dash', false),
+                'btn-soft' => $attributes->get('soft', false),
                 'btn-disabled' => $attributes->get('disabled', false),
-                // colors
+                'btn-neutral' => $color === 'neutral',
                 'btn-primary' => $color === 'primary',
                 'btn-secondary' => $color === 'secondary',
                 'btn-accent' => $color === 'accent',
                 'btn-info' => $color === 'info',
                 'btn-success' => $color === 'success',
                 'btn-warning' => $color === 'warning',
-                'btn-error' => $color === 'error',
+                'btn-error' => in_array($color, ['error', 'danger'], true),
                 'btn-ghost' => $color === 'ghost',
                 'btn-link' => $color === 'link',
-                // sizes
+                'btn-xl' => $size === 'xl',
                 'btn-lg' => $size === 'lg',
                 'btn-md' => $size === 'md',
                 'btn-sm' => $size === 'sm',
                 'btn-xs' => $size === 'xs',
-                // other
                 'btn-wide' => $attributes->get('wide', false),
                 'btn-block' => $attributes->get('block', false),
                 'btn-circle' => $attributes->get('circle', false),
@@ -102,6 +100,8 @@ class Btn extends LazyComponent
                 'group',
                 'active',
                 'outline',
+                'dash',
+                'soft',
                 'glass',
             ]))->render();
         };

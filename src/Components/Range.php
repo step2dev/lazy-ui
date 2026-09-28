@@ -16,20 +16,20 @@ class Range extends LazyComponent
             $attributes['max'] ??= 100;
             $attributes['value'] ??= $attributes['min'];
             $attributes['step'] ??= null;
-
             $attributes['steps'] ??= null;
 
-            if ($attributes['steps']) {
+            if ($attributes['steps'] && (int) $attributes['steps'] > 1) {
                 $attributes['step'] = ($attributes['max'] - $attributes['min']) / ($attributes['steps'] - 1);
             }
-            $data['attributes'] = $attributes;
 
+            $data['attributes'] = $attributes;
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);
+            $position = $this->getPositionByAttribute($attributes);
 
             return view('lazy::range', $this->mergeData($data, [
                 'range',
-                // colors
+                'range-neutral' => $color === 'neutral',
                 'range-primary' => $color === 'primary',
                 'range-secondary' => $color === 'secondary',
                 'range-accent' => $color === 'accent',
@@ -37,11 +37,16 @@ class Range extends LazyComponent
                 'range-success' => $color === 'success',
                 'range-warning' => $color === 'warning',
                 'range-error' => $color === 'error',
-                // sizes
+                'range-xl' => $size === 'xl',
                 'range-lg' => $size === 'lg',
                 'range-md' => $size === 'md',
                 'range-sm' => $size === 'sm',
                 'range-xs' => $size === 'xs',
+                'range-vertical' => $position === 'vertical',
+            ], [
+                'color',
+                'size',
+                'position',
             ]))->render();
         };
     }

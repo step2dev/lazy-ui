@@ -14,9 +14,6 @@ class Loading extends LazyComponent
         return $this->getKeyByAttribute($attribute, $this->allowedTypes(), 'type', $default);
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): Closure|View
     {
         return function (array $data) {
@@ -27,6 +24,7 @@ class Loading extends LazyComponent
 
             return view('lazy::loading', $this->mergeData($data, [
                 'loading',
+                'loading-xl' => $size === 'xl',
                 'loading-xs' => $size === 'xs',
                 'loading-sm' => $size === 'sm',
                 'loading-md' => $size === 'md',

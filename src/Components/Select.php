@@ -9,6 +9,8 @@ class Select extends LazyComponent
 {
     public ?string $placeholder;
 
+    public array $normalizedOptions = [];
+
     protected function allowedColors(): array
     {
         return [
@@ -24,8 +26,25 @@ class Select extends LazyComponent
         public bool $required = false,
         public bool $validator = false,
         public string $hint = '',
+        array $options = [],
+        public string|int|float|null $value = null,
+        public bool $multiple = false,
     ) {
         $this->placeholder = (string) str($placeholder ?: $this->label)->trim()->ucfirst();
+
+        foreach ($options as $key => $option) {
+            $normalized = is_array($option) ? $option : ['label' => $option];
+            $optionValue = $normalized['value'] ?? (is_int($key) ? $option : $key);
+
+            $this->normalizedOptions[] = [
+                'value' => $optionValue,
+                'label' => (string) ($normalized['label'] ?? $normalized['text'] ?? $optionValue),
+                'disabled' => (bool) ($normalized['disabled'] ?? false),
+                'selected' => array_key_exists('selected', $normalized)
+                    ? (bool) $normalized['selected']
+                    : (string) $optionValue === (string) $this->value,
+            ];
+        }
     }
 
     public function render(): \Closure|View
@@ -33,7 +52,13 @@ class Select extends LazyComponent
         return function (array $data) {
             $attributes = $this->getAttributesFromData($data);
             $attributes['required'] = $this->required;
+
+            if ($this->multiple) {
+                $attributes['multiple'] = true;
+            }
+
             $data['attributes'] = $attributes;
+            $data['options'] = $this->normalizedOptions;
 
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);

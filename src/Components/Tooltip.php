@@ -65,6 +65,11 @@ class Tooltip extends DaisyComponent
         ];
     }
 
+    protected function viewClasses(): array
+    {
+        return ['content' => 'tooltip-content'];
+    }
+
     protected function consumedAttributes(): array
     {
         return [

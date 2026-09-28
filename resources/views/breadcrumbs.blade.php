@@ -5,8 +5,10 @@
                 <li>
                     @if ($item['href'] && ! $item['current'])
                         <a href="{{ $item['href'] }}">{{ $item['label'] }}</a>
+                    @elseif ($item['current'])
+                        <span aria-current="page">{{ $item['label'] }}</span>
                     @else
-                        <span @if ($item['current']) aria-current="page" @endif>{{ $item['label'] }}</span>
+                        <span>{{ $item['label'] }}</span>
                     @endif
                 </li>
             @endforeach

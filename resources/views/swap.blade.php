@@ -9,21 +9,21 @@
     />
 
     @if ($onLabel !== null)
-        <span @class(['swap-on' => ! $unstyled])>{{ $onLabel }}</span>
+        <span class="{{ $viewClasses['on'] }}">{{ $onLabel }}</span>
     @elseif (isset($on))
-        <span @class(['swap-on' => ! $unstyled])>{{ $on }}</span>
+        <span class="{{ $viewClasses['on'] }}">{{ $on }}</span>
     @endif
 
     @if ($offLabel !== null)
-        <span @class(['swap-off' => ! $unstyled])>{{ $offLabel }}</span>
+        <span class="{{ $viewClasses['off'] }}">{{ $offLabel }}</span>
     @elseif (isset($off))
-        <span @class(['swap-off' => ! $unstyled])>{{ $off }}</span>
+        <span class="{{ $viewClasses['off'] }}">{{ $off }}</span>
     @endif
 
     @if ($indeterminateLabel !== null)
-        <span @class(['swap-indeterminate' => ! $unstyled])>{{ $indeterminateLabel }}</span>
+        <span class="{{ $viewClasses['indeterminate'] }}">{{ $indeterminateLabel }}</span>
     @elseif (isset($indeterminate))
-        <span @class(['swap-indeterminate' => ! $unstyled])>{{ $indeterminate }}</span>
+        <span class="{{ $viewClasses['indeterminate'] }}">{{ $indeterminate }}</span>
     @endif
 
     {{ $slot }}

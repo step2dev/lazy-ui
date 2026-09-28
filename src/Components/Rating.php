@@ -81,7 +81,17 @@ class Rating extends DaisyComponent
 
     protected function componentData(array $data, ComponentAttributeBag $attributes): array
     {
+        $items = $this->ratingItems;
+
+        if ($this->truthy($attributes->get('unstyled'))) {
+            $items = array_map(static fn (array $item): array => [
+                ...$item,
+                'classes' => '',
+            ], $items);
+        }
+
         return [
+            'ratingItems' => $items,
             'inputAttributes' => $attributes->only([
                 'wire:model',
                 'wire:model.live',

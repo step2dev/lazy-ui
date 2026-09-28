@@ -1,11 +1,7 @@
 <ul {{ $attributes }}>
-    @foreach ($items as $item)
-        <li @class(['list-row' => ! $unstyled])>
-            @if (is_array($item))
-                @foreach ($item as $value)<div>{{ $value }}</div>@endforeach
-            @else
-                {{ $item }}
-            @endif
+    @foreach ($rows as $row)
+        <li class="{{ $unstyled ? '' : $row['classes'] }}">
+            @foreach ($row['cells'] as $cell)<div>{{ $cell }}</div>@endforeach
         </li>
     @endforeach
     {{ $slot }}

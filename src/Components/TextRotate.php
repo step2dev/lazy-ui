@@ -22,7 +22,7 @@ class TextRotate extends DaisyComponent
         return ['text-rotate'];
     }
 
-    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    protected function prepareAttributes(ComponentAttributeBag $attributes): ComponentAttributeBag
     {
         if ($this->duration !== null) {
             $attributes['style'] = trim(
@@ -31,6 +31,6 @@ class TextRotate extends DaisyComponent
             );
         }
 
-        return ['attributes' => $attributes];
+        return $attributes;
     }
 }

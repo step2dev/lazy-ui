@@ -520,3 +520,34 @@ it('generates independent drawer toggle ids and allows explicit ids', function (
         ->assertSee('id="settings-drawer"', false)
         ->assertSee('for="settings-drawer"', false);
 });
+
+it('supports reusable dropdown positioning and content customization', function () {
+    $this
+        ->blade('<x-lazy-dropdown position="end" width="w-56" content-class="max-h-96 overflow-y-auto" label="Language">Item</x-lazy-dropdown>')
+        ->assertSee('dropdown-end')
+        ->assertSee('w-56')
+        ->assertSee('max-h-96')
+        ->assertSee('overflow-y-auto')
+        ->assertSee('Language')
+        ->assertSee('Item');
+
+    $this
+        ->blade('<x-lazy-dropdown end :content-defaults="false" width="w-80" content-class="bg-base-200 shadow-2xl">Panel</x-lazy-dropdown>')
+        ->assertSee('dropdown-end')
+        ->assertSee('dropdown-content')
+        ->assertSee('w-80')
+        ->assertSee('bg-base-200')
+        ->assertSee('shadow-2xl')
+        ->assertDontSee('bg-base-100');
+});
+
+it('supports linked and hoverable cards for admin navigation', function () {
+    $this
+        ->blade('<x-lazy-card href="/admin/users" hover title="Users">42</x-lazy-card>')
+        ->assertSee('<a', false)
+        ->assertSee('href="/admin/users"', false)
+        ->assertSee('hover:shadow-md', false)
+        ->assertSee('card-title')
+        ->assertSee('Users')
+        ->assertSee('42');
+});

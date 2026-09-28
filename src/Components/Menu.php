@@ -9,7 +9,9 @@ use Step2dev\LazyUI\LazyComponent;
 class Menu extends LazyComponent
 {
     public string|int $countLabel = 0;
+
     public string $resolvedHref = '#';
+
     public bool $isActive = false;
 
     public function __construct(

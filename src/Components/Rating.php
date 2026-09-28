@@ -9,7 +9,9 @@ class Rating extends DaisyComponent
     protected const VIEW = 'lazy::rating';
 
     public string $maskClass;
+
     public string $colorClass;
+
     public array $ratingItems = [];
 
     public function __construct(

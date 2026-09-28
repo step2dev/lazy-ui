@@ -9,6 +9,7 @@ class Table extends DaisyComponent
     protected const VIEW = 'lazy::table';
 
     public array $headers;
+
     public array $rows;
 
     public function __construct(

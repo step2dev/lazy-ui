@@ -10,6 +10,7 @@ class Drawer extends DaisyComponent
     protected const VIEW = 'lazy::drawer';
 
     public string $id;
+
     public array $sideClasses;
 
     public function __construct(

@@ -314,7 +314,6 @@ it('builds complete accessible rating markup from semantic props', function () {
         ->assertSee('wire:model.live="score"', false);
 });
 
-
 it('generates data-driven component markup from semantic props', function () {
     $this
         ->blade('<x-lazy-steps :items="[[\'label\' => \'Start\'], [\'label\' => \'Done\']]" :current="2" />')

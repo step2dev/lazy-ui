@@ -9,8 +9,11 @@ class Hero extends DaisyComponent
     protected const VIEW = 'lazy::hero';
 
     public array $contentClasses;
+
     public array $innerClasses;
+
     public array $titleClasses;
+
     public array $spacingClasses;
 
     public function __construct(

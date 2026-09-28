@@ -3,7 +3,6 @@
 namespace Step2dev\LazyUI\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\ComponentAttributeBag;
 use Step2dev\LazyUI\LazyComponent;
 
 class Choices extends LazyComponent

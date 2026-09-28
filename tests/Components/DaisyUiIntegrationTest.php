@@ -354,7 +354,6 @@ it('keeps legacy drawer hero and indicator view paths as adapters', function () 
         ->toContain("@include('lazy::indicator')");
 });
 
-
 it('generates independent drawer toggle ids and allows explicit ids', function () {
     $first = (string) $this->blade('<x-lazy-drawer />');
     $second = (string) $this->blade('<x-lazy-drawer />');

@@ -2,45 +2,44 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Checkbox extends LazyComponent
+class Checkbox extends DaisyComponent
 {
-    public function __construct(?string $label = '')
-    {
-        $this->label = $label;
+    protected const VIEW = 'lazy::checkbox';
+
+    public function __construct(
+        ?string $label = '',
+        public string $color = '',
+        public string $size = '',
+    ) {
+        $this->label = $label ?? '';
     }
 
-    public function render(): \Closure|View
+    protected function prepareAttributes(ComponentAttributeBag $attributes): ComponentAttributeBag
     {
-        return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
-            $attributes['type'] = 'checkbox';
-            $data['attributes'] = $attributes;
+        $attributes['type'] = 'checkbox';
 
-            $color = $this->getColorByAttribute($attributes);
-            $size = $this->getSizeByAttribute($attributes);
+        return $attributes;
+    }
 
-            return view('lazy::checkbox', $this->mergeData($data, [
-                'checkbox',
-                'checkbox-neutral' => $color === 'neutral',
-                'checkbox-primary' => $color === 'primary',
-                'checkbox-secondary' => $color === 'secondary',
-                'checkbox-accent' => $color === 'accent',
-                'checkbox-success' => $color === 'success',
-                'checkbox-warning' => $color === 'warning',
-                'checkbox-info' => $color === 'info',
-                'checkbox-error' => $color === 'error',
-                'checkbox-xl' => $size === 'xl',
-                'checkbox-lg' => $size === 'lg',
-                'checkbox-md' => $size === 'md',
-                'checkbox-sm' => $size === 'sm',
-                'checkbox-xs' => $size === 'xs',
-            ], [
-                'color',
-                'size',
-            ]))->render();
-        };
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
+    {
+        return [
+            'checkbox',
+            'checkbox-neutral' => $this->color === 'neutral',
+            'checkbox-primary' => $this->color === 'primary',
+            'checkbox-secondary' => $this->color === 'secondary',
+            'checkbox-accent' => $this->color === 'accent',
+            'checkbox-success' => $this->color === 'success',
+            'checkbox-warning' => $this->color === 'warning',
+            'checkbox-info' => $this->color === 'info',
+            'checkbox-error' => $this->color === 'error',
+            'checkbox-xl' => $this->size === 'xl',
+            'checkbox-lg' => $this->size === 'lg',
+            'checkbox-md' => $this->size === 'md',
+            'checkbox-sm' => $this->size === 'sm',
+            'checkbox-xs' => $this->size === 'xs',
+        ];
     }
 }

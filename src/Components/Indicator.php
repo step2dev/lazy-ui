@@ -69,8 +69,7 @@ class Indicator extends DaisyComponent
             }
         }
 
-        return [
-            'markerClasses' => [
+        $markerClasses = [
                 'indicator-item',
                 'badge' => ! $this->indicatorClass,
                 $colors[$color] ?? $colors['secondary'] => ! $this->indicatorClass,
@@ -78,8 +77,13 @@ class Indicator extends DaisyComponent
                 $horizontalClasses[$this->horizontal] ?? '' => (bool) $this->horizontal,
                 $verticalClasses[$this->vertical] ?? '' => (bool) $this->vertical,
                 $this->indicatorClass => filled($this->indicatorClass),
-            ],
         ];
+
+        if ($this->truthy($attributes->get('unstyled'))) {
+            $markerClasses = [];
+        }
+
+        return ['markerClasses' => $markerClasses];
     }
 
     protected function consumedAttributes(): array

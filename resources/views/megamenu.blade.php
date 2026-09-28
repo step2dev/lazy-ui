@@ -1,4 +1,4 @@
 <div {{ $attributes }}>
-    @isset($active)<span @class(['megamenu-active' => ! $unstyled])>{{ $active }}</span>@endisset
+    @isset($active)<span class="{{ $viewClasses['active'] }}">{{ $active }}</span>@endisset
     {{ $slot }}
 </div>

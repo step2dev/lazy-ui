@@ -34,6 +34,10 @@ class Textarea extends LazyComponent
             $attributes['required'] = $this->required;
             $data['attributes'] = $attributes;
 
+            $unstyled = $this->isTruthyAttribute($attributes, 'unstyled');
+            $data['controlClass'] = $unstyled ? '' : 'w-full'.(($data['hasError'] ?? false) ? ' textarea-error' : '');
+            $data['hintClass'] = $unstyled ? '' : 'validator-hint';
+
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);
 

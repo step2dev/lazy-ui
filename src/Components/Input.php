@@ -2,12 +2,25 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Input extends LazyComponent
+class Input extends DaisyComponent
 {
+    protected const VIEW = 'lazy::input';
+
     public ?string $placeholder;
+
+    public function __construct(
+        public string $label = '',
+        string $placeholder = '',
+        public bool $required = false,
+        public bool $validator = false,
+        public string $hint = '',
+        public string $color = '',
+        public string $size = '',
+    ) {
+        $this->placeholder = (string) str($placeholder ?: $this->label)->trim()->ucfirst();
+    }
 
     protected function allowedColors(): array
     {
@@ -18,36 +31,42 @@ class Input extends LazyComponent
         ];
     }
 
-    public function __construct(public string $label = '', string $placeholder = '', public bool $required = false)
+    protected function prepareAttributes(ComponentAttributeBag $attributes): ComponentAttributeBag
     {
-        $this->placeholder = (string) str($placeholder ?: $this->label)->trim()->ucfirst();
+        $attributes['required'] = $this->required;
+
+        return $attributes;
     }
 
-    public function render(): \Closure|View
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
     {
-        return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
-            $attributes['required'] = $this->required;
-            $data['attributes'] = $attributes;
+        $unstyled = $this->truthy($attributes->get('unstyled'));
 
-            $color = $this->getColorByAttribute($attributes);
-            $size = $this->getSizeByAttribute($attributes);
+        return [
+            'controlClass' => $unstyled ? '' : 'w-full'.(($data['hasError'] ?? false) ? ' text-error input-error' : ''),
+            'hintClass' => $unstyled ? '' : 'validator-hint',
+        ];
+    }
 
-            return view('lazy::input', $this->mergeData($data, [
-                'input',
-                'input-ghost' => $color === 'ghost' || $color === 'no-border',
-                'input-primary' => $color === 'primary',
-                'input-secondary' => $color === 'secondary',
-                'input-accent' => $color === 'accent',
-                'input-info' => $color === 'info',
-                'input-success' => $color === 'success',
-                'input-warning' => $color === 'warning',
-                'input-error' => $color === 'error',
-                'input-lg' => $size === 'lg',
-                'input-md' => $size === 'md',
-                'input-sm' => $size === 'sm',
-                'input-xs' => $size === 'xs',
-            ]))->render();
-        };
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
+    {
+        return [
+            'input',
+            'validator' => $this->validator,
+            'input-ghost' => in_array($this->color, ['ghost', 'no-border'], true),
+            'input-neutral' => $this->color === 'neutral',
+            'input-primary' => $this->color === 'primary',
+            'input-secondary' => $this->color === 'secondary',
+            'input-accent' => $this->color === 'accent',
+            'input-info' => $this->color === 'info',
+            'input-success' => $this->color === 'success',
+            'input-warning' => $this->color === 'warning',
+            'input-error' => $this->color === 'error',
+            'input-xl' => $this->size === 'xl',
+            'input-lg' => $this->size === 'lg',
+            'input-md' => $this->size === 'md',
+            'input-sm' => $this->size === 'sm',
+            'input-xs' => $this->size === 'xs',
+        ];
     }
 }

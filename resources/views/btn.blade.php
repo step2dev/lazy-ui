@@ -1,16 +1,10 @@
-@props([
-    'icon' => null,
-    'rightIcon' => null,
-    'label' => ''
-])
+@aware(['join' => false])
 
-@aware([
-    'join' => false,
-])
-
-<{{ $tag }} {{ $attributes->merge(['class' => $icon || $rightIcon ? ' gap-2' : ''])->class([
-    'join-item' => $join,
-    'mr-2' => ! $join,
+<{{ $tag }} {{ $attributes
+    ->merge(['class' => $contentClass])
+    ->class([
+        'join-item' => $join,
+        $standaloneClass => ! $join && $standaloneClass !== '',
     ]) }}>
 @if($icon)
     {{ $icon }}
@@ -18,7 +12,7 @@
 {{ $label }}
 {{ $slot }}
 @if($rightIcon)
-    <div class="">
+    <div>
         {{ $rightIcon }}
     </div>
 @endisset

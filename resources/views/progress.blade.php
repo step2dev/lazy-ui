@@ -1,0 +1,1 @@
+<progress {{ $attributes }}></progress>

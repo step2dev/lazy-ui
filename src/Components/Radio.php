@@ -2,39 +2,41 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Radio extends LazyComponent
+class Radio extends DaisyComponent
 {
-    public function render(): \Closure|View
+    protected const VIEW = 'lazy::radio';
+
+    public function __construct(
+        public string $color = '',
+        public string $size = '',
+    ) {}
+
+    protected function prepareAttributes(ComponentAttributeBag $attributes): ComponentAttributeBag
     {
-        return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
-            $attributes['type'] = 'radio';
-            $data['attributes'] = $attributes;
+        $attributes['type'] = 'radio';
 
-            $color = $this->getColorByAttribute($attributes);
-            $size = $this->getSizeByAttribute($attributes);
+        return $attributes;
+    }
 
-            return view('lazy::radio', $this->mergeData($data, [
-                'radio',
-                // colors
-                'radio-primary' => $color === 'primary',
-                'radio-secondary' => $color === 'secondary',
-                'radio-accent' => $color === 'accent',
-                'radio-info' => $color === 'info',
-                'radio-success' => $color === 'success',
-                'radio-warning' => $color === 'warning',
-                'radio-error' => $color === 'error',
-                // sizes
-                'radio-lg' => $size === 'lg',
-                'radio-md' => $size === 'md',
-                'radio-sm' => $size === 'sm',
-                'radio-xs' => $size === 'xs',
-            ], [
-                'color',
-            ]))->render();
-        };
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
+    {
+        return [
+            'radio',
+            'radio-neutral' => $this->color === 'neutral',
+            'radio-primary' => $this->color === 'primary',
+            'radio-secondary' => $this->color === 'secondary',
+            'radio-accent' => $this->color === 'accent',
+            'radio-info' => $this->color === 'info',
+            'radio-success' => $this->color === 'success',
+            'radio-warning' => $this->color === 'warning',
+            'radio-error' => $this->color === 'error',
+            'radio-xl' => $this->size === 'xl',
+            'radio-lg' => $this->size === 'lg',
+            'radio-md' => $this->size === 'md',
+            'radio-sm' => $this->size === 'sm',
+            'radio-xs' => $this->size === 'xs',
+        ];
     }
 }

@@ -2,12 +2,44 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Select extends LazyComponent
+class Select extends DaisyComponent
 {
+    protected const VIEW = 'lazy::select';
+
     public ?string $placeholder;
+
+    public array $normalizedOptions = [];
+
+    public function __construct(
+        public string $label = '',
+        string $placeholder = '',
+        public bool $required = false,
+        public bool $validator = false,
+        public string $hint = '',
+        array $options = [],
+        public string|int|float|null $value = null,
+        public bool $multiple = false,
+        public string $color = '',
+        public string $size = '',
+    ) {
+        $this->placeholder = (string) str($placeholder ?: $this->label)->trim()->ucfirst();
+
+        foreach ($options as $key => $option) {
+            $normalized = is_array($option) ? $option : ['label' => $option];
+            $optionValue = $normalized['value'] ?? (is_int($key) ? $option : $key);
+
+            $this->normalizedOptions[] = [
+                'value' => $optionValue,
+                'label' => (string) ($normalized['label'] ?? $normalized['text'] ?? $optionValue),
+                'disabled' => (bool) ($normalized['disabled'] ?? false),
+                'selected' => array_key_exists('selected', $normalized)
+                    ? (bool) $normalized['selected']
+                    : (string) $optionValue === (string) $this->value,
+            ];
+        }
+    }
 
     protected function allowedColors(): array
     {
@@ -18,36 +50,47 @@ class Select extends LazyComponent
         ];
     }
 
-    public function __construct(public string $label = '', string $placeholder = '', public bool $required = false)
+    protected function prepareAttributes(ComponentAttributeBag $attributes): ComponentAttributeBag
     {
-        $this->placeholder = (string) str($placeholder ?: $this->label)->trim()->ucfirst();
+        $attributes['required'] = $this->required;
+
+        if ($this->multiple) {
+            $attributes['multiple'] = true;
+        }
+
+        return $attributes;
     }
 
-    public function render(): \Closure|View
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
     {
-        return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
-            $attributes['required'] = $this->required;
-            $data['attributes'] = $attributes;
+        $unstyled = $this->truthy($attributes->get('unstyled'));
 
-            $color = $this->getColorByAttribute($attributes);
-            $size = $this->getSizeByAttribute($attributes);
+        return [
+            'options' => $this->normalizedOptions,
+            'controlClass' => $unstyled ? '' : 'w-full'.(($data['hasError'] ?? false) ? ' text-error select-error' : ''),
+            'hintClass' => $unstyled ? '' : 'validator-hint',
+        ];
+    }
 
-            return view('lazy::select', $this->mergeData($data, [
-                'select',
-                'select-ghost' => $color === 'ghost' || $color === 'no-border',
-                'select-primary' => $color === 'primary',
-                'select-secondary' => $color === 'secondary',
-                'select-accent' => $color === 'accent',
-                'select-info' => $color === 'info',
-                'select-success' => $color === 'success',
-                'select-warning' => $color === 'warning',
-                'select-error' => $color === 'error',
-                'select-lg' => $size === 'lg',
-                'select-md' => $size === 'md',
-                'select-sm' => $size === 'sm',
-                'select-xs' => $size === 'xs',
-            ]))->render();
-        };
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
+    {
+        return [
+            'select',
+            'validator' => $this->validator,
+            'select-ghost' => in_array($this->color, ['ghost', 'no-border'], true),
+            'select-neutral' => $this->color === 'neutral',
+            'select-primary' => $this->color === 'primary',
+            'select-secondary' => $this->color === 'secondary',
+            'select-accent' => $this->color === 'accent',
+            'select-info' => $this->color === 'info',
+            'select-success' => $this->color === 'success',
+            'select-warning' => $this->color === 'warning',
+            'select-error' => $this->color === 'error',
+            'select-xl' => $this->size === 'xl',
+            'select-lg' => $this->size === 'lg',
+            'select-md' => $this->size === 'md',
+            'select-sm' => $this->size === 'sm',
+            'select-xs' => $this->size === 'xs',
+        ];
     }
 }

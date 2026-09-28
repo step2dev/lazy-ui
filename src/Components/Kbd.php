@@ -2,24 +2,26 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Kbd extends LazyComponent
+class Kbd extends DaisyComponent
 {
-    public function render(): \Closure|View
-    {
-        return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
-            $size = $this->getSizeByAttribute($attributes, '');
+    protected const VIEW = 'lazy::kbd';
 
-            return view('lazy::kbd', $this->mergeData($data, [
-                'kbd',
-                'kbd-lg' => $size === 'lg',
-                'kbd-md' => $size === 'md',
-                'kbd-sm' => $size === 'sm',
-                'kbd-xs' => $size === 'xs',
-            ]))->render();
-        };
+    public function __construct(
+        public string $value = '',
+        public string $size = '',
+    ) {}
+
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
+    {
+        return [
+            'kbd',
+            'kbd-xl' => $this->size === 'xl',
+            'kbd-lg' => $this->size === 'lg',
+            'kbd-md' => $this->size === 'md',
+            'kbd-sm' => $this->size === 'sm',
+            'kbd-xs' => $this->size === 'xs',
+        ];
     }
 }

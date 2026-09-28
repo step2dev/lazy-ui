@@ -1,5 +1,9 @@
 @props([
     'label' => '',
-    'icon' => ''
+    'icon' => '',
+    'unstyled' => false,
 ])
-<span {{ $attributes->merge(['class'=> ($icon ? ' gap-2' : '')]) }}>{{ $icon }}{{ $label ?: $slot }}</span>
+
+<span {{ $attributes->merge(['class' => ! $unstyled && $icon ? 'gap-2' : '']) }}>
+    {{ $icon }}{{ $label ?: $slot }}
+</span>

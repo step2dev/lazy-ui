@@ -2,31 +2,47 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Closure;
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Tab extends LazyComponent
+class Tab extends DaisyComponent
 {
-    public function render(): View|Closure
+    protected const VIEW = 'lazy::tab';
+
+    public function __construct(
+        public string $label = '',
+        public bool $active = false,
+        public bool $disabled = false,
+        public string $size = '',
+    ) {}
+
+    protected function prepareAttributes(ComponentAttributeBag $attributes): ComponentAttributeBag
     {
-        return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
-            $data['label'] = $data['label'] ?: $attributes['title'] ?? '';
+        if ($this->disabled) {
+            $attributes['aria-disabled'] = 'true';
+            $attributes['tabindex'] = '-1';
+        }
 
-            $size = $this->getSizeByAttribute($attributes);
+        return $attributes;
+    }
 
-            return view('lazy::tab', $this->mergeData($data, [
-                'tab',
-                'tab-active' => $attributes['active'] ?? false,
-                'tab-sm' => $size === 'sm',
-                'tab-md' => $size === 'md',
-                'tab-lg' => $size === 'lg',
-                'tab-xl' => $size === 'xl',
-            ], [
-                'active',
-                'size',
-            ]))->render();
-        };
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    {
+        return [
+            'label' => $this->label ?: (string) $attributes->get('title', ''),
+        ];
+    }
+
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
+    {
+        return [
+            'tab',
+            'tab-active' => $this->active,
+            'tab-disabled' => $this->disabled,
+        ];
+    }
+
+    protected function consumedAttributes(): array
+    {
+        return ['title'];
     }
 }

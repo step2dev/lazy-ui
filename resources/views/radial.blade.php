@@ -1,2 +1,3 @@
-@props(['value' => 0])
-<div {{ $attributes->merge(['class' => 'radial-progress']) }}class="" style="--value:{{ $value }};">{{ $value }}%</div>
+<div {{ $attributes }} role="progressbar" aria-valuenow="{{ $value }}" aria-valuemin="0" aria-valuemax="100">
+    {{ $label !== '' ? $label : $value.'%' }}
+</div>

@@ -1,14 +1,6 @@
-@props([
-    'steps' => null,
-])
-
-@if ($steps)
-    <input type="range" {{ $attributes->merge(['class' => 'range']) }} />
+<input type="range" {{ $attributes }} />
+@if ($marks && ! $unstyled)
     <div class="w-full flex justify-between text-xs px-2">
-        @foreach(range(0, $steps-1) as $stepValue)
-            <span>|</span>
-        @endforeach
+        @foreach ($marks as $mark)<span>|</span>@endforeach
     </div>
-@else
-    <input type="range" {{ $attributes->merge(['class' => 'range']) }}/>
 @endif

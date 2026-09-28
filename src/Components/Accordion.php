@@ -2,34 +2,90 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Closure;
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Accordion extends LazyComponent
+class Accordion extends DaisyComponent
 {
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): Closure|View
+    protected const VIEW = 'lazy::accordion';
+
+    public array $items = [];
+
+    public bool $collectionMode = false;
+
+    public function __construct(
+        public string $title = '',
+        public string $label = '',
+        public bool $active = false,
+        public string $name = 'accordion',
+        public bool $toggle = false,
+        public string $type = 'plus',
+        array $items = [],
+        public bool $multiple = false,
+    ) {
+        $this->collectionMode = $items !== [];
+        $this->toggle = $this->toggle || $this->multiple;
+
+        foreach (array_values($items) as $index => $item) {
+            $normalized = is_array($item) ? $item : ['title' => $item];
+
+            $this->items[] = [
+                'title' => (string) ($normalized['title'] ?? $normalized['label'] ?? ''),
+                'content' => $normalized['content'] ?? '',
+                'active' => (bool) ($normalized['active'] ?? false),
+                'checkedAttribute' => (bool) ($normalized['active'] ?? false) ? 'checked=checked' : '',
+                'disabled' => (bool) ($normalized['disabled'] ?? false),
+                'name' => (string) ($normalized['name'] ?? $this->name),
+                'inputType' => ($normalized['toggle'] ?? $this->toggle) ? 'checkbox' : 'radio',
+                'classes' => $this->classes([
+                    'collapse',
+                    'bg-base-200',
+                    'mb-2',
+                    'collapse-arrow' => ($normalized['type'] ?? $this->type) === 'arrow',
+                    'collapse-plus' => ($normalized['type'] ?? $this->type) !== 'arrow',
+                ]),
+            ];
+        }
+    }
+
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
-        return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
+        if ($this->collectionMode) {
+            return [];
+        }
 
-            $attributes['title'] ??= $attributes['label'] ?? null;
-            $attributes['active'] ??= false;
-            $attributes['name'] ??= 'accordion';
+        return [
+            'collapse',
+            'bg-base-200',
+            'mb-2',
+            'collapse-arrow' => $this->type === 'arrow',
+            'collapse-plus' => $this->type !== 'arrow',
+        ];
+    }
 
-            $data['attributes'] = $attributes;
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    {
+        $items = $this->items;
 
-            return view('lazy::accordion', $this->mergeData($data, [
-                'collapse',
-                'bg-base-200 mb-2',
-                'collapse-arrow' => $attributes->get('type') === 'arrow',
-                'collapse-plus' => $attributes->get('type') === 'plus' || $attributes->get('type') === null,
-            ], [
-                'type',
-            ]))->render();
-        };
+        if ($this->truthy($attributes->get('unstyled'))) {
+            $items = array_map(static fn (array $item): array => [
+                ...$item,
+                'classes' => '',
+            ], $items);
+        }
+
+        return [
+            'items' => $items,
+            'resolvedTitle' => $this->title ?: $this->label,
+            'inputType' => $this->toggle ? 'checkbox' : 'radio',
+            'checkedAttribute' => $this->active ? 'checked=checked' : '',
+        ];
+    }
+
+    protected function viewClasses(): array
+    {
+        return [
+            'title' => 'collapse-title text-xl font-medium',
+            'content' => 'collapse-content',
+        ];
     }
 }

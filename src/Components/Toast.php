@@ -2,15 +2,37 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Toast extends LazyComponent
+class Toast extends DaisyComponent
 {
-    public function render(): \Closure|View
+    protected const VIEW = 'lazy::toast';
+
+    public function __construct(
+        public bool $top = true,
+        public bool $middle = false,
+        public bool $bottom = false,
+        public bool $start = false,
+        public bool $center = false,
+        public bool $end = true,
+    ) {}
+
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
-        return function (array $data) {
-            return view('lazy::toast', $this->mergeData($data))->render();
-        };
+        return [
+            'toast',
+            'toast-top' => $this->top,
+            'toast-middle' => $this->middle,
+            'toast-bottom' => $this->bottom,
+            'toast-start' => $this->start,
+            'toast-center' => $this->center,
+            'toast-end' => $this->end,
+            'z-[1000]',
+        ];
+    }
+
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    {
+        return ['notify' => session('notify-flash')];
     }
 }

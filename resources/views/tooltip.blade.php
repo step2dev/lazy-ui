@@ -1,8 +1,4 @@
-@props([
-    'tip' => '',
-    'open' => false
-])
-
-<div {{ $attributes->merge(['class'=>"tooltip"]) }} data-tip="{{ $tip }}">
+<div {{ $attributes }} @if ($tip) data-tip="{{ $tip }}" @endif>
+    @isset($content)<div class="{{ $viewClasses['content'] }}">{{ $content }}</div>@endisset
     {{ $slot }}
 </div>

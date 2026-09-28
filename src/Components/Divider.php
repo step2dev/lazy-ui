@@ -2,24 +2,35 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Closure;
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Divider extends LazyComponent
+class Divider extends DaisyComponent
 {
-    public function render(): Closure|View
+    protected const VIEW = 'lazy::divider';
+
+    public function __construct(
+        public string $text = '',
+        public string $orientation = 'vertical',
+    ) {}
+
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
-        return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
+        $orientation = $this->orientation;
 
-            $orientation = $attributes['orientation'] ?? $attributes['hr'] ?? 'vertical';
-            unset($attributes['orientation'], $attributes['hr']);
+        if ($attributes->has('hr') || $attributes->has('horizontal')) {
+            $orientation = 'horizontal';
+        } elseif ($attributes->has('vertical')) {
+            $orientation = 'vertical';
+        }
 
-            return view('lazy::divider', $this->mergeData($data, [
-                'divider',
-                'divider-horizontal' => in_array($orientation, ['horizontal', 'hr']),
-            ]))->render();
-        };
+        return [
+            'divider',
+            'divider-horizontal' => in_array($orientation, ['horizontal', 'hr'], true),
+        ];
+    }
+
+    protected function consumedAttributes(): array
+    {
+        return ['hr', 'horizontal', 'vertical'];
     }
 }

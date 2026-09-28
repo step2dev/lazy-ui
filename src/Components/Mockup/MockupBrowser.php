@@ -2,15 +2,26 @@
 
 namespace Step2dev\LazyUI\Components\Mockup;
 
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
+use Step2dev\LazyUI\Components\DaisyComponent;
 
-class MockupBrowser extends LazyComponent
+class MockupBrowser extends DaisyComponent
 {
-    public function render(): \Closure|View
+    protected const VIEW = 'lazy::mockup.browser';
+
+    public function __construct(public string $url = '') {}
+
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
-        return function (array $data) {
-            return view('lazy::mockup.browser', $this->mergeData($data))->render();
-        };
+        return ['mockup-browser border border-base-300'];
+    }
+
+    protected function viewClasses(): array
+    {
+        return [
+            'toolbar' => 'mockup-browser-toolbar',
+            'url' => 'input border border-base-300',
+            'content' => 'border-t border-base-300',
+        ];
     }
 }

@@ -1,10 +1,13 @@
-@props([
-    'placeholder' => '',
-    'hasError' => false,
-])
+@aware(['join' => false])
 
-<input {{ $attributes->merge([
-    'class' => 'w-full'.($hasError ? ' text-error input-error' : ''),
+<input {{ $attributes->class([
+    'join-item' => $join,
+])->merge([
+    'class' => $controlClass,
     'type' => 'text',
     'placeholder' => $placeholder,
 ]) }} />
+
+@if ($hint)
+    <p class="{{ $hintClass }}">{{ $hint }}</p>
+@endif

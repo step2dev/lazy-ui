@@ -2,29 +2,35 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Closure;
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Join extends LazyComponent
+class Join extends DaisyComponent
 {
+    protected const VIEW = 'lazy::join';
+
     public bool $join = true;
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): Closure|View
+    public function __construct(public string $position = '') {}
+
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
-        return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
+        $position = $this->position;
 
-            $position = $this->getPositionByAttribute($attributes);
+        if ($attributes->has('vertical')) {
+            $position = 'vertical';
+        } elseif ($attributes->has('horizontal')) {
+            $position = 'horizontal';
+        }
 
-            return view('lazy::join', $this->mergeData($data, [
-                'join',
-                'join-vertical' => $position === 'vertical',
-                'join-horizontal' => $position === 'horizontal',
-            ]))->render();
-        };
+        return [
+            'join',
+            'join-vertical' => $position === 'vertical',
+            'join-horizontal' => $position === 'horizontal',
+        ];
+    }
+
+    protected function consumedAttributes(): array
+    {
+        return ['vertical', 'horizontal'];
     }
 }

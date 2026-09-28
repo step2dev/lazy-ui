@@ -2,19 +2,27 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Closure;
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Stack extends LazyComponent
+class Stack extends DaisyComponent
 {
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): Closure|View
+    protected const VIEW = 'lazy::stack';
+
+    public function __construct(
+        public bool $top = false,
+        public bool $bottom = false,
+        public bool $start = false,
+        public bool $end = false,
+    ) {}
+
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
-        return static function (array $data) {
-            return view('lazy::stack', $data)->render();
-        };
+        return [
+            'stack',
+            'stack-top' => $this->top,
+            'stack-bottom' => $this->bottom,
+            'stack-start' => $this->start,
+            'stack-end' => $this->end,
+        ];
     }
 }

@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "../../resources/css/lazy.css";
+
+@source "../../src/**/*.php";
+@source "../../resources/views/**/*.blade.php";
+@source "../../resources/js/**/*.js";
+
+@plugin "@tailwindcss/forms" {
+    strategy: "class";
+}
+
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark;
+    logs: false;
+}

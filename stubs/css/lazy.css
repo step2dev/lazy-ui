@@ -1,8 +1,25 @@
+@import "tailwindcss";
 @import "../../vendor/step2dev/lazy-ui/resources/css/lazy.css";
 
 @source "../views/**/*.blade.php";
 @source "../js/**/*.js";
 @source "../../app/**/*.php";
+@source "../../vendor/step2dev/lazy-ui/src/**/*.php";
+@source "../../vendor/step2dev/lazy-ui/resources/views/**/*.blade.php";
+@source "../../vendor/step2dev/lazy-ui/resources/js/**/*.js";
+
+@plugin "@tailwindcss/forms" {
+    strategy: "class";
+}
+
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark, cupcake, bumblebee, emerald, corporate, synthwave, retro, cyberpunk, valentine, halloween, garden, forest, aqua, lofi, pastel, fantasy, wireframe, black, luxury, dracula, cmyk, autumn, business, acid, lemonade, night, coffee, winter, dim, nord, sunset, caramellatte, abyss, silk;
+    logs: false;
+}
+
+@theme {
+    --font-base: "Inter", sans-serif;
+}
 
 @supports (-webkit-touch-callout: none) {
     .h-screen {

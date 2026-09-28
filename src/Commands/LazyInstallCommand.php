@@ -26,8 +26,6 @@ class LazyInstallCommand extends Command
                 'axios',
                 'quill@^2.0.3',
                 'sanitize-html',
-                'theme-change',
-                'alpinejs',
             ];
 
             foreach ($packages as $package) {

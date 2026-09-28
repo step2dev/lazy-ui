@@ -1,0 +1,1 @@
+<footer {{ $attributes }}>{{ $slot }}</footer>

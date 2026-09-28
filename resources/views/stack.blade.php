@@ -1,3 +1,1 @@
-<div class="stack">
-    {{ $slot }}
-</div>
+<div {{ $attributes }}>{{ $slot }}</div>

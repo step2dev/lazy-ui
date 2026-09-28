@@ -5,6 +5,12 @@ permissions:
 
 on:
   push:
+    branches: [2.x-dev]
+    paths:
+      - '**.php'
+      - 'phpstan.neon.dist'
+  pull_request:
+    branches: [2.x-dev]
     paths:
       - '**.php'
       - 'phpstan.neon.dist'

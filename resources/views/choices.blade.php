@@ -1,57 +1,44 @@
-@props([
-    'options' => null,
-    'label' => '',
-    'placeholder' => 'Please select a value',
-//    'value'=> null
-])
-@php
-    $model = $attributes->wire('model');
-    $lazy = $model->hasModifier('lazy');
-    $parameter = $model->value();
+<div
+    {{ $visualAttributes->merge(['class' => $viewClasses['wrapper']]) }}
+    @if ($model)
+        x-data="{ defaultValue: $wire.entangle(@js($model)){{ $modelLive ? '.live' : '' }} }"
+    @else
+        x-data="{ defaultValue: @js($value) }"
+    @endif
+>
+    <div x-model="defaultValue" x-data="select({!! $optionsExpression !!}, defaultValue, @js($placeholder))" class="relative">
+        @if ($label)
+            <label @if ($nativeAttributes->get('id')) for="{{ $nativeAttributes->get('id') }}" @endif class="{{ $viewClasses['label'] }}" @click="$refs.button.focus()">
+                {{ $label }}
+            </label>
+        @endif
 
-@endphp
-{{--@dd($attributes,$model, $lazy,   $parameter)--}}
+        <select x-ref="native" {{ $nativeAttributes->merge(['class' => $viewClasses['native']]) }} tabindex="-1" aria-hidden="true">
+            @if ($placeholder)<option value="" data-lazy-placeholder>{{ $placeholder }}</option>@endif
+            @foreach ($normalizedOptions as $option)
+                <option value="{{ $option['value'] }}" @disabled($option['disabled'])>{{ $option['label'] }}</option>
+            @endforeach
+            {{ $slot }}
+        </select>
 
-<div class="mb-3" x-data="{
-    defaultValue: @entangle($model)
-}" wire:ignore>
-    <div x-model="defaultValue">
-        <div
-            x-data="select({{ $options }}, defaultValue, '{{ $placeholder }}')">
-            <label id="listbox-label" class="form-check-label"
-                   @click="$refs.button.focus();">{{ $label }}</label>
-            <div class="mt-1 relative">
-                <button x-bind="button" type="button"
-                        class="relative w-full border border-gray-300 rounded-md shadow-xs pl-3 pr-10 py-2 text-left cursor-default focus:outline-hidden focus:ring-3-1 focus:ring-3-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        @listbox-focus.window="$event.detail === '' && $refs.button.click();">
-                    <span class="block truncate" x-bind="selectedItemLabel"></span>
-                    <span
-                        class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                      <i class="fa-solid text-gray-400" x-bind="caretIcon"></i>
-                    </span>
-                </button>
-                <ul x-bind="listbox"
-                    class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-3-1 ring-3-black ring-3-opacity-5 overflow-auto focus:outline-hidden sm:text-sm"
-                    role="listbox" tabindex="-1">
-                    <template x-bind="list" hidden aria-hidden="true">
-                        <li x-bind="listItem"
-                            class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9"
-                            role="option"
-                        >
-                            <span class="font-normal block truncate" x-bind="listItemLabel"></span>
-                            <span
-                                class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4"
-                                x-bind="listItemCheckIcon">
-                             <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                  fill="currentColor" viewBox="0 0 16 16">
-                                  <path
-                                      d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
-                             </svg>
-                            </span>
-                        </li>
-                    </template>
-                </ul>
-            </div>
-        </div>
+        <button x-bind="button" type="button" class="{{ $viewClasses['button'] }}" @disabled($nativeAttributes->get('disabled'))>
+            <span class="block truncate" x-bind="selectedItemLabel"></span>
+            <svg x-bind="caretIcon" class="h-4 w-4 shrink-0 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.512a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+            </svg>
+        </button>
+
+        <ul x-bind="listbox" role="listbox" tabindex="-1" class="{{ $viewClasses['listbox'] }}" style="display: none">
+            <template x-bind="list">
+                <li role="option" x-bind="listItem">
+                    <button type="button">
+                        <span class="block truncate" x-bind="listItemLabel"></span>
+                        <svg x-bind="listItemCheckIcon" class="ml-auto h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4A1 1 0 014.704 9.29L8 12.586l7.296-7.296a1 1 0 011.408 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </li>
+            </template>
+        </ul>
     </div>
 </div>

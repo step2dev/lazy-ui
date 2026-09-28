@@ -541,3 +541,15 @@ it('supports reusable dropdown positioning and content customization', function 
         ->assertSee('shadow-2xl')
         ->assertDontSee('bg-base-100');
 });
+
+
+it('supports linked and hoverable cards for admin navigation', function () {
+    $this
+        ->blade('<x-lazy-card href="/admin/users" hover title="Users">42</x-lazy-card>')
+        ->assertSee('<a', false)
+        ->assertSee('href="/admin/users"', false)
+        ->assertSee('hover:shadow-md', false)
+        ->assertSee('card-title')
+        ->assertSee('Users')
+        ->assertSee('42');
+});

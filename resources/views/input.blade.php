@@ -1,22 +1,13 @@
-@props([
-    'placeholder' => '',
-    'hasError' => false,
-    'hint' => '',
-    'unstyled' => false,
-])
-
-@aware([
-    'join' => false,
-])
+@aware(['join' => false])
 
 <input {{ $attributes->class([
-    'join-item' => ! $unstyled && $join,
+    'join-item' => $join,
 ])->merge([
-    'class' => $unstyled ? '' : 'w-full'.($hasError ? ' text-error input-error' : ''),
+    'class' => $controlClass,
     'type' => 'text',
     'placeholder' => $placeholder,
 ]) }} />
 
 @if ($hint)
-    <p @class(['validator-hint' => ! $unstyled])>{{ $hint }}</p>
+    <p class="{{ $hintClass }}">{{ $hint }}</p>
 @endif

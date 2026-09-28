@@ -15,6 +15,14 @@ class Collapse extends DaisyComponent
         public bool $plus = false,
     ) {}
 
+    protected function viewClasses(): array
+    {
+        return [
+            'title' => 'collapse-title',
+            'content' => 'collapse-content',
+        ];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return [

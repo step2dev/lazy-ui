@@ -41,6 +41,22 @@ class Timeline extends DaisyComponent
         }
     }
 
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    {
+        $items = $this->items;
+
+        if ($this->truthy($attributes->get('unstyled'))) {
+            $items = array_map(static fn (array $item): array => [
+                ...$item,
+                'startClasses' => '',
+                'middleClasses' => '',
+                'endClasses' => '',
+            ], $items);
+        }
+
+        return ['items' => $items];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return [

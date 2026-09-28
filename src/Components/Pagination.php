@@ -74,6 +74,20 @@ class Pagination extends DaisyComponent
         }
     }
 
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    {
+        $pages = $this->pages;
+
+        if ($this->truthy($attributes->get('unstyled'))) {
+            $pages = array_map(static fn (array $page): array => [
+                ...$page,
+                'classes' => '',
+            ], $pages);
+        }
+
+        return ['pages' => $pages];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return ['join'];

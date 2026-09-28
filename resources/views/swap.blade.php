@@ -1,12 +1,14 @@
-<label {{ $attributes }}>
-    <input
-        type="checkbox"
-        @if ($name) name="{{ $name }}" @endif
-        value="{{ $value }}"
-        @checked($checked)
-        @disabled($disabled)
-        {{ $inputAttributes }}
-    />
+<{{ $tag }} {{ $attributes }}>
+    @unless ($controlled)
+        <input
+            type="checkbox"
+            @if ($name) name="{{ $name }}" @endif
+            value="{{ $value }}"
+            @checked($checked)
+            @disabled($disabled)
+            {{ $inputAttributes }}
+        />
+    @endunless
 
     @if ($onLabel !== null)
         <span class="{{ $viewClasses['on'] }}">{{ $onLabel }}</span>
@@ -27,4 +29,4 @@
     @endif
 
     {{ $slot }}
-</label>
+</{{ $tag }}>

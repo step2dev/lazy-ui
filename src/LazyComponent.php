@@ -206,7 +206,7 @@ abstract class LazyComponent extends Component
         return static::DEFAULT_POSITIONS;
     }
 
-    private function isTruthyAttribute(ComponentAttributeBag $attributes, string $key): bool
+    protected function isTruthyAttribute(ComponentAttributeBag $attributes, string $key): bool
     {
         if (! $attributes->has($key)) {
             return false;

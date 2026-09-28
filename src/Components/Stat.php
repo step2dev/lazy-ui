@@ -14,6 +14,17 @@ class Stat extends DaisyComponent
         public string $description = '',
     ) {}
 
+    protected function viewClasses(): array
+    {
+        return [
+            'figure' => 'stat-figure',
+            'title' => 'stat-title',
+            'value' => 'stat-value',
+            'description' => 'stat-desc',
+            'actions' => 'stat-actions',
+        ];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return ['stat'];

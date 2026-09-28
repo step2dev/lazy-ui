@@ -12,6 +12,13 @@ class Swap extends DaisyComponent
         public bool $active = false,
         public bool $rotate = false,
         public bool $flip = false,
+        public string $name = '',
+        public string $value = '1',
+        public bool $checked = false,
+        public bool $disabled = false,
+        public mixed $on = null,
+        public mixed $off = null,
+        public mixed $indeterminate = null,
     ) {}
 
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
@@ -21,6 +28,34 @@ class Swap extends DaisyComponent
             'swap-active' => $this->active,
             'swap-rotate' => $this->rotate,
             'swap-flip' => $this->flip,
+        ];
+    }
+
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    {
+        return [
+            'inputAttributes' => $attributes->only([
+                'wire:model',
+                'wire:model.live',
+                'wire:model.blur',
+                'wire:model.change',
+                'wire:model.lazy',
+                'form',
+                'required',
+            ]),
+        ];
+    }
+
+    protected function consumedAttributes(): array
+    {
+        return [
+            'wire:model',
+            'wire:model.live',
+            'wire:model.blur',
+            'wire:model.change',
+            'wire:model.lazy',
+            'form',
+            'required',
         ];
     }
 }

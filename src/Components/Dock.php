@@ -8,7 +8,27 @@ class Dock extends DaisyComponent
 {
     protected const VIEW = 'lazy::dock';
 
-    public function __construct(public string $size = '') {}
+    public array $items = [];
+
+    public function __construct(
+        public string $size = '',
+        array $items = [],
+    ) {
+        foreach (array_values($items) as $index => $item) {
+            $normalized = is_array($item) ? $item : ['label' => $item];
+
+            $this->items[] = [
+                'label' => (string) ($normalized['label'] ?? ''),
+                'href' => $normalized['href'] ?? null,
+                'content' => $normalized['content'] ?? $normalized['icon'] ?? null,
+                'active' => (bool) ($normalized['active'] ?? false),
+                'disabled' => (bool) ($normalized['disabled'] ?? false),
+                'classes' => $this->classes([
+                    'dock-active' => (bool) ($normalized['active'] ?? false),
+                ]),
+            ];
+        }
+    }
 
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {

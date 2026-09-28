@@ -14,6 +14,15 @@ class Fieldset extends DaisyComponent
         public string $hint = '',
     ) {}
 
+    protected function viewClasses(): array
+    {
+        return [
+            'legend' => 'fieldset-legend',
+            'label' => 'label',
+            'hint' => 'label',
+        ];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return ['fieldset'];

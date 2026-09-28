@@ -1,8 +1,8 @@
 <div {{ $attributes }}>
     @isset($figure)<figure>{{ $figure }}</figure>@endisset
-    <div @class(['card-body' => ! $unstyled])>
-        @if ($title)<h2 @class(['card-title' => ! $unstyled])>{{ $title }}</h2>@endif
+    <div class="{{ $viewClasses['body'] }}">
+        @if ($title)<h2 class="{{ $viewClasses['title'] }}">{{ $title }}</h2>@endif
         {{ $slot }}
-        @isset($actions)<div @class(['card-actions justify-end' => ! $unstyled])>{{ $actions }}</div>@endisset
+        @isset($actions)<div class="{{ $viewClasses['actions'] }}">{{ $actions }}</div>@endisset
     </div>
 </div>

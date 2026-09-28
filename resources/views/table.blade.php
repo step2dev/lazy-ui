@@ -3,9 +3,11 @@
         <thead>
             <tr>
                 @foreach ($headerItems as $header)
-                    <th @if ($header['classes']) class="{{ $header['classes'] }}" @endif>
-                        {{ $header['label'] }}
-                    </th>
+                    @if ($header['classes'])
+                        <th class="{{ $header['classes'] }}">{{ $header['label'] }}</th>
+                    @else
+                        <th>{{ $header['label'] }}</th>
+                    @endif
                 @endforeach
             </tr>
         </thead>
@@ -16,9 +18,11 @@
             @foreach ($rowItems as $row)
                 <tr @if ($row['classes']) class="{{ $row['classes'] }}" @endif>
                     @foreach ($row['cells'] as $cell)
-                        <td @if ($cell['classes']) class="{{ $cell['classes'] }}" @endif>
-                            {{ $cell['value'] }}
-                        </td>
+                        @if ($cell['classes'])
+                            <td class="{{ $cell['classes'] }}">{{ $cell['value'] }}</td>
+                        @else
+                            <td>{{ $cell['value'] }}</td>
+                        @endif
                     @endforeach
                 </tr>
             @endforeach

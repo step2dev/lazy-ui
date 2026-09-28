@@ -2,7 +2,7 @@
 
 namespace Step2dev\LazyUI\Tests\Performance;
 
-use Illuminate\Contracts\View\View;
+use Closure;
 use Step2dev\LazyUI\Components\Rating;
 use Step2dev\LazyUI\Components\Stack;
 use Step2dev\LazyUI\Components\Toast;
@@ -27,8 +27,8 @@ it('renders a large component set without leaking state', function () {
         ->toBeGreaterThanOrEqual(100);
 });
 
-it('uses direct views for presentation-only components', function () {
-    expect((new Rating)->render())->toBeInstanceOf(View::class)
-        ->and((new Stack)->render())->toBeInstanceOf(View::class)
-        ->and((new Toast)->render())->toBeInstanceOf(View::class);
+it('uses the shared daisy renderer for presentation-only components', function () {
+    expect((new Rating)->render())->toBeInstanceOf(Closure::class)
+        ->and((new Stack)->render())->toBeInstanceOf(Closure::class)
+        ->and((new Toast)->render())->toBeInstanceOf(Closure::class);
 });

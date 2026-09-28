@@ -8,7 +8,7 @@ class Otp extends DaisyComponent
 {
     protected const VIEW = 'lazy::otp';
 
-    public int $cellCount;
+    public array $cells = [];
 
     public function __construct(
         public int $length = 6,
@@ -17,8 +17,12 @@ class Otp extends DaisyComponent
         public bool $joined = false,
         public string $color = '',
         public string $size = '',
+        public bool $numeric = true,
+        public bool $readonly = false,
     ) {
-        $this->cellCount = max(1, min(12, $this->length));
+        $count = max(1, min(12, $this->length));
+        $this->length = $count;
+        $this->cells = array_fill(0, $count, true);
     }
 
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
@@ -39,6 +43,40 @@ class Otp extends DaisyComponent
             'otp-md' => $this->size === 'md',
             'otp-lg' => $this->size === 'lg',
             'otp-xl' => $this->size === 'xl',
+        ];
+    }
+
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    {
+        $inputAttributes = $attributes->only([
+            'wire:model',
+            'wire:model.live',
+            'wire:model.blur',
+            'wire:model.change',
+            'wire:model.lazy',
+            'disabled',
+            'required',
+            'form',
+        ]);
+
+        return [
+            'inputAttributes' => $inputAttributes,
+            'inputMode' => $this->numeric ? 'numeric' : 'text',
+            'pattern' => $this->numeric ? '[0-9]*' : null,
+        ];
+    }
+
+    protected function consumedAttributes(): array
+    {
+        return [
+            'wire:model',
+            'wire:model.live',
+            'wire:model.blur',
+            'wire:model.change',
+            'wire:model.lazy',
+            'disabled',
+            'required',
+            'form',
         ];
     }
 }

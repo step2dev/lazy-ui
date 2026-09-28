@@ -25,6 +25,6 @@ class Breadcrumbs extends DaisyComponent
 
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
-        return ['breadcrumbs', 'text-sm'];
+        return ['text-sm', 'breadcrumbs'];
     }
 }

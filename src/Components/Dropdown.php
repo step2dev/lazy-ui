@@ -22,6 +22,14 @@ class Dropdown extends DaisyComponent
         public bool $right = false,
     ) {}
 
+    protected function viewClasses(): array
+    {
+        return [
+            'trigger' => 'btn',
+            'content' => 'dropdown-content menu bg-base-100 rounded-box z-10 mt-2 w-52 p-2 shadow-sm',
+        ];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return [

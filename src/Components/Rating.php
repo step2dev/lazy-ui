@@ -11,8 +11,11 @@ class Rating extends DaisyComponent
         public int $items = 5,
         public int|float|null $value = null,
         public string $mask = 'star-2',
+        public ?string $type = null,
         public string $color = '',
         public string $size = '',
         public bool $half = false,
+        public bool $clearable = false,
+        public bool $readonly = false,
     ) {}
 }

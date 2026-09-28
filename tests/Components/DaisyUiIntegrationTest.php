@@ -297,7 +297,6 @@ it('keeps legacy toast behavior while using daisyUI toast and alert classes', fu
         ->assertSee('$store.toasts.list', false);
 });
 
-
 it('keeps drawer hero and indicator defaults compatible but configurable', function () {
     $this
         ->blade('<x-lazy-drawer drawer-content="Menu">Content</x-lazy-drawer>')

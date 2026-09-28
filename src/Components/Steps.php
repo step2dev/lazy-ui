@@ -47,6 +47,25 @@ class Steps extends DaisyComponent
         }
     }
 
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    {
+        $steps = $this->steps;
+
+        if ($this->truthy($attributes->get('unstyled'))) {
+            $steps = array_map(static fn (array $step): array => [
+                ...$step,
+                'classes' => '',
+            ], $steps);
+        }
+
+        return ['steps' => $steps];
+    }
+
+    protected function viewClasses(): array
+    {
+        return ['icon' => 'step-icon'];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return [

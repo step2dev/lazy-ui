@@ -1,11 +1,6 @@
-@props(['unstyled' => false])
-
-<div {{ $attributes->class(['hover-3d' => ! $unstyled]) }}>
+<div {{ $attributes }}>
     {{ $slot }}
-
     @unless ($unstyled)
-        @for ($zone = 0; $zone < 8; $zone++)
-            <div aria-hidden="true"></div>
-        @endfor
+        @foreach ($zones as $zone)<div aria-hidden="true"></div>@endforeach
     @endunless
 </div>

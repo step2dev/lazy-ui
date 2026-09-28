@@ -3,16 +3,22 @@
     'items' => 5,
     'value' => null,
     'mask' => 'star-2',
+    'type' => null,
     'color' => '',
     'size' => '',
     'half' => false,
+    'clearable' => false,
+    'readonly' => false,
     'unstyled' => false,
 ])
 
 @php
-    $maskClass = match ($mask) {
+    $resolvedMask = $type ?: $mask;
+
+    $maskClass = match ($resolvedMask) {
         'heart' => 'mask-heart',
         'star' => 'mask-star',
+        'star-2' => 'mask-star-2',
         default => 'mask-star-2',
     };
 
@@ -26,9 +32,33 @@
         'error' => 'bg-error',
         default => '',
     };
+
+    $inputAttributes = $attributes->only([
+        'wire:model',
+        'wire:model.live',
+        'wire:model.blur',
+        'wire:model.change',
+        'wire:model.lazy',
+        'disabled',
+        'form',
+        'required',
+    ]);
+
+    $wrapperAttributes = $attributes->except([
+        'wire:model',
+        'wire:model.live',
+        'wire:model.blur',
+        'wire:model.change',
+        'wire:model.lazy',
+        'disabled',
+        'form',
+        'required',
+    ]);
+
+    $itemCount = max(1, min(100, (int) $items));
 @endphp
 
-<div {{ $attributes->class([
+<div {{ $wrapperAttributes->class([
     'rating' => ! $unstyled,
     'rating-half' => ! $unstyled && $half,
     'rating-xs' => ! $unstyled && $size === 'xs',
@@ -37,15 +67,39 @@
     'rating-lg' => ! $unstyled && $size === 'lg',
     'rating-xl' => ! $unstyled && $size === 'xl',
 ]) }}>
-    @if ($half)
-        <input type="radio" name="{{ $name }}" value="0" @class(['rating-hidden' => ! $unstyled]) @checked((float) $value === 0.0) />
-
-        @for ($index = 1; $index <= $items * 2; $index++)
+    @if ($readonly)
+        @for ($index = 1; $index <= $itemCount; $index++)
+            <div
+                @class([
+                    'mask' => ! $unstyled,
+                    $maskClass => ! $unstyled,
+                    $colorClass => ! $unstyled && $colorClass,
+                ])
+                aria-label="{{ $index }} {{ $index === 1 ? 'star' : 'stars' }}"
+                @if ((float) $value === (float) $index) aria-current="true" @endif
+            ></div>
+        @endfor
+    @elseif ($half)
+        @if ($clearable)
             <input
                 type="radio"
                 name="{{ $name }}"
-                value="{{ $index / 2 }}"
-                @checked((float) $value === $index / 2)
+                value="0"
+                aria-label="clear"
+                @class(['rating-hidden' => ! $unstyled])
+                @checked((float) $value === 0.0)
+                {{ $inputAttributes }}
+            />
+        @endif
+
+        @for ($index = 1; $index <= $itemCount * 2; $index++)
+            @php($ratingValue = $index / 2)
+            <input
+                type="radio"
+                name="{{ $name }}"
+                value="{{ $ratingValue }}"
+                aria-label="{{ $ratingValue }} {{ $ratingValue == 1 ? 'star' : 'stars' }}"
+                @checked((float) $value === $ratingValue)
                 @class([
                     'mask' => ! $unstyled,
                     $maskClass => ! $unstyled,
@@ -53,20 +107,35 @@
                     'mask-half-1' => ! $unstyled && $index % 2 === 1,
                     'mask-half-2' => ! $unstyled && $index % 2 === 0,
                 ])
+                {{ $inputAttributes }}
             />
         @endfor
     @else
-        @for ($index = 1; $index <= $items; $index++)
+        @if ($clearable)
+            <input
+                type="radio"
+                name="{{ $name }}"
+                value="0"
+                aria-label="clear"
+                @class(['rating-hidden' => ! $unstyled])
+                @checked((float) $value === 0.0)
+                {{ $inputAttributes }}
+            />
+        @endif
+
+        @for ($index = 1; $index <= $itemCount; $index++)
             <input
                 type="radio"
                 name="{{ $name }}"
                 value="{{ $index }}"
+                aria-label="{{ $index }} {{ $index === 1 ? 'star' : 'stars' }}"
                 @checked((float) $value === (float) $index)
                 @class([
                     'mask' => ! $unstyled,
                     $maskClass => ! $unstyled,
                     $colorClass => ! $unstyled && $colorClass,
                 ])
+                {{ $inputAttributes }}
             />
         @endfor
     @endif

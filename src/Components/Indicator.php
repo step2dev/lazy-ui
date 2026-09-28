@@ -83,7 +83,10 @@ class Indicator extends DaisyComponent
             $markerClasses = [];
         }
 
-        return ['markerClasses' => $markerClasses];
+        return [
+            'markerClasses' => $markerClasses,
+            'markerClass' => $this->classes($markerClasses),
+        ];
     }
 
     protected function consumedAttributes(): array

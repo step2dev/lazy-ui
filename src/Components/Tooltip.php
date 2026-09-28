@@ -12,6 +12,7 @@ class Tooltip extends DaisyComponent
         public string $tip = '',
         public bool $open = false,
         public ?string $position = null,
+        public ?string $align = null,
         public ?string $color = null,
     ) {}
 
@@ -22,6 +23,15 @@ class Tooltip extends DaisyComponent
         foreach (['top', 'right', 'bottom', 'left'] as $candidate) {
             if ($attributes->has($candidate)) {
                 $position = $candidate;
+                break;
+            }
+        }
+
+        $align = $this->align;
+
+        foreach (['start', 'center', 'end'] as $candidate) {
+            if ($attributes->has($candidate)) {
+                $align = $candidate;
                 break;
             }
         }
@@ -42,6 +52,9 @@ class Tooltip extends DaisyComponent
             'tooltip-right' => $position === 'right',
             'tooltip-bottom' => $position === 'bottom',
             'tooltip-left' => $position === 'left',
+            'tooltip-start' => $align === 'start',
+            'tooltip-center' => $align === 'center',
+            'tooltip-end' => $align === 'end',
             'tooltip-primary' => $color === 'primary',
             'tooltip-secondary' => $color === 'secondary',
             'tooltip-accent' => $color === 'accent',
@@ -54,6 +67,10 @@ class Tooltip extends DaisyComponent
 
     protected function consumedAttributes(): array
     {
-        return ['top', 'right', 'bottom', 'left', 'primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error'];
+        return [
+            'top', 'right', 'bottom', 'left',
+            'start', 'center', 'end',
+            'primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error',
+        ];
     }
 }

@@ -10,6 +10,11 @@ class Step extends DaisyComponent
 
     public function __construct(public string $color = '') {}
 
+    protected function viewClasses(): array
+    {
+        return ['icon' => 'step-icon'];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return [

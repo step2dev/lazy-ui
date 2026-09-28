@@ -2,53 +2,47 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Closure;
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Tab extends LazyComponent
+class Tab extends DaisyComponent
 {
+    protected const VIEW = 'lazy::tab';
+
     public function __construct(
         public string $label = '',
         public bool $active = false,
         public bool $disabled = false,
+        public string $size = '',
     ) {}
 
-    public function render(): View|Closure
+    protected function prepareAttributes(ComponentAttributeBag $attributes): ComponentAttributeBag
     {
-        return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
-            $data['label'] = $this->label ?: ($attributes['title'] ?? '');
-            $data['disabled'] = $this->disabled || $this->truthy($attributes->get('disabled'));
+        if ($this->disabled) {
+            $attributes['aria-disabled'] = 'true';
+            $attributes['tabindex'] = '-1';
+        }
 
-            if ($data['disabled']) {
-                $attributes['aria-disabled'] = 'true';
-                $attributes['tabindex'] = '-1';
-            }
-
-            $data['attributes'] = $attributes;
-            $size = $this->getSizeByAttribute($attributes);
-
-            return view('lazy::tab', $this->mergeData($data, [
-                'tab',
-                'tab-active' => $this->active || $this->truthy($attributes->get('active')),
-                'tab-disabled' => $data['disabled'],
-                'tab-sm' => $size === 'sm',
-                'tab-md' => $size === 'md',
-                'tab-lg' => $size === 'lg',
-                'tab-xl' => $size === 'xl',
-                'tab-xs' => $size === 'xs',
-            ], [
-                'active',
-                'disabled',
-                'size',
-                'title',
-            ]))->render();
-        };
+        return $attributes;
     }
 
-    private function truthy(mixed $value): bool
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
     {
-        return $value !== false && $value !== null && $value !== 'false' && $value !== '0' && $value !== 0;
+        return [
+            'label' => $this->label ?: (string) $attributes->get('title', ''),
+        ];
+    }
+
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
+    {
+        return [
+            'tab',
+            'tab-active' => $this->active,
+            'tab-disabled' => $this->disabled,
+        ];
+    }
+
+    protected function consumedAttributes(): array
+    {
+        return ['title'];
     }
 }

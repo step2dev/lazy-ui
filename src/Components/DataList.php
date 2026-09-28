@@ -17,6 +17,20 @@ class DataList extends DaisyComponent
         }
     }
 
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    {
+        $rows = $this->rows;
+
+        if ($this->truthy($attributes->get('unstyled'))) {
+            $rows = array_map(static fn (array $row): array => [
+                ...$row,
+                'classes' => '',
+            ], $rows);
+        }
+
+        return ['rows' => $rows];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return ['list'];

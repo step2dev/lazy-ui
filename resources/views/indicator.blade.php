@@ -1,8 +1,8 @@
 <div {{ $attributes }}>
     @isset($marker)
-        <span {{ $marker->attributes->class($unstyled ? [] : $markerClasses) }}>{{ $marker }}</span>
+        <span {{ $marker->attributes->class($markerClasses) }}>{{ $marker }}</span>
     @elseif ($indicator !== null)
-        <span @class($unstyled ? [] : $markerClasses)>{{ $indicator }}</span>
+        <span class="{{ $classes($markerClasses) }}">{{ $indicator }}</span>
     @endisset
     {{ $slot }}
 </div>

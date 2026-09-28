@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "sanitize-html": "^2.12.1",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^4.3.3"
   }
 }

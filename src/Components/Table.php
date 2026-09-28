@@ -8,9 +8,9 @@ class Table extends DaisyComponent
 {
     protected const VIEW = 'lazy::table';
 
-    public array $headers;
+    public array $headerItems = [];
 
-    public array $rows;
+    public array $rowItems = [];
 
     public function __construct(
         array $headers = [],
@@ -20,8 +20,43 @@ class Table extends DaisyComponent
         public bool $pinCols = false,
         public string $size = '',
     ) {
-        $this->headers = array_values($headers);
-        $this->rows = array_values($rows);
+        $keys = [];
+
+        foreach ($headers as $key => $header) {
+            $normalized = is_array($header) ? $header : ['label' => $header];
+            $resolvedKey = (string) ($normalized['key'] ?? (is_string($key) ? $key : $key));
+
+            $keys[] = $resolvedKey;
+            $this->headerItems[] = [
+                'label' => (string) ($normalized['label'] ?? $normalized['title'] ?? $resolvedKey),
+                'key' => $resolvedKey,
+                'classes' => (string) ($normalized['class'] ?? ''),
+            ];
+        }
+
+        foreach ($rows as $row) {
+            $normalizedRow = is_array($row) ? $row : [$row];
+            $cells = [];
+
+            if ($this->headerItems !== []) {
+                foreach ($keys as $index => $key) {
+                    $value = array_key_exists($key, $normalizedRow)
+                        ? $normalizedRow[$key]
+                        : ($normalizedRow[$index] ?? null);
+
+                    $cells[] = $this->normalizeCell($value);
+                }
+            } else {
+                foreach (array_values($normalizedRow) as $value) {
+                    $cells[] = $this->normalizeCell($value);
+                }
+            }
+
+            $this->rowItems[] = [
+                'cells' => $cells,
+                'classes' => is_array($row) ? (string) ($row['_class'] ?? '') : '',
+            ];
+        }
     }
 
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
@@ -36,6 +71,18 @@ class Table extends DaisyComponent
             'table-md' => $this->size === 'md',
             'table-lg' => $this->size === 'lg',
             'table-xl' => $this->size === 'xl',
+        ];
+    }
+
+    private function normalizeCell(mixed $cell): array
+    {
+        if (! is_array($cell)) {
+            return ['value' => $cell, 'classes' => ''];
+        }
+
+        return [
+            'value' => $cell['value'] ?? $cell['label'] ?? '',
+            'classes' => (string) ($cell['class'] ?? ''),
         ];
     }
 }

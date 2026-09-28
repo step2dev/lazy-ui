@@ -63,6 +63,10 @@ class Btn extends LazyComponent
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);
 
+            $unstyled = $this->isTruthyAttribute($attributes, 'unstyled');
+            $data['contentClass'] = $unstyled || (! $this->icon && ! $this->rightIcon) ? '' : 'gap-2';
+            $data['standaloneClass'] = $unstyled ? '' : 'mr-2';
+
             return view('lazy::btn', $this->mergeData($data, [
                 'btn',
                 'join' => $attributes->get('group', false),

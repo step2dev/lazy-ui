@@ -4,7 +4,7 @@
             <div
                 aria-label="{{ $item['label'] }}"
                 @if ($item['checked']) aria-current="true" @endif
-                @class($unstyled ? [] : $item['classes'])
+                class="{{ $item['classes'] }}"
             ></div>
         @else
             <input
@@ -13,7 +13,7 @@
                 value="{{ $item['value'] }}"
                 aria-label="{{ $item['label'] }}"
                 @checked($item['checked'])
-                @class($unstyled ? [] : $item['classes'])
+                class="{{ $item['classes'] }}"
                 {{ $inputAttributes }}
             />
         @endif

@@ -1,27 +1,4 @@
-@props([
-    'top' => true,
-    'middle' => false,
-    'bottom' => false,
-    'start' => false,
-    'center' => false,
-    'end' => true,
-    'unstyled' => false,
-])
-
-<div
-    x-data
-    id="toasts"
-    {{ $attributes->class([
-        'toast' => ! $unstyled,
-        'toast-top' => ! $unstyled && $top,
-        'toast-middle' => ! $unstyled && $middle,
-        'toast-bottom' => ! $unstyled && $bottom,
-        'toast-start' => ! $unstyled && $start,
-        'toast-center' => ! $unstyled && $center,
-        'toast-end' => ! $unstyled && $end,
-        'z-[1000]' => ! $unstyled,
-    ]) }}
->
+<div x-data id="toasts" {{ $attributes }}>
     <template x-for="toast in $store.toasts.list" :key="toast.id">
         <div
             role="alert"
@@ -49,17 +26,10 @@
                         <div x-html="toast.message"></div>
                     </div>
                 </template>
-                <template x-if="! toast.title">
-                    <div x-html="toast.message"></div>
-                </template>
+                <template x-if="! toast.title"><div x-html="toast.message"></div></template>
             </div>
 
-            <button
-                type="button"
-                class="btn btn-ghost btn-sm btn-circle"
-                @click="$store.toasts.destroyToast(toast.id)"
-                aria-label="Close notification"
-            >
+            <button type="button" class="btn btn-ghost btn-sm btn-circle" @click="$store.toasts.destroyToast(toast.id)" aria-label="Close notification">
                 <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"></path>
                 </svg>
@@ -72,8 +42,7 @@
     </template>
 </div>
 
-@if (session()->has('notify-flash'))
-    @php($notify = session('notify-flash'))
+@if ($notify)
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             toast.notification(@js($notify['message']), @js($notify['type']), {

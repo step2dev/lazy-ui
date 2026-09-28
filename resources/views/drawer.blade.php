@@ -1,6 +1,6 @@
 @props([
     'drawerContent' => null,
-    'id' => 'lazy-drawer',
+    'id',
     'open' => false,
     'end' => false,
     'menu' => true,

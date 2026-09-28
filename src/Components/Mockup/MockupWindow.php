@@ -13,4 +13,9 @@ class MockupWindow extends DaisyComponent
     {
         return ['mockup-window border border-base-300'];
     }
+
+    protected function viewClasses(): array
+    {
+        return ['content' => 'border-t border-base-300'];
+    }
 }

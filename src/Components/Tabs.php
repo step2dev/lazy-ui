@@ -7,13 +7,32 @@ use Step2dev\LazyUI\LazyComponent;
 
 class Tabs extends LazyComponent
 {
+    public array $items = [];
+
     public function __construct(
         public string $type = '',
         public string $size = '',
         public string $placement = '',
         public bool $top = false,
         public bool $bottom = false,
-    ) {}
+        array $items = [],
+        public int|string|null $active = null,
+    ) {
+        foreach (array_values($items) as $index => $item) {
+            $normalized = is_array($item) ? $item : ['label' => $item];
+            $key = $normalized['key'] ?? $normalized['value'] ?? $index;
+
+            $this->items[] = [
+                'label' => (string) ($normalized['label'] ?? $normalized['title'] ?? $key),
+                'href' => $normalized['href'] ?? null,
+                'content' => $normalized['content'] ?? null,
+                'disabled' => (bool) ($normalized['disabled'] ?? false),
+                'active' => array_key_exists('active', $normalized)
+                    ? (bool) $normalized['active']
+                    : ((string) $this->active === (string) $key),
+            ];
+        }
+    }
 
     public function allowedTabType(): array
     {
@@ -26,14 +45,10 @@ class Tabs extends LazyComponent
             $attributes = $this->getAttributesFromData($data);
             $attributes['role'] = 'tablist';
             $data['attributes'] = $attributes;
+            $data['items'] = $this->items;
 
             $size = $this->getSizeByAttribute($attributes, $this->size ?: null);
-            $type = $this->getKeyByAttribute(
-                $attributes,
-                $this->allowedTabType(),
-                'type',
-                $this->type ?: ''
-            );
+            $type = $this->getKeyByAttribute($attributes, $this->allowedTabType(), 'type', $this->type ?: '');
 
             $placement = $this->placement;
             if ($this->top || $attributes->has('top')) {
@@ -55,11 +70,7 @@ class Tabs extends LazyComponent
                 'tabs-sm' => $size === 'sm',
                 'tabs-xs' => $size === 'xs',
             ], [
-                'size',
-                'type',
-                'placement',
-                'top',
-                'bottom',
+                'size', 'type', 'placement', 'top', 'bottom',
             ]))->render();
         };
     }

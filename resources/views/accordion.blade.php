@@ -1,16 +1,18 @@
-@props([
-    'title' => '',
-    'active' => false,
-    'name' => '',
-    'toggle' => false,
-])
-
-<div {{ $attributes }}>
-    <input type="{{ $toggle ? 'checkbox' : 'radio' }}" name="{{ $name }}" {{ $active ? 'checked=checked' : '' }} />
-    <div class="collapse-title text-xl font-medium">
-        {{ $title }}
-    </div>
-    <div class="collapse-content">
+@if ($collectionMode)
+    <div {{ $attributes }}>
+        @foreach ($items as $item)
+            <div class="{{ $unstyled ? '' : $item['classes'] }}">
+                <input type="{{ $item['inputType'] }}" name="{{ $item['name'] }}" @checked($item['active']) @disabled($item['disabled']) />
+                <div @class(['collapse-title text-xl font-medium' => ! $unstyled])>{{ $item['title'] }}</div>
+                <div @class(['collapse-content' => ! $unstyled])>{{ $item['content'] }}</div>
+            </div>
+        @endforeach
         {{ $slot }}
     </div>
-</div>
+@else
+    <div {{ $attributes }}>
+        <input type="{{ $inputType }}" name="{{ $name }}" @checked($active) />
+        <div @class(['collapse-title text-xl font-medium' => ! $unstyled])>{{ $resolvedTitle }}</div>
+        <div @class(['collapse-content' => ! $unstyled])>{{ $slot }}</div>
+    </div>
+@endif

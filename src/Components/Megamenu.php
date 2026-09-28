@@ -15,6 +15,11 @@ class Megamenu extends DaisyComponent
         public string $size = '',
     ) {}
 
+    protected function viewClasses(): array
+    {
+        return ['active' => 'megamenu-active'];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return [

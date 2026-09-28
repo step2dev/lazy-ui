@@ -8,9 +8,9 @@ use Step2dev\LazyUI\LazyComponent;
 
 class Menu extends LazyComponent
 {
-    public string|int $countLabel;
-    public string $resolvedHref;
-    public bool $isActive;
+    public string|int $countLabel = 0;
+    public string $resolvedHref = '#';
+    public bool $isActive = false;
 
     public function __construct(
         public string $route = '',
@@ -28,6 +28,10 @@ class Menu extends LazyComponent
         public bool $focus = false,
         public bool $join = true,
     ) {
+        if (! $this->show) {
+            return;
+        }
+
         $routePath = $this->route ? route($this->route, [], false) : $this->href;
         $path = trim($routePath !== '/admin' ? $routePath.'*' : $routePath, '/');
 

@@ -8,10 +8,6 @@ class Rating extends DaisyComponent
 {
     protected const VIEW = 'lazy::rating';
 
-    public string $maskClass;
-
-    public string $colorClass;
-
     public array $ratingItems = [];
 
     public function __construct(
@@ -26,15 +22,13 @@ class Rating extends DaisyComponent
         public bool $clearable = false,
         public bool $readonly = false,
     ) {
-        $resolvedMask = $this->type ?: $this->mask;
-
-        $this->maskClass = match ($resolvedMask) {
+        $maskClass = match ($this->type ?: $this->mask) {
             'heart' => 'mask-heart',
             'star' => 'mask-star',
             default => 'mask-star-2',
         };
 
-        $this->colorClass = match ($this->color) {
+        $colorClass = match ($this->color) {
             'primary' => 'bg-primary',
             'secondary' => 'bg-secondary',
             'accent' => 'bg-accent',
@@ -45,17 +39,29 @@ class Rating extends DaisyComponent
             default => '',
         };
 
+        if ($this->clearable && ! $this->readonly) {
+            $this->ratingItems[] = [
+                'value' => 0,
+                'label' => 'clear',
+                'checked' => (float) $this->value === 0.0,
+                'classes' => 'rating-hidden',
+                'clear' => true,
+            ];
+        }
+
         $count = max(1, min(100, $this->items));
         $steps = $this->half ? $count * 2 : $count;
 
         for ($index = 1; $index <= $steps; $index++) {
             $ratingValue = $this->half ? $index / 2 : $index;
+            $halfClass = ! $this->half ? '' : ($index % 2 === 1 ? 'mask-half-1' : 'mask-half-2');
 
             $this->ratingItems[] = [
                 'value' => $ratingValue,
                 'label' => $ratingValue.' '.($ratingValue == 1 ? 'star' : 'stars'),
                 'checked' => (float) $this->value === (float) $ratingValue,
-                'halfClass' => ! $this->half ? '' : ($index % 2 === 1 ? 'mask-half-1' : 'mask-half-2'),
+                'classes' => $this->classes(array_filter(['mask', $maskClass, $colorClass, $halfClass])),
+                'clear' => false,
             ];
         }
     }

@@ -16,9 +16,9 @@ class Swap extends DaisyComponent
         public string $value = '1',
         public bool $checked = false,
         public bool $disabled = false,
-        public mixed $on = null,
-        public mixed $off = null,
-        public mixed $indeterminate = null,
+        public mixed $onLabel = null,
+        public mixed $offLabel = null,
+        public mixed $indeterminateLabel = null,
     ) {}
 
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array

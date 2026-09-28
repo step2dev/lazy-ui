@@ -8,9 +8,23 @@
         {{ $inputAttributes }}
     />
 
-    @if ($on !== null)<span @class(['swap-on' => ! $unstyled])>{{ $on }}</span>@elseif (isset($onSlot))<span @class(['swap-on' => ! $unstyled])>{{ $onSlot }}</span>@endif
-    @if ($off !== null)<span @class(['swap-off' => ! $unstyled])>{{ $off }}</span>@elseif (isset($offSlot))<span @class(['swap-off' => ! $unstyled])>{{ $offSlot }}</span>@endif
-    @if ($indeterminate !== null)<span @class(['swap-indeterminate' => ! $unstyled])>{{ $indeterminate }}</span>@endif
+    @if ($onLabel !== null)
+        <span @class(['swap-on' => ! $unstyled])>{{ $onLabel }}</span>
+    @elseif (isset($on))
+        <span @class(['swap-on' => ! $unstyled])>{{ $on }}</span>
+    @endif
+
+    @if ($offLabel !== null)
+        <span @class(['swap-off' => ! $unstyled])>{{ $offLabel }}</span>
+    @elseif (isset($off))
+        <span @class(['swap-off' => ! $unstyled])>{{ $off }}</span>
+    @endif
+
+    @if ($indeterminateLabel !== null)
+        <span @class(['swap-indeterminate' => ! $unstyled])>{{ $indeterminateLabel }}</span>
+    @elseif (isset($indeterminate))
+        <span @class(['swap-indeterminate' => ! $unstyled])>{{ $indeterminate }}</span>
+    @endif
 
     {{ $slot }}
 </label>

@@ -1,5 +1,5 @@
 <form {{ $attributes }}>
-    <input type="reset" value="{{ $resetLabel }}" @class(['btn btn-square' => ! $unstyled]) />
+    <input type="reset" value="{{ $resetLabel }}" class="{{ $viewClasses['reset'] }}" />
     @foreach ($items as $item)
         <input
             type="radio"
@@ -8,7 +8,7 @@
             aria-label="{{ $item['label'] }}"
             @checked($item['checked'])
             @disabled($item['disabled'])
-            class="{{ $unstyled ? '' : $item['classes'] }}"
+            class="{{ $item['classes'] }}"
         />
     @endforeach
     {{ $slot }}

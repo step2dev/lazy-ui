@@ -1,5 +1,5 @@
 <div
-    {{ $visualAttributes->class(['fieldset w-full' => ! $unstyled]) }}
+    {{ $visualAttributes->merge(['class' => $viewClasses['wrapper']]) }}
     @if ($model)
         x-data="{ defaultValue: $wire.entangle(@js($model)){{ $modelLive ? '.live' : '' }} }"
     @else
@@ -8,12 +8,12 @@
 >
     <div x-model="defaultValue" x-data="select({!! $optionsExpression !!}, defaultValue, @js($placeholder))" class="relative">
         @if ($label)
-            <label @if ($nativeAttributes->get('id')) for="{{ $nativeAttributes->get('id') }}" @endif @class(['label' => ! $unstyled]) @click="$refs.button.focus()">
+            <label @if ($nativeAttributes->get('id')) for="{{ $nativeAttributes->get('id') }}" @endif class="{{ $viewClasses['label'] }}" @click="$refs.button.focus()">
                 {{ $label }}
             </label>
         @endif
 
-        <select x-ref="native" {{ $nativeAttributes->class(['sr-only' => ! $unstyled]) }} tabindex="-1" aria-hidden="true">
+        <select x-ref="native" {{ $nativeAttributes->merge(['class' => $viewClasses['native']]) }} tabindex="-1" aria-hidden="true">
             @if ($placeholder)<option value="" data-lazy-placeholder>{{ $placeholder }}</option>@endif
             @foreach ($normalizedOptions as $option)
                 <option value="{{ $option['value'] }}" @disabled($option['disabled'])>{{ $option['label'] }}</option>
@@ -21,14 +21,14 @@
             {{ $slot }}
         </select>
 
-        <button x-bind="button" type="button" @class(['select w-full flex items-center justify-between text-left cursor-pointer' => ! $unstyled]) @disabled($nativeAttributes->get('disabled'))>
+        <button x-bind="button" type="button" class="{{ $viewClasses['button'] }}" @disabled($nativeAttributes->get('disabled'))>
             <span class="block truncate" x-bind="selectedItemLabel"></span>
             <svg x-bind="caretIcon" class="h-4 w-4 shrink-0 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.512a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
             </svg>
         </button>
 
-        <ul x-bind="listbox" role="listbox" tabindex="-1" @class(['menu dropdown-content bg-base-100 rounded-box z-50 mt-1 max-h-60 w-full overflow-auto p-2 shadow-lg' => ! $unstyled]) style="display: none">
+        <ul x-bind="listbox" role="listbox" tabindex="-1" class="{{ $viewClasses['listbox'] }}" style="display: none">
             <template x-bind="list">
                 <li role="option" x-bind="listItem">
                     <button type="button">

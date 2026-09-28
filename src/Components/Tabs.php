@@ -34,6 +34,29 @@ class Tabs extends LazyComponent
         }
     }
 
+    protected function componentData(array $data, \Illuminate\View\ComponentAttributeBag $attributes): array
+    {
+        $items = $this->items;
+
+        foreach ($items as &$item) {
+            $item['classes'] = $this->truthy($attributes->get('unstyled'))
+                ? ''
+                : $this->classes([
+                    'tab',
+                    'tab-active' => $item['active'],
+                    'tab-disabled' => $item['disabled'],
+                ]);
+        }
+        unset($item);
+
+        return ['items' => $items];
+    }
+
+    protected function viewClasses(): array
+    {
+        return ['content' => 'tab-content'];
+    }
+
     public function allowedTabType(): array
     {
         return ['boxed', 'lifted', 'bordered', 'box', 'lift', 'border'];

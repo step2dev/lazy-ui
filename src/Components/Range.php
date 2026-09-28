@@ -50,7 +50,7 @@ class Range extends DaisyComponent
         ];
     }
 
-    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    protected function prepareAttributes(ComponentAttributeBag $attributes): ComponentAttributeBag
     {
         $attributes['type'] = 'range';
         $attributes['min'] = $attributes->get('min', $this->min);
@@ -61,6 +61,6 @@ class Range extends DaisyComponent
             $attributes['step'] = $attributes->get('step', $this->step);
         }
 
-        return ['attributes' => $attributes];
+        return $attributes;
     }
 }

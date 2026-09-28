@@ -9,6 +9,19 @@
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
+## 2.x frontend stack
+
+Lazy UI 2.x uses:
+
+- Tailwind CSS 4
+- daisyUI 5
+- Alpine.js 3
+- Quill 2
+
+The maintained 1.x line remains on Tailwind CSS 3 and daisyUI 4.
+
+Upgrading from Lazy UI 1.x? See the [1.x → 2.x migration guide](docs/upgrade-1-to-2.md).
+
 ## Support us
 
 [Support us](https://github.com/sponsors/Step2dev) with a monthly donation and help us continue our activities.
@@ -20,6 +33,14 @@ You can install the package via composer:
 ```bash
 composer require step2dev/lazy-ui
 ```
+
+Install the Lazy UI frontend dependencies and Tailwind CSS 4 configuration:
+
+```bash
+php artisan lazy-ui:install-package
+```
+
+The installer creates `resources/css/lazy.css`, `resources/js/lazy.js`, and `postcss.config.js`.
 
 You can publish the config file with:
 

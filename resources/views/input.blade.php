@@ -1,6 +1,10 @@
 @props([
     'placeholder' => '',
-    'hasError' => false
+    'hasError' => false,
 ])
 
-<input {{ $attributes->merge(['class' => 'input w-full'.($hasError ? ' text-error input-error input-bordered' : ''), 'type' => 'text', 'placeholder' => $placeholder ]) }} />
+<input {{ $attributes->merge([
+    'class' => 'w-full'.($hasError ? ' text-error input-error' : ''),
+    'type' => 'text',
+    'placeholder' => $placeholder,
+]) }} />

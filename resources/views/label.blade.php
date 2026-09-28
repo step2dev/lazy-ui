@@ -1,9 +1,9 @@
 @props([
-    'label' => ''
+    'label' => '',
 ])
 
 <label {{ $attributes->merge([
-    'class' => 'label flex flex-row'. $hr ? 'w-1/6' : '',
+    'class' => 'label flex flex-row'.($hr ? ' w-1/6' : ''),
 ]) }}>
-    <span class="label-text{{ $hasError ? ' text-error' : '' }}">{!! $label ?: $slot !!}</span>
+    <span @class(['text-error' => $hasError])>{!! $label ?: $slot !!}</span>
 </label>

@@ -35,9 +35,7 @@ class Input extends LazyComponent
 
             return view('lazy::input', $this->mergeData($data, [
                 'input',
-                // colors
-                'input-bordered' => ! $color || $color === 'bordered' || $color !== 'no-border',
-                'input-ghost' => $color === 'ghost',
+                'input-ghost' => $color === 'ghost' || $color === 'no-border',
                 'input-primary' => $color === 'primary',
                 'input-secondary' => $color === 'secondary',
                 'input-accent' => $color === 'accent',
@@ -45,7 +43,6 @@ class Input extends LazyComponent
                 'input-success' => $color === 'success',
                 'input-warning' => $color === 'warning',
                 'input-error' => $color === 'error',
-                // sizes
                 'input-lg' => $size === 'lg',
                 'input-md' => $size === 'md',
                 'input-sm' => $size === 'sm',

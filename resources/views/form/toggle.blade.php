@@ -1,10 +1,8 @@
 @props([
     'label' => '',
     'help' => '',
-    'hr' => ''
+    'hr' => '',
 ])
-
-
 
 @php
     $required = $attributes['required'] ?? null;
@@ -13,15 +11,14 @@
     }
     $model = $attributes->wire('model');
     $parameter = $model->value();
-    $class = [];
 @endphp
-
 
 <div class="{{ $label ? 'fieldset' : 'inline-block' }}">
     <label class="label cursor-pointer{{ $hr ? ' flex flex-col items-start' : '' }}">
-        <span class="label-text{{ $hr ? ' mb-1' : '' }}">{!! $label !!}</span>
+        <span class="{{ $hr ? 'mb-1' : '' }}">{!! $label !!}</span>
         <x-lazy-toggle :attributes="$attributes" />
     </label>
+
     @if ($help)
         <div class="tooltip w-6" data-tip="{{ $help }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -31,6 +28,7 @@
             </svg>
         </div>
     @endif
+
     @if ($parameter)
         @error($parameter)
         <div class="alert alert-error mt-1 mb-2 shadow-lg">

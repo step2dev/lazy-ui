@@ -1,6 +1,6 @@
 <div {{ $attributes }}>
-    <div class="camera"></div>
-    <div class="display">
-        <div class="artboard artboard-demo phone-1">{{ $slot }}</div>
+    <div class="mockup-phone-camera"></div>
+    <div class="mockup-phone-display">
+        <div class="w-[320px] h-[568px]">{{ $slot }}</div>
     </div>
 </div>

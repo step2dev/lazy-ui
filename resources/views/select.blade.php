@@ -1,10 +1,12 @@
 @props([
     'placeholder' => '',
-    'hasError' => false
+    'hasError' => false,
 ])
 
-<select {{ $attributes->merge(['class' => 'input w-full'.($hasError ? ' text-error input-error input-bordered' : ''),  $placeholder ]) }}>
-    @if($placeholder)
+<select {{ $attributes->merge([
+    'class' => 'w-full'.($hasError ? ' text-error select-error' : ''),
+]) }}>
+    @if ($placeholder)
         <option value="">{{ $placeholder }}</option>
     @endif
     {{ $slot }}

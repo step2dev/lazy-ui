@@ -1,8 +1,9 @@
 @props([
     'label' => '',
     'help' => '',
-    'hr' => false
+    'hr' => false,
 ])
+
 @php
     $required = $attributes['required'] ?? null;
     if ($label) {
@@ -10,16 +11,14 @@
     }
     $model = $attributes->wire('model');
     $parameter = $model->value();
-    $class = [];
 @endphp
 
-
 <div class="{{ $label ? 'fieldset' : 'inline-block' }}">
-    <label
-        class="label cursor-pointer{{ $hr ? ' flex flex-col items-start' : 'flex flex-row items-center justify-start' }}">
+    <label class="label cursor-pointer{{ $hr ? ' flex flex-col items-start' : ' flex flex-row items-center justify-start' }}">
         <x-lazy-checkbox :attributes="$attributes"/>
-        <span class="label-text{{ $hr ? ' mb-1' : ' ml-2' }}">{!! $label !!}</span>
+        <span class="{{ $hr ? 'mb-1' : 'ml-2' }}">{!! $label !!}</span>
     </label>
+
     @if ($help)
         <div class="tooltip float-left w-6" data-tip="{{ $help }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -29,5 +28,6 @@
             </svg>
         </div>
     @endif
+
     <x-lazy-error :key="$parameter"/>
 </div>

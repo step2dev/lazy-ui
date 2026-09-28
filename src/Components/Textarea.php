@@ -9,6 +9,15 @@ class Textarea extends LazyComponent
 {
     public ?string $placeholder;
 
+    protected function allowedColors(): array
+    {
+        return [
+            ...parent::allowedColors(),
+            'no-border',
+            'ghost',
+        ];
+    }
+
     public function __construct(string $placeholder = '', public bool $required = false)
     {
         $this->placeholder = (string) str($placeholder)->trim()->ucfirst();
@@ -26,9 +35,7 @@ class Textarea extends LazyComponent
 
             return view('lazy::textarea', $this->mergeData($data, [
                 'textarea',
-                // colors
-                'textarea-bordered' => ! $color || $color === 'bordered' || $color !== 'no-border',
-                'textarea-ghost' => $color === 'ghost',
+                'textarea-ghost' => $color === 'ghost' || $color === 'no-border',
                 'textarea-primary' => $color === 'primary',
                 'textarea-secondary' => $color === 'secondary',
                 'textarea-accent' => $color === 'accent',
@@ -36,7 +43,6 @@ class Textarea extends LazyComponent
                 'textarea-success' => $color === 'success',
                 'textarea-warning' => $color === 'warning',
                 'textarea-error' => $color === 'error',
-                // sizes
                 'textarea-lg' => $size === 'lg',
                 'textarea-md' => $size === 'md',
                 'textarea-sm' => $size === 'sm',

@@ -45,6 +45,17 @@ class Drawer extends DaisyComponent
         ];
     }
 
+    protected function viewClasses(): array
+    {
+        return [
+            'toggle' => 'drawer-toggle',
+            'content' => 'drawer-content',
+            'side' => 'drawer-side',
+            'overlay' => 'drawer-overlay',
+            'panel' => $this->sideClasses,
+        ];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return ['drawer', 'drawer-end' => $this->end];

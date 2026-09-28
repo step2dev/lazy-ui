@@ -11,7 +11,7 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 
 ## 2.x frontend stack
 
-Lazy UI 2.x uses:
+Lazy UI 2.x supports Laravel 12 and 13 and uses:
 
 - Tailwind CSS 4
 - daisyUI 5

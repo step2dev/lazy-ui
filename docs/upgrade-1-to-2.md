@@ -1,6 +1,6 @@
 # Upgrade from Lazy UI 1.x to 2.x
 
-Lazy UI 2.x is a major frontend migration.
+Lazy UI 2.x is a major frontend migration and supports Laravel 12 and 13 only.
 
 | Lazy UI | Tailwind CSS | daisyUI | Quill |
 | --- | --- | --- | --- |
@@ -10,6 +10,8 @@ Lazy UI 2.x is a major frontend migration.
 Lazy UI 1.x remains the maintenance line for projects that need Tailwind CSS 3 or daisyUI 4.
 
 ## Before upgrading
+
+Make sure the application is running Laravel 12 or 13 before upgrading Lazy UI. Laravel 10 and 11 are not supported by Lazy UI 2.x.
 
 Create a branch and make sure the current application builds before changing dependencies.
 

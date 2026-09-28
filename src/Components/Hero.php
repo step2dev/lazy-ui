@@ -36,6 +36,16 @@ class Hero extends DaisyComponent
         $this->spacingClasses = [$spacings[$this->spacing] ?? $spacings['md']];
     }
 
+    protected function viewClasses(): array
+    {
+        return [
+            'content' => $this->contentClasses,
+            'inner' => $this->innerClasses,
+            'title' => $this->titleClasses,
+            'spacing' => $this->spacingClasses,
+        ];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         $backgrounds = [

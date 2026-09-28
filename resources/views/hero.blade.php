@@ -1,16 +1,16 @@
 <section {{ $attributes }}>
-    <div @class($unstyled ? [] : $contentClasses)>
-        <div @class($unstyled ? [] : $innerClasses)>
+    <div class="{{ $viewClasses['content'] }}">
+        <div class="{{ $viewClasses['inner'] }}">
             @isset($heading)
-                <h1 {{ $heading->attributes->class($unstyled ? [] : $titleClasses) }}>{{ $heading }}</h1>
+                <h1 {{ $heading->attributes->merge(['class' => $viewClasses['title']]) }}>{{ $heading }}</h1>
             @elseif ($title)
-                <h1 @class($unstyled ? [] : $titleClasses)>{{ $title }}</h1>
+                <h1 class="{{ $viewClasses['title'] }}">{{ $title }}</h1>
             @endisset
 
             @isset($lead)
-                <div {{ $lead->attributes->class($unstyled ? [] : $spacingClasses) }}>{{ $lead }}</div>
+                <div {{ $lead->attributes->merge(['class' => $viewClasses['spacing']]) }}>{{ $lead }}</div>
             @elseif ($description)
-                <p @class($unstyled ? [] : $spacingClasses)>{{ $description }}</p>
+                <p class="{{ $viewClasses['spacing'] }}">{{ $description }}</p>
             @endisset
 
             {{ $slot }}

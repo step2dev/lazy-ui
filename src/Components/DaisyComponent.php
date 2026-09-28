@@ -25,6 +25,7 @@ abstract class DaisyComponent extends LazyComponent
 
             return view(static::VIEW, [
                 ...$data,
+                'viewClasses' => $this->resolvedViewClasses($unstyled),
                 ...$this->componentData($data, $attributes),
             ])->render();
         };
@@ -45,6 +46,11 @@ abstract class DaisyComponent extends LazyComponent
         return [];
     }
 
+    protected function viewClasses(): array
+    {
+        return [];
+    }
+
     protected function consumedAttributes(): array
     {
         return [];
@@ -53,6 +59,17 @@ abstract class DaisyComponent extends LazyComponent
     protected function truthy(mixed $value): bool
     {
         return $value !== false && $value !== null && $value !== 'false' && $value !== '0' && $value !== 0;
+    }
+
+    private function resolvedViewClasses(bool $unstyled): array
+    {
+        $classes = [];
+
+        foreach ($this->viewClasses() as $key => $value) {
+            $classes[$key] = $unstyled ? '' : $this->classes($value);
+        }
+
+        return $classes;
     }
 
     private function syncCommonSmartAttributes(ComponentAttributeBag $attributes): array

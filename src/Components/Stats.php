@@ -8,18 +8,28 @@ class Stats extends DaisyComponent
 {
     protected const VIEW = 'lazy::stats';
 
-    public array $stats;
+    public array $stats = [];
 
     public function __construct(
         array $items = [],
         public bool $vertical = false,
         public bool $horizontal = false,
     ) {
-        $this->stats = array_values(array_map(static fn (array $item): array => [
-            'title' => (string) ($item['title'] ?? ''),
-            'value' => $item['value'] ?? '',
-            'description' => (string) ($item['description'] ?? $item['desc'] ?? ''),
-        ], $items));
+        foreach ($items as $item) {
+            $normalized = is_array($item) ? $item : ['value' => $item];
+
+            $this->stats[] = [
+                'title' => (string) ($normalized['title'] ?? ''),
+                'value' => $normalized['value'] ?? '',
+                'description' => (string) ($normalized['description'] ?? $normalized['desc'] ?? ''),
+                'figure' => $normalized['figure'] ?? null,
+                'actions' => $normalized['actions'] ?? null,
+                'classes' => $this->classes([
+                    'stat',
+                    (string) ($normalized['class'] ?? '') => isset($normalized['class']),
+                ]),
+            ];
+        }
     }
 
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array

@@ -11,7 +11,16 @@
 @switch($themeToggle)
     @case ('multiple')
         <div
-            x-data="{ open: false, themes: @js(array_values($themes)) }"
+            x-data="{
+                open: false,
+                themes: @js(array_values($themes)),
+                setTheme(theme) {
+                    if (! theme) return;
+                    document.documentElement.dataset.theme = theme;
+                    localStorage.setItem('theme', theme);
+                    window.dispatchEvent(new CustomEvent('lazy-ui:theme-changed', { detail: { theme } }));
+                }
+            }"
             @keydown.escape.window="open = false"
             title="Change Theme"
             class="dropdown dropdown-end z-[9999]"
@@ -46,7 +55,7 @@
                                 class="outline-base-content overflow-hidden rounded-lg outline-2 outline-offset-2"
                                 :data-set-theme="theme"
                                 data-act-class="outline"
-                                @click="open = false"
+                                @click="setTheme(theme); open = false"
                             >
                                 <div
                                     :data-theme="theme"
@@ -79,6 +88,20 @@
         <button
             type="button"
             class="swap swap-rotate btn btn-ghost btn-circle"
+            x-data="{
+                themes: @js(array_values($toggleThemes)),
+                toggleTheme() {
+                    if (! this.themes.length) return;
+                    const current = document.documentElement.dataset.theme || localStorage.getItem('theme') || this.themes[0];
+                    const index = this.themes.indexOf(current);
+                    const next = this.themes[(index + 1 + this.themes.length) % this.themes.length];
+                    document.documentElement.dataset.theme = next;
+                    localStorage.setItem('theme', next);
+                    this.$el.classList.toggle('swap-active', this.themes.length > 1 && next === this.themes[1]);
+                    window.dispatchEvent(new CustomEvent('lazy-ui:theme-changed', { detail: { theme: next } }));
+                }
+            }"
+            @click="toggleTheme()"
             data-toggle-theme="{{ implode(',', $toggleThemes) }}"
             data-act-class="swap-active"
             aria-label="Toggle theme"

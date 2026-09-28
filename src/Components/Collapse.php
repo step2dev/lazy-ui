@@ -10,6 +10,8 @@ class Collapse extends DaisyComponent
 
     public function __construct(
         public string $title = '',
+        public string $summaryClass = '',
+        public string $contentClass = '',
         public bool $open = false,
         public bool $arrow = true,
         public bool $plus = false,
@@ -18,8 +20,14 @@ class Collapse extends DaisyComponent
     protected function viewClasses(): array
     {
         return [
-            'title' => 'collapse-title',
-            'content' => 'collapse-content',
+            'title' => $this->classes([
+                'collapse-title',
+                $this->summaryClass => $this->summaryClass !== '',
+            ]),
+            'content' => $this->classes([
+                'collapse-content',
+                $this->contentClass => $this->contentClass !== '',
+            ]),
         ];
     }
 

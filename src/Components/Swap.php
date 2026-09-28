@@ -8,10 +8,13 @@ class Swap extends DaisyComponent
 {
     protected const VIEW = 'lazy::swap';
 
+    public string $tag;
+
     public function __construct(
         public bool $active = false,
         public bool $rotate = false,
         public bool $flip = false,
+        public bool $controlled = false,
         public string $name = '',
         public string $value = '1',
         public bool $checked = false,
@@ -19,7 +22,9 @@ class Swap extends DaisyComponent
         public mixed $onLabel = null,
         public mixed $offLabel = null,
         public mixed $indeterminateLabel = null,
-    ) {}
+    ) {
+        $this->tag = $this->controlled ? 'div' : 'label';
+    }
 
     protected function viewClasses(): array
     {

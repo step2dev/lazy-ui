@@ -551,3 +551,26 @@ it('supports linked and hoverable cards for admin navigation', function () {
         ->assertSee('Users')
         ->assertSee('42');
 });
+
+it('supports externally controlled swap state for Alpine or other state owners', function () {
+    $this
+        ->blade('<x-lazy-swap controlled rotate x-bind:class="{ \'swap-active\': open }"><x-slot:on>On</x-slot:on><x-slot:off>Off</x-slot:off></x-lazy-swap>')
+        ->assertSee('<div', false)
+        ->assertSee('swap-rotate')
+        ->assertSee('x-bind:class', false)
+        ->assertSee('swap-on')
+        ->assertSee('swap-off')
+        ->assertDontSee('type="checkbox"', false);
+});
+
+it('supports rich collapse summaries and content classes', function () {
+    $this
+        ->blade('<x-lazy-collapse summary-class="text-lg font-semibold" content-class="space-y-5"><x-slot:summary><span>Permissions</span><small>12 total</small></x-slot:summary>Body</x-lazy-collapse>')
+        ->assertSee('collapse-arrow')
+        ->assertSee('text-lg')
+        ->assertSee('font-semibold')
+        ->assertSee('space-y-5')
+        ->assertSee('Permissions')
+        ->assertSee('12 total')
+        ->assertSee('Body');
+});

@@ -172,21 +172,38 @@ function isDaisyClass(token) {
     return daisyPrefixes.some((prefix) => token === prefix || token.startsWith(`${prefix}-`));
 }
 
-const sourceFiles = [
-    ...filesIn(resolve(root, 'src')).filter((path) => path.endsWith('.php')),
-    ...filesIn(resolve(root, 'resources/views')).filter((path) => path.endsWith('.blade.php')),
-];
+const phpFiles = filesIn(resolve(root, 'src')).filter((path) => path.endsWith('.php'));
+const bladeFiles = filesIn(resolve(root, 'resources/views')).filter((path) => path.endsWith('.blade.php'));
+const jsFiles = filesIn(resolve(root, 'resources/js')).filter((path) => path.endsWith('.js'));
 
 const emittedClasses = new Set();
 
-for (const path of sourceFiles) {
+function addTokens(value) {
+    for (const token of value.split(/\s+/)) {
+        if (/^[a-z][a-z0-9-]*$/.test(token) && isDaisyClass(token)) {
+            emittedClasses.add(token);
+        }
+    }
+}
+
+for (const path of [...phpFiles, ...jsFiles]) {
     const source = readFileSync(path, 'utf8');
 
     for (const match of source.matchAll(/['"]([^'"\n]+)['"]/g)) {
-        for (const token of match[1].split(/\s+/)) {
-            if (/^[a-z][a-z0-9-]*$/.test(token) && isDaisyClass(token)) {
-                emittedClasses.add(token);
-            }
+        addTokens(match[1]);
+    }
+}
+
+for (const path of bladeFiles) {
+    const source = readFileSync(path, 'utf8');
+
+    for (const match of source.matchAll(/class\s*=\s*["']([^"']+)["']/g)) {
+        addTokens(match[1]);
+    }
+
+    for (const block of source.matchAll(/@class\s*\(([\s\S]*?)\)/g)) {
+        for (const match of block[1].matchAll(/['"]([^'"\n]+)['"]/g)) {
+            addTokens(match[1]);
         }
     }
 }

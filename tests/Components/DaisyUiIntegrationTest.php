@@ -287,7 +287,6 @@ it('exposes new daisyUI 5 modifiers without requiring manual class names', funct
         ->assertSee('Rich tip');
 });
 
-
 it('builds complete accessible rating markup from semantic props', function () {
     $this
         ->blade('<x-lazy-rating name="rating-10" :items="5" :value="2" type="star-2" size="lg" clearable />')

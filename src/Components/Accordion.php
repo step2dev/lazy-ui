@@ -32,6 +32,7 @@ class Accordion extends DaisyComponent
                 'title' => (string) ($normalized['title'] ?? $normalized['label'] ?? ''),
                 'content' => $normalized['content'] ?? '',
                 'active' => (bool) ($normalized['active'] ?? false),
+                'checkedAttribute' => (bool) ($normalized['active'] ?? false) ? 'checked=checked' : '',
                 'disabled' => (bool) ($normalized['disabled'] ?? false),
                 'name' => (string) ($normalized['name'] ?? $this->name),
                 'inputType' => ($normalized['toggle'] ?? $this->toggle) ? 'checkbox' : 'radio',
@@ -76,6 +77,7 @@ class Accordion extends DaisyComponent
             'items' => $items,
             'resolvedTitle' => $this->title ?: $this->label,
             'inputType' => $this->toggle ? 'checkbox' : 'radio',
+            'checkedAttribute' => $this->active ? 'checked=checked' : '',
         ];
     }
 

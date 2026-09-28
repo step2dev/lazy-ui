@@ -13,6 +13,15 @@ class Fab extends DaisyComponent
         public string $label = 'Menu',
     ) {}
 
+    protected function viewClasses(): array
+    {
+        return [
+            'trigger' => 'btn btn-circle',
+            'close' => 'fab-close',
+            'main' => 'fab-main-action',
+        ];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return ['fab', 'fab-flower' => $this->flower];

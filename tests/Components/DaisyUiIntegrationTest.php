@@ -552,7 +552,6 @@ it('supports linked and hoverable cards for admin navigation', function () {
         ->assertSee('42');
 });
 
-
 it('supports externally controlled swap state for Alpine or other state owners', function () {
     $this
         ->blade('<x-lazy-swap controlled rotate x-bind:class="{ \'swap-active\': open }"><x-slot:on>On</x-slot:on><x-slot:off>Off</x-slot:off></x-lazy-swap>')

@@ -38,6 +38,10 @@ class Input extends LazyComponent
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);
 
+            $unstyled = $this->isTruthyAttribute($attributes, 'unstyled');
+            $data['controlClass'] = $unstyled ? '' : 'w-full'.(($data['hasError'] ?? false) ? ' text-error input-error' : '');
+            $data['hintClass'] = $unstyled ? '' : 'validator-hint';
+
             return view('lazy::input', $this->mergeData($data, [
                 'input',
                 'validator' => $this->validator,

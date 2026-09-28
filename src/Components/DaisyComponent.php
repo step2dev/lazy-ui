@@ -25,7 +25,7 @@ abstract class DaisyComponent extends LazyComponent
             return view(static::VIEW, [
                 ...$data,
                 ...$this->componentData($data, $attributes),
-            ]);
+            ])->render();
         };
     }
 

@@ -1,2 +1,2 @@
 @aware(['join' => false])
-<input type="file" {{ $attributes->class(['join-item' => ! $unstyled && $join]) }} />
+<input type="file" {{ $attributes->class($join ? $viewClasses['join'] : '') }} />

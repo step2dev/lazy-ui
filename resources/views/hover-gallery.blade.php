@@ -1,5 +1,1 @@
-@props(['unstyled' => false])
-
-<figure {{ $attributes->class(['hover-gallery' => ! $unstyled]) }}>
-    {{ $slot }}
-</figure>
+<figure {{ $attributes }}>{{ $slot }}</figure>

@@ -16,6 +16,15 @@ class Card extends DaisyComponent
         public bool $imageFull = false,
     ) {}
 
+    protected function viewClasses(): array
+    {
+        return [
+            'body' => 'card-body',
+            'title' => 'card-title',
+            'actions' => 'card-actions justify-end',
+        ];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return [

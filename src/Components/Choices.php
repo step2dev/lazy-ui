@@ -56,6 +56,13 @@ class Choices extends LazyComponent
                 ...$data,
                 'attributes' => $attributes,
                 'unstyled' => $unstyled,
+                'viewClasses' => [
+                    'wrapper' => $unstyled ? '' : 'fieldset w-full',
+                    'label' => $unstyled ? '' : 'label',
+                    'native' => $unstyled ? '' : 'sr-only',
+                    'button' => $unstyled ? '' : 'select w-full flex items-center justify-between text-left cursor-pointer',
+                    'listbox' => $unstyled ? '' : 'menu dropdown-content bg-base-100 rounded-box z-50 mt-1 max-h-60 w-full overflow-auto p-2 shadow-lg',
+                ],
                 'model' => $model,
                 'modelLive' => $modelAttribute && str_contains($modelAttribute, '.live'),
                 'optionsExpression' => is_string($this->options) ? ($this->options ?: '[]') : '[]',

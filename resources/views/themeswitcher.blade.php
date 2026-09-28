@@ -7,7 +7,6 @@
     'themes' => [],
 ])
 
-@persist('theme-switcher')
 @switch($themeToggle)
     @case ('multiple')
         <div
@@ -117,4 +116,3 @@
         </button>
         @break
 @endswitch
-@endpersist

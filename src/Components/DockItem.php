@@ -14,6 +14,11 @@ class DockItem extends DaisyComponent
         public bool $active = false,
     ) {}
 
+    protected function viewClasses(): array
+    {
+        return ['label' => 'dock-label'];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return ['dock-active' => $this->active];

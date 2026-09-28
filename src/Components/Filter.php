@@ -8,7 +8,7 @@ class Filter extends DaisyComponent
 {
     protected const VIEW = 'lazy::filter';
 
-    public array $items;
+    public array $items = [];
 
     public function __construct(
         array $options = [],
@@ -16,14 +16,22 @@ class Filter extends DaisyComponent
         public string $resetLabel = '×',
         public mixed $value = null,
     ) {
-        $this->items = [];
+        foreach ($options as $key => $option) {
+            $normalized = is_array($option) ? $option : ['label' => $option];
+            $itemValue = $normalized['value'] ?? (is_int($key) ? $option : $key);
+            $label = $normalized['label'] ?? $normalized['text'] ?? $itemValue;
 
-        foreach ($options as $key => $label) {
-            $itemValue = is_int($key) ? $label : $key;
             $this->items[] = [
                 'value' => $itemValue,
                 'label' => (string) $label,
-                'checked' => (string) $itemValue === (string) $this->value,
+                'checked' => array_key_exists('checked', $normalized)
+                    ? (bool) $normalized['checked']
+                    : (string) $itemValue === (string) $this->value,
+                'disabled' => (bool) ($normalized['disabled'] ?? false),
+                'classes' => $this->classes([
+                    'btn',
+                    'btn-active' => (string) $itemValue === (string) $this->value,
+                ]),
             ];
         }
     }

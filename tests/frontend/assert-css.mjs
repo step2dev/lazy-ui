@@ -39,6 +39,8 @@ const selectors = [
     '.mask',
     '.megamenu',
     '.menu',
+    '.menu-active',
+    '.menu-disabled',
     '.mockup-browser',
     '.mockup-code',
     '.mockup-phone',

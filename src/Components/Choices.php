@@ -8,9 +8,10 @@ use Step2dev\LazyUI\LazyComponent;
 class Choices extends LazyComponent
 {
     public function __construct(
-        public array $options = [],
+        public array|string $options = [],
         public string $label = '',
         public string $placeholder = 'Please select a value',
+        public string|int|float|null $value = null,
     ) {}
 
     public function render(): View

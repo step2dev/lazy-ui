@@ -8,7 +8,7 @@ class Timeline extends DaisyComponent
 {
     protected const VIEW = 'lazy::timeline';
 
-    public array $items;
+    public array $items = [];
 
     public function __construct(
         array $items = [],
@@ -17,15 +17,28 @@ class Timeline extends DaisyComponent
         public bool $snapIcon = false,
         public bool $box = false,
     ) {
-        $this->items = array_values(array_map(static fn ($item): array => is_array($item) ? [
-            'start' => $item['start'] ?? null,
-            'middle' => $item['middle'] ?? null,
-            'end' => $item['end'] ?? $item['content'] ?? $item['label'] ?? null,
-        ] : [
-            'start' => null,
-            'middle' => null,
-            'end' => $item,
-        ], $items));
+        $lastIndex = count($items) - 1;
+
+        foreach (array_values($items) as $index => $item) {
+            $normalized = is_array($item) ? $item : ['end' => $item];
+
+            $this->items[] = [
+                'start' => $normalized['start'] ?? null,
+                'middle' => $normalized['middle'] ?? $normalized['icon'] ?? null,
+                'end' => $normalized['end'] ?? $normalized['content'] ?? $normalized['label'] ?? null,
+                'before' => $index > 0,
+                'after' => $index < $lastIndex,
+                'startClasses' => $this->classes([
+                    'timeline-start',
+                    'timeline-box' => $this->box || (bool) ($normalized['box'] ?? false),
+                ]),
+                'middleClasses' => 'timeline-middle',
+                'endClasses' => $this->classes([
+                    'timeline-end',
+                    'timeline-box' => $this->box || (bool) ($normalized['box'] ?? false),
+                ]),
+            ];
+        }
     }
 
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array

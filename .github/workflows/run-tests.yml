@@ -2,9 +2,9 @@ name: run-tests
 
 on:
   push:
-    branches: [main, 1.x]
+    branches: [1.x-dev]
   pull_request:
-    branches: [main, 1.x]
+    branches: [1.x-dev]
 
 permissions:
   contents: read

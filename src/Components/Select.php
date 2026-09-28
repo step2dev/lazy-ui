@@ -60,6 +60,10 @@ class Select extends LazyComponent
             $data['attributes'] = $attributes;
             $data['options'] = $this->normalizedOptions;
 
+            $unstyled = $this->isTruthyAttribute($attributes, 'unstyled');
+            $data['controlClass'] = $unstyled ? '' : 'w-full'.(($data['hasError'] ?? false) ? ' text-error select-error' : '');
+            $data['hintClass'] = $unstyled ? '' : 'validator-hint';
+
             $color = $this->getColorByAttribute($attributes);
             $size = $this->getSizeByAttribute($attributes);
 

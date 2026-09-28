@@ -9,7 +9,7 @@ use Step2dev\LazyUI\LazyUiServiceProvider;
 
 class TestCase extends Orchestra
 {
-    use InteractsWithViews;
+    use InteractsWithViews { blade as frameworkBlade; }
 
     protected function setUp(): void
     {
@@ -18,6 +18,21 @@ class TestCase extends Orchestra
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Step2dev\\LazyUI\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
+    }
+
+    protected function blade(string $template, $data = [])
+    {
+        $bufferLevel = ob_get_level();
+
+        try {
+            return $this->frameworkBlade($template, $data);
+        } finally {
+            if (str_contains($template, '<x-slot:')) {
+                while (ob_get_level() > $bufferLevel) {
+                    ob_end_clean();
+                }
+            }
+        }
     }
 
     protected function getPackageProviders($app)

@@ -1,0 +1,15 @@
+@import "../../vendor/step2dev/lazy-ui/resources/css/lazy.css";
+
+@source "../views/**/*.blade.php";
+@source "../js/**/*.js";
+@source "../../app/**/*.php";
+
+@supports (-webkit-touch-callout: none) {
+    .h-screen {
+        height: -webkit-fill-available;
+    }
+}
+
+.content {
+    min-height: calc(100vh - 8rem);
+}

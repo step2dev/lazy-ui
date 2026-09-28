@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import "quill/dist/quill.snow.css";
+@import "./components/toast.css";
+
+@source "../views/**/*.blade.php";
+
+@plugin "@tailwindcss/forms" {
+    strategy: "class";
+}
+
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark, cupcake, bumblebee, emerald, corporate, synthwave, retro, cyberpunk, valentine, halloween, garden, forest, aqua, lofi, pastel, fantasy, wireframe, black, luxury, dracula, cmyk, autumn, business, acid, lemonade, night, coffee, winter;
+    logs: false;
+}
+
+@theme {
+    --font-base: "Inter", sans-serif;
+}
+
+.pause {
+    animation-play-state: paused;
+}

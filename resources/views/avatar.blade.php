@@ -1,14 +1,22 @@
 @props([
-    'src'         => 'https://picsum.photos/200/200?random=1',
-    'alt'         => 'Avatar',
-    'placeholder' => '',
+    'src' => 'https://picsum.photos/200/200?random=1',
+    'alt' => 'Avatar',
     'onlineEnabled' => false,
-    'online' => false,
-
+    'offlineEnabled' => false,
+    'placeholderEnabled' => false,
 ])
 
-<div class="avatar">
+<div @class([
+    'avatar',
+    'avatar-online' => $onlineEnabled,
+    'avatar-offline' => $offlineEnabled,
+    'avatar-placeholder' => $placeholderEnabled,
+])>
     <div {{ $attributes }}>
-        <img src="{{ $src }}" alt="{{ $alt }}" />
+        @if ($placeholderEnabled && ! $src)
+            {{ $slot }}
+        @else
+            <img src="{{ $src }}" alt="{{ $alt }}" />
+        @endif
     </div>
 </div>

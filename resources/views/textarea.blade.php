@@ -1,5 +1,8 @@
 @props([
     'hasError' => false,
-    'value' => ''
+    'value' => '',
 ])
-<textarea {{ $attributes->merge(['class' => 'w-full'.($hasError ? ' textarea-error' : '')]) }}>{{ $value ?: $slot }}</textarea>
+
+<textarea {{ $attributes->merge([
+    'class' => 'w-full'.($hasError ? ' textarea-error' : ''),
+]) }}>{{ $value ?: $slot }}</textarea>

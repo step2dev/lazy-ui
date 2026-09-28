@@ -13,15 +13,14 @@
 
 @php
     if (! $show) {
-        return ;
+        return;
     }
 
     $routePath = $route ? route($route, [], false) : $href;
-
     $path = trim($routePath !== '/admin' ? $routePath.'*' : $routePath, '/');
-
-    $count = (int) $count > 99 ? '99+' : $count
+    $count = (int) $count > 99 ? '99+' : $count;
 @endphp
+
 @if ($title)
     <li class="menu-title">
         <span>{{ $title }}</span>
@@ -33,11 +32,11 @@
            href="{{ $route ? route($route) : $href }}"
        @endif
        {{ $attributes->class([
-            'active' => request()->is($path),
+            'menu-active' => request()->is($path),
         ]) }}
        @if ($toggle)
            @click="open = ! open"
-        @endif
+       @endif
     >
         <div>
             @if ($inlineIcon || $icon)
@@ -66,6 +65,7 @@
             </svg>
         @endif
     </a>
+
     @if ($slot->isNotEmpty())
         <ul class="flex flex-col" x-show="open"
             x-transition:enter="transition ease-out duration-200"
@@ -74,8 +74,7 @@
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 transform scale-100"
             x-transition:leave-end="opacity-0 transform scale-90"
-            style="display: none"
-        >
+            style="display: none">
             {{ $slot }}
         </ul>
     @endif

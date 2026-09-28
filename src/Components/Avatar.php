@@ -11,21 +11,22 @@ class Avatar extends LazyComponent
     {
         return function (array $data) {
             $attributes = $this->getAttributesFromData($data);
-
             $size = $this->getSizeByAttribute($attributes);
+
+            $data['onlineEnabled'] = $attributes->get('online', false);
+            $data['offlineEnabled'] = $attributes->get('offline', false);
+            $data['placeholderEnabled'] = $attributes->get('placeholder', false);
 
             return view('lazy::avatar', $this->mergeData($data, [
                 'w-24' => $size === 'lg',
                 'w-20' => $size === 'md',
                 'w-16' => $size === 'sm',
                 'w-12' => $size === 'xs',
-                'online' => $attributes->get('online', false),
-                'offline' => $attributes->get('offline', false),
-                'placeholder' => $attributes->get('placeholder', false),
             ], [
                 'online',
                 'offline',
                 'placeholder',
+                'size',
             ]))->render();
         };
     }

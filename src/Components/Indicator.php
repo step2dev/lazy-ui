@@ -70,13 +70,13 @@ class Indicator extends DaisyComponent
         }
 
         $markerClasses = [
-                'indicator-item',
-                'badge' => ! $this->indicatorClass,
-                $colors[$color] ?? $colors['secondary'] => ! $this->indicatorClass,
-                $sizes[$size] ?? '' => ! $this->indicatorClass && $size,
-                $horizontalClasses[$this->horizontal] ?? '' => (bool) $this->horizontal,
-                $verticalClasses[$this->vertical] ?? '' => (bool) $this->vertical,
-                $this->indicatorClass => filled($this->indicatorClass),
+            'indicator-item',
+            'badge' => ! $this->indicatorClass,
+            $colors[$color] ?? $colors['secondary'] => ! $this->indicatorClass,
+            $sizes[$size] ?? '' => ! $this->indicatorClass && $size,
+            $horizontalClasses[$this->horizontal] ?? '' => (bool) $this->horizontal,
+            $verticalClasses[$this->vertical] ?? '' => (bool) $this->vertical,
+            $this->indicatorClass => filled($this->indicatorClass),
         ];
 
         if ($this->truthy($attributes->get('unstyled'))) {

@@ -3,6 +3,7 @@
 namespace Step2dev\LazyUI\Components;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\View\ComponentAttributeBag;
 use Step2dev\LazyUI\LazyComponent;
 
 class Tabs extends LazyComponent
@@ -34,7 +35,7 @@ class Tabs extends LazyComponent
         }
     }
 
-    protected function componentData(array $data, \Illuminate\View\ComponentAttributeBag $attributes): array
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
     {
         $items = $this->items;
 

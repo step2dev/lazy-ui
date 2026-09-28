@@ -1,7 +1,7 @@
 <ul {{ $attributes }}>
     @foreach ($steps as $step)
-        <li class="{{ $unstyled ? '' : $step['classes'] }}">
-            @if ($step['icon'] !== null)<span @class(['step-icon' => ! $unstyled])>{{ $step['icon'] }}</span>@endif
+        <li class="{{ $step['classes'] }}">
+            @if ($step['icon'] !== null)<span class="{{ $viewClasses['icon'] }}">{{ $step['icon'] }}</span>@endif
             {{ $step['label'] }}
         </li>
     @endforeach

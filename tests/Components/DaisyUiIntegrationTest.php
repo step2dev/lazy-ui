@@ -287,6 +287,34 @@ it('exposes new daisyUI 5 modifiers without requiring manual class names', funct
         ->assertSee('Rich tip');
 });
 
+
+it('builds complete accessible rating markup from semantic props', function () {
+    $this
+        ->blade('<x-lazy-rating name="rating-10" :items="5" :value="2" type="star-2" size="lg" clearable />')
+        ->assertSee('rating rating-lg', false)
+        ->assertSee('name="rating-10"', false)
+        ->assertSee('class="rating-hidden"', false)
+        ->assertSee('aria-label="clear"', false)
+        ->assertSee('class="mask mask-star-2"', false)
+        ->assertSee('aria-label="1 star"', false)
+        ->assertSee('aria-label="2 stars"', false)
+        ->assertSee('value="2"', false)
+        ->assertSee('checked', false);
+
+    $this
+        ->blade('<x-lazy-rating name="score" :items="5" :value="3" type="heart" readonly />')
+        ->assertSee('mask-heart')
+        ->assertSee('aria-current="true"', false)
+        ->assertDontSee('type="radio"', false);
+
+    $this
+        ->blade('<x-lazy-rating name="score" :items="5" :value="2.5" half clearable wire:model.live="score" />')
+        ->assertSee('rating-half')
+        ->assertSee('mask-half-1')
+        ->assertSee('mask-half-2')
+        ->assertSee('wire:model.live="score"', false);
+});
+
 it('keeps legacy toast behavior while using daisyUI toast and alert classes', function () {
     $this
         ->blade('<x-lazy-toast />')

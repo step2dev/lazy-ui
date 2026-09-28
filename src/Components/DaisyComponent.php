@@ -14,7 +14,7 @@ abstract class DaisyComponent extends LazyComponent
     public function render(): Closure|View
     {
         return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
+            $attributes = $this->prepareAttributes($this->getAttributesFromData($data));
             $unstyled = $this->truthy($attributes->get('unstyled'));
 
             $data['unstyled'] = $unstyled;
@@ -27,6 +27,11 @@ abstract class DaisyComponent extends LazyComponent
                 ...$this->componentData($data, $attributes),
             ])->render();
         };
+    }
+
+    protected function prepareAttributes(ComponentAttributeBag $attributes): ComponentAttributeBag
+    {
+        return $attributes;
     }
 
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array

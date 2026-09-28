@@ -15,6 +15,7 @@ class Textarea extends DaisyComponent
         public bool $required = false,
         public bool $validator = false,
         public string $hint = '',
+        public string $value = '',
         public string $color = '',
         public string $size = '',
     ) {

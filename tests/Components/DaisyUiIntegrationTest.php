@@ -521,7 +521,6 @@ it('generates independent drawer toggle ids and allows explicit ids', function (
         ->assertSee('for="settings-drawer"', false);
 });
 
-
 it('supports reusable dropdown positioning and content customization', function () {
     $this
         ->blade('<x-lazy-dropdown position="end" width="w-56" content-class="max-h-96 overflow-y-auto" label="Language">Item</x-lazy-dropdown>')
@@ -541,7 +540,6 @@ it('supports reusable dropdown positioning and content customization', function 
         ->assertSee('shadow-2xl')
         ->assertDontSee('bg-base-100');
 });
-
 
 it('supports linked and hoverable cards for admin navigation', function () {
     $this

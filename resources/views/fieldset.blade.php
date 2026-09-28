@@ -1,6 +1,6 @@
 <fieldset {{ $attributes }}>
-    @if ($legend)<legend @class(['fieldset-legend' => ! $unstyled])>{{ $legend }}</legend>@endif
-    @if ($label)<label @class(['label' => ! $unstyled])>{{ $label }}</label>@endif
+    @if ($legend)<legend class="{{ $viewClasses['legend'] }}">{{ $legend }}</legend>@endif
+    @if ($label)<label class="{{ $viewClasses['label'] }}">{{ $label }}</label>@endif
     {{ $slot }}
-    @if ($hint)<p @class(['label' => ! $unstyled])>{{ $hint }}</p>@endif
+    @if ($hint)<p class="{{ $viewClasses['hint'] }}">{{ $hint }}</p>@endif
 </fieldset>

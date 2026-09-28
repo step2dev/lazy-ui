@@ -63,9 +63,27 @@ class Accordion extends DaisyComponent
 
     protected function componentData(array $data, ComponentAttributeBag $attributes): array
     {
+        $items = $this->items;
+
+        if ($this->truthy($attributes->get('unstyled'))) {
+            $items = array_map(static fn (array $item): array => [
+                ...$item,
+                'classes' => '',
+            ], $items);
+        }
+
         return [
+            'items' => $items,
             'resolvedTitle' => $this->title ?: $this->label,
             'inputType' => $this->toggle ? 'checkbox' : 'radio',
+        ];
+    }
+
+    protected function viewClasses(): array
+    {
+        return [
+            'title' => 'collapse-title text-xl font-medium',
+            'content' => 'collapse-content',
         ];
     }
 }

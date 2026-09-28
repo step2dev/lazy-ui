@@ -15,4 +15,13 @@ class MockupBrowser extends DaisyComponent
     {
         return ['mockup-browser border border-base-300'];
     }
+
+    protected function viewClasses(): array
+    {
+        return [
+            'toolbar' => 'mockup-browser-toolbar',
+            'url' => 'input border border-base-300',
+            'content' => 'border-t border-base-300',
+        ];
+    }
 }

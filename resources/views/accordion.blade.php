@@ -1,10 +1,10 @@
 @if ($collectionMode)
     <div {{ $attributes }}>
         @foreach ($items as $item)
-            <div class="{{ $unstyled ? '' : $item['classes'] }}">
+            <div class="{{ $item['classes'] }}">
                 <input type="{{ $item['inputType'] }}" name="{{ $item['name'] }}" @checked($item['active']) @disabled($item['disabled']) />
-                <div @class(['collapse-title text-xl font-medium' => ! $unstyled])>{{ $item['title'] }}</div>
-                <div @class(['collapse-content' => ! $unstyled])>{{ $item['content'] }}</div>
+                <div class="{{ $viewClasses['title'] }}">{{ $item['title'] }}</div>
+                <div class="{{ $viewClasses['content'] }}">{{ $item['content'] }}</div>
             </div>
         @endforeach
         {{ $slot }}
@@ -12,7 +12,7 @@
 @else
     <div {{ $attributes }}>
         <input type="{{ $inputType }}" name="{{ $name }}" @checked($active) />
-        <div @class(['collapse-title text-xl font-medium' => ! $unstyled])>{{ $resolvedTitle }}</div>
-        <div @class(['collapse-content' => ! $unstyled])>{{ $slot }}</div>
+        <div class="{{ $viewClasses['title'] }}">{{ $resolvedTitle }}</div>
+        <div class="{{ $viewClasses['content'] }}">{{ $slot }}</div>
     </div>
 @endif

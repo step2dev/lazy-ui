@@ -18,6 +18,16 @@ class Modal extends DaisyComponent
         public bool $end = false,
     ) {}
 
+    protected function viewClasses(): array
+    {
+        return [
+            'box' => 'modal-box',
+            'title' => 'text-lg font-bold',
+            'actions' => 'modal-action',
+            'backdrop' => 'modal-backdrop',
+        ];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return [

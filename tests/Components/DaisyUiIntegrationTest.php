@@ -314,6 +314,53 @@ it('builds complete accessible rating markup from semantic props', function () {
         ->assertSee('wire:model.live="score"', false);
 });
 
+
+it('generates data-driven component markup from semantic props', function () {
+    $this
+        ->blade('<x-lazy-steps :items="[[\'label\' => \'Start\'], [\'label\' => \'Done\']]" :current="2" />')
+        ->assertSee('Start')
+        ->assertSee('Done')
+        ->assertSee('step-primary');
+
+    $this
+        ->blade('<x-lazy-pagination :current="2" :total="3" url="/page/{page}" />')
+        ->assertSee('href="/page/1"', false)
+        ->assertSee('href="/page/2"', false)
+        ->assertSee('btn-active');
+
+    $this
+        ->blade('<x-lazy-stats :items="[[\'title\' => \'Users\', \'value\' => 42, \'description\' => \'Active\']]" />')
+        ->assertSee('Users')
+        ->assertSee('42')
+        ->assertSee('Active');
+
+    $this
+        ->blade('<x-lazy-table :headers="[\'Name\', \'Role\']" :rows="[[\'Yurii\', \'Admin\']]" zebra />')
+        ->assertSee('table-zebra')
+        ->assertSee('<th>Name</th>', false)
+        ->assertSee('<td>Yurii</td>', false);
+
+    $this
+        ->blade('<x-lazy-filter :options="[\'all\' => \'All\', \'active\' => \'Active\']" value="active" />')
+        ->assertSee('value="active"', false)
+        ->assertSee('checked', false);
+});
+
+it('keeps Blade templates presentation-only without server-side php blocks', function () {
+    $iterator = new \RecursiveIteratorIterator(
+        new \RecursiveDirectoryIterator(dirname(__DIR__, 2).'/resources/views')
+    );
+
+    foreach ($iterator as $file) {
+        if (! $file->isFile() || ! str_ends_with($file->getFilename(), '.blade.php')) {
+            continue;
+        }
+
+        expect(file_get_contents($file->getPathname()))
+            ->not->toContain('@php');
+    }
+});
+
 it('keeps legacy toast behavior while using daisyUI toast and alert classes', function () {
     $this
         ->blade('<x-lazy-toast />')

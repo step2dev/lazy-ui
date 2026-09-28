@@ -1,13 +1,17 @@
 <table {{ $attributes }}>
-    @if ($headers)
-        <thead><tr>@foreach ($headers as $header)<th>{{ $header }}</th>@endforeach</tr></thead>
+    @if ($headerItems)
+        <thead>
+            <tr>
+                @foreach ($headerItems as $header)<th class="{{ $header['classes'] }}">{{ $header['label'] }}</th>@endforeach
+            </tr>
+        </thead>
     @endif
 
-    @if ($rows)
+    @if ($rowItems)
         <tbody>
-            @foreach ($rows as $row)
-                <tr>
-                    @foreach ((array) $row as $cell)<td>{{ $cell }}</td>@endforeach
+            @foreach ($rowItems as $row)
+                <tr class="{{ $row['classes'] }}">
+                    @foreach ($row['cells'] as $cell)<td class="{{ $cell['classes'] }}">{{ $cell['value'] }}</td>@endforeach
                 </tr>
             @endforeach
         </tbody>

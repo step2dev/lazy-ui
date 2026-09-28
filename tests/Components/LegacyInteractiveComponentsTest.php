@@ -79,6 +79,6 @@ it('keeps Lazy UI frontend modules self contained', function () {
         ->toContain("import './components/select'")
         ->and($choices)
         ->toContain("Alpine.data('select'")
-        ->toContain("this.$dispatch('input', item.value)")
+        ->toContain("this.\$dispatch('input', item.value)")
         ->not->toContain('console.log');
 });

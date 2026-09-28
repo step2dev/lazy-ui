@@ -25,14 +25,19 @@ class Tabs extends LazyComponent
             $attributes['role'] = 'tablist';
             $data['attributes'] = $attributes;
 
-            $size = $this->getSizeByAttribute($attributes);
-            $this->type = $this->getKeyByAttribute($attributes, $this->allowedTabType(), 'type', '');
+            $size = $this->getSizeByAttribute($attributes, $this->size ?: null);
+            $type = $this->getKeyByAttribute(
+                $attributes,
+                $this->allowedTabType(),
+                'type',
+                $this->type ?: ''
+            );
 
             return view('lazy::tabs', $this->mergeData($data, [
                 'tabs',
-                'tabs-box' => $this->type === 'boxed',
-                'tabs-lift' => $this->type === 'lifted',
-                'tabs-border' => $this->type === 'bordered',
+                'tabs-box' => $type === 'boxed',
+                'tabs-lift' => $type === 'lifted',
+                'tabs-border' => $type === 'bordered',
                 'tabs-xl' => $size === 'xl',
                 'tabs-lg' => $size === 'lg',
                 'tabs-md' => $size === 'md',

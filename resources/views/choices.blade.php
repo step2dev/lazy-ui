@@ -7,9 +7,10 @@
 ])
 
 @php
-    $model = $attributes->wire('model');
-    $parameter = $model->value();
-    $modelAttributes = $attributes->whereStartsWith('wire:model');
+    $modelAttribute = collect(array_keys($attributes->getAttributes()))
+        ->first(fn (string $key) => str_starts_with($key, 'wire:model'));
+    $model = $modelAttribute ? $attributes->get($modelAttribute) : null;
+    $modelLive = $modelAttribute && str_contains($modelAttribute, '.live');
 
     $optionsExpression = is_string($options)
         ? ($options ?: '[]')
@@ -24,7 +25,7 @@
     ]);
 
     $visualAttributes = $attributes->except([
-        ...array_keys($modelAttributes->getAttributes()),
+        ...array_filter([$modelAttribute]),
         'id',
         'name',
         'required',
@@ -43,12 +44,11 @@
         'fieldset' => ! $unstyled,
         'w-full' => ! $unstyled,
     ]) }}
-    @if ($parameter)
-        x-data="{ defaultValue: @entangle($model) }"
+    @if ($model)
+        x-data="{ defaultValue: $wire.entangle(@js($model)){{ $modelLive ? '.live' : '' }} }"
     @else
         x-data="{ defaultValue: @js($value) }"
     @endif
-    wire:ignore
 >
     <div
         x-model="defaultValue"

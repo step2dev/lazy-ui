@@ -7,9 +7,6 @@ use Step2dev\LazyUI\LazyComponent;
 
 class Tooltip extends LazyComponent
 {
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): Closure
     {
         return function (array $data) {
@@ -24,7 +21,6 @@ class Tooltip extends LazyComponent
                 'tooltip-right' => $position === 'right',
                 'tooltip-bottom' => $position === 'bottom',
                 'tooltip-left' => $position === 'left',
-                // colors
                 'tooltip-primary' => $color === 'primary',
                 'tooltip-secondary' => $color === 'secondary',
                 'tooltip-accent' => $color === 'accent',
@@ -32,6 +28,10 @@ class Tooltip extends LazyComponent
                 'tooltip-success' => $color === 'success',
                 'tooltip-warning' => $color === 'warning',
                 'tooltip-error' => $color === 'error',
+            ], [
+                'open',
+                'position',
+                'color',
             ]))->render();
         };
     }

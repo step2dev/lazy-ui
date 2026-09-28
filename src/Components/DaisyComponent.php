@@ -27,7 +27,7 @@ abstract class DaisyComponent extends LazyComponent
                 ...$data,
                 'viewClasses' => $this->resolvedViewClasses($unstyled),
                 ...$this->componentData($data, $attributes),
-            ])->render();
+            ]);
         };
     }
 

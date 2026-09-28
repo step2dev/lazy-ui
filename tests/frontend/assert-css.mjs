@@ -5,6 +5,17 @@ const root = resolve(new URL('../..', import.meta.url).pathname);
 const css = readFileSync(resolve(root, 'build/lazy-ui.css'), 'utf8');
 
 const requiredSelectors = [
+    '.btn-soft',
+    '.btn-dash',
+    '.rating-half',
+    '.mask-half-1',
+    '.mask-half-2',
+    '.modal-start',
+    '.indicator-bottom',
+    '.dock-xl',
+    '.otp-primary',
+    '.step-error',
+    '.table-pin-cols',
     '.alert',
     '.aura',
     '.avatar',

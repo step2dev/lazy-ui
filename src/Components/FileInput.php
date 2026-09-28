@@ -14,6 +14,11 @@ class FileInput extends DaisyComponent
         public bool $ghost = false,
     ) {}
 
+    protected function viewClasses(): array
+    {
+        return ['join' => 'join-item'];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return [

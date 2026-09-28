@@ -1,21 +1,17 @@
-@props([
-    'zebra' => false,
-    'pinRows' => false,
-    'pinCols' => false,
-    'size' => '',
-    'unstyled' => false,
-])
+<table {{ $attributes }}>
+    @if ($headers)
+        <thead><tr>@foreach ($headers as $header)<th>{{ $header }}</th>@endforeach</tr></thead>
+    @endif
 
-<table {{ $attributes->class([
-    'table' => ! $unstyled,
-    'table-zebra' => ! $unstyled && $zebra,
-    'table-pin-rows' => ! $unstyled && $pinRows,
-    'table-pin-cols' => ! $unstyled && $pinCols,
-    'table-xs' => ! $unstyled && $size === 'xs',
-    'table-sm' => ! $unstyled && $size === 'sm',
-    'table-md' => ! $unstyled && $size === 'md',
-    'table-lg' => ! $unstyled && $size === 'lg',
-    'table-xl' => ! $unstyled && $size === 'xl',
-]) }}>
+    @if ($rows)
+        <tbody>
+            @foreach ($rows as $row)
+                <tr>
+                    @foreach ((array) $row as $cell)<td>{{ $cell }}</td>@endforeach
+                </tr>
+            @endforeach
+        </tbody>
+    @endif
+
     {{ $slot }}
 </table>

@@ -83,7 +83,6 @@ it('keeps Lazy UI frontend modules self contained', function () {
         ->not->toContain('console.log');
 });
 
-
 it('keeps legacy component view paths available', function () {
     expect(view()->exists('lazy::components.drawer'))->toBeTrue()
         ->and(view()->exists('lazy::components.hero'))->toBeTrue()

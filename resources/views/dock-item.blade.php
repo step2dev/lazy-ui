@@ -1,22 +1,11 @@
-@props([
-    'href' => null,
-    'label' => '',
-    'active' => false,
-    'unstyled' => false,
-])
-
-@if ($href)
-    <a href="{{ $href }}" {{ $attributes->class(['dock-active' => ! $unstyled && $active]) }}>
+@if ($tag === 'a')
+    <a href="{{ $href }}" {{ $attributes }}>
         {{ $slot }}
-        @if ($label)
-            <span @class(['dock-label' => ! $unstyled])>{{ $label }}</span>
-        @endif
+        @if ($label)<span @class(['dock-label' => ! $unstyled])>{{ $label }}</span>@endif
     </a>
 @else
-    <button type="button" {{ $attributes->class(['dock-active' => ! $unstyled && $active]) }}>
+    <button type="button" {{ $attributes }}>
         {{ $slot }}
-        @if ($label)
-            <span @class(['dock-label' => ! $unstyled])>{{ $label }}</span>
-        @endif
+        @if ($label)<span @class(['dock-label' => ! $unstyled])>{{ $label }}</span>@endif
     </button>
 @endif

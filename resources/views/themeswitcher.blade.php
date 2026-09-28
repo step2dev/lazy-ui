@@ -23,6 +23,7 @@
             @keydown.escape.window="open = false"
             title="Change Theme"
             class="dropdown dropdown-end z-[9999]"
+            :class="{ 'dropdown-open': open }"
         >
             <button
                 type="button"

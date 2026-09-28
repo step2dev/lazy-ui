@@ -7,15 +7,17 @@ use Step2dev\LazyUI\LazyComponent;
 
 class Tabs extends LazyComponent
 {
-    public function __construct(public string $type = '', public string $size = '') {}
+    public function __construct(
+        public string $type = '',
+        public string $size = '',
+        public string $placement = '',
+        public bool $top = false,
+        public bool $bottom = false,
+    ) {}
 
     public function allowedTabType(): array
     {
-        return [
-            'boxed',
-            'lifted',
-            'bordered',
-        ];
+        return ['boxed', 'lifted', 'bordered', 'box', 'lift', 'border'];
     }
 
     public function render(): \Closure|View
@@ -33,11 +35,20 @@ class Tabs extends LazyComponent
                 $this->type ?: ''
             );
 
+            $placement = $this->placement;
+            if ($this->top || $attributes->has('top')) {
+                $placement = 'top';
+            } elseif ($this->bottom || $attributes->has('bottom')) {
+                $placement = 'bottom';
+            }
+
             return view('lazy::tabs', $this->mergeData($data, [
                 'tabs',
-                'tabs-box' => $type === 'boxed',
-                'tabs-lift' => $type === 'lifted',
-                'tabs-border' => $type === 'bordered',
+                'tabs-box' => in_array($type, ['boxed', 'box'], true),
+                'tabs-lift' => in_array($type, ['lifted', 'lift'], true),
+                'tabs-border' => in_array($type, ['bordered', 'border'], true),
+                'tabs-top' => $placement === 'top',
+                'tabs-bottom' => $placement === 'bottom',
                 'tabs-xl' => $size === 'xl',
                 'tabs-lg' => $size === 'lg',
                 'tabs-md' => $size === 'md',
@@ -46,6 +57,9 @@ class Tabs extends LazyComponent
             ], [
                 'size',
                 'type',
+                'placement',
+                'top',
+                'bottom',
             ]))->render();
         };
     }

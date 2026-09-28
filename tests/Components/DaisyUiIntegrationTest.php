@@ -345,6 +345,74 @@ it('generates data-driven component markup from semantic props', function () {
         ->assertSee('checked', false);
 });
 
+it('generates collection components from semantic data', function () {
+    $this
+        ->blade('<x-lazy-select :options="[[\'value\' => 1, \'label\' => \'One\'], [\'value\' => 2, \'label\' => \'Two\']]" :value="2" />')
+        ->assertSee('value="2"', false)
+        ->assertSee('selected', false)
+        ->assertSee('Two');
+
+    $this
+        ->blade('<x-lazy-tabs :items="[[\'label\' => \'Overview\', \'content\' => \'Summary\'], [\'label\' => \'Settings\']]" active="0" boxed />')
+        ->assertSee('tabs-box')
+        ->assertSee('tab-active')
+        ->assertSee('Summary');
+
+    $this
+        ->blade('<x-lazy-carousel :items="[[\'src\' => \'/one.jpg\', \'alt\' => \'One\'], [\'content\' => \'Second\']]" />')
+        ->assertSee('carousel-item')
+        ->assertSee('src="/one.jpg"', false)
+        ->assertSee('Second');
+
+    $this
+        ->blade('<x-lazy-accordion :items="[[\'title\' => \'First\', \'content\' => \'Body\', \'active\' => true], [\'title\' => \'Second\']]" />')
+        ->assertSee('First')
+        ->assertSee('Body')
+        ->assertSee('checked', false);
+
+    $this
+        ->blade('<x-lazy-breadcrumbs :items="[[\'label\' => \'Home\', \'href\' => \'/\'], [\'label\' => \'Current\']]" />')
+        ->assertSee('href="/"', false)
+        ->assertSee('aria-current="page"', false);
+
+    $this
+        ->blade('<x-lazy-dock :items="[[\'label\' => \'Home\', \'href\' => \'/\', \'active\' => true]]" />')
+        ->assertSee('dock-active')
+        ->assertSee('dock-label')
+        ->assertSee('href="/"', false);
+});
+
+it('generates interactive controls from semantic props', function () {
+    $this
+        ->blade('<x-lazy-swap name="enabled" value="yes" checked on-label="ON" off-label="OFF" />')
+        ->assertSee('type="checkbox"', false)
+        ->assertSee('name="enabled"', false)
+        ->assertSee('checked', false)
+        ->assertSee('swap-on')
+        ->assertSee('swap-off');
+
+    $this
+        ->blade('<x-lazy-otp name="code" :length="4" value="1234" wire:model.live="code" />')
+        ->assertSee('maxlength="4"', false)
+        ->assertSee('wire:model.live="code"', false)
+        ->assertSee('inputmode="numeric"', false);
+
+    $this
+        ->blade('<x-lazy-range :min="0" :max="10" :steps="6" neutral xl vertical />')
+        ->assertSee('range-neutral')
+        ->assertSee('range-xl')
+        ->assertSee('range-vertical')
+        ->assertSee('step="2"', false);
+
+    $this
+        ->blade('<x-lazy-radial :value="75" size="4rem" thickness="4px" color="success" label="75 percent" />')
+        ->assertSee('radial-progress')
+        ->assertSee('text-success')
+        ->assertSee('--size: 4rem', false)
+        ->assertSee('--thickness: 4px', false)
+        ->assertSee('75 percent');
+});
+
 it('keeps Blade templates presentation-only without server-side php blocks', function () {
     $iterator = new \RecursiveIteratorIterator(
         new \RecursiveDirectoryIterator(dirname(__DIR__, 2).'/resources/views')

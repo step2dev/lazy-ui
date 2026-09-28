@@ -21,6 +21,15 @@ class Swap extends DaisyComponent
         public mixed $indeterminateLabel = null,
     ) {}
 
+    protected function viewClasses(): array
+    {
+        return [
+            'on' => 'swap-on',
+            'off' => 'swap-off',
+            'indeterminate' => 'swap-indeterminate',
+        ];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return [

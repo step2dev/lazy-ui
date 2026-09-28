@@ -11,4 +11,13 @@ class TimelineItem extends DaisyComponent
         public bool $last = false,
         public bool $box = false,
     ) {}
+
+    protected function viewClasses(): array
+    {
+        return [
+            'start' => ['timeline-start', 'timeline-box' => $this->box],
+            'middle' => 'timeline-middle',
+            'end' => ['timeline-end', 'timeline-box' => $this->box],
+        ];
+    }
 }

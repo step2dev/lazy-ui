@@ -2,17 +2,29 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Illuminate\Contracts\View\View;
-use Step2dev\LazyUI\LazyComponent;
+use Illuminate\View\ComponentAttributeBag;
 
-class Breadcrumbs extends LazyComponent
+class Breadcrumbs extends DaisyComponent
 {
-    public function render(): \Closure|View
+    protected const VIEW = 'lazy::breadcrumbs';
+
+    public array $items = [];
+
+    public function __construct(array $items = [])
     {
-        return function (array $data) {
-            return view('lazy::breadcrumbs', $this->mergeData($data, [
-                'text-sm breadcrumbs',
-            ]))->render();
-        };
+        foreach (array_values($items) as $index => $item) {
+            $normalized = is_array($item) ? $item : ['label' => $item];
+
+            $this->items[] = [
+                'label' => (string) ($normalized['label'] ?? $normalized['title'] ?? ''),
+                'href' => $normalized['href'] ?? $normalized['url'] ?? null,
+                'current' => (bool) ($normalized['current'] ?? $index === count($items) - 1),
+            ];
+        }
+    }
+
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
+    {
+        return ['breadcrumbs', 'text-sm'];
     }
 }

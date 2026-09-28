@@ -15,7 +15,7 @@ class Radial extends DaisyComponent
         public string $size = '',
         public string $thickness = '',
         public string $color = '',
-        public ?string $label = null,
+        public string $label = '',
     ) {
         $this->value = max(0, min(100, (float) $this->value));
 

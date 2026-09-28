@@ -28,4 +28,15 @@ class Progress extends DaisyComponent
             'progress-error' => $this->color === 'error',
         ];
     }
+
+    protected function prepareAttributes(ComponentAttributeBag $attributes): ComponentAttributeBag
+    {
+        $attributes['max'] = $attributes->get('max', $this->max);
+
+        if ($this->value !== null) {
+            $attributes['value'] = $attributes->get('value', $this->value);
+        }
+
+        return $attributes;
+    }
 }

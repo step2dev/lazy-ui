@@ -27,7 +27,7 @@
             <button
                 type="button"
                 class="btn btn-ghost gap-1 normal-case"
-                @click="open = ! open"
+                @click.stop="open = ! open"
                 :aria-expanded="open"
             >
                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -42,44 +42,45 @@
                 </svg>
             </button>
 
-            <template x-if="open">
-                <div
-                    class="dropdown-content bg-base-200 text-base-content rounded-box top-px mt-16 h-[70vh] max-h-96 w-52 overflow-y-auto shadow-2xl"
-                    @click.outside="open = false"
-                >
-                    <div class="grid grid-cols-1 gap-3 p-3">
-                        <template x-for="theme in themes" :key="theme">
-                            <button
-                                type="button"
-                                class="outline-base-content overflow-hidden rounded-lg outline-2 outline-offset-2"
-                                :data-set-theme="theme"
-                                data-act-class="outline"
-                                @click="setTheme(theme); open = false"
+            <div
+                x-cloak
+                x-show="open"
+                x-transition.origin.top.right
+                class="dropdown-content bg-base-200 text-base-content rounded-box top-full right-0 mt-2 h-[70vh] max-h-96 w-52 overflow-y-auto shadow-2xl"
+                @click.outside="open = false"
+            >
+                <div class="grid grid-cols-1 gap-3 p-3">
+                    <template x-for="theme in themes" :key="theme">
+                        <button
+                            type="button"
+                            class="outline-base-content overflow-hidden rounded-lg outline-2 outline-offset-2"
+                            :data-set-theme="theme"
+                            data-act-class="outline"
+                            @click.stop="setTheme(theme); open = false"
+                        >
+                            <div
+                                :data-theme="theme"
+                                class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
                             >
-                                <div
-                                    :data-theme="theme"
-                                    class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-                                >
-                                    <div class="grid grid-cols-5 grid-rows-3">
-                                        <div class="col-span-5 row-span-3 row-start-1 flex gap-1 px-4 py-3">
-                                            <div
-                                                class="flex-grow text-left text-sm font-bold"
-                                                x-text="theme.charAt(0).toUpperCase() + theme.slice(1)"
-                                            ></div>
-                                            <div class="flex flex-shrink-0 flex-wrap gap-1">
-                                                <div class="bg-primary w-2 rounded"></div>
-                                                <div class="bg-secondary w-2 rounded"></div>
-                                                <div class="bg-accent w-2 rounded"></div>
-                                                <div class="bg-neutral w-2 rounded"></div>
-                                            </div>
+                                <div class="grid grid-cols-5 grid-rows-3">
+                                    <div class="col-span-5 row-span-3 row-start-1 flex gap-1 px-4 py-3">
+                                        <div
+                                            class="flex-grow text-left text-sm font-bold"
+                                            x-text="theme.charAt(0).toUpperCase() + theme.slice(1)"
+                                        ></div>
+                                        <div class="flex flex-shrink-0 flex-wrap gap-1">
+                                            <div class="bg-primary w-2 rounded"></div>
+                                            <div class="bg-secondary w-2 rounded"></div>
+                                            <div class="bg-accent w-2 rounded"></div>
+                                            <div class="bg-neutral w-2 rounded"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </button>
-                        </template>
-                    </div>
+                            </div>
+                        </button>
+                    </template>
                 </div>
-            </template>
+            </div>
         </div>
         @break
 

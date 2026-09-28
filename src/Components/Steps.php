@@ -21,13 +21,28 @@ class Steps extends DaisyComponent
         foreach (array_values($items) as $index => $item) {
             $normalized = is_array($item) ? $item : ['label' => $item];
             $position = $index + 1;
-            $active = (bool) ($normalized['active'] ?? ($this->current !== null && $position <= (int) $this->current));
+            $key = (string) ($normalized['key'] ?? $normalized['value'] ?? $position);
+            $stepColor = (string) ($normalized['color'] ?? $this->color);
+
+            $active = array_key_exists('active', $normalized)
+                ? (bool) $normalized['active']
+                : $this->isActive($position, $key);
 
             $this->steps[] = [
                 'label' => (string) ($normalized['label'] ?? $normalized['title'] ?? $position),
                 'icon' => $normalized['icon'] ?? null,
                 'active' => $active,
-                'color' => (string) ($normalized['color'] ?? $this->color),
+                'classes' => $this->classes([
+                    'step',
+                    'step-primary' => $active && $stepColor === 'primary',
+                    'step-secondary' => $active && $stepColor === 'secondary',
+                    'step-accent' => $active && $stepColor === 'accent',
+                    'step-neutral' => $active && $stepColor === 'neutral',
+                    'step-info' => $active && $stepColor === 'info',
+                    'step-success' => $active && $stepColor === 'success',
+                    'step-warning' => $active && $stepColor === 'warning',
+                    'step-error' => $active && $stepColor === 'error',
+                ]),
             ];
         }
     }
@@ -39,5 +54,18 @@ class Steps extends DaisyComponent
             'steps-vertical' => $this->vertical,
             'steps-horizontal' => ! $this->vertical,
         ];
+    }
+
+    private function isActive(int $position, string $key): bool
+    {
+        if ($this->current === null) {
+            return false;
+        }
+
+        if (is_int($this->current) || ctype_digit((string) $this->current)) {
+            return $position <= (int) $this->current;
+        }
+
+        return $key === (string) $this->current;
     }
 }

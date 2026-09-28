@@ -2,12 +2,12 @@
 
 namespace Step2dev\LazyUI\Components;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
-use Step2dev\LazyUI\LazyComponent;
 
-class Tabs extends LazyComponent
+class Tabs extends DaisyComponent
 {
+    protected const VIEW = 'lazy::tabs';
+
     public array $items = [];
 
     public function __construct(
@@ -35,12 +35,20 @@ class Tabs extends LazyComponent
         }
     }
 
+    protected function prepareAttributes(ComponentAttributeBag $attributes): ComponentAttributeBag
+    {
+        $attributes['role'] = 'tablist';
+
+        return $attributes;
+    }
+
     protected function componentData(array $data, ComponentAttributeBag $attributes): array
     {
+        $unstyled = $this->truthy($attributes->get('unstyled'));
         $items = $this->items;
 
         foreach ($items as &$item) {
-            $item['classes'] = $this->truthy($attributes->get('unstyled'))
+            $item['classes'] = $unstyled
                 ? ''
                 : $this->classes([
                     'tab',
@@ -58,44 +66,44 @@ class Tabs extends LazyComponent
         return ['content' => 'tab-content'];
     }
 
-    public function allowedTabType(): array
+    protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
-        return ['boxed', 'lifted', 'bordered', 'box', 'lift', 'border'];
+        $type = $this->type;
+
+        foreach (['boxed', 'box', 'lifted', 'lift', 'bordered', 'border'] as $candidate) {
+            if ($attributes->has($candidate) && $this->truthy($attributes->get($candidate))) {
+                $type = $candidate;
+                break;
+            }
+        }
+
+        $placement = $this->placement;
+        if ($this->top || $attributes->has('top')) {
+            $placement = 'top';
+        } elseif ($this->bottom || $attributes->has('bottom')) {
+            $placement = 'bottom';
+        }
+
+        return [
+            'tabs',
+            'tabs-box' => in_array($type, ['boxed', 'box'], true),
+            'tabs-lift' => in_array($type, ['lifted', 'lift'], true),
+            'tabs-border' => in_array($type, ['bordered', 'border'], true),
+            'tabs-top' => $placement === 'top',
+            'tabs-bottom' => $placement === 'bottom',
+            'tabs-xl' => $this->size === 'xl',
+            'tabs-lg' => $this->size === 'lg',
+            'tabs-md' => $this->size === 'md',
+            'tabs-sm' => $this->size === 'sm',
+            'tabs-xs' => $this->size === 'xs',
+        ];
     }
 
-    public function render(): \Closure|View
+    protected function consumedAttributes(): array
     {
-        return function (array $data) {
-            $attributes = $this->getAttributesFromData($data);
-            $attributes['role'] = 'tablist';
-            $data['attributes'] = $attributes;
-            $data['items'] = $this->items;
-
-            $size = $this->getSizeByAttribute($attributes, $this->size ?: null);
-            $type = $this->getKeyByAttribute($attributes, $this->allowedTabType(), 'type', $this->type ?: '');
-
-            $placement = $this->placement;
-            if ($this->top || $attributes->has('top')) {
-                $placement = 'top';
-            } elseif ($this->bottom || $attributes->has('bottom')) {
-                $placement = 'bottom';
-            }
-
-            return view('lazy::tabs', $this->mergeData($data, [
-                'tabs',
-                'tabs-box' => in_array($type, ['boxed', 'box'], true),
-                'tabs-lift' => in_array($type, ['lifted', 'lift'], true),
-                'tabs-border' => in_array($type, ['bordered', 'border'], true),
-                'tabs-top' => $placement === 'top',
-                'tabs-bottom' => $placement === 'bottom',
-                'tabs-xl' => $size === 'xl',
-                'tabs-lg' => $size === 'lg',
-                'tabs-md' => $size === 'md',
-                'tabs-sm' => $size === 'sm',
-                'tabs-xs' => $size === 'xs',
-            ], [
-                'size', 'type', 'placement', 'top', 'bottom',
-            ]))->render();
-        };
+        return [
+            'boxed', 'box', 'lifted', 'lift', 'bordered', 'border',
+            'top', 'bottom',
+        ];
     }
 }

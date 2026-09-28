@@ -32,6 +32,31 @@ class Stats extends DaisyComponent
         }
     }
 
+    protected function componentData(array $data, ComponentAttributeBag $attributes): array
+    {
+        $stats = $this->stats;
+
+        if ($this->truthy($attributes->get('unstyled'))) {
+            $stats = array_map(static fn (array $stat): array => [
+                ...$stat,
+                'classes' => '',
+            ], $stats);
+        }
+
+        return ['stats' => $stats];
+    }
+
+    protected function viewClasses(): array
+    {
+        return [
+            'figure' => 'stat-figure',
+            'title' => 'stat-title',
+            'value' => 'stat-value',
+            'description' => 'stat-desc',
+            'actions' => 'stat-actions',
+        ];
+    }
+
     protected function componentClasses(array $data, ComponentAttributeBag $attributes): array
     {
         return [

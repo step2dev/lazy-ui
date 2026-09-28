@@ -8,6 +8,6 @@ class Indicator extends DaisyComponent
 
     public function __construct(
         public mixed $indicator = null,
-        public string $indicatorClass = 'badge badge-secondary',
+        public ?string $indicatorClass = null,
     ) {}
 }

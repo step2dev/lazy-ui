@@ -296,3 +296,61 @@ it('keeps legacy toast behavior while using daisyUI toast and alert classes', fu
         ->assertSee('alert')
         ->assertSee('$store.toasts.list', false);
 });
+
+
+it('keeps drawer hero and indicator defaults compatible but configurable', function () {
+    $this
+        ->blade('<x-lazy-drawer drawer-content="Menu">Content</x-lazy-drawer>')
+        ->assertSee('drawer')
+        ->assertSee('menu')
+        ->assertSee('w-80')
+        ->assertSee('p-4')
+        ->assertSee('bg-base-100')
+        ->assertSee('Menu')
+        ->assertSee('Content');
+
+    $this
+        ->blade('<x-lazy-drawer width="lg" padding="sm" background="base-200" end drawer-content="Menu" />')
+        ->assertSee('drawer-end')
+        ->assertSee('w-96')
+        ->assertSee('p-2')
+        ->assertSee('bg-base-200');
+
+    $this
+        ->blade('<x-lazy-hero title="Hello" description="World" />')
+        ->assertSee('hero')
+        ->assertSee('bg-base-200')
+        ->assertSee('text-center')
+        ->assertSee('max-w-md')
+        ->assertSee('text-5xl')
+        ->assertSee('py-6');
+
+    $this
+        ->blade('<x-lazy-hero background="primary" align="start" width="lg" title-size="sm" spacing="sm" title="Hello" />')
+        ->assertSee('bg-primary')
+        ->assertSee('text-primary-content')
+        ->assertSee('text-left')
+        ->assertSee('max-w-lg')
+        ->assertSee('text-3xl');
+
+    $this
+        ->blade('<x-lazy-indicator indicator="5">Inbox</x-lazy-indicator>')
+        ->assertSee('indicator-item')
+        ->assertSee('badge')
+        ->assertSee('badge-secondary')
+        ->assertSee('Inbox');
+
+    $this
+        ->blade('<x-lazy-indicator indicator="5" primary lg horizontal="start" vertical="bottom">Inbox</x-lazy-indicator>')
+        ->assertSee('indicator-start')
+        ->assertSee('indicator-bottom');
+});
+
+it('keeps legacy drawer hero and indicator view paths as adapters', function () {
+    expect(file_get_contents(dirname(__DIR__, 2).'/resources/views/components/drawer.blade.php'))
+        ->toContain("@include('lazy::drawer')")
+        ->and(file_get_contents(dirname(__DIR__, 2).'/resources/views/components/hero.blade.php'))
+        ->toContain("@include('lazy::hero')")
+        ->and(file_get_contents(dirname(__DIR__, 2).'/resources/views/components/indicator.blade.php'))
+        ->toContain("@include('lazy::indicator')");
+});

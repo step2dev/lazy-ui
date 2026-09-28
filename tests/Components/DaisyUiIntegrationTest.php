@@ -174,6 +174,16 @@ it('renders old demo-only components as reusable components', function () {
         ->assertSee('npm test')
         ->assertDontSee('npm i daisyui');
 
+
+    $this
+        ->blade('<x-lazy-mockup-code :lines="[[\'prefix\' => \'$\', \'code\' => \'npm i daisyui\'], [\'prefix\' => \'>\', \'code\' => \'installing...\', \'state\' => \'warning\'], [\'prefix\' => \'>\', \'code\' => \'Done!\', \'state\' => \'success\'], [\'prefix\' => \'3\', \'code\' => \'Error!\', \'state\' => \'error\']]" />')
+        ->assertSee('data-prefix="$"', false)
+        ->assertSee('data-prefix="&gt;"', false)
+        ->assertSee('bg-warning text-warning-content', false)
+        ->assertSee('bg-success text-success-content', false)
+        ->assertSee('bg-error text-error-content', false)
+        ->assertSee('Error!');
+
     $this
         ->blade('<x-lazy-mockup-window>Window content</x-lazy-mockup-window>')
         ->assertSee('Window content')
